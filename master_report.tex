@@ -79,72 +79,156 @@
 % +++++++++++++++++++++++++
 % Example: (Detele this)
 % +++++++++++++++++++++++++
+
 \section{Introduction}
 
-Please specify your name, matriculation number, name of advisor and the title of your report in \linebreak
-\verb+titlepage.tex+.
-The title page will not count for the 20 pages.
+\section{Quantum Annealer}
 
-Using bibtex you can cite in an organized way and without much work.
-Just enter the information about a paper or an article you want to cite in the \verb+seminar_report.bib+ file and use \verb+\cite+ to cite them. For example \cite{Author08CVPR},\cite{Author04IJCV}.
-Don't forget to compile the bib file and Latex will add all the cited references at the end.
-Cite all the literature you use and state where figures are from!
+\subsection{Time-Dependent Schrödinger Equation}
+\subsection{Quantum Annealing}
+\subsection{Adiabatic Theorem}
+\subsection{Landau-Zener Theorem}
 
-\section{Quantum Spin Dynamics}
+\section{Optimization Problem}
 
-\section{Full Diagolization Algorithm}
+\subsection{2-SAT Problem}
+\subsection{The Mapping of Hamiltonian}
+\subsection{Annealing Time scheme}
 
-\section{Product Formula Algorithm}
+\section{Quantum Annealer Simulation without Heat Bath}
+\subsection{??Simulation Set up}
+\subsection{Algorithm}
+\subsubsection{Full Diagonalization}
+\subsubsection{Suzuki-Trotter Product Formula}
+\subsection{Result}
+\subsubsection{The Effect of step size tau}
+\subsubsection{The Effect of Annealing Time}
+\subsubsection{The Effect of Minimum Gap}
 
-\section{Random Wave Function}
+\section{Quantum Annealer Simulation with Heat Bath}
+\subsection{??Simulation Set up}
+\subsection{Algorithm}
+\subsubsection{Boltzmann Distribution}
+\subsubsection{Random wave function}
+\subsection{Result}
+\subsubsection{The Effect of Temperature}
+\subsubsection{The Process toward Quasi-static}
+\subsubsection{The Effect of Annealing Time}
+\subsubsection{The Effect of Minimum Gap}
 
-\section{Landau-Zener tunneling}
-
-
-
-\section{Section}
-\label{section}
-I am a section. Latex will give me a number \emph{automatically} and put me into the table of contents.
-Using \verb+\label+ and \verb+\ref+ you can use Latex to write that this is Section \ref{section}.
-
-\subsection{a subsection}
-I am a subsection.
-
-\begin{itemize}
-\item I am an item.
-\item [-] I am another item.
-\end{itemize}
-
-
-\subsubsection{a small subsection}
-I am a subsubsection, an even smaller subsection.
-
-\begin{tabular}{|l|c|}
-\hline
-I am a tabular & with two columns. \\
-\hline
-The left column is aligned left & and the right columns is centered. \\
-\hline
-\end{tabular}
+\section{??D-wave Practice}
+\section{??Parallelization}
+\section{??Applicatoin on Machine Learning / Simulation}
 
 
-\section{Another Section}
+\section{Conclusion}
 
-\begin{figure}[h]
-\centering
-\includegraphics[height=100pt]{doge.jpeg}
-\caption{Insert caption here. Image from \cite{lenna}. }
-\label{example_figure}
-\end{figure}
-Figure \ref{example_figure} also gets a number automatically and will be placed where Latex thinks it looks good. You can specify a preference with h(ere), t(op), b(ottom), p(age).
 
-\section{Equations}
-Latex is also really good at printing equations: $E=mc^2$
 
-\begin{equation}
-A = \sum_{i=1}^N A_1 \cdot A_2
-\end{equation}
 
+Result on spin and Energy env,sys,se
+
+success probability of ground state
+
+spin system
+
+energy spectrum
+
+evolution of spin and energy
+
+Runtime comparison
+
+Parallel possibility
+
+-Introduction
+
+-Annealing Theorem
+
+-Full-diagonalization
+
+-suzuki-trotter product formula
+
+-size of tau
+
+-The effect of annealing Time w/ w/o Heat bath
+
+-The effect of minimum gap w/ w/o Heat bath
+
+-Landau-Zener Theorem
+
+-2-SAT problem 
+
+-Random wave function  
+
+-The effect of heat bath(Coherent - Transverse - quasiequilibrium) at different temperature
+
+D-wave practice
+
+-Hamiltonian Mapping
+
+-Annealing Time scheme
+
+-Time-Dependent Schrödinger Equation
+
+-Boltzmann distribution + trace of the observable
+ 
+
+
+%
+%\section{Introduction}
+%
+%Please specify your name, matriculation number, name of advisor and the title of your report in \linebreak
+%\verb+titlepage.tex+.
+%The title page will not count for the 20 pages.
+%
+%Using bibtex you can cite in an organized way and without much work.
+%Just enter the information about a paper or an article you want to cite in the \verb+seminar_report.bib+ file and use \verb+\cite+ to cite them. For example \cite{Author08CVPR},\cite{Author04IJCV}.
+%Don't forget to compile the bib file and Latex will add all the cited references at the end.
+%Cite all the literature you use and state where figures are from!
+%
+%\section{Section}
+%\label{section}
+%I am a section. Latex will give me a number \emph{automatically} and put me into the table of contents.
+%Using \verb+\label+ and \verb+\ref+ you can use Latex to write that this is Section \ref{section}.
+%
+%\subsection{a subsection}
+%I am a subsection.
+%
+%\begin{itemize}
+%\item I am an item.
+%\item [-] I am another item.
+%\end{itemize}
+%
+%
+%\subsubsection{a small subsection}
+%I am a subsubsection, an even smaller subsection.
+%
+%\begin{tabular}{|l|c|}
+%\hline
+%I am a tabular & with two columns. \\
+%\hline
+%The left column is aligned left & and the right columns is centered. \\
+%\hline
+%\end{tabular}
+%
+%
+%\section{Another Section}
+%
+%\begin{figure}[h]
+%\centering
+%\includegraphics[height=100pt]{doge.jpeg}
+%\caption{Insert caption here. Image from \cite{lenna}. }
+%\label{example_figure}
+%\end{figure}
+%Figure \ref{example_figure} also gets a number automatically and will be placed where Latex thinks it looks good. You can specify a preference with h(ere), t(op), b(ottom), p(age).
+%
+%\section{Equations}
+%Latex is also really good at printing equations: $E=mc^2$
+%
+%\begin{equation}
+%A = \sum_{i=1}^N A_1 \cdot A_2
+%\end{equation}
+%
 
 % +++++++++++++++++++++++++
 
