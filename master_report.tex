@@ -72,17 +72,24 @@
 \newpage
 % =========================================================================
 
-% +++++++++++++++++++++++++
-% Insert your Text here
-% +++++++++++++++++++++++++
-
-% +++++++++++++++++++++++++
-% Example: (Detele this)
-% +++++++++++++++++++++++++
 
 \section{Introduction}
+Quantum annealer is a machine that can perform adiabatic quantum computation. D-wave in fact has already sell their quantum annealing machine to several customers. Although quantum annealing machine can perform quantum computation, it is not universal quantum computer. It specialised in optimisation problem. 
+
+Quantum annealer is built based on spin 1/2 system. Which is Ising-model. The qubit in this system has two state, which is perfect for solving the 2-SAT problems. Start from an initial Hamiltonian, we slowly turn off this initial Hamiltonian and turn on the problem Hamiltonian. If the system is at its ground state and the whole process is slow enough, the system will also end at ground state with the problem Hamiltonian and we get the solution of the 2-SAT problem. 
+
+According to the adiabatic theorem this should work in a pure system, however, in the real case with environment. The system will be coupled with a heat bath. This heat bath may damage the coherent of the system evolution. In my paper, this is the thing i want to simulate.
+
+Start from a 8 spin system. I use two possible algorithm to simulate. Then i move on to a 8 spin system with 8 spin environment. To see the influence of the hear bath, I compare the result in the successful probability. 
+
+In the second section, I will briefly introduce the the quantum annealer and the theorem. In section 3, I will introduce the optimization porblem, which believed to be a potential application of the quantum annealer. In section 4, I first simulate the quantum annealer without the heat bath. In section 5, I then simulate the quantum annealing process with hear bath. In the last section we try to discuss the possibility of using quantum annealing for machine learning.  
+
+\newpage
 
 \section{Quantum Annealer}
+
+
+
 
 \subsection{Time-Dependent Schrödinger Equation}
 \subsection{Quantum Annealing}
@@ -91,6 +98,7 @@
 
 \section{Optimization Problem}
 
+
 \subsection{2-SAT Problem}
 \subsection{The Mapping of Hamiltonian}
 \subsection{Annealing Time scheme}
@@ -98,12 +106,32 @@
 \section{Quantum Annealer Simulation without Heat Bath}
 \subsection{??Simulation Set up}
 \subsection{Algorithm}
+
 \subsubsection{Full Diagonalization}
 \subsubsection{Suzuki-Trotter Product Formula}
 \subsection{Result}
+\subsection{the evolution of the spin, energy, and success probability during the annealing}
+	\begin{itemize}
+		\item Figure here: The system energy vs. lambda
+		\item Figure here: The spin x vs. lambda
+		\item Figure here: The spin z vs. lambda
+		\item Figure here: The success probability vs. lambda
+	\end{itemize}
 \subsubsection{The Effect of step size tau}
+	\begin{itemize}
+		\item Figure here: compare the result of product formula with the result of full diagonalization: success probability vs. annealing Time with different tau
+	\end{itemize}
 \subsubsection{The Effect of Annealing Time}
+	\begin{itemize}
+		\item Figure here: compare the result of different annealing time of full diagonalization: success probability vs.lambda with different annealing time
+		\item Figure here: compare the result of different annealing time of full diagonalization: success probability vs.lambda with different annealing time
+	\end{itemize}
 \subsubsection{The Effect of Minimum Gap}
+	\begin{itemize}
+		\item Figure here: energy spectrum: the energy for all states vs. lambda
+		\item Figure here: a close view of the result above: the energy for lowest 20~30 states vs. lambda
+		\item Figure here: compare: the success probability under the annealing time that maximise the minimum gap difference vs. minimum gap value 
+	\end{itemize}
 
 \section{Quantum Annealer Simulation with Heat Bath}
 \subsection{??Simulation Set up}
@@ -112,20 +140,84 @@
 \subsubsection{Random wave function}
 \subsection{Result}
 \subsubsection{The Effect of Temperature}
+	\begin{itemize}
+		\item Figure here: display plots with different coupling factor: success probability of a coupling factor with different temperature vs. annealing Time
+	\end{itemize}
 \subsubsection{The Process toward Quasi-static}
+	\begin{itemize}
+		\item Figure here: display plots with different temperature: success probability with different coupling factor vs. annealing time
+		
+		\item Figure here: repeat above plots with Random wave function
+	\end{itemize}
+	
+	
 \subsubsection{The Effect of Annealing Time}
+	This subsection may be removed 
 \subsubsection{The Effect of Minimum Gap}
-
+	\begin{itemize}
+		\item Figure here: compare: the success probability under the annealing time that maximise the minimum gap difference vs. minimum gap value 
+	\end{itemize}
 \section{??D-wave Practice}
 \section{??Parallelization}
 \section{??Applicatoin on Machine Learning / Simulation}
 
 
 \section{Conclusion}
+\section{miscellaneous}
+
+
+\label{section}
+
+Please specify your name, matriculation number, name of advisor and the title of your report in \linebreak
+\verb+titlepage.tex+.
+The title page will not count for the 20 pages.
+
+Using bibtex you can cite in an organized way and without much work.
+Just enter the information about a paper or an article you want to cite in the \verb+seminar_report.bib+ file and use \verb+\cite+ to cite them. For example \cite{Author08CVPR},\cite{Author04IJCV}.
+Don't forget to compile the bib file and Latex will add all the cited references at the end.
+Cite all the literature you use and state where figures are from!
+
+I am a section. Latex will give me a number \emph{automatically} and put me into the table of contents.
+Using \verb+\label+ and \verb+\ref+ you can use Latex to write that this is Section \ref{section}.
 
 
 
+\subsection{a subsection}
+I am a subsection.
 
+\begin{itemize}
+	\item I am an item.
+	\item [-] I am another item.
+\end{itemize}
+
+\subsubsection{a small subsection}
+I am a subsubsection, an even smaller subsection.
+
+\begin{tabular}{|l|c|}
+\hline
+I am a tabular & with two columns. \\
+\hline
+The left column is aligned left & and the right columns is centered. \\
+\hline
+\end{tabular}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[height=100pt]{doge.jpeg}
+\caption{Insert caption here. Image from \cite{lenna}. }
+\label{example_figure}
+\end{figure}
+Figure \ref{example_figure} also gets a number automatically and will be placed where Latex thinks it looks good. You can specify a preference with h(ere), t(op), b(ottom), p(age).
+
+
+Latex is also really good at printing equations: $E=mc^2$
+
+\begin{equation}
+A = \sum_{i=1}^N A_1 \cdot A_2
+\end{equation}
+
+\subsubsection{Possible Material}
 Result on spin and Energy env,sys,se
 
 success probability of ground state
@@ -171,70 +263,13 @@ D-wave practice
 -Time-Dependent Schrödinger Equation
 
 -Boltzmann distribution + trace of the observable
- 
 
-
-%
-%\section{Introduction}
-%
-%Please specify your name, matriculation number, name of advisor and the title of your report in \linebreak
-%\verb+titlepage.tex+.
-%The title page will not count for the 20 pages.
-%
-%Using bibtex you can cite in an organized way and without much work.
-%Just enter the information about a paper or an article you want to cite in the \verb+seminar_report.bib+ file and use \verb+\cite+ to cite them. For example \cite{Author08CVPR},\cite{Author04IJCV}.
-%Don't forget to compile the bib file and Latex will add all the cited references at the end.
-%Cite all the literature you use and state where figures are from!
-%
-%\section{Section}
-%\label{section}
-%I am a section. Latex will give me a number \emph{automatically} and put me into the table of contents.
-%Using \verb+\label+ and \verb+\ref+ you can use Latex to write that this is Section \ref{section}.
-%
-%\subsection{a subsection}
-%I am a subsection.
-%
-%\begin{itemize}
-%\item I am an item.
-%\item [-] I am another item.
-%\end{itemize}
-%
-%
-%\subsubsection{a small subsection}
-%I am a subsubsection, an even smaller subsection.
-%
-%\begin{tabular}{|l|c|}
-%\hline
-%I am a tabular & with two columns. \\
-%\hline
-%The left column is aligned left & and the right columns is centered. \\
-%\hline
-%\end{tabular}
-%
-%
-%\section{Another Section}
-%
-%\begin{figure}[h]
-%\centering
-%\includegraphics[height=100pt]{doge.jpeg}
-%\caption{Insert caption here. Image from \cite{lenna}. }
-%\label{example_figure}
-%\end{figure}
-%Figure \ref{example_figure} also gets a number automatically and will be placed where Latex thinks it looks good. You can specify a preference with h(ere), t(op), b(ottom), p(age).
-%
-%\section{Equations}
-%Latex is also really good at printing equations: $E=mc^2$
-%
-%\begin{equation}
-%A = \sum_{i=1}^N A_1 \cdot A_2
-%\end{equation}
-%
 
 % +++++++++++++++++++++++++
 
 % =========================================================================
 \bibliographystyle{alpha}
-\bibliography{seminar_report}
+\bibliography{master_report}
 
 % =========================================================================
 
