@@ -13,10 +13,10 @@
 %\usepackage{german}    % Uncomment this iff you're writing the report in German
 \usepackage{makeidx}
 \usepackage{color}
-\usepackage{t1enc}		% german letters in the "\hyphenation" - command
+\usepackage{t1enc}		% 	german letters in the "\hyphenation" - command
 \usepackage{latexsym}	% math symbols
 \usepackage{amssymb}    % AMS symbol fonts for LaTeX.
-
+\usepackage{amsmath} 
 \usepackage{graphicx}
 \usepackage{pslatex}
 \usepackage{ifthen}
@@ -88,20 +88,39 @@ In the second section, I will briefly introduce the the quantum annealer and the
 
 \section{Quantum Annealer}
 
-
-
-
 \subsection{Time-Dependent Schrödinger Equation}
+\begin{equation*}
+i\hbar\frac{\partial \psi}{\partial t}=H\psi
+\end{equation*}
+
 \subsection{Quantum Annealing}
+QA is a technique to find the ground state of a optimisation problem. different from the thermal annealing is that can tunnel through the barrier. 
+
 \subsection{Adiabatic Theorem}
+Once the annealing time is long enough. We should be able to find the ground state.
 \subsection{Landau-Zener Theorem}
+The probability of finding the ground state is depend on the temperature and the gap.
+
 
 \section{Optimization Problem}
-
-
 \subsection{2-SAT Problem}
+The 2-SAT problem is made of variables with only two possible option. Among these variables we want to find the best set to get the solution with the lowest cost. 
 \subsection{The Mapping of Hamiltonian}
+
+How to map a 2-SAT problem to a Hamiltonian is not a easy question. We using Ising-model to map the 2-SAT problem.
+\begin{equation*}
+	H=(1-\lambda)H_{init}+\lambda H_{problem}
+\end{equation*}
+\begin{equation*}
+	H_{init}=\sum_{i} h^x_{init} \sigma^x_i
+\end{equation*}
+\begin{equation*}
+	H_{problem}=\sum_{i,j} \{J^x \sigma^x_i \sigma^x_j+J^y \sigma^y_i \sigma^y_j+J^z \sigma^z_i \sigma^z_j \}+ \sum_{i} \{h^x \sigma^x_i+h^y \sigma^y_i+h^z \sigma^z_i\}
+\end{equation*}
+
+
 \subsection{Annealing Time scheme}
+	From the previous sector, we can noticed that the time scheme for $\lambda$ should be chosen and set. Here we use linear scheme for $\lambda$.
 
 \section{Quantum Annealer Simulation without Heat Bath}
 \subsection{??Simulation Set up}
