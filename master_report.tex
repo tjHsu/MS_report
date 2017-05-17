@@ -123,13 +123,31 @@ How to map a 2-SAT problem to a Hamiltonian is not a easy question. We using Isi
 	From the previous sector, we can noticed that the time scheme for $\lambda$ should be chosen and set. Here we use linear scheme for $\lambda$.
 
 \section{Quantum Annealer Simulation without Heat Bath}
+	There is no ideal system. Environment will always affect the subsystem. However, I start from a simple case, that is a subsystem without environment effect. 
 \subsection{??Simulation Set up}
+	8 spin without environment spin. With linear time scheme. 
 \subsection{Algorithm}
-
+	So here i am going to try out two algorithm. First is full diagonalization, which i use Lapack to solve the eigensystem. Product formula break the evolution into small operation and make the computation of large system possible.
 \subsubsection{Full Diagonalization}
+	Use Lapack to diagonalize the H for $\Psi_{t} = e^{iH\tau} \Psi_{t-\tau}$. 
+	
 \subsubsection{Suzuki-Trotter Product Formula}
+	Break the H to small operation that operate on the state. According to $J^x , J^y, and Jz; h^x, h^y, and h^z$, we need to find the pair or quad pair for the $\Psi$
+	
+	$\circ \circ \circ ,0, \circ$
+	
+	$\circ \circ \circ ,1, \circ$
+	
+	$\circ ,0, \circ ,0, \circ$
+	
+	$\circ ,0, \circ ,1, \circ$
+	
+	$\circ ,1, \circ ,0, \circ$
+	
+	$\circ ,1, \circ ,1, \circ$
 \subsection{Result}
 \subsection{the evolution of the spin, energy, and success probability during the annealing}
+	A general picture on the annealing behaviour. The expectation value of spin should start from x direction and end up in z direction. During the process y may only have some fluctuation. For the energy of subsystem we expect it to first increase and then decrease to a lower level. We knew the ground state ready, so in the end we expect to see the ground state evolute form 0 to 1, if this is a successful annealing.
 	\begin{itemize}
 		\item \checkmark Figure here: The system energy vs. lambda
 		\item \checkmark Figure here: The spin x vs. lambda
@@ -137,10 +155,12 @@ How to map a 2-SAT problem to a Hamiltonian is not a easy question. We using Isi
 		\item \checkmark Figure here: The success probability vs. lambda
 	\end{itemize}
 \subsubsection{The Effect of step size tau}
+	After having a look at the general properties. Now I try to investigate the size of time step. When the Hamiltonian is time-dependent. The tau should be small enough.  other wise the result would deviate. 
 	\begin{itemize}
-		\item \checkmark Figure here: compare the result of product formula with the result of full diagonalization: success probability vs. annealing Time with different tau
+		\item \checkmark Figure here: compare the result of product formula with the result of full diagonalization: success probability vs. annealing Time with different tau.
 	\end{itemize}
 \subsubsection{The Effect of Annealing Time}
+	Setting up the proper $\tau$. Then I start to simulate the annealing process with different annealing time. The annealing should be long enough to find a ground state. Also I compare the result of full diagonalization and product formula algorithm. 
 	\begin{itemize}
 		\item Figure here: compare the result of different annealing time of full diagonalization: success probability vs.lambda with different annealing time
 		\item \checkmark Figure here: compare the result of different annealing time of full diagonalization: success probability vs.lambda with different annealing time
@@ -148,6 +168,7 @@ How to map a 2-SAT problem to a Hamiltonian is not a easy question. We using Isi
 		\item \checkmark Figure here: compare the result of different annealing time of full diagonalization: energy vs.lambda with different annealing time
 	\end{itemize}
 \subsubsection{The Effect of Minimum Gap}
+	According to Landau-Zener theorem, the successful probability depend on the gap in between the ground state and the first excited state.
 	\begin{itemize}
 		\item \checkmark Figure here: energy spectrum: the energy for all states vs. lambda
 		\item \checkmark Figure here: a close view of the result above: the energy for lowest 20~30 states vs. lambda
@@ -155,16 +176,22 @@ How to map a 2-SAT problem to a Hamiltonian is not a easy question. We using Isi
 	\end{itemize}
 	So the scatter effect come from the spin numbering. When the coupling factor become larger and larger. The sccatering effect become more clear. On the other hand, Temperature is not the critical reason to this phenomenon. But the temperature will also enlarge the scatter. The temperature has an influence on how many environment state are part of the evolution. If the temperature is low the revolution only in the ground state. When temperatrue is high, almost all environment state is part of the evolution. the state is average out by the environment states. So the scatter of the problem hamiltonian is not clear. Also since we are in an effective temperature unit. delta gap/Temperature. Therefore, when temperature is larger than gap, they are in excited state. so the annealing is not clear and cant find the ground state. vice versa. when the temperature is smaller than 1. we can see the annealing effect and probability to find the ground state. 
 \section{Quantum Annealer Simulation with Heat Bath}
+	After the case without environment, now we move on to the one with environment.
 \subsection{??Simulation Set up}
+	Here the system consist of a 8-spins subsystem and 8-spins environment. The interaction depend on the coupling factor. When factor is 0, the subsystem cannot be affected by the environment at all. On the other, if the factor is 1, the spin of environment may fully interact with subsystem just as one of the spin inside.
 \subsection{Algorithm}
+	Here since we have in total 16 spins, of course we cannot use product formula algorithm. But we because have temperature term now, which means we may run over several states, therefore the product formula algorithm is not enough for use now. Therefore, we use random sampling method.
 \subsubsection{Boltzmann Distribution}
+	???	By adding environment, the temperature will affect how many state should we calculate
 \subsubsection{Random wave function}
+	Reference check!
 \subsection{Result}
 \subsubsection{The Effect of Temperature}
 	\begin{itemize}
 		\item Figure here: display plots with different coupling factor: success probability of a coupling factor with different temperature vs. annealing Time
 	\end{itemize}
 \subsubsection{The Process toward Quasi-static}
+	The
 	\begin{itemize}
 		\item \checkmark Figure here: display plots with different temperature: success probability with different coupling factor vs. annealing time
 		
