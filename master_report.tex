@@ -174,7 +174,7 @@ How to map a 2-SAT problem to a Hamiltonian is not a easy question. We using Isi
 		\item \checkmark Figure here: a close view of the result above: the energy for lowest 20~30 states vs. lambda
 		\item \checkmark Figure here: compare: the success probability under the annealing time that maximise the minimum gap difference vs. minimum gap value 
 	\end{itemize}
-	So the scatter effect come from the spin numbering. When the coupling factor become larger and larger. The sccatering effect become more clear. On the other hand, Temperature is not the critical reason to this phenomenon. But the temperature will also enlarge the scatter. The temperature has an influence on how many environment state are part of the evolution. If the temperature is low the revolution only in the ground state. When temperatrue is high, almost all environment state is part of the evolution. the state is average out by the environment states. So the scatter of the problem hamiltonian is not clear. Also since we are in an effective temperature unit. delta gap/Temperature. Therefore, when temperature is larger than gap, they are in excited state. so the annealing is not clear and cant find the ground state. vice versa. when the temperature is smaller than 1. we can see the annealing effect and probability to find the ground state. 
+	
 \section{Quantum Annealer Simulation with Heat Bath}
 	After the case without environment, now we move on to the one with environment.
 \subsection{??Simulation Set up}
@@ -191,7 +191,7 @@ How to map a 2-SAT problem to a Hamiltonian is not a easy question. We using Isi
 		\item Figure here: display plots with different coupling factor: success probability of a coupling factor with different temperature vs. annealing Time
 	\end{itemize}
 \subsubsection{The Process toward Quasi-static}
-	The
+	In the beginning of the annealing. The probability of finding the ground state may still increase, because the environment haven't yet to affect the subsystem. Then when the environment start interacting with subsystem. After it equilibrium with the subsystem. It will continuous to anneal and the probability will increase. 
 	\begin{itemize}
 		\item \checkmark Figure here: display plots with different temperature: success probability with different coupling factor vs. annealing time
 		
@@ -202,12 +202,29 @@ How to map a 2-SAT problem to a Hamiltonian is not a easy question. We using Isi
 \subsubsection{The Effect of Annealing Time}
 	This subsection may be removed 
 \subsubsection{The Effect of Minimum Gap}
+	So the scatter effect come from the spin numbering. When the coupling factor become larger and larger. The sccatering effect become more clear. On the other hand, Temperature is not the critical reason to this phenomenon. But the temperature will also enlarge the scatter. The temperature has an influence on how many environment state are part of the evolution. If the temperature is low the revolution only in the ground state. When temperatrue is high, almost all environment state is part of the evolution. the state is average out by the environment states. So the scatter of the problem hamiltonian is not clear. Also since we are in an effective temperature unit. delta gap/Temperature. Therefore, when temperature is larger than gap, they are in excited state. so the annealing is not clear and cant find the ground state. vice versa. when the temperature is smaller than 1. we can see the annealing effect and probability to find the ground state. 
 	\begin{itemize}
-		\item \checkmark Figure here: compare: the success probability under the annealing time that maximise the minimum gap difference vs. minimum gap value 
+		\item \checkmark Figure here: compare: the success probability under the annealing time that maximise the minimum gap difference vs. minimum gap value.
 	\end{itemize}
 \section{??D-wave Practice}
+	D-wave use of super conducting qubit
 \section{??Parallelization}
-\section{??Applicatoin on Machine Learning / Simulation}
+	\definecolor{light-gray}{gray}{0.4}
+	\textcolor{light-gray}{Shoul I put the result of openMP parallerization?}
+	It is obvious that i cant put the parallization in between the different time step, because they depend on each other. So i put openmp in side each step for the state. also because the calculation may cause race condition, i have to put it in the second loop instead of the most outside one. this may decrease the optimisation of the running time. However, i think this is the moderate way to get a balance of not getting code too complicate and too slow running time.
+	
+	! \textcolor{red}{The runtime difference for a single run with core 1,2,4,8,16,32,64,128.}
+
+	
+\section{Applicatoin on Machine Learning / Simulation}
+	Application
+	 
+	-tree recognition
+	
+	-hand writing
+	
+	-face detection
+	
 
 
 \section{Conclusion}
