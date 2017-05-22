@@ -74,6 +74,12 @@
 
 
 \section{Introduction}
+\cite{Ladd2010} General Possible Quantum Computer. 
+
+\cite{Boixo2016} The supremacy.
+
+\cite{Ronnow2014} Detect quantum speed up
+
 Quantum annealer is a machine that can perform adiabatic quantum computation. D-wave in fact has already sell their quantum annealing machine to several customers. Although quantum annealing machine can perform quantum computation, it is not universal quantum computer. It specialised in optimisation problem. 
 
 Quantum annealer is built based on spin 1/2 system. Which is Ising-model. The qubit in this system has two state, which is perfect for solving the 2-SAT problems. Start from an initial Hamiltonian, we slowly turn off this initial Hamiltonian and turn on the problem Hamiltonian. If the system is at its ground state and the whole process is slow enough, the system will also end at ground state with the problem Hamiltonian and we get the solution of the 2-SAT problem. 
@@ -87,13 +93,25 @@ In the second section, I will briefly introduce the the quantum annealer and the
 \newpage
 
 \section{Quantum Annealer}
-
+\cite{Das2008} 
+\cite{Matsuda2009}
+\cite{Santoro2006}
+\cite{Denchev2015} what is the computational value of finite range tunnelling
 \subsection{Time-Dependent Schrödinger Equation}
 \begin{equation*}
 i\hbar\frac{\partial \psi}{\partial t}=H\psi
 \end{equation*}
 
+
+
 \subsection{Quantum Annealing}
+\cite{Boixo2014} A compare of quantum annealing and simulated annealing
+
+\cite{QABoixo2016} Multi qubit tunneling
+
+\cite{Jin2013} quantum decoherence
+
+
 QA is a technique to find the ground state of a optimisation problem. different from the thermal annealing is that can tunnel through the barrier. 
 
 \subsection{Adiabatic Theorem}
@@ -131,7 +149,11 @@ How to map a 2-SAT problem to a Hamiltonian is not a easy question. We using Isi
 \subsubsection{Full Diagonalization}
 	Use Lapack to diagonalize the H for $\Psi_{t} = e^{iH\tau} \Psi_{t-\tau}$. 
 	
+	Check Reference \cite{DeRaedt2004} B.Full Diagonalization Approach
+	
 \subsubsection{Suzuki-Trotter Product Formula}
+	Check Reference \cite{DeRaedt2004}  E. Suzuki-Trotter Product-Formula Algorithms
+	
 	Break the H to small operation that operate on the state. According to $J^x , J^y, and Jz; h^x, h^y, and h^z$, we need to find the pair or quad pair for the $\Psi$
 	
 	$\circ \circ \circ ,0, \circ$
@@ -184,13 +206,16 @@ How to map a 2-SAT problem to a Hamiltonian is not a easy question. We using Isi
 \subsubsection{Boltzmann Distribution}
 	???	By adding environment, the temperature will affect how many state should we calculate
 \subsubsection{Random wave function}
-	Reference check!
+	Reference check! II Theory part.
+	\cite{Hams2000} 
 \subsection{Result}
 \subsubsection{The Effect of Temperature}
 	\begin{itemize}
 		\item Figure here: display plots with different coupling factor: success probability of a coupling factor with different temperature vs. annealing Time
 	\end{itemize}
 \subsubsection{The Process toward Quasi-static}
+	See Fig 3 of this reference	\cite{Amin2015} 
+	
 	In the beginning of the annealing. The probability of finding the ground state may still increase, because the environment haven't yet to affect the subsystem. Then when the environment start interacting with subsystem. After it equilibrium with the subsystem. It will continuous to anneal and the probability will increase. 
 	\begin{itemize}
 		\item \checkmark Figure here: display plots with different temperature: success probability with different coupling factor vs. annealing time
@@ -207,7 +232,9 @@ How to map a 2-SAT problem to a Hamiltonian is not a easy question. We using Isi
 		\item \checkmark Figure here: compare: the success probability under the annealing time that maximise the minimum gap difference vs. minimum gap value.
 	\end{itemize}
 \section{??D-wave Practice}
+	\cite{Johnson2011}
 	D-wave use of super conducting qubit
+	
 \section{??Parallelization}
 	\definecolor{light-gray}{gray}{0.4}
 	\textcolor{light-gray}{Shoul I put the result of openMP parallerization?}
@@ -217,6 +244,14 @@ How to map a 2-SAT problem to a Hamiltonian is not a easy question. We using Isi
 
 	
 \section{Applicatoin on Machine Learning / Simulation}
+	
+	\cite{Adachi2015}
+	\cite{Benedetti2016}
+	\cite{Boyda2017}
+	\cite{OMalley2017}
+	\cite{Potok2017}
+	
+	
 	Application
 	 
 	-tree recognition
