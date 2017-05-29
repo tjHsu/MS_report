@@ -109,6 +109,18 @@ In the second section, I will briefly introduce the the quantum annealer and the
 \cite{Jin2013} quantum decoherence
 
 
+!cite Classical Signature of quantum annealing p2.
+
+The idea of annealing in general is to find the lowest-energy state,  which sometime cast into a problem that try to find the lowest value of a cost function. When performing classic annealing, the system start from a random state in a high temperature. Then the temperature decrease, simulated algorithm choose the new state by some criteria. The system evolve by reducing the energy, and the result is usually end up in a local minima instead of global minima. !!The choose criteria
+
+Quantum annealing does not evolve by reducing temperature. The system is affect by two Hamiltonian, one is $H_i$, which is our starting Hamiltonian, and the requirement of this Hamiltonian is that the ground state of this is easy to prepared. On the other hand, $H_p$ is the problem Hamiltonian. We map the problem in to $H_p$. The idea is that, if we start from the ground state of $H_i$, and then the $H_i$ is turned off and the $H_p$ is turned on sufficiently slow. The system will end up in the ground state of $H_p$, which is the solution we want to find.
+
+In the ideal case, the classical annealing has some random factor, and the QA does not. Therefore a idea QA will always find the solution, or never, which leads to a bimodal distribution. Classical annealing starts from a random state, on the other hand, may have a uni-modal result. this is consider as a criteria for quantumness. !!Quantum annealing with more than one hundred qubits!! they declare to have this quantum characteristic. but the !!Classical signature of quantum annealing!! claimed that by picking same random state, the CA can also show a bimodal result. 
+
+
+
+
+
 QA is a technique to find the ground state of a optimisation problem. different from the thermal annealing is that can tunnel through the barrier. 
 
 \subsubsection{Time-Dependent Schrödinger Equation}
