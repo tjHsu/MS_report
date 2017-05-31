@@ -78,17 +78,22 @@
 
 \cite{Boixo2016} The supremacy.
 
-\cite{Ronnow2014} Detect quantum speed up
+\cite{Ronnow2014} Detect quantum speed up\\
 
-Quantum annealer is a machine that can perform adiabatic quantum computation. D-wave in fact has already sell their quantum annealing machine to several customers. Although quantum annealing machine can perform quantum computation, it is not universal quantum computer. It specialised in optimisation problem. 
+Adiabatic quantum annealing is a kind of quantum computation achieved by adiabatic evolution and quantum annealer is a device that can perform adiabatic quantum annealing. The idea of quantum computation was brought up in early 80s \cite{Feynman1982}. It indicated that a simulation of quantum phenomena is not always available on an classical computer, because the amount of resource required growth exponentially along with the size of the physical system. Instead, a quantum phenomena should be simulate by a computer making use of quantum property. The amount of resource required by the simulation is only proportional to the size of the physical system. \\
 
-Quantum annealer is built based on spin 1/2 system. Which is Ising-model. The qubit in this system has two state, which is perfect for solving the 2-SAT problems. Start from an initial Hamiltonian, we slowly turn off this initial Hamiltonian and turn on the problem Hamiltonian. If the system is at its ground state and the whole process is slow enough, the system will also end at ground state with the problem Hamiltonian and we get the solution of the 2-SAT problem. 
+D-wave in fact has already sell their quantum annealing machine to several customers. Although quantum annealing machine can perform quantum computation, it is not universal quantum  computer. It specialised in optimisation problem. \\
+\\
+Quantum annealer is built based on spin 1/2 system. Which is Ising-model. The qubit in this system has two state, which is perfect for solving the 2-SAT problems. Start from an initial Hamiltonian, we slowly turn off this initial Hamiltonian and turn on the problem Hamiltonian. If the system is at its ground state and the whole process is slow enough, the system will also end at ground state with the problem Hamiltonian and we get th e solution of the 2-SAT problem. \\
+\\
+According to the adiabatic theorem this should work in a pure system, however, in the real case with environment. The system will be coupled with a heat bath. This heat bath may damage the coherent of the system evolution. In my paper, this is the thing i want to simulate.\\ 
+\\
+Start from a 8 spin system. I use two possible algorithm to simulate. Then i move on to a 8 spin system with 8 spin environment. To see the influence of the hear bath, I compare the result in the successful probability. \\
+\\
+In the second section, I will briefly introduce the the quantum annealer and the theorem. In section 3, I will introduce the optimization porblem, which believed to be a potential application of the quantum annealer. In section 4, I first simulate the quantum annealer without the heat bath. In section 5, I then simulate the quantum annealing process with hear bath. In the last section we try to discuss the possibility of using quantum annealing for machine learning.  \\
+\\
 
-According to the adiabatic theorem this should work in a pure system, however, in the real case with environment. The system will be coupled with a heat bath. This heat bath may damage the coherent of the system evolution. In my paper, this is the thing i want to simulate.
 
-Start from a 8 spin system. I use two possible algorithm to simulate. Then i move on to a 8 spin system with 8 spin environment. To see the influence of the hear bath, I compare the result in the successful probability. 
-
-In the second section, I will briefly introduce the the quantum annealer and the theorem. In section 3, I will introduce the optimization porblem, which believed to be a potential application of the quantum annealer. In section 4, I first simulate the quantum annealer without the heat bath. In section 5, I then simulate the quantum annealing process with hear bath. In the last section we try to discuss the possibility of using quantum annealing for machine learning.  
 
 \newpage
 
@@ -111,17 +116,43 @@ In the second section, I will briefly introduce the the quantum annealer and the
 
 !cite Classical Signature of quantum annealing p2.
 
-The idea of annealing in general is to find the lowest-energy state,  which sometime cast into a problem that try to find the lowest value of a cost function. When performing classic annealing, the system start from a random state in a high temperature. Then the temperature decrease, simulated algorithm choose the new state by some criteria. The system evolve by reducing the energy, and the result is usually end up in a local minima instead of global minima. !!The choose criteria
+The idea of annealing in general is to find the lowest-energy state,  which sometime cast into a problem that try to find the lowest value of a cost function. When performing classic annealing, the system start from a random state in a high temperature. Then the temperature decrease, simulated algorithm choose the new state by some criteria. The system evolve by reducing the energy, and the result is usually end up in a local minima instead of global minima. !!The choose criteria\\
+\\
+Quantum annealing does not evolve by reducing temperature. The system is affect by two Hamiltonian, one is $H_i$, which is our starting Hamiltonian, and the requirement of this Hamiltonian is that the ground state of this is easy to prepared. On the other hand, $H_p$ is the problem Hamiltonian. We map the problem in to $H_p$. The idea is that, if we start from the ground state of $H_i$, and then the $H_i$ is turned off and the $H_p$ is turned on sufficiently slow. The system will end up in the ground state of $H_p$, which is the solution we want to find.\\
+\\
+In the ideal case, the classical annealing has some random factor, and the QA does not. Therefore a idea QA will always find the solution, or never, which leads to a bimodal distribution. Classical annealing starts from a random state, on the other hand, may have a uni-modal result. this is consider as a criteria for quantumness. !!Quantum annealing with more than one hundred qubits!! they declare to have this quantum characteristic. but the !!Classical signature of quantum annealing!! claimed that by picking same random state, the CA can also show a bimodal result. \\
+\\
 
-Quantum annealing does not evolve by reducing temperature. The system is affect by two Hamiltonian, one is $H_i$, which is our starting Hamiltonian, and the requirement of this Hamiltonian is that the ground state of this is easy to prepared. On the other hand, $H_p$ is the problem Hamiltonian. We map the problem in to $H_p$. The idea is that, if we start from the ground state of $H_i$, and then the $H_i$ is turned off and the $H_p$ is turned on sufficiently slow. The system will end up in the ground state of $H_p$, which is the solution we want to find.
+!!cite Quantum Computation by Adiabatic Evolution Farhi 2000!!
 
-In the ideal case, the classical annealing has some random factor, and the QA does not. Therefore a idea QA will always find the solution, or never, which leads to a bimodal distribution. Classical annealing starts from a random state, on the other hand, may have a uni-modal result. this is consider as a criteria for quantumness. !!Quantum annealing with more than one hundred qubits!! they declare to have this quantum characteristic. but the !!Classical signature of quantum annealing!! claimed that by picking same random state, the CA can also show a bimodal result. 
+The adiabatic quantum annealing algorithm is implement as follow:\\
+\\
+1. An ground state of $H_i$ is construct.
+\begin{equation*}
+	H_i=\sum_{i=1}^{N}h_i^x \sigma_i^x
+\end{equation*}   
 
+2. Construct a Hamiltonian from a given problem.
+\begin{equation*}
+	H_{problem}=\sum_{i,j} \{J^x \sigma^x_i \sigma^x_j+J^y \sigma^y_i \sigma^y_j+J^z \sigma^z_i \sigma^z_j \}+ \sum_{i} \{h^x \sigma^x_i+h^y \sigma^y_i+h^z \sigma^z_i\}
+\end{equation*}   
 
+3. Evolve the system according to the time scheme.
+\begin{equation*}
+	T:linear 
+\end{equation*}
+
+4. Compute Schrodinger eqaution according to the above.\\
+\\
+5. The final state will be in the ground state of the $H_p$, if annealing T is long enough.\\
+\\
+6. measure the coefficient value of the state. then we have the solution.\\
+\\
 
 
 
 QA is a technique to find the ground state of a optimisation problem. different from the thermal annealing is that can tunnel through the barrier. 
+
 
 \subsubsection{Time-Dependent Schrödinger Equation}
 \begin{equation*}
