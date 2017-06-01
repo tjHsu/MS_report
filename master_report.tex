@@ -3,8 +3,8 @@
 % Summer Semester 2015
 % Computer Vision Group, Visual Computing Institute, RWTH Aachen
 
-\documentclass[twoside,a4paper,article]{combine}
-
+%\documentclass[twoside,a4paper,article]{combine}
+\documentclass[11pt,twoside,a4paper]{article}
 
 % =========================================================================
 \usepackage[latin1]{inputenc}
@@ -84,26 +84,22 @@ Adiabatic quantum annealing is a kind of quantum computation achieved by adiabat
 
 After this idea, an interesting topic for scientist is that how computation can benefit from storing, transferring and processing information with quantum properties. Quantum computation is expected to do more than just simulation of a quantum phenomena. Some quantum algorithm has been presented and shown to have a significantly speed-up compared to classical ones. The following are some example. Simon's algorithm can reduce the runtime for the task from an exponential time on a classical computer to a polynomial time on a quantum computer. \cite{Simon1994}. Furthermore, this also serve as the stepping-stone to Shor's Algorithm. Shor's Algorithm for factoring is one of the most well-know quantum algorithm. The time it takes to factor an n-digit number grows as a polynomial in n on a quantum computer. The time for the same task grows exponentially with n on a classical computer \cite{Shor1995}. The toughness of factoring problem is the basis of many cryptography techniques and information is usually encrypted and protected by a large semi prime number. Classical cryptography seems to break down and  quantum cryptography is under research as a response to this. The last one is Grover's search algorithm. To search an item in an unstructured list of size N costs a classical computer running time in an order of N. Grover's algorithm can solve the same task in the order of $\sqrt{N}$ \cite{Grover1996}. Not like Shor's algorithm, which has an exponential speed-up, Grover's algorithm has only a quadratic improvement. It is still a important algorithm because of its board applications, such as speedup the time required to solve NP-complete problems \cite{Cerf2000} \cite{Bennett1997}. \\
 
-All algorithm mentioned above are expected to run on an universal quantum computer, which is usually referred to a machine based on quantum gate modal. However, building an quantum gate computer may be a challenging task. The main difficulty comes from the close box requirement \cite{Ladd2010}. The quantum system of a quantum computer should be isolated from its environment while being controlled. The quantum system which computation based on is so fragile that even a little amount of noise can cause harm to the system, known as decoherence. Furthermore, due to the environmental noise, the entropy of the system will keep increasing along with the time. Therefore, there must exist a way to coll the quantum system and maintain its quantum state. How to measure results is another a important issue, because the computational result makes sense to us only when we are able to measure it. Also, the possibility to scale up the system is crucial. A general quantum computing can be realised only when the above requirement are all fulfilled. Gate based computer is still struggling. As an alternative option, adiabatic quantum annealer appears up. It was shown that the ability of AQC has the same ability as GC.
+All algorithm mentioned above are expected to run on an universal quantum computer, which is usually referred to a machine based on quantum gate modal. However, building an quantum gate computer may be a challenging task. The main difficulty comes from the close box requirement \cite{Ladd2010}. The quantum system of a quantum computer should be isolated from its environment while being controlled. The quantum system which computation based on is so fragile that even a little amount of noise can cause harm to the system, known as decoherence. Furthermore, due to the environmental noise, the entropy of the system will keep increasing along with the time. Therefore, there must exist a way to coll the quantum system and maintain its quantum state. How to measure results is another a important issue, because the computational result makes sense to us only when we are able to measure it. Also, the possibility to scale up the system is crucial. A general quantum computing can be realised only when the above requirement are all fulfilled. Gate based computer is still struggling. Another approach to quantum computation is adiabatic quantum computer, which has more robustness than a gate based computer !!cite decoherence in AQC!!. There are debates on whether adiabatic quantum computer can be consider as a general quantum computer. It has shown that the model of adiabatic computation differs from the standard model of quantum computation within a polynomial time \cite{Aharonov2004}\cite{Farhi2000}. Some criticized that this only hold under ideal situation without noise. There are effective model for building a fault-tolerant gate based computer. By contrast, whether fault-tolerant is possible on quantum annealing computer remains unknown !!cite Classical signature of quantum annealing!!
 \\
 
-
-
-
-
-
-D-wave in fact has already sell their quantum annealing machine to several customers. Although quantum annealing machine can perform quantum computation, it is not universal quantum  computer. It specialised in optimisation problem. \\
+D-Wave System Inc. is a company which focus on building quantum annealing computer and the target problem of it is optimisation problem. Among optimisation problems, many can be cast into a problem of finding the minimum point of the cost function, which is equivalent to the ground state of a system of interacting spins. Finding such state remains still a computational hard problem. It is believed that if one can encode the cost function into the hardware, quantum annealing process can effectively achieve the goal\cite{Johnson2011}. During a quantum annealing process, the system start from a ground state and evolve in time with a problem Hamiltonian. In the end of evolution, the system are expected to be in the ground stated of the problem Hamiltonian, which is the solution to the optimisation problem. This is the reason why quantum annealing computer is sometimes considered specialized only in optimisation instead of universal quantum computer. D-wave System was founded  in 1999 and claimed to release the first commercial system in 2010 with 128 qubits. The latest system is D-Wave 2000Q with 2048 qubits. By emphasising on optimisation, quantum annealing computer has potential in the fields like machine learning, pattern recognition and computer vision. 
 \\
+
 Quantum annealer is built based on spin 1/2 system. Which is Ising-model. The qubit in this system has two state, which is perfect for solving the 2-SAT problems. Start from an initial Hamiltonian, we slowly turn off this initial Hamiltonian and turn on the problem Hamiltonian. If the system is at its ground state and the whole process is slow enough, the system will also end at ground state with the problem Hamiltonian and we get th e solution of the 2-SAT problem. \\
-\\
+
 According to the adiabatic theorem this should work in a pure system, however, in the real case with environment. The system will be coupled with a heat bath. This heat bath may damage the coherent of the system evolution. In my paper, this is the thing i want to simulate.\\ 
-\\
+
 Start from a 8 spin system. I use two possible algorithm to simulate. Then i move on to a 8 spin system with 8 spin environment. To see the influence of the hear bath, I compare the result in the successful probability. \\
-\\
-In the second section, I will briefly introduce the the quantum annealer and the theorem. In section 3, I will introduce the optimization porblem, which believed to be a potential application of the quantum annealer. In section 4, I first simulate the quantum annealer without the heat bath. In section 5, I then simulate the quantum annealing process with hear bath. In the last section we try to discuss the possibility of using quantum annealing for machine learning.  \\
+
+The outline of the report is as follows. In the section 2, the general idea of quantum annealer and the theory behind it will be introduced. Section 3 present the definition and the characteristic of optimisation problem. Section 4 provide the algorithms used for the simulation of a spin-system. In Section 5 and section 6, the simulation results of a ideal system and a system with Temperature effect will be discuss respectively. Section 7 is about some applications on machine learning and computer vision based on quantum annealing.
 \\
 
-
+% In section 3, I will introduce the optimization porblem, which believed to be a potential application of the quantum annealer. In section 4, I first simulate the quantum annealer without the heat bath. In section 5, I then simulate the quantum annealing process with hear bath. In the last section we try to discuss the possibility of using quantum annealing for machine learning.  \\
 
 \newpage
 
@@ -164,7 +160,7 @@ The adiabatic quantum annealing algorithm is implement as follow:\\
 QA is a technique to find the ground state of a optimisation problem. different from the thermal annealing is that can tunnel through the barrier. 
 
 
-\subsubsection{Time-Dependent Schrödinger Equation}
+\subsubsection{Time-Dependent Schrï¿½dinger Equation}
 \begin{equation*}
 i\hbar\frac{\partial \psi}{\partial t}=H\psi
 \end{equation*}
@@ -370,7 +366,7 @@ The left column is aligned left & and the right columns is centered. \\
 
 \begin{figure}[h]
 \centering
-\includegraphics[height=100pt]{doge.jpeg}
+%\includegraphics[height=100pt]{doge.jpeg}
 \caption{Insert caption here. Image from \cite{lenna}. }
 \label{example_figure}
 \end{figure}
@@ -432,7 +428,7 @@ D-wave practice
 
 -Annealing Time scheme
 
--Time-Dependent Schrödinger Equation
+-Time-Dependent Schrï¿½dinger Equation
 
 -Boltzmann distribution + trace of the observable
 
