@@ -3,8 +3,8 @@
 % Summer Semester 2015
 % Computer Vision Group, Visual Computing Institute, RWTH Aachen
 
-%\documentclass[twoside,a4paper,article]{combine}
-\documentclass[11pt,twoside,a4paper]{article}
+\documentclass[twoside,a4paper,article]{combine}
+%\documentclass[11pt,twoside,a4paper]{article}
 
 % =========================================================================
 \usepackage[latin1]{inputenc}
@@ -90,11 +90,7 @@ All algorithm mentioned above are expected to run on an universal quantum comput
 D-Wave System Inc. is a company which focus on building quantum annealing computer and the target problem of it is optimisation problem. Among optimisation problems, many can be cast into a problem of finding the minimum point of the cost function, which is equivalent to the ground state of a system of interacting spins. Finding such state remains still a computational hard problem. It is believed that if one can encode the cost function into the hardware, quantum annealing process can effectively achieve the goal\cite{Johnson2011}. During a quantum annealing process, the system start from a ground state and evolve in time with a problem Hamiltonian. In the end of evolution, the system are expected to be in the ground stated of the problem Hamiltonian, which is the solution to the optimisation problem. This is the reason why quantum annealing computer is sometimes considered specialized only in optimisation instead of universal quantum computer. D-wave System was founded  in 1999 and claimed to release the first commercial system in 2010 with 128 qubits. The latest system is D-Wave 2000Q with 2048 qubits. By emphasising on optimisation, quantum annealing computer has potential in the fields like machine learning, pattern recognition and computer vision. 
 \\
 
-Quantum annealer is built based on spin 1/2 system. Which is Ising-model. The qubit in this system has two state, which is perfect for solving the 2-SAT problems. Start from an initial Hamiltonian, we slowly turn off this initial Hamiltonian and turn on the problem Hamiltonian. If the system is at its ground state and the whole process is slow enough, the system will also end at ground state with the problem Hamiltonian and we get th e solution of the 2-SAT problem. \\
-
-According to the adiabatic theorem this should work in a pure system, however, in the real case with environment. The system will be coupled with a heat bath. This heat bath may damage the coherent of the system evolution. In my paper, this is the thing i want to simulate.\\ 
-
-Start from a 8 spin system. I use two possible algorithm to simulate. Then i move on to a 8 spin system with 8 spin environment. To see the influence of the hear bath, I compare the result in the successful probability. \\
+Quantum annealer is built based on spin 1/2 system, which is Ising-model. The qubit in this system has two state, which is perfect for solving the 2-SAT problems. Start from an initial Hamiltonian, we slowly turn off this initial Hamiltonian and turn on the problem Hamiltonian. If the system is at its ground state and the whole process is slow enough, the system will also end at ground state with the problem Hamiltonian and we get th e solution of the 2-SAT problem. According to the adiabatic theorem this should work in a pure system, however, in the real case with environment. The system will be coupled with a heat bath. This heat bath may damage the coherent of the system evolution. \\ 
 
 The outline of the report is as follows. In the section 2, the general idea of quantum annealer and the theory behind it will be introduced. Section 3 present the definition and the characteristic of optimisation problem. Section 4 provide the algorithms used for the simulation of a spin-system. In Section 5 and section 6, the simulation results of a ideal system and a system with Temperature effect will be discuss respectively. Section 7 is about some applications on machine learning and computer vision based on quantum annealing.
 \\
@@ -176,8 +172,31 @@ From the previous sector, we can noticed that the time scheme for $\lambda$ shou
 
 \section{Optimisation Problem}
 \subsection{In General / 2-SAT Problem}
+
+
 \cite{Das2008} II A Optimisation and annealing
+
+Combinatorial optimisation problem is one of the most important task people want to solve. If one need to find the best choice among all available options consist of many independent factors, it can be considered as a combinatorial optimisation problem. Some practical examples are like travelling salesman problem, closure problem and assignment problem. Take travelling salesman problem for instance, there are N cities located randomly in an area and the goal is to plan an trip that visit every city once in the shortest travel distance. A straightforward approach is to try out all permutations and find the shortest path. The running time for this brute-force search is $\mathcal{O}(n!)$ , which means it grows as the factorial of the number of cities and the search space easily becomes too large for this approach to be feasible even for a relatively small N ($N \sim 30$) \cite{Santoro2006}. \\
+
+Many combinatorial optimisation problems can be cast into a problem of minimising a given cost function $H(S_1,S_2,S_3,...S_N)$ with respect to N variables $S_1$, $S_2$ to $S_N$ \cite{Das2008}. The aim is to determine a set of values for the variables that yield the minimum value of the cost function. Combinatorial optimisation problem often has the following properties. The optimal solution is searched from a finite set of objects. The set of objects is discrete. Brute-force search is usually not feasible. Besides, even some problems with continuous variables can be reduced to combinatorial problems \cite{Papadimitriou1984}. \\
+
+In the field of computer science, the complexity of a computational task are classified by the running time needed by the fastest algorithm relative to the size of the task. If a given task can be solved in polynomial time by using polynomial bound resource on classical computer, it is considered to be in the class P. Although a P problem does not necessary means an easy problem, a polynomial bond on the evaluation time implies its difficulty won't grow exponentially along with the problem size. Unfortunately, not all cases fall in this class, and some of the important ones are fall outside, like the travelling salesman problem mentioned above.\\
+
+A given task is said to be in the class NP, if the solution can be found in polynomial time by non-deterministic Turing machine. A deterministic Turing machine can only perform one action for a given situation according to its set of rules, while a non-deterministic Turing machine can perform more than one action for a given situation and if any of them find the solution, it achieves its goal. In other word, a non-deterministic Turing machine has the potential to explore exponentially many paths in parallel with time and check if any on of them can solve the task. It's clearly that deterministic Turing machine is a weak version of non-deterministic one. Therefore class P is also included inside the class NP as a special case. Not like a problem in class P, the polynomial-time algorithm know to be exist, problems in class NP are believed to require super-polynomial time. \\
+
+There is a subset inside class NP called NP-complete, which is considered to be the hardest set among class NP and any NP problem can be reduced into class NP-complete with a polynomial overhead. It is general believed that if one can find an polynomial algorithm to solve an NP-complete problem, all problems in class NP can also be solved by this polynomial algorithm.  The task fall inside either class NP or class NP-complete are considered to be hard, because non-deterministic Turing machine is not yet possible to be simulated by a deterministic Turing machine without an exponential growth of execution time. \\ 
+
+Indeed there are algorithms can solve some easy optimisation problems in polynomial time. For harder cases like class NP-complete, although one cannot find the exact solution in a polynomial time, there are still some specialised algorithm that can approximate the solution in an polynomial time. The downside is that these algorithm are very problem specific, which means a success in one NP-complete problem does not ensure the success when attacking other NP problems by using the same algorithm. \\
+
+
+
 The 2-SAT problem is made of variables with only two possible option. Among these variables we want to find the best set to get the solution with the lowest cost. 
+
+NP
+
+NP COMPLETE
+
+NP is 
 \subsection{The Mapping of Hamiltonian}
 
 How to map a 2-SAT problem to a Hamiltonian is not a easy question. We using Ising-model to map the 2-SAT problem.
@@ -366,7 +385,7 @@ The left column is aligned left & and the right columns is centered. \\
 
 \begin{figure}[h]
 \centering
-%\includegraphics[height=100pt]{doge.jpeg}
+\includegraphics[height=100pt]{doge.jpeg}
 \caption{Insert caption here. Image from \cite{lenna}. }
 \label{example_figure}
 \end{figure}
