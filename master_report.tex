@@ -192,22 +192,108 @@ The boolean satisfiability problem, abbreviated as the SAT problem, is a task of
 The k-SAT problem with k>2 has been proven to be in class NP-complete, which implies that no algorithm can efficiently solve SAT problems in polynomial time. The parameter k defines the upper limit of the number of variables in one clause. An example is 
 
 \begin{equation*}
- (x_1\lor x_2\lor x_3)\land (x_4\lor x_5\lor \neg x_6).
+ (x_1\lor x_2\lor x_3)\land (x_4\lor x_5\lor \neg x_6),
 \end{equation*}
 
-This is a Boolean formula in 3-SAT form, in which has two clauses and each clause consist of at most 3 variables. This formula is satisfiable because the final evaluation is true while one of the variable is true among $x_1, x_2, x_3$ in the first clause ,and one of the variable is true among $x_4, x_5$ or $x_6$ is false in the second clause. \\
+where $\land$,$\lor$, and $\neg$ state for logical and, logical or, and logical not respectively. This is a Boolean formula in 3-SAT form, in which has two clauses and each clause consist of at most 3 variables. This formula is satisfiable because the final evaluation is true while one of the variable is true among $x_1, x_2, x_3$ in the first clause ,and one of the variable is true among $x_4, x_5$ or $x_6$ is false in the second clause. \\
 
-In this report, 2-SAT problem is the target task to understand. In contrast to those more general ones which are known to be NP-complete, 2-SAT problem can be solved in polynomial time. 
-
-
-The 2-SAT problem is made of variables with only two possible option. Among these variables we want to find the best set to get the solution with the lowest cost. 
-
-
-
+In this work, 2-SAT problem is the target task to understand. Similarly, the definition of a 2-SAT problem is that one clause can contain at most two variables. In contrast to those more general ones which are known to be NP-complete, 2-SAT problem can be solved in polynomial time. A detail should be mentioned is that the 2-SAT problems studied in this work all has only one unique configuration which leads the evaluation to be true. In other words, there is no degenerate ground states for the problem. \\
  
 \subsection{The Mapping of Hamiltonian}
 
-How to map a 2-SAT problem to a Hamiltonian is not a easy question. We using Ising-model to map the 2-SAT problem.
+A 2-SAT problem can only be solved when its Boolean formula is mapped in to an Ising Hamiltonian. In Ising model, an spin can take either 1 or -1 as its value, so it is straightforward to correspond spin value 1 for logical true and spin value 0 for logical false. \\
+
+The following simple example can help demonstrate the mapping of Hamiltonian. 
+
+\begin{equation*}
+(x_1\lor x_2)\land (x_3\lor \neg x_4)
+\end{equation*}
+
+The whole statement is true if in the first clause, either $x_1$ or $x_2$ is true and in the second clause, $x_3$ is true or $x_4$ is false. The mapping is as follow:
+
+\begin{table}[h!]
+
+
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+		
+		\multicolumn{5}{c}{2-SAT Variables}\\
+		\hline
+		  & T & T & T & F \\
+		\hline
+		\hline
+		$x_1$ & 1 & 1 & 0 & 0 \\
+		\hline
+		$x_2$ & 1 & 0 & 1 & 0 \\
+		\hline
+	\end{tabular}
+	\quad
+	$\Rightarrow$
+	\quad
+	\begin{tabular}{|c|c|c|c|c|}
+		\multicolumn{5}{c}{Ising variables}\\
+		\hline
+		 & T & T & T & F \\
+		\hline
+		\hline
+		$\sigma_1$ & 1 & 1 & -1 & -1 \\
+		\hline
+		$\sigma_2$ & 1 & -1 & 1 & -1 \\
+		\hline
+		$m=\sigma_1+\sigma_2$ & 2 & 0 & 0 & -2 \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+
+		\hline
+		& T & T & T & F \\
+		\hline
+		\hline
+		$x_3$ & 1 & 1 & 0 & 0 \\
+		\hline
+		$x_4$ & 0 & 1 & 0 & 1 \\
+		\hline
+		
+	\end{tabular}
+		\quad
+		$\Rightarrow$
+		\quad
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			& T & T & T & F \\
+			\hline
+			\hline
+			$\sigma_3$ & 1 & 1 & -1 & -1 \\
+			\hline
+			$\sigma_4$ & -1 & 1 & -1 & 1 \\
+			\hline
+			$m=\sigma_3-\sigma_2$ & 2 & 0 & 0 & -2 \\
+			\hline
+		\end{tabular} 
+
+\end{center}
+\caption{A way to map the 2-SAT clauses to the Ising variables.}
+\end{table} 
+
+In order to encode the solution of the 2-SAT problem into the ground state of the Ising Hamiltonian, an Ising Hamiltonian can be built up with a magnetisation $m$. The Hamiltonian with magnetisation $m$ is given by 
+
+\begin{equation}
+\begin{split}
+H & = m \cdot (m-2)\\
+  & = \sigma_i^2 + \sigma_j^2 + 2\sigma_i \sigma_j -2\sigma_i -2\sigma_j\\
+  & = 2\sigma_i \sigma_j -2\sigma_i -2\sigma_j + const.\\
+\end{split}
+\end{equation}
+
+After comparing with the Hamiltonian mentioned in previous section, one can correspond $h_i^z$, $h_j^z$, and $J_{ij}$ to 2, 2, and -2 respectively. Then one just repeats this procedure for all clauses. After this mapping is complete, the original 2-SAT problem can be solved with quantum annealing technique, because the ground state of the Ising Hamiltonian can be transformed back to the solution of the 2-SAT problem. \\  
+
+
+
+
 \begin{equation*}
 	H=(1-\lambda)H_{init}+\lambda H_{problem}
 \end{equation*}
