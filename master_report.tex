@@ -171,10 +171,7 @@ From the previous sector, we can noticed that the time scheme for $\lambda$ shou
 
 
 \section{Optimisation Problem}
-\subsection{In General / 2-SAT Problem}
-
-
-\cite{Das2008} II A Optimisation and annealing
+\subsection{Combinatorial Optimisation}
 
 Combinatorial optimisation problem is one of the most important task people want to solve. If one need to find the best choice among all available options consist of many independent factors, it can be considered as a combinatorial optimisation problem. Some practical examples are like travelling salesman problem, closure problem and assignment problem. Take travelling salesman problem for instance, there are N cities located randomly in an area and the goal is to plan an trip that visit every city once in the shortest travel distance. A straightforward approach is to try out all permutations and find the shortest path. The running time for this brute-force search is $\mathcal{O}(n!)$ , which means it grows as the factorial of the number of cities and the search space easily becomes too large for this approach to be feasible even for a relatively small N ($N \sim 30$) \cite{Santoro2006}. \\
 
@@ -188,15 +185,26 @@ There is a subset inside class NP called NP-complete, which is considered to be 
 
 Indeed there are algorithms can solve some easy optimisation problems in polynomial time. For harder cases like class NP-complete, although one cannot find the exact solution in a polynomial time, there are still some specialised algorithm that can approximate the solution in an polynomial time. The downside is that these algorithm are very problem specific, which means a success in one NP-complete problem does not ensure the success when attacking other NP problems by using the same algorithm. \\
 
+\subsection{Boolean Satisfiability Problem}
+
+The boolean satisfiability problem, abbreviated as the SAT problem, is a task of checking whether a given set of boolean formula can be satisfied. To be more specific, the goal here is to find a configuration of true or false for all variables in a given Boolean formula and it leads the final evaluation of the formula to true. The formula is called satisfiable when this is the case. On the other hand, the formula is not satisfiable, if the evaluation is false for all possible configuration.  \\
+
+The k-SAT problem with k>2 has been proven to be in class NP-complete, which implies that no algorithm can efficiently solve SAT problems in polynomial time. The parameter k defines the upper limit of the number of variables in one clause. An example is 
+
+\begin{equation*}
+ (x_1\lor x_2\lor x_3)\land (x_4\lor x_5\lor \neg x_6).
+\end{equation*}
+
+This is a Boolean formula in 3-SAT form, in which has two clauses and each clause consist of at most 3 variables. This formula is satisfiable because the final evaluation is true while one of the variable is true among $x_1, x_2, x_3$ in the first clause ,and one of the variable is true among $x_4, x_5$ or $x_6$ is false in the second clause. \\
+
+In this report, 2-SAT problem is the target task to understand. In contrast to those more general ones which are known to be NP-complete, 2-SAT problem can be solved in polynomial time. 
 
 
 The 2-SAT problem is made of variables with only two possible option. Among these variables we want to find the best set to get the solution with the lowest cost. 
 
-NP
 
-NP COMPLETE
 
-NP is 
+ 
 \subsection{The Mapping of Hamiltonian}
 
 How to map a 2-SAT problem to a Hamiltonian is not a easy question. We using Ising-model to map the 2-SAT problem.
