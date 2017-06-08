@@ -139,8 +139,12 @@ On the other hand, quantum annealing may become more efficient and perform bette
 
  
 
-The idea of annealing in general is to find the lowest-energy state, which sometime cast into a problem that try to find the lowest value of a cost function. When performing classic annealing, the system start from a random state in a high temperature. Then the temperature decrease, simulated algorithm choose the new state by some criteria. The system evolve by reducing the energy, and the result is usually end up in a local minima instead of global minima. !!The choose criteria\\
-\\
+%The idea of annealing in general is to find the lowest-energy state, which sometime cast into a problem that try to find the lowest value of a cost function. When performing classic annealing, the system start from a random state in a high temperature. Then the temperature decrease, simulated algorithm choose the new state by some criteria. The system evolve by reducing the energy, and the result is usually end up in a local minima instead of global minima. !!The choose criteria\\
+
+The main dynamics in quantum annealing process is quantum fluctuation. To achieve this, the system is first prepared in the ground state of the initial Hamiltonian, which is a product states of all spin states. Next, to bring in quantum fluctuation, a strong transverse field is applied to they system. During the annealing, the transverse field is slowly turned off while the problem Hamiltonian is slowly turned on. If this procedure progress slowly enough, the system will stay still in the ground state. At the end of the annealing process, the transverse field is complete off and the system should have evolved to the ground state of the problem Hamiltonian that encoded the given optimisation problem. How to encode an optimisation problem into a Ising model Hamiltonian will be presented in detail in Section \ref{The Mapping of Hamiltonian} \\
+
+
+
 Quantum annealing does not evolve by reducing temperature. The system is affect by two Hamiltonian, one is $H_i$, which is our starting Hamiltonian, and the requirement of this Hamiltonian is that the ground state of this is easy to prepared. On the other hand, $H_p$ is the problem Hamiltonian. We map the problem in to $H_p$. The idea is that, if we start from the ground state of $H_i$, and then the $H_i$ is turned off and the $H_p$ is turned on sufficiently slow. The system will end up in the ground state of $H_p$, which is the solution we want to find.\\
 \\
 In the ideal case, the classical annealing has some random factor, and the QA does not. Therefore a idea QA will always find the solution, or never, which leads to a bimodal distribution. Classical annealing starts from a random state, on the other hand, may have a uni-modal result. this is consider as a criteria for quantumness. !!Quantum annealing with more than one hundred qubits!! they declare to have this quantum characteristic. but the !!Classical signature of quantum annealing!! claimed that by picking same random state, the CA can also show a bimodal result. \\
@@ -231,6 +235,7 @@ where $\land$,$\lor$, and $\neg$ state for logical and, logical or, and logical 
 In this work, 2-SAT problem is the target task to understand. Similarly, the definition of a 2-SAT problem is that one clause can contain at most two variables. In contrast to those more general ones which are known to be NP-complete, 2-SAT problem can be solved in polynomial time. A detail should be mentioned is that the 2-SAT problems studied in this work all has only one unique configuration which leads the evaluation to be true. In other words, there is no degenerate ground states for the problem. \\
  
 \subsection{The Mapping of Hamiltonian}
+\label{The Mapping of Hamiltonian}
 
 A 2-SAT problem can only be solved when its Boolean formula is mapped in to an Ising Hamiltonian. In Ising model, an spin can take either 1 or -1 as its value, so it is straightforward to correspond spin value 1 for logical true and spin value 0 for logical false. \\
 
@@ -464,7 +469,7 @@ Reference check! II Theory part.
 \section{miscellaneous}
 
 
-\label{section}
+
 
 Please specify your name, matriculation number, name of advisor and the title of your report in \linebreak
 \verb+titlepage.tex+.
