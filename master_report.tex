@@ -148,15 +148,27 @@ The main dynamics in quantum annealing process is quantum fluctuation. To achiev
 %\end{equation}
 
 %\begin{equation}
-%H_{problem}=\sum_{i,j}^N \{J^z \sigma^z_i \sigma^z_j \}+ \sum_{i}^N \{h^z \sigma^z_i\}
+%H_{Ising}=\sum_{i,j}^N \{J^z \sigma^z_i \sigma^z_j \}+ \sum_{i}^N \{h^z \sigma^z_i\}
 %\end{equation}
 
 \begin{equation}
-H_{problem}=\sum_{i,j}^N \{J_{ij} \sigma_i \sigma_j \}+ \sum_{i}^N \{h_i \sigma_i\}.
+H_{Ising}=\sum_{i,j}^N \{J_{ij} \sigma_i \sigma_j \}+ \sum_{i}^N \{h_i \sigma_i\}.
 \end{equation}
 !The Hamiltonian of classical Ising model with N spins can be written as above. This model is broadly used in statistical physics to show a phase transition. The formula describe a set of lattice sites with discrete variables that represent the atomic spins with either up or down state. The model allows interaction between neighbours according to factor $J_{ij}$. If $J_{ij}<0$, the interaction is called ferromagnetic and the neighbour spins have higher probability to align parallel. In contrast, if $J_{ij}>0$, it is antiferromagnetic and the neighbour spins favour opposite states. Similarly, An external field $h_i$ interacts with each spin. The spin tends to have negative direction when $h_i>0$, and positive direction when $h_i<0$. Obviously, finding the configuration of the ground state under a given parameter set is the main and difficult task after one maps a optimisation problem into the Hamiltonian. \\
 
+Based on classical Ising model, the Hamiltonian used by quantum annealing process can be written as follow
 
+\begin{equation}
+\begin{split}
+&H(t)=(1-\frac{t}{T} )H_{init}+(\frac{t}{T})H_{problem} \\
+&H_{init}= \sum_{i=1}^{N}h_i^x \sigma_i^x\\
+&H_{problem}= \sum_{i,j}^N \{J_{ij}^z \sigma^z_i \sigma^z_j \}+ \sum_{i}^N \{h_i^z \sigma^z_i\},\\
+\end{split}
+\end{equation} 
+
+where t is the current timestep, T is toatal annealing time,\\
+Hinit
+Hproblem
 
 
 
