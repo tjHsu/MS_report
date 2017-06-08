@@ -141,12 +141,27 @@ On the other hand, quantum annealing may become more efficient and perform bette
 
 %The idea of annealing in general is to find the lowest-energy state, which sometime cast into a problem that try to find the lowest value of a cost function. When performing classic annealing, the system start from a random state in a high temperature. Then the temperature decrease, simulated algorithm choose the new state by some criteria. The system evolve by reducing the energy, and the result is usually end up in a local minima instead of global minima. !!The choose criteria\\
 
-The main dynamics in quantum annealing process is quantum fluctuation. To achieve this, the system is first prepared in the ground state of the initial Hamiltonian, which is a product states of all spin states. Next, to bring in quantum fluctuation, a strong transverse field is applied to they system. During the annealing, the transverse field is slowly turned off while the problem Hamiltonian is slowly turned on. If this procedure progress slowly enough, the system will stay still in the ground state. At the end of the annealing process, the transverse field is complete off and the system should have evolved to the ground state of the problem Hamiltonian that encoded the given optimisation problem. How to encode an optimisation problem into a Ising model Hamiltonian will be presented in detail in Section \ref{The Mapping of Hamiltonian} \\
+The main dynamics in quantum annealing process is quantum fluctuation. To achieve this, the system is first prepared in the ground state of the initial Hamiltonian, which is a product states of all spin states. Next, to bring in quantum fluctuation, a strong transverse field is applied to they system. During the annealing, the transverse field is slowly turned off while the problem Hamiltonian is slowly turned on. If this procedure progress slowly enough, the system will stay still in the ground state. At the end of the annealing process, the transverse field is complete off and the system should have evolved to the ground state of the problem Hamiltonian that encoded the given optimisation problem. The Hamiltonian used here is from classical Ising model and will be introduced in the next paragraph. How to encode an optimisation problem into a Ising model Hamiltonian will be presented in detail in Section \ref{The Mapping of Hamiltonian}. \\
+
+%\begin{equation}
+%H_{problem}=\sum_{i,j}^N \{J^x \sigma^x_i \sigma^x_j+J^y \sigma^y_i \sigma^y_j+J^z \sigma^z_i \sigma^z_j \}+ \sum_{i}^N \{h^x \sigma^x_i+h^y \sigma^y_i+h^z \sigma^z_i\}
+%\end{equation}
+
+%\begin{equation}
+%H_{problem}=\sum_{i,j}^N \{J^z \sigma^z_i \sigma^z_j \}+ \sum_{i}^N \{h^z \sigma^z_i\}
+%\end{equation}
+
+\begin{equation}
+H_{problem}=\sum_{i,j}^N \{J_{ij} \sigma_i \sigma_j \}+ \sum_{i}^N \{h_i \sigma_i\}.
+\end{equation}
+!The Hamiltonian of classical Ising model with N spins can be written as above. This model is broadly used in statistical physics to show a phase transition. The formula describe a set of lattice sites with discrete variables that represent the atomic spins with either up or down state. The model allows interaction between neighbours according to factor $J_{ij}$. If $J_{ij}<0$, the interaction is called ferromagnetic and the neighbour spins have higher probability to align parallel. In contrast, if $J_{ij}>0$, it is antiferromagnetic and the neighbour spins favour opposite states. Similarly, An external field $h_i$ interacts with each spin. The spin tends to have negative direction when $h_i>0$, and positive direction when $h_i<0$. Obviously, finding the configuration of the ground state under a given parameter set is the main and difficult task after one maps a optimisation problem into the Hamiltonian. \\
 
 
 
-Quantum annealing does not evolve by reducing temperature. The system is affect by two Hamiltonian, one is $H_i$, which is our starting Hamiltonian, and the requirement of this Hamiltonian is that the ground state of this is easy to prepared. On the other hand, $H_p$ is the problem Hamiltonian. We map the problem in to $H_p$. The idea is that, if we start from the ground state of $H_i$, and then the $H_i$ is turned off and the $H_p$ is turned on sufficiently slow. The system will end up in the ground state of $H_p$, which is the solution we want to find.\\
-\\
+
+
+%Quantum annealing does not evolve by reducing temperature. The system is affect by two Hamiltonian, one is $H_i$, which is our starting Hamiltonian, and the requirement of this Hamiltonian is that the ground state of this is easy to prepared. On the other hand, $H_p$ is the problem Hamiltonian. We map the problem in to $H_p$. The idea is that, if we start from the ground state of $H_i$, and then the $H_i$ is turned off and the $H_p$ is turned on sufficiently slow. The system will end up in the ground state of $H_p$, which is the solution we want to find.\\
+
 In the ideal case, the classical annealing has some random factor, and the QA does not. Therefore a idea QA will always find the solution, or never, which leads to a bimodal distribution. Classical annealing starts from a random state, on the other hand, may have a uni-modal result. this is consider as a criteria for quantumness. !!Quantum annealing with more than one hundred qubits!! they declare to have this quantum characteristic. but the !!Classical signature of quantum annealing!! claimed that by picking same random state, the CA can also show a bimodal result. \\
 \\
 
@@ -192,9 +207,7 @@ H=(1-\lambda)H_{init}+\lambda H_{problem}
 \begin{equation*}
 H_{init}=\sum_{i} h^x_{init} \sigma^x_i
 \end{equation*}
-\begin{equation*}
-H_{problem}=\sum_{i,j} \{J^x \sigma^x_i \sigma^x_j+J^y \sigma^y_i \sigma^y_j+J^z \sigma^z_i \sigma^z_j \}+ \sum_{i} \{h^x \sigma^x_i+h^y \sigma^y_i+h^z \sigma^z_i\}
-\end{equation*}
+
 
 \subsection{Adiabatic Theorem}
 Once the annealing time is long enough. We should be able to find the ground state.
