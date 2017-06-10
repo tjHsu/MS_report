@@ -17,9 +17,11 @@
 \usepackage{latexsym}	% math symbols
 \usepackage{amssymb}    % AMS symbol fonts for LaTeX.
 \usepackage{amsmath} 
+\usepackage{physics}
 \usepackage{graphicx}
 \usepackage{pslatex}
 \usepackage{ifthen}
+\usepackage{tcolorbox}
 
 \usepackage[T1]{fontenc}
 \usepackage{pslatex}
@@ -152,8 +154,25 @@ The main dynamics in quantum annealing process is quantum fluctuation. To achiev
 %\end{equation}
 
 \begin{equation}
-H_{Ising}=\sum_{i,j}^N \{J_{ij} \sigma_i \sigma_j \}+ \sum_{i}^N \{h_i \sigma_i\}.
+H_{Ising}=\sum_{i,j}^N \{J_{ij} \sigma_i \sigma_j \}+ \sum_{i}^N \{h_i \sigma_i\},
 \end{equation}
+
+where $\sigma_i$ stands for Pauli matrices 
+
+\begin{equation}
+\begin{split}
+&\sigma^x= \begin{pmatrix}
+			0&1\\1&0
+		  \end{pmatrix}\\
+&\sigma^y=\begin{pmatrix}
+			0&-i\\i&0
+		  \end{pmatrix}\\
+&\sigma^z=\begin{pmatrix}
+			1&0\\0&-1
+		 \end{pmatrix}.
+\end{split}
+\end{equation}
+
 !The Hamiltonian of classical Ising model with N spins can be written as above. This model is broadly used in statistical physics to show a phase transition. The formula describe a set of lattice sites with discrete variables that represent the atomic spins with either up or down state. The model allows interaction between neighbours according to factor $J_{ij}$. If $J_{ij}<0$, the interaction is called ferromagnetic and the neighbour spins have higher probability to align parallel. In contrast, if $J_{ij}>0$, it is antiferromagnetic and the neighbour spins favour opposite states. Similarly, An external field $h_i$ interacts with each spin. The spin tends to have negative direction when $h_i>0$, and positive direction when $h_i<0$. Obviously, finding the configuration of the ground state under a given parameter set is the main and difficult task after one maps a optimisation problem into the Hamiltonian. \\
 
 Based on classical Ising model, the Hamiltonian used by quantum annealing process can be written as follow
@@ -162,50 +181,55 @@ Based on classical Ising model, the Hamiltonian used by quantum annealing proces
 \begin{split}
 &H(t)=(1-\frac{t}{T} )H_{init}+(\frac{t}{T})H_{problem} \\
 &H_{init}= \sum_{i=1}^{N}h_i^x \sigma_i^x\\
-&H_{problem}= \sum_{i,j}^N \{J_{ij}^z \sigma^z_i \sigma^z_j \}+ \sum_{i}^N \{h_i^z \sigma^z_i\},\\
+&H_{problem}= \sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j + \sum_{i}^N h_i^z \sigma^z_i,\\
 \end{split}
 \end{equation} 
 
-where t is the current timestep, T is toatal annealing time,\\
-Hinit
-Hproblem
+where t is the current timestep and T is toatal annealing time.\\
 
+The key feature of $H_{init}$ is that it should be straightforward to construct and its ground state is easy to find. A transverse field in x-direction is the choice here. The ground of $H_{init}$ is $\ket{x_1=0}\ket{x_2=0}\ket{x_3=0}\dots\ket{x_n=0}$. This state can be written in our computational basis, z-basis, in a superposition of all $2^n$ basis vectors and !the states $\ket{z_i}$ are eigenstates of the i-th spin in z-direction,
+
+\begin{equation}
+\ket{x_1=0}\ket{x_2=0}\ket{x_3=0}\dots\ket{x_n=0}=\frac{1}{2^{n/2}}\ket{z_1}\ket{z_2}\dots\ket{z_n}.
+\end{equation}
+
+!$H_{problem}$ is spanned by the computational basis, z-basis. The ground state of $H_{problem}$ can be found only when $z_1, z_2 \dots z_n$ in the superposition of the states $\ket{z_1}\ket{z_2}\dots\ket{z_n}$ can satisfy all clauses of the given SAT problem. \\
 
 
 %Quantum annealing does not evolve by reducing temperature. The system is affect by two Hamiltonian, one is $H_i$, which is our starting Hamiltonian, and the requirement of this Hamiltonian is that the ground state of this is easy to prepared. On the other hand, $H_p$ is the problem Hamiltonian. We map the problem in to $H_p$. The idea is that, if we start from the ground state of $H_i$, and then the $H_i$ is turned off and the $H_p$ is turned on sufficiently slow. The system will end up in the ground state of $H_p$, which is the solution we want to find.\\
 
-In the ideal case, the classical annealing has some random factor, and the QA does not. Therefore a idea QA will always find the solution, or never, which leads to a bimodal distribution. Classical annealing starts from a random state, on the other hand, may have a uni-modal result. this is consider as a criteria for quantumness. !!Quantum annealing with more than one hundred qubits!! they declare to have this quantum characteristic. but the !!Classical signature of quantum annealing!! claimed that by picking same random state, the CA can also show a bimodal result. \\
-\\
+At $t=0$ the annealing process starts and the quantum fluctuation dominate the $H(t)$. The system is easy to initialise because the feature of $H_{init}$. According to adiabatic theorem, which will be introduced in section \ref{adiabatic theorem}, if the total annealing time is long enough, the system can evolve adiabatically and remain in the ground state. As a result, when $t=T$ and $H(t)$ shifts from $H_{init}$ to $H_{problem}$ completely, the final state is in the ground state of $H_{problem}$. \\
 
-!!cite Quantum Computation by Adiabatic Evolution Farhi 2000!!
+The adiabatic quantum annealing algorithm is presented as follow \cite{Farhi2000}:\\
 
-The adiabatic quantum annealing algorithm is implement as follow:\\
-\\
-1. An ground state of $H_i$ is construct.
-\begin{equation*}
-	H_i=\sum_{i=1}^{N}h_i^x \sigma_i^x
-\end{equation*}   
+\begin{tcolorbox}[title=Quantum Annealing Algorithm]
+1. Initialise the system to the ground state of $H_{init}$. The ground state of $H_{iniy}$ is designed in a way that it is simple to construct.\\
+%\begin{equation*}
+%	H_i=\sum_{i=1}^{N}h_i^x \sigma_i^x
+%\end{equation*}   
 
-2. Construct a Hamiltonian from a given problem.
-\begin{equation*}
-	H_{problem}=\sum_{i,j} \{J^x \sigma^x_i \sigma^x_j+J^y \sigma^y_i \sigma^y_j+J^z \sigma^z_i \sigma^z_j \}+ \sum_{i} \{h^x \sigma^x_i+h^y \sigma^y_i+h^z \sigma^z_i\}
-\end{equation*}   
+2. Set up $H_{problem}$ according to a given problem. Combine $H_{init}$ and $H_{problem}$ to Build $H(t)$. \\
+%\begin{equation*}
+%	H_{problem}=\sum_{i,j} \{J^x \sigma^x_i \sigma^x_j+J^y \sigma^y_i \sigma^y_j+J^z \sigma^z_i \sigma^z_j \}+ \sum_{i} \{h^x \sigma^x_i+h^y \sigma^y_i+h^z \sigma^z_i\}
+%\end{equation*}   
 
-3. Evolve the system according to the time scheme.
-\begin{equation*}
-	T:linear 
-\end{equation*}
+3. Evolve the system by computing time-dependent Schrödinger equation for time $t$ according to a given time scheme. \\
+%\begin{equation*}
+%	T:linear 
+%\end{equation*}
 
-4. Compute Schrodinger eqaution according to the above.\\
-\\
-5. The final state will be in the ground state of the $H_p$, if annealing T is long enough.\\
-\\
-6. measure the coefficient value of the state. then we have the solution.\\
-\\
+5. The system will end up in the ground state of the $H_p$, if the total annealing T is long enough.\\
+
+6. Measure the coefficient of $z_1,z_2 \dots z_n$. The result of the measurement will be the solution to the given problem, if it is satisfiable. If the given problem is not satisfiable, the system will end up in a configuration that minimise the number of violated clause.\\
+
+\end{tcolorbox} 
+
+It is worthwhile to mention the inherent difference between simulated annealing and quantum annealing. In the ideal case, the simulated annealing has some random factor when choosing the beginning point and also during the process, but quantum annealing does not have this randomness. Therefore, in principal, a idea quantum annealing will either always find the solution, or never, which leads to a bimodal distribution. Classical annealing starts from a random state, on the other hand, may have a uni-modal result. This is considered as a main criterion to distinguish between simulated annealing and quantum annealing\cite{Boixo2013}. Based on this, D-wave System Inc. declared that there quantum annealer have this quantum characteristic, but the some opposite claimed that by picking same random state, the simulated annealing could also show a bimodal result \cite{Smolin2013}. \\
+
+There two crucial problems for quantum annealing. First, the length of the total annealing time T. How long should it be to solve an interesting problem? Second, when the given problem is complicated, the energy gap between each eigenstate may be very close. How would the gap between the ground state and first excited state effect the annealing process? This are two aspect that will be investigated in Section \ref{result_ideal} and Section \ref{result_temp}.
+% Quantum annealing is a technique to find the ground state of a optimisation problem. different from the thermal annealing is that can tunnel through the barrier. 
 
 
-
-QA is a technique to find the ground state of a optimisation problem. different from the thermal annealing is that can tunnel through the barrier. 
 
 
 \subsubsection{Time-Dependent Schrodinger Equation}
@@ -222,6 +246,43 @@ H_{init}=\sum_{i} h^x_{init} \sigma^x_i
 
 
 \subsection{Adiabatic Theorem}
+\label{adiabatic theorem} \cite{Sarandy2004}
+
+The adiabatic theorem mainly serves as the basis of quantum annealing. The concept is that if the Hamiltonian of an eigenstate alters gradually, then the state will remain an eigenstate at later times while the !eigenenergy evolves continuously. The relation between gradually varying Hamiltonian and adiabatic behaviour can be demonstrated as follow. Equation \ref{tdse} states a quantum system which evolves unitarily.
+
+\begin{equation}
+\label{tdse}
+-t\frac{\partial}{\partial t}\ket{\Psi (t)} = H(t)\ket{\Psi(t)},
+\end{equation}
+
+where $H(t)$ is the time-dependent Hamiltonian and $\ket{\Psi(t)}$ is a quantum state. Assume the spectrum of $H(t)$ is nondegenerate. As a result, an basis can be defined as 
+
+\begin{equation}
+	H(t)\ket{n(t)}=E_n(t)\ket{n(t)},
+\end{equation}
+
+where $\ket{n(t)}$ is the set of eigenvector !chosen to be orthonormal. Suppose the time-dependent Hamiltonian can be diagonalised by unitary transformation. 
+
+\begin{equation}
+\label{unitary}
+H_D(t)=U^{-1}(t)H(t)U^{1}(t),
+\end{equation} 
+
+where $H_D{t}$ stands for the diagonalised Hamiltonian and $U(t)$ is its unitary transformation. By multiplying $U^{-1}$ to Equation \ref{tdse}, it can be rewritten as 
+ 
+\begin{equation}
+H_D\ket{\Psi}_D = i \frac{\partial}{\partial t}\ket{\Psi}_D - i \frac{\partial}{\partial t} U^{-1} \ket{\Psi},
+\end{equation}
+
+where $\ket{\Psi}_D \equiv U^{-1}\ket{\Psi}$ !is the state of the system in the basis of eigenvector of $H(t)$. If $H(t)$ changes slowly enough in time, $\frac{\partial H(t)}{\partial t}$ approximates zero. It can then be assumed that the unitary transformation, $U(t)$, and its inverse, $U^{-1}(t)$ are !slowly varying operator, which leads to 
+
+\begin{equation}
+H_D(t)\ket{\Psi(t)}_D = i \frac{\partial}{\partial t} \ket{\Psi(t)}_D.
+\end{equation}
+
+Consequently, the system can evolve separetely in each energy eigenstate, because $H_d(t)$ is diagonal. In other words, this assures that if the quantum system is in an instantaneous eigenstate of $H(t)$ at a certain point of time, it will remain in this eigenstate at all time. \\ 
+
+
 Once the annealing time is long enough. We should be able to find the ground state.
 \subsection{Landau-Zener Theorem}
 The probability of finding the ground state is depend on the temperature and the gap.
@@ -397,6 +458,7 @@ Reference check! II Theory part.
 
 
 \section{Quantum Annealer Simulation: Ideal Case}
+\label{result_ideal}
 	There is no ideal system. Environment will always affect the subsystem. However, I start from a simple case, that is a subsystem without environment effect. 
 \subsection{??Simulation Set up}
 	8 spin without environment spin. With linear time scheme. 
@@ -432,6 +494,7 @@ Reference check! II Theory part.
 	\end{itemize}
 	
 \section{Quantum Annealer Simulation with Temperature Effect}
+\label{result_temp}
 	After the case without environment, now we move on to the one with environment.
 \subsection{??Simulation Set up}
 	Here the system consist of a 8-spins subsystem and 8-spins environment. The interaction depend on the coupling factor. When factor is 0, the subsystem cannot be affected by the environment at all. On the other, if the factor is 1, the spin of environment may fully interact with subsystem just as one of the spin inside.
