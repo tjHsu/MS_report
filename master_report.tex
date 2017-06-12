@@ -199,7 +199,17 @@ The key feature of $H_{init}$ is that it should be straightforward to construct 
 
 %Quantum annealing does not evolve by reducing temperature. The system is affect by two Hamiltonian, one is $H_i$, which is our starting Hamiltonian, and the requirement of this Hamiltonian is that the ground state of this is easy to prepared. On the other hand, $H_p$ is the problem Hamiltonian. We map the problem in to $H_p$. The idea is that, if we start from the ground state of $H_i$, and then the $H_i$ is turned off and the $H_p$ is turned on sufficiently slow. The system will end up in the ground state of $H_p$, which is the solution we want to find.\\
 
-At $t=0$ the annealing process starts and the quantum fluctuation dominate the $H(t)$. The system is easy to initialise because the feature of $H_{init}$. According to adiabatic theorem, which will be introduced in section \ref{adiabatic theorem}, if the total annealing time is long enough, the system can evolve adiabatically and remain in the ground state. As a result, when $t=T$ and $H(t)$ shifts from $H_{init}$ to $H_{problem}$ completely, the final state is in the ground state of $H_{problem}$. \\
+At $t=0$ the annealing process starts and the quantum fluctuation dominate the $H(t)$. The system is easy to initialise because of the feature of $H_{init}$. According to adiabatic theorem, which will be introduced in section \ref{adiabatic theorem}, if the total annealing time is long enough, the system can evolve adiabatically and remain in the ground state. As a result, when $t=T$ and $H(t)$ shifts from $H_{init}$ to $H_{problem}$ completely, the final state is in the ground state of $H_{problem}$. It should be noted that by using $(1-\frac{t}{T})$ and $\frac{t}{T}$ as the relation of $H_{init}$ and $H_{problem}$ in Equation \ref{Hamiltonian_set}, it implies the annealing proceeds with a linear time scheme. Indeed, there are more general time schemes can be implemented for the annealing process rather than a linear one. For simplicity's sake, the linear time scheme is applied to the annealing process in this report. A illustration of this shown in Figure \ref{linear_timescheme}. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[height=150pt]{doge.jpeg}
+	\caption{Linear time scheme. (It should be drawn here later on.) }
+	\label{linear_timescheme}
+\end{figure}
+
+
+the time scheme can be used is not \\
 
 The adiabatic quantum annealing algorithm is presented as follow \cite{Farhi2000}:\\
 
@@ -230,20 +240,6 @@ It is worthwhile to mention the inherent difference between simulated annealing 
 There two crucial problems for quantum annealing. First, the length of the total annealing time T. How long should it be to solve an interesting problem? Second, when the given problem is complicated, the energy gap between each eigenstate may be very close. How would the gap between the ground state and first excited state effect the annealing process? This are two aspect that will be investigated in Section \ref{result_ideal} and Section \ref{result_temp}.
 % Quantum annealing is a technique to find the ground state of a optimisation problem. different from the thermal annealing is that can tunnel through the barrier. 
 
-
-
-
-\subsubsection{Time-Dependent Schrodinger Equation}
-\begin{equation*}
-i\hbar\frac{\partial \psi}{\partial t}=H\psi
-\end{equation*}
-
-\begin{equation*}
-H=(1-\lambda)H_{init}+\lambda H_{problem}
-\end{equation*}
-\begin{equation*}
-H_{init}=\sum_{i} h^x_{init} \sigma^x_i
-\end{equation*}
 
 
 \subsection{Adiabatic Theorem}
@@ -293,19 +289,29 @@ $P_{adiabatic}$ is the probability of the system remaining ground state and evol
 
 \begin{equation}
 \begin{split}
-P_{diabatic} = \exp({\frac{-2\pi\Delta^2\tau}{\alpha\Gamma_0}})
+P_{diabatic}(T) = \exp({\frac{-2\pi\Delta_{min}^2 T}{\alpha\Gamma_0}}),
 \end{split}
 \end{equation}
+where $T$ is the total annealing time in Equation \ref{Hamiltonian_set}, $\Delta$ is the minimum gap between two energy eigenstates which are always referred to the gap between the ground state and the first excited state in this report, $\alpha$ is the !relative slope of the two states, and $\Gamma_0$ is the initial strength of the transverse field which is set in $1$ in this report. An illustration of Landau formula can be found in Figure. \ref{landau}. \\
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[height=150pt]{doge.jpeg}
+	\caption{a graph show the landau formula parameter. (it should drawn here later on.) Image from\cite{Santoro2002}. }
+	\label{landau}
+\end{figure}
+
+The probability of a successful quantum annealing is thus confined by the minimum gap, $\Delta_{min}$ and the annealing time $T$ correspondingly. The relation between the successful probability and $\Delta_{min}$ can indeed be investigated with a fixed annealing time $T$. Further detail will be presented in Section \ref{result_ideal} and Section \ref{result_temp}. 
 
 
 
 
 %The probability of finding the ground state is depend on the temperature and the gap.
 
-\subsection{Annealing Time scheme}
-From the previous sector, we can noticed that the time scheme for $\lambda$ should be chosen and set. Here we use linear scheme for $\lambda$.
+%\subsection{Annealing Time scheme}
+%From the previous sector, we can noticed that the time scheme for $\lambda$ should be chosen and set. Here we use linear scheme for $\lambda$.
 
+\newpage
 
 \section{Optimisation Problem}
 \subsection{Combinatorial Optimisation}
@@ -431,11 +437,24 @@ After comparing with the Hamiltonian mentioned in previous section, one can corr
 
 
 
-
+\newpage
 
 
 
 \section {Simulation Algorithm}
+
+\subsubsection{Time-Dependent Schrodinger Equation}
+\begin{equation*}
+i\hbar\frac{\partial \psi}{\partial t}=H\psi
+\end{equation*}
+
+\begin{equation*}
+H=(1-\lambda)H_{init}+\lambda H_{problem}
+\end{equation*}
+\begin{equation*}
+H_{init}=\sum_{i} h^x_{init} \sigma^x_i
+\end{equation*}
+
 \subsection{Algorithm for Ideal Case}
 So here i am going to try out two algorithm. First is full diagonalization, which i use Lapack to solve the eigensystem. Product formula break the evolution into small operation and make the computation of large system possible.
 \subsubsection{Full Diagonalization}
