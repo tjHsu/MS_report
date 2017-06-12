@@ -178,6 +178,7 @@ where $\sigma_i$ stands for Pauli matrices
 Based on classical Ising model, the Hamiltonian used by quantum annealing process can be written as follow
 
 \begin{equation}
+\label{Hamiltonian_set}
 \begin{split}
 &H(t)=(1-\frac{t}{T} )H_{init}+(\frac{t}{T})H_{problem} \\
 &H_{init}= \sum_{i=1}^{N}h_i^x \sigma_i^x\\
@@ -282,10 +283,25 @@ H_D(t)\ket{\Psi(t)}_D = i \frac{\partial}{\partial t} \ket{\Psi(t)}_D.
 
 Consequently, the system can evolve separetely in each energy eigenstate, because $H_d(t)$ is diagonal. In other words, this assures that if the quantum system is in an instantaneous eigenstate of $H(t)$ at a certain point of time, it will remain in this eigenstate at all time. \\ 
 
+%Once the annealing time is long enough. We should be able to find the ground state.
 
-Once the annealing time is long enough. We should be able to find the ground state.
-\subsection{Landau-Zener Theorem}
-The probability of finding the ground state is depend on the temperature and the gap.
+\subsection{Landau-Zener Transition} %theorem
+
+According to Landau-Zener formula, another constraint on quantum annealing process is the distance between the ground state and the first excited state. Landau-Zener formula gives out the probability of a diabatic transition from a lower energy eigenstate to a higher energy eigenstate. Although adiabatic theorem implies that no diabatic transition will occur if $H(t)$ in Equation \ref{Hamiltonian_set} could vary infinitely slow, this is not the case for real system with a finite annealing time. Once the system evolve in a finite annealing time from a lower energy eigenstate, the probability of finding the system in a higher energy state in the future can be determined by Landau-Zener formula.\\
+
+$P_{adiabatic}$ is the probability of the system remaining ground state and evolve adiabatically. $P_{diabatic}$ is the probability of diabatic transition. The relation between these two is $P_{adiabatic} = 1 - P_{diabatic}$. By Landau-Zener formula, $P_{diabatic}$ is 
+
+\begin{equation}
+\begin{split}
+P_{diabatic} = \exp({\frac{-2\pi\Delta^2\tau}{\alpha\Gamma_0}})
+\end{split}
+\end{equation}
+
+
+
+
+
+%The probability of finding the ground state is depend on the temperature and the gap.
 
 \subsection{Annealing Time scheme}
 From the previous sector, we can noticed that the time scheme for $\lambda$ should be chosen and set. Here we use linear scheme for $\lambda$.
