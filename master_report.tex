@@ -76,15 +76,15 @@
 
 
 \section{Introduction}
-\cite{Ladd2010} General Possible Quantum Computer. 
+%\cite{Ladd2010} General Possible Quantum Computer. 
+%
+%\cite{Boixo2016} The supremacy.
+%
+%\cite{Ronnow2014} Detect quantum speed up\\
 
-\cite{Boixo2016} The supremacy.
+Adiabatic quantum annealing can be considered as a special kind of quantum computation achieved by adiabatic evolution and quantum annealer is a device that can perform adiabatic quantum annealing. The idea of quantum computation was brought up in early 80s \cite{Feynman1982}. It indicated that a simulation of quantum phenomena is not always available on an classical computer, because the amount of resource required grows exponentially along with the size of the physical system. Instead, a quantum phenomena should be simulate by a computer making use of quantum property. The amount of resource required by the simulation is only proportional to the size of the physical system. \\
 
-\cite{Ronnow2014} Detect quantum speed up\\
-
-Adiabatic quantum annealing is a kind of quantum computation achieved by adiabatic evolution and quantum annealer is a device that can perform adiabatic quantum annealing. The idea of quantum computation was brought up in early 80s \cite{Feynman1982}. It indicated that a simulation of quantum phenomena is not always available on an classical computer, because the amount of resource required grows exponentially along with the size of the physical system. Instead, a quantum phenomena should be simulate by a computer making use of quantum property. The amount of resource required by the simulation is only proportional to the size of the physical system. \\
-
-After this idea, an interesting topic for scientist is that how computation can benefit from storing, transferring and processing information with quantum properties. Quantum computation is expected to do more than just simulation of a quantum phenomena. Some quantum algorithm has been presented and shown to have a significantly speed-up compared to classical ones. The following are some example. Simon's algorithm can reduce the runtime for the task from an exponential time on a classical computer to a polynomial time on a quantum computer. \cite{Simon1994}. Furthermore, this also serve as the stepping-stone to Shor's Algorithm. Shor's Algorithm for factoring is one of the most well-know quantum algorithm. The time it takes to factor an n-digit number grows as a polynomial in n on a quantum computer. The time for the same task grows exponentially with n on a classical computer \cite{Shor1995}. The toughness of factoring problem is the basis of many cryptography techniques and information is usually encrypted and protected by a large semi prime number. Classical cryptography seems to break down and  quantum cryptography is under research as a response to this. The last one is Grover's search algorithm. To search an item in an unstructured list of size N costs a classical computer running time in an order of N. Grover's algorithm can solve the same task in the order of $\sqrt{N}$ \cite{Grover1996}. Not like Shor's algorithm, which has an exponential speed-up, Grover's algorithm has only a quadratic improvement. It is still a important algorithm because of its board applications, such as speedup the time required to solve NP-complete problems \cite{Cerf2000} \cite{Bennett1997}. \\
+After this idea, an interesting topic for scientists is that how computation can benefit from storing, transferring and processing information with quantum properties. Quantum computation is expected to do more than just simulation of a quantum phenomena. Some quantum algorithm has been presented and shown to have a significantly speed-up compared to classical ones. The following are some example. Simon's algorithm can reduce the runtime for the task from an exponential time on a classical computer to a polynomial time on a quantum computer. \cite{Simon1994}. Furthermore, this also serve as the stepping-stone to Shor's Algorithm. Shor's Algorithm for factoring is one of the most well-know quantum algorithm. The time it takes to factor an n-digit number grows as a polynomial in n on a quantum computer. The time for the same task grows exponentially with n on a classical computer \cite{Shor1995}. The toughness of factoring problem is the basis of many cryptography techniques and information is usually encrypted and protected by a large semi prime number. Classical cryptography seems to break down and  quantum cryptography is under research as a response to this. The last one is Grover's search algorithm. To search an item in an unstructured list of size N costs a classical computer running time in an order of N. Grover's algorithm can solve the same task in the order of $\sqrt{N}$ \cite{Grover1996}. Not like Shor's algorithm, which has an exponential speed-up, Grover's algorithm has only a quadratic improvement. It is still a important algorithm because of its board applications, such as speedup the time required to solve NP-complete problems \cite{Cerf2000} \cite{Bennett1997}. \\
 
 All algorithm mentioned above are expected to run on an universal quantum computer, which is usually referred to a machine based on quantum gate modal. However, building an quantum gate computer may be a challenging task. The main difficulty comes from the close box requirement \cite{Ladd2010}. The quantum system of a quantum computer should be isolated from its environment while being controlled. The quantum system which computation based on is so fragile that even a little amount of noise can cause harm to the system, known as decoherence. Furthermore, due to the environmental noise, the entropy of the system will keep increasing along with the time. Therefore, there must exist a way to coll the quantum system and maintain its quantum state. How to measure results is another a important issue, because the computational result makes sense to us only when we are able to measure it. Also, the possibility to scale up the system is crucial. A general quantum computing can be realised only when the above requirement are all fulfilled. Gate based computer is still struggling. Another approach to quantum computation is adiabatic quantum computer, which has more robustness than a gate based computer !!cite decoherence in AQC!!. There are debates on whether adiabatic quantum computer can be consider as a general quantum computer. It has shown that the model of adiabatic computation differs from the standard model of quantum computation within a polynomial time \cite{Aharonov2004}\cite{Farhi2000}. Some criticized that this only hold under ideal situation without noise. There are effective model for building a fault-tolerant gate based computer. By contrast, whether fault-tolerant is possible on quantum annealing computer remains unknown !!cite Classical signature of quantum annealing!!
 \\
@@ -103,22 +103,22 @@ The outline of the report is as follows. In the section 2, the general idea of q
 
 \section{( Theory of ) Quantum Annealer}
 
-!A quantum annealer is a specialised machine that solves optimisation problems by evolving from a know initial configuration to the ground state of a Hamiltonian encoding a given problem.
-
-
-\cite{Das2008} 
-\cite{Matsuda2009}
-\cite{Santoro2006}
-\cite{Denchev2015} what is the computational value of finite range tunnelling
+%!A quantum annealer is a specialised machine that solves optimisation problems by evolving from a know initial configuration to the ground state of a Hamiltonian encoding a given problem.
+%
+%
+%\cite{Das2008} 
+%\cite{Matsuda2009}
+%\cite{Santoro2006}
+%\cite{Denchev2015} what is the computational value of finite range tunnelling
 
 
 
 
 \subsection{Quantum Annealing and Adiabatic Quantum Computation}
-\cite{Boixo2014} A compare of quantum annealing and simulated annealing \\
-\cite{QABoixo2016} Multi qubit tunneling \\
-\cite{Jin2013} quantum decoherence \\
-\cite{Smolin2013} Classical signature of quantum annealing p2 \\
+%\cite{Boixo2014} A compare of quantum annealing and simulated annealing \\
+%\cite{QABoixo2016} Multi qubit tunneling \\
+%\cite{Jin2013} quantum decoherence \\
+%\cite{Smolin2013} Classical signature of quantum annealing p2 \\
 
 Before going into quantum annealing, it's worth mentioning first the reason using annealing technique in general and the difference between simulated annealing and quantum annealing. First, the reason using annealing technique is because of the properties of the combinatorial optimisation problem. The goal of this kind of problem is to find an optimal solution among a finite set of possible configuration. The set of solution is discrete. A brute-force search for the optimal one is not practical on a classical computer when the problem size is large. To reduce runtime, one approximate method is annealing. If one can encode the problem into a cost function and correspond the minimum value of the cost function to the solution of the optimisation problem, annealing algorithm can help find the lowest point in the landscape constructed by the cost function.  \\
 
@@ -243,7 +243,7 @@ There two crucial problems for quantum annealing. First, the length of the total
 
 
 \subsection{Adiabatic Theorem}
-\label{adiabatic theorem} \cite{Sarandy2004}
+%\label{adiabatic theorem} \cite{Sarandy2004}
 
 The adiabatic theorem mainly serves as the basis of quantum annealing. The concept is that if the Hamiltonian of an eigenstate alters gradually, then the state will remain an eigenstate at later times while the !eigenenergy evolves continuously. The relation between gradually varying Hamiltonian and adiabatic behaviour can be demonstrated as follow. Equation \ref{tdse} states a quantum system which evolves unitarily.
 
@@ -507,11 +507,41 @@ Reference check! II Theory part.
 		\item \checkmark Figure here: The spin z vs. lambda
 		\item \checkmark Figure here: The success probability vs. lambda
 	\end{itemize}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[height=300pt]{result_picture/energy_evolution_full_diag/Figure_EnergyvsLambda.png}
+		\caption{Insert caption here.}
+		\label{example_figure}
+	\end{figure}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[height=250pt]{result_picture/probability_spin_system/Figure_Annealing_spin.png}
+		\caption{Insert caption here.}
+		\label{example_figure}
+	\end{figure}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[height=300pt]{result_picture/probability_spin_system/Figure_Annealing_probability.png}
+		\caption{Insert caption here: Success Probability vs. $\lambda$.}
+		\label{example_figure}
+	\end{figure}
 \subsubsection{The Effect of step size tau}
 	After having a look at the general properties. Now I try to investigate the size of time step. When the Hamiltonian is time-dependent. The tau should be small enough.  other wise the result would deviate. 
 	\begin{itemize}
 		\item \checkmark Figure here: compare the result of product formula with the result of full diagonalization: success probability vs. annealing Time with different tau.
 	\end{itemize}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[height=300pt]{result_picture/compare_full_product/Figure_product_formula.png}
+		\caption{Insert caption here.}
+		\label{example_figure}
+	\end{figure}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[height=300pt]{result_picture/compare_full_product/Figure_full_diag.png}
+		\caption{Insert caption here.}
+		\label{example_figure}
+	\end{figure}
 \subsubsection{The Effect of Annealing Time}
 	Setting up the proper $\tau$. Then I start to simulate the annealing process with different annealing time. The annealing should be long enough to find a ground state. Also I compare the result of full diagonalization and product formula algorithm. 
 	\begin{itemize}
@@ -527,6 +557,14 @@ Reference check! II Theory part.
 		\item \checkmark Figure here: a close view of the result above: the energy for lowest 20~30 states vs. lambda
 		\item \checkmark Figure here: compare: the success probability under the annealing time that maximise the minimum gap difference vs. minimum gap value 
 	\end{itemize}
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[height=300pt]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_energy_spectrum.png}
+			\caption{Insert caption here.}
+			\label{example_figure}
+		\end{figure}
+		
+\newpage
 	
 \section{Quantum Annealer Simulation with Temperature Effect}
 \label{result_temp}
@@ -549,6 +587,12 @@ Reference check! II Theory part.
 		\item \checkmark Figure here: repeat above plots with Random wave function
 	\end{itemize}
 	
+		\begin{figure}[h]
+			\centering
+			\includegraphics[height=300pt]{result_picture/JvsT_plot/T1/JvsTwTemp1.png}
+			\caption{Insert caption here.}
+			\label{example_figure}
+		\end{figure}
 	
 \subsubsection{The Effect of Annealing Time}
 	This subsection may be removed 
@@ -557,6 +601,12 @@ Reference check! II Theory part.
 	\begin{itemize}
 		\item \checkmark Figure here: compare: the success probability under the annealing time that maximise the minimum gap difference vs. minimum gap value.
 	\end{itemize}
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[height=350pt]{result_picture/gap_result_environment/Figure_PvsGap_T2e2_Temp1.png}
+			\caption{Insert caption here.}
+			\label{example_figure}
+		\end{figure}
 \section{??D-wave Practice}
 	\cite{Johnson2011}
 	D-wave use of super conducting qubit
