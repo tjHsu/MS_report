@@ -454,7 +454,20 @@ The whole quantum annealing process can be described by time-dependent Schröding
 \end{equation}
 where $\tau$ is the time step, and $U(t+\tau)$ is a unitary matrix that transform system from $t$ to $t+\tau$. In order to conduct numerical computation and ensure the unitary of the evolution operator, time is discretised to small time step $\tau$ and $H(\tau)$ is assumed to be piecewise constant within these time steps. Therefore, the size of the time step should be small enough to keep $H(\tau)$ piecewise. On the other hand, if the size is too small, the computational time will be too long. A proper length should be tested out before going into further simulation. \\
 
-The $\Psi$ is defined by the direct product state of the N single spin states in z-basis, which is the computational basis used in this report. Each single spin has two possible states, $\ket{0}$ or $\ket{1}$, which correspond to, $\ket{\uparrow}$ or $\ket{\downarrow}$ . Therefore, a N-spin system is made up of $2^N$ state vectors and it can be written as 
+The $\Psi$ is defined by the direct product state of the N single spin states in z-basis, which is the computational basis used in this report. Each single spin has two possible states, $\ket{0}$ or $\ket{1}$, which correspond to, $\ket{\uparrow}$ or $\ket{\downarrow}$ . The relation between them is defined as 
+
+\begin{equation}
+\ket{0}=\ket{\uparrow}=\left(\begin{array}{c} 1\\0 \end{array}\right), \ket{1}=\ket{\downarrow}=\left(\begin{array}{c} 0\\1 \end{array}\right)
+\end{equation}
+
+
+Thus, the single spin state can be written as a linear superposition of theses two basis state, 
+
+\begin{equation}
+\ket{\psi} = a(0)\ket{0} + a(1)\ket{1},
+\end{equation}
+
+where $a(0) and a(1)$ are the coefficient of the amplitude of each state. Furthermore, a N-spin system is made up of $2^N$ state vectors and it can be written as 
 
 \begin{equation}
 \label{psi_in_compuationalbasis}
@@ -467,7 +480,8 @@ where $a(00\dots0), a(00\dots1)\dots, a(11\dots1)$ are the coefficients of each 
 \sum_{\sigma_1,\sigma_2, \dots, \sigma_N=\ket{0},\ket{1}} |a(\sigma_1,\sigma_2, \dots, \sigma_N)|^2 = 1. 
 \end{equation}
 
-!(skip the part that transform the wave function to an integer index ranged from 0 to $2^{N-1}$)\\
+One may noticed that the format of basis vectors in Equation \ref{psi_in_compuationalbasis} is similar to the format of binary number notation. !If the first is considered to be the least significat bit of an integer, the basis vector can be denoted as a integer ranging from 0 to $2^N-1$. \\
+%According to Equation \ref{psi_in_compuationalbasis}, it is 
 
 It is clear that the memory request for the computation will increase exponentially with the size of the quantum system, which may soon make the computation not practical on a classical computer. However, it turns out there is a simple way to calculate the result without accessing to the entire matrix every time. Namely, during applying $\sigma^x_i, \sigma^z_i, and \sigma^z_i\sigma^z_j$ to $\ket{\Psi}$ the computation can be reduced to series of $2x2$ and $4x4$ matrix calculation instead of a calculation of entire $2^N x 2^N$ matrix. After applying Hamiltonian operator to Equation \ref{psi_in_compuationalbasis}, the state vectors become 
 
