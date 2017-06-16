@@ -160,6 +160,7 @@ H_{Ising}=\sum_{i,j}^N \{J_{ij} \sigma_i \sigma_j \}+ \sum_{i}^N \{h_i \sigma_i\
 where $\sigma_i$ stands for Pauli matrices 
 
 \begin{equation}
+\label{pauli_matrix}
 \begin{split}
 &\sigma^x= \begin{pmatrix}
 			0&1\\1&0
@@ -436,24 +437,95 @@ H & = m \cdot (m-2)\\
 After comparing with the Hamiltonian mentioned in previous section, one can correspond $h_i^z$, $h_j^z$, and $J_{ij}$ to 2, 2, and -2 respectively. Then one just repeats this procedure for all clauses. After this mapping is complete, the original 2-SAT problem can be solved with quantum annealing technique, because the ground state of the Ising Hamiltonian can be transformed back to the solution of the 2-SAT problem. \\  
 
 
-
 \newpage
 
 
 
 \section {Simulation Algorithm}
 
-\subsubsection{Time-Dependent Schrodinger Equation}
-\begin{equation*}
-i\hbar\frac{\partial \psi}{\partial t}=H\psi
-\end{equation*}
+\subsubsection{Time-Dependent Schrodinger Equation and Quantum Spin System}
 
-\begin{equation*}
-H=(1-\lambda)H_{init}+\lambda H_{problem}
-\end{equation*}
-\begin{equation*}
-H_{init}=\sum_{i} h^x_{init} \sigma^x_i
-\end{equation*}
+The whole quantum annealing process can be described by time-dependent Schrödinger equation ( Equation \ref{tdse}), that is by solving time-dependent Schrödinger equation one can determine the final state of the system. The solution of this is 
+\begin{equation}
+\begin{split}
+\Psi(t+\tau)&=U(t+\tau,t)\Psi(t)\\
+&=\exp(i\int_{t}^{t+\tau}H(\tau)d\tau)\Psi(t),
+\end{split}
+\end{equation}
+where $\tau$ is the time step, and $U(t+\tau)$ is a unitary matrix that transform system from $t$ to $t+\tau$. In order to conduct numerical computation and ensure the unitary of the evolution operator, time is discretised to small time step $\tau$ and $H(\tau)$ is assumed to be piecewise constant within these time steps. Therefore, the size of the time step should be small enough to keep $H(\tau)$ piecewise. On the other hand, if the size is too small, the computational time will be too long. A proper length should be tested out before going into further simulation. \\
+
+The $\Psi$ is defined by the direct product state of the N single spin states in z-basis, which is the computational basis used in this report. Each single spin has two possible states, $\ket{0}$ or $\ket{1}$, which correspond to, $\ket{\uparrow}$ or $\ket{\downarrow}$ . Therefore, a N-spin system is made up of $2^N$ state vectors and it can be written as 
+
+\begin{equation}
+\label{psi_in_compuationalbasis}
+\Psi = a(00\dots0)\ket{00\dots0}+a(00\dots1)\ket{00\dots1}+\dots+a(11\dots0)\ket{11\dots0}+a(11\dots1)\ket{11\dots1},
+\end{equation}
+
+where $a(00\dots0), a(00\dots1)\dots, a(11\dots1)$ are the coefficients of each components. It should fulfil the normalisation requirement, $\braket{\Psi}{\Psi} = 1$. That is, the following equation should hold. 
+
+\begin{equation}
+\sum_{\sigma_1,\sigma_2, \dots, \sigma_N=\ket{0},\ket{1}} |a(\sigma_1,\sigma_2, \dots, \sigma_N)|^2 = 1. 
+\end{equation}
+
+!(skip the part that transform the wave function to an integer index ranged from 0 to $2^{N-1}$)\\
+
+It is clear that the memory request for the computation will increase exponentially with the size of the quantum system, which may soon make the computation not practical on a classical computer. However, it turns out there is a simple way to calculate the result without accessing to the entire matrix every time. Namely, during applying $\sigma^x_i, \sigma^z_i, and \sigma^z_i\sigma^z_j$ to $\ket{\Psi}$ the computation can be reduced to series of $2x2$ and $4x4$ matrix calculation instead of a calculation of entire $2^N x 2^N$ matrix. After applying Hamiltonian operator to Equation \ref{psi_in_compuationalbasis}, the state vectors become 
+
+\begin{equation}
+\begin{split}
+\ket{\Psi'} &= \sigma^\alpha_i \ket{\Psi} \\
+			&= a'(00\dots0)\ket{00\dots0}+a'(00\dots1)\ket{00\dots1}+\dots+a'(11\dots0)\ket{11\dots0}+a'(11\dots1)\ket{11\dots1},
+\end{split}
+\end{equation}
+
+If the operator is $\sigma^x_i$, it interchanges state up and state down, which corresponds to a swap of a pair component of $\Psi$. 
+
+\begin{equation}
+\begin{split}
+a'(\bullet \cdots \bullet 0 \bullet \cdots \bullet) = +a(\bullet \cdots \bullet 1 \bullet \cdots \bullet)\\
+a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet) = +a(\bullet \cdots \bullet 0 \bullet \cdots \bullet)
+\end{split}
+\end{equation}
+
+If the operator is $\sigma^y_i$, according to Equation \ref{pauli_matrix}, the coefficient has the relation 
+
+\begin{equation}
+\begin{split}
+a'(\bullet \cdots \bullet 0 \bullet \cdots \bullet) = -i\times a(\bullet \cdots \bullet 1 \bullet \cdots \bullet)\\
+a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet) = +i\times a(\bullet \cdots \bullet 0 \bullet \cdots \bullet)
+\end{split}
+\end{equation}
+
+If the operator is $\sigma^z_i$, it reverses the sign of all coefficients of $\ket{\Psi}$ for which the $i-th$ bit of the vector has value 1, which yields
+
+\begin{equation}
+\begin{split}
+a'(\bullet \cdots \bullet 0 \bullet \cdots \bullet) = +a(\bullet \cdots \bullet 1 \bullet \cdots \bullet)\\
+a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet) = -a(\bullet \cdots \bullet 0 \bullet \cdots \bullet)
+\end{split}
+\end{equation}
+
+Similarly, applying two spin operator $\sigma^z_i\sigma^z_j$ leads to a sign interchange between coefficients of $\ket{\Psi}$ for which the $i-th$ bit and the $j-th$ bit of the vector has different valus. Hence it is 
+
+\begin{equation}
+\begin{split}
+a'(\bullet \cdots \bullet 0 \bullet \cdots \bullet 0 \bullet \cdots \bullet) = +a(\bullet \cdots \bullet 0 \bullet \cdots \bullet 0 \bullet \cdots \bullet)\\
+a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet 0 \bullet \cdots \bullet) = -a(\bullet \cdots \bullet 1 \bullet \cdots \bullet 0 \bullet \cdots \bullet)\\
+a'(\bullet \cdots \bullet 0 \bullet \cdots \bullet 1 \bullet \cdots \bullet) = -a(\bullet \cdots \bullet 0 \bullet \cdots \bullet 1 \bullet \cdots \bullet)\\
+a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet 1 \bullet \cdots \bullet) = -a(\bullet \cdots \bullet 1 \bullet \cdots \bullet 1 \bullet \cdots \bullet)\\
+\end{split}
+\end{equation}
+
+Please note that the operation mentioned here are done in place. Namely, instead of creating and using extra unnecessary vector, these operation manipulate the necessary component in the state vector $\ket{\Psi}$. Hence, $\ket{\Psi'}=H\ket{\Psi}$ can be calculated easily. This approach serves as the basis of the algorithm introduced in following subsections. \\
+%\begin{equation}
+%i\hbar\frac{\partial \psi}{\partial t}=H\psi
+%\end{equation}
+%\begin{equation*}
+%H=(1-\lambda)H_{init}+\lambda H_{problem}
+%\end{equation*}
+%\begin{equation*}
+%H_{init}=\sum_{i} h^x_{init} \sigma^x_i
+%\end{equation*}
 
 \subsection{Algorithm for Ideal Case}
 So here i am going to try out two algorithm. First is full diagonalization, which i use Lapack to solve the eigensystem. Product formula break the evolution into small operation and make the computation of large system possible.
