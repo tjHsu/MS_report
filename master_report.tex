@@ -593,15 +593,28 @@ The Hamiltonian used in this report is listed in Equation \ref{Hamiltonian_set}.
 \end{split}
 \end{equation}
 
-with 
+with !(!should remove t in the braket)
+
+%\begin{equation}
+\begin{align}
+\label{single_spin}
+&\exp(\frac{-i\tau H_{\sigma_\alpha}}{2})= \exp(\frac{-i\tau(-\sum_{i=1}^{N}\sum_{\alpha=x,y,z}h^\alpha_i(t)\sigma^\alpha_i)}{2})\\
+\label{double_spin_x}
+&\exp(\frac{-i\tau H_{\sigma_x \sigma_x}}{2})=\exp(\frac{-i\tau(-\sum_{i=1}^{N}J^x_{ij}(t)\sigma^x_i\sigma^x_j)}{2})\\
+\label{double_spin_y}
+&\exp(\frac{-i\tau H_{\sigma_y \sigma_y}}{2})=\exp(\frac{-i\tau(-\sum_{i=1}^{N}J^y_{ij}(t)\sigma^y_i\sigma^y_j)}{2})\\
+\label{double_spin_z}
+&\exp({-i\tau H_{\sigma_z \sigma_z}})=\exp({-i\tau(-\sum_{i=1}^{N}J^z_{ij}(t)\sigma^z_i\sigma^z_j)})
+\end{align}
+%\end{equation}
+
+, !where $h^\alpha_i(t), J^x_i(t), J^y_i(t)$, and $J^z_i(t)$ are the strength of Hamiltonian at the current time step according to Equation \ref{Hamiltonian_set}. Equation \ref{single_spin} can be further elaborated as 
 
 \begin{equation}
-\begin{split}
-\exp(\frac{-i\tau H_{\sigma_\alpha}}{2})= 
-\end{split}
+\exp(\frac{-i\tau(-\sum_{i=1}^{N}\sum_{\alpha=x,y,z}h^\alpha_i(t)\sigma^\alpha_i)}{2}) = \prod_{i=1}^{N}\exp(\frac{i\tau \sum_{\alpha_{x,y,z}}h^\alpha_i(t)\sigma^\alpha_i}{2}).
 \end{equation}
 
-
+!!!!\\
 
 %Break the H to small operation that operate on the state. According to $J^x , J^y, and Jz; h^x, h^y, and h^z$, we need to find the pair or quad pair for the $\Psi$
 %
