@@ -559,6 +559,7 @@ Check Reference \cite{DeRaedt2004}  E. Suzuki-Trotter Product-Formula Algorithms
 The Suzuki-Trotter product formula approach is the one that will suit for a larger quantum system. Suzuki-Trotter product formula approximate a unitary matrix exponentials by decomposing the matrix properly, that is 
 
 \begin{equation}
+\label{suzuki-trotter product formula}
 \begin{split}
 U(t) &= \exp(-i\tau H)\\
 &=\exp(-t\tau(H_1+H_2+\dots+H_K))\\
@@ -566,22 +567,55 @@ U(t) &= \exp(-i\tau H)\\
 \end{split}
 \end{equation}
 
+If the time step $\tau$ is small enough, a good approximation of $U(t)$ suggested by Equation \ref{suzuki-trotter product formula} is 
+
+\begin{equation}
+\label{suzuki-trotter product formula 1st}
+\tilde{U}_1(\tau) = \exp(-i\tau H_1) \exp(-t\tau H_2) \dots \exp(-t\tau H_K).
+\end{equation} 
+ 
+ !The Taylor series of $U(t)$ and $\tilde{U}_1(t)$ are identical up to first order in $\tau$. Thus $\tilde{U}_1(t)$ is the first order approximation of $U(t)$. Furthermore, if all $H_i$ in Equation \ref{suzuki-trotter product formula 1st} are Hermitian, $\tilde{U}_1(t)$ is unitary by construction and hence the algorithm based on Equation \ref{suzuki-trotter product formula 1st} will be unconditionally stable. The accuracy of the algorithm can be increased by applying second order approximation and it is defined by 
+ 
+\begin{equation}
+\begin{split}
+\tilde{U}_2(\tau) &= \tilde{U}_1(\frac{\tau}{2})^T\tilde{U}_1(\frac{\tau}{2}) \\
+&=\exp(\frac{-t\tau H_K}{2})\exp(\frac{-t\tau H_{K-1}}{2})\dots\exp(\frac{-t\tau H_1}{2})\exp(\frac{-t\tau H_1}{2})\dots\exp(\frac{-t\tau H_K}{2})
+\end{split}
+\end{equation} 
+
+Here $\tilde{U}_2(\tau)$ is again unitary by construction as $\tilde{U}_1(\tau)$. !For a fixed accuracy in this $\tilde{U}_2(\tau)$ approximation, memory required and CPU time scale as $\order{D}$ and $\order{\tau^{1+1/2}D}$ respectively. The crucial step of this algorithm is to choose $H_i$ properly in a way that it is easy enough to calculate there matrix exponential, $\exp(\frac{-t\tau H_1}{2})\dots\exp(\frac{-t\tau H_K}{2})$, efficiently.  \\
+
+The Hamiltonian used in this report is listed in Equation \ref{Hamiltonian_set}. One efficient way to construct second order approximation is 
+
+\begin{equation}
+\begin{split}
+\tilde{U}(\tau) = \exp(\frac{-i\tau H_{\sigma_\alpha}}{2})\exp(\frac{-i\tau H_{\sigma_x \sigma_x}}{2})\exp(\frac{-i\tau H_{\sigma_y \sigma_y}}{2})\exp(-i\tau H_{\sigma_z \sigma_z})\\\exp(\frac{-i\tau H_{\sigma_y \sigma_y}}{2})\exp(\frac{-i\tau H_{\sigma_x \sigma_x}}{2})\exp(\frac{-i\tau H_{\sigma_\alpha}}{2})
+\end{split}
+\end{equation}
+
+with 
+
+\begin{equation}
+\begin{split}
+\exp(\frac{-i\tau H_{\sigma_\alpha}}{2})= 
+\end{split}
+\end{equation}
 
 
 
-Break the H to small operation that operate on the state. According to $J^x , J^y, and Jz; h^x, h^y, and h^z$, we need to find the pair or quad pair for the $\Psi$
-
-$\circ \circ \circ ,0, \circ$
-
-$\circ \circ \circ ,1, \circ$
-
-$\circ ,0, \circ ,0, \circ$
-
-$\circ ,0, \circ ,1, \circ$
-
-$\circ ,1, \circ ,0, \circ$
-
-$\circ ,1, \circ ,1, \circ$
+%Break the H to small operation that operate on the state. According to $J^x , J^y, and Jz; h^x, h^y, and h^z$, we need to find the pair or quad pair for the $\Psi$
+%
+%$\circ \circ \circ ,0, \circ$
+%
+%$\circ \circ \circ ,1, \circ$
+%
+%$\circ ,0, \circ ,0, \circ$
+%
+%$\circ ,0, \circ ,1, \circ$
+%
+%$\circ ,1, \circ ,0, \circ$
+%
+%$\circ ,1, \circ ,1, \circ$
 
 \subsection{Algorithm for system with Temperature Effect}
 Here since we have in total 16 spins, of course we cannot use product formula algorithm. But we because have temperature term now, which means we may run over several states, therefore the product formula algorithm is not enough for use now. Therefore, we use random sampling method.
