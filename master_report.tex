@@ -556,6 +556,19 @@ The main drawback of this approach is the limitation on scaling. !Whlie diagonal
 \subsubsection{Suzuki-Trotter Product Formula}
 Check Reference \cite{DeRaedt2004}  E. Suzuki-Trotter Product-Formula Algorithms
 
+The Suzuki-Trotter product formula approach is the one that will suit for a larger quantum system. Suzuki-Trotter product formula approximate a unitary matrix exponentials by decomposing the matrix properly, that is 
+
+\begin{equation}
+\begin{split}
+U(t) &= \exp(-i\tau H)\\
+&=\exp(-t\tau(H_1+H_2+\dots+H_K))\\
+&=\lim_{m \to \infty}(\prod_{k=1}^{K}\exp(-i\tau H_k/m))^m
+\end{split}
+\end{equation}
+
+
+
+
 Break the H to small operation that operate on the state. According to $J^x , J^y, and Jz; h^x, h^y, and h^z$, we need to find the pair or quad pair for the $\Psi$
 
 $\circ \circ \circ ,0, \circ$
