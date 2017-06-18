@@ -588,6 +588,7 @@ Here $\tilde{U}_2(\tau)$ is again unitary by construction as $\tilde{U}_1(\tau)$
 The Hamiltonian used in this report is listed in Equation \ref{Hamiltonian_set}. One efficient way to construct second order approximation is 
 
 \begin{equation}
+\label{tilde_U}
 \begin{split}
 \tilde{U}(\tau) = \exp(\frac{-i\tau H_{\sigma_\alpha}}{2})\exp(\frac{-i\tau H_{\sigma_x \sigma_x}}{2})\exp(\frac{-i\tau H_{\sigma_y \sigma_y}}{2})\exp(-i\tau H_{\sigma_z \sigma_z})\\\exp(\frac{-i\tau H_{\sigma_y \sigma_y}}{2})\exp(\frac{-i\tau H_{\sigma_x \sigma_x}}{2})\exp(\frac{-i\tau H_{\sigma_\alpha}}{2})
 \end{split}
@@ -611,10 +612,66 @@ with !(!should remove t in the braket)
 , !where $h^\alpha_i(t), J^x_i(t), J^y_i(t)$, and $J^z_i(t)$ are the strength of Hamiltonian at the current time step according to Equation \ref{Hamiltonian_set}. Equation \ref{single_spin} can be further elaborated as 
 
 \begin{equation}
+\label{single_spin 2}
 \exp(\frac{-i\tau(-\sum_{i=1}^{N}\sum_{\alpha=x,y,z}h^\alpha_i(t)\sigma^\alpha_i)}{2}) = \prod_{i=1}^{N}\exp(\frac{i\tau \sum_{\alpha_{x,y,z}}h^\alpha_i(t)\sigma^\alpha_i}{2}).
 \end{equation}
+ 
+The following equation set out a rotation of the vector $\mathbf{S}$ about the vector $\mathbf{v}$,
 
-!!!!\\
+\begin{equation}
+\label{single_spin 3}
+!\exp(i\mathbf{v}\cdot \mathbf{S}) = \mathbb{I} cos(\frac{v}{2}) + \frac{2i\mathbf{v}\cdot \mathbf{S}}{v}sin(\frac{v}{2}),
+\end{equation}
+
+where $v$ is the norm of $\mathbf{v}$. With the aid of this equation, the matrix exponential of these single spin terms can be calculated analytically as 
+
+\begin{equation}
+\label{single_spin 4}
+\exp(i\tau\mathbf{\sigma_i}\cdot\mathbf{h_i}) = \begin{pmatrix}
+cos\frac{\tau h_i}{2}+\frac{ih^z_i}{h_i}sin\frac{\tau h_i}{2} & \frac{ij^x_i+h^y_i}{h_i}sin\frac{\tau h_i}{2}\\
+\frac{ij^x_i-h^y_i}{h_i}sin\frac{\tau h_i}{2} & cos\frac{\tau h_i}{2}-\frac{ih^z_i}{h_i}sin\frac{\tau h_i}{2}
+\end{pmatrix},
+\end{equation}
+
+where $h_i$ is the norm of the vector $\mathbf{h_i}=(h^x_i,h^y_i,h^z_i)$. It can be conclude from Equation \ref{single_spin 2}, \ref{single_spin 3}, and \ref{single_spin 4}, that the time evolution for single spin terms turns out to be a $2\times2$ matrix calculation and multiplication. !This can be done by picking right pairs of coefficient in the state vector and applying Equation \ref{single_spin 4}. \\
+
+For the case of double spin operator, since the spin operator with different labels commute, Equation \ref{double_spin_x}, \ref{double_spin_y}, and \ref{double_spin_z} can be decomposed into 
+
+\begin{align}
+&\exp(\frac{-i\tau(-\sum_{i=1}^{N}J^x_{ij}(t)\sigma^x_i\sigma^x_j)}{2}) = \prod_{i,j=1}^{N}\exp(\frac{i\tau J^x_{i,j}(t)\sigma^x_i\sigma^x_i}{2})\\
+&\exp(\frac{-i\tau(-\sum_{i=1}^{N}J^y_{ij}(t)\sigma^y_i\sigma^y_j)}{2}) = \prod_{i,j=1}^{N}\exp(\frac{i\tau J^y_{i,j}(t)\sigma^y_i\sigma^y_i}{2})\\
+&\exp({-i\tau(-\sum_{i=1}^{N}J^z_{ij}(t)\sigma^z_i\sigma^z_j)}) = \prod_{i,j=1}^{N}\exp(i\tau J^z_{i,j}(t)\sigma^z_i\sigma^z_i).
+\end{align}
+
+The above expressions, likewise, can be determined analytically and yield 
+
+\begin{align}
+\label{double_spin_x 2}
+&\exp(\frac{i\tau J^x_{i,j}\sigma^x_i\sigma^x_j}{2}) = \begin{pmatrix}
+\cos(J^x_{i,j}\tau) & 0 & 0 & i \sin(J^x_{i,j}\tau) \\
+0 & \cos(J^x_{i,j}\tau) & i \sin(J^x_{i,j}\tau) & 0 \\
+0 & i \sin(J^x_{i,j}\tau) & \cos(J^x_{i,j}\tau) & 0 \\
+i \sin(J^x_{i,j}\tau) & 0 & 0 & \cos(J^x_{i,j}\tau)  
+\end{pmatrix} \\
+\label{double_spin_y 2}
+&\exp(\frac{i\tau J^y_{i,j}\sigma^y_i\sigma^y_j}{2}) = \begin{pmatrix}
+\cos(-J^y_{i,j}\tau) & 0 & 0 & i \sin(-J^y_{i,j}\tau) \\
+0 & \cos(J^y_{i,j}\tau) & i \sin(J^y_{i,j}\tau) & 0 \\
+0 & i \sin(J^y_{i,j}\tau) & \cos(J^y_{i,j}\tau) & 0 \\
+i \sin(-J^y_{i,j}\tau) & 0 & 0 & \cos(-J^y_{i,j}\tau)  
+\end{pmatrix} \\
+\label{double_spin_z 2}
+&\exp(i\tau J^z_{i,j}\sigma^z_i\sigma^z_j) = \begin{pmatrix}
+\exp(i J^z_{i,j} \tau) & 0 & 0 & 0 \\
+0 & \exp(-i J^z_{i,j} \tau) & 0 & 0 \\
+0 & 0 & \exp(-i J^z_{i,j} \tau) & 0 \\
+0 & 0 & 0 & \exp(i J^z_{i,j} \tau).
+\end{pmatrix} 
+\end{align}
+
+In a similar way, the time evolution of double spin operators can be evaluated by picking the 4 corresponding states, calculating the matrix, applying the matrix on $\ket{\Psi}$. Moreover, with these analytical expression (i.e. Equation \ref{single_spin 4}, \ref{double_spin_x 2}, \ref{double_spin_y 2}, and \ref{double_spin_z 2} ), it it now possible to carry out $\tilde{U}(\tau)$ in Equation \ref{tilde_U} and apply it to $\ket{\Psi(t)}$. Hence, the time evolution of the wave function can be calculated. \\
+
+With these two algorithm, the full diagonalisation algorithm and the Suzuki-Trotter Product Formula algorithm, it is sufficient to simulate an quantum annealer at zero temperature, namely under ideal condition, on a classical computer. However, in order to simulate a quantum annealer at finite temperature, the computation process will be more complicated and a simple implementation of these two algorithm will not be practical. Further detail will be presented in the next section. \\
 
 %Break the H to small operation that operate on the state. According to $J^x , J^y, and Jz; h^x, h^y, and h^z$, we need to find the pair or quad pair for the $\Psi$
 %
@@ -631,13 +688,38 @@ with !(!should remove t in the braket)
 %$\circ ,1, \circ ,1, \circ$
 
 \subsection{Algorithm for system with Temperature Effect}
-Here since we have in total 16 spins, of course we cannot use product formula algorithm. But we because have temperature term now, which means we may run over several states, therefore the product formula algorithm is not enough for use now. Therefore, we use random sampling method.
-\subsubsection{Boltzmann Distribution/ Assemble Average}
+%Here since we have in total 16 spins, of course we cannot use product formula algorithm. But we because have temperature term now, which means we may run over several states, therefore the product formula algorithm is not enough for use now. Therefore, we use random sampling method.
+
+\subsubsection{Canonical-Thermal State}
+%\subsubsection{Boltzmann Distribution/ Assemble Average}
+
+!In order to simulate a system at finite temperature, the quantum subsystem S is coupled to a quantum environment E and the Hamiltonian of the entire system (i.e. S+E) is defined as
+
+\begin{equation}
+H = H_S + H_E + GH_{SE},
+\end{equation} 
+
+where $H_S$ is the Hamiltonian of the subsystem, $H_E$ is the Hamiltonian of the environment, and $H_{SE}$ is the interaction between the subsystem S and the environment E with $G$ indicates the global coupling strength between S and E. \\
+
+!The quantum subsystem S and the environment E can be described respectively by density matrix 
+\begin{equation}
+\begin{split}
+\rho_S = \ket{S'}\bra{S'}\\
+\rho_E = \frac{e^{-\beta H_E}}{Z}, 
+\end{split}
+\end{equation}
+
+!!where $S'$ is QQ, $\beta$ is the thermodynamic beta defined as $\frac{1}{k_b T}$,  and Z is partition function defined as $Z = \sum_i e^{-\beta E_i}$. \\
+
+
+
 ???	By adding environment, the temperature will affect how many state should we calculate
 We still use product formula. and we use assemble average to calculate each initial state exactly.
 \subsubsection{Random wave function}
 Reference check! II Theory part.
 \cite{Hams2000} 
+
+
 
 
 
