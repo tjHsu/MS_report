@@ -1,0 +1,84 @@
+\documentclass{beamer}
+ 
+\usepackage[utf8]{inputenc}
+\graphicspath{
+	{pictures/}
+}
+ 
+ 
+%Information to be included in the title page:
+\title{Simulation of a Quantum Annealer for Solving the 2-satisfiability problem at Zero and Finite Temperature}
+\author{Ting-Jui Hsu}
+\institute{Quantum Information Group}
+\date{22.06.2017}
+ 
+ 
+%------------------------------------------------------------------------------------------
+\AtBeginSection[]
+{
+	\begin{frame}
+		\frametitle{Table of Contents}
+		\tableofcontents[currentsection]
+	\end{frame}
+}
+%------------------------------------------------------------------------------------------ 
+ 
+ 
+ 
+\begin{document}
+ %------------------------------------------------------------------------------------------
+\frame{\titlepage}
+%------------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------------------
+
+\begin{frame}
+	\frametitle{Table of Contents}
+	\tableofcontents
+\end{frame}
+
+%------------------------------------------------------------------------------------------
+
+
+\section{First section}
+%------------------------------------------------------------------------------------------ 
+\begin{frame}
+\frametitle{Sample frame title}
+This is a text in first frame. This is a text in first frame. This is a text in first frame.
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+
+
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Sample frame title}
+	This is a text in second frame. 
+	For the sake of showing an example.
+	
+	\begin{itemize}
+		\item<1-> Text visible on slide 1
+		\item<2-> Text visible on slide 2
+		\item<3-> Text visible on slide 3
+		\item<4-> Text visible on slide 4
+	\end{itemize}
+	
+\end{frame}
+%------------------------------------------------------------------------------------------
+\section{Second section}
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Include Doge}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[height=100pt]{doge.jpeg}
+		\caption{Insert caption here. Image from \cite{lenna}. }
+		\label{example_figure}
+	\end{figure}
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+ 
+\end{document}
+
