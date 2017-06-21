@@ -4,6 +4,28 @@
 \graphicspath{
 	{pictures/}
 }
+%\usepackage[latin1]{inputenc}
+%\usepackage{a4}
+\usepackage{fancyhdr}   
+%\usepackage{german}    % Uncomment this iff you're writing the report in German
+\usepackage{makeidx}
+\usepackage{color}
+\usepackage{t1enc}		% 	german letters in the "\hyphenation" - command
+\usepackage{latexsym}	% math symbols
+\usepackage{amssymb}    % AMS symbol fonts for LaTeX.
+\usepackage{amsmath} 
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{pslatex}
+\usepackage{ifthen}
+\usepackage{tcolorbox}
+
+\usepackage[T1]{fontenc}
+\usepackage{pslatex}
+
+\usepackage{psfrag}
+\usepackage{subfigure}
+\usepackage{url}
  
  
 %Information to be included in the title page:
@@ -90,30 +112,105 @@
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{Introdution of the Quantum Annealing}
+	\begin{itemize}
+		\item 	The goal of quantum annealing process is to find the ground state of the problem Hamiltonian.
+		\item   The system is first prepared in the ground state of the initial Hamiltonian. During the annealing, the
+		transverse field is slowly turned off while the problem Hamiltonian is slowly turned on. If this procedure
+		progress slowly enough, the system will remain in the ground state. At the end of the annealing process,
+		the transverse field is complete off and the system should have evolved to the ground state of the problem
+		Hamiltonian that encoded the given optimisation problem.
+	\end{itemize}
+
+	
+	
 \end{frame}
 %------------------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
+	\frametitle{Introdution of the Quantum Annealing}
+	Based on Ising model, the Hamiltonian used by quantum annealing process can be written as follow
+	
+	\begin{equation}
+	\label{Hamiltonian_set}
+	\begin{split}
+	&H(t)=(1-\frac{t}{T} )H_{init}+(\frac{t}{T})H_{problem} \\
+	&H_{init}= \sum_{i=1}^{N}h_i^x \sigma_i^x\\
+	&H_{problem}= \sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j + \sum_{i}^N h_i^z \sigma^z_i,\\
+	\end{split}
+	\end{equation} 
+	
+	where t is the current timestep and T is toatal annealing time.\\
+	
+	
+	
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+
+
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
 	\frametitle{Difference between the Quantum Annealing and Simulated Annealing}
+	(I should redraw this figure)
+	\begin{figure}[h]
+		\centering
+		\includegraphics[height=150pt]{qaca.png}
+		\caption{The difference between QA and CA. Image from [DC08]. }
+		\label{diff_qa_ca}
+	\end{figure}
+	\footnote{[DC08] Arnab Das and Bikas K. Chakrabarti. Colloquium: Quantum annealing and analog quantum
+		computation. Reviews of Modern Physics, 80(3):1061–1081, 2008.}
 \end{frame}
 %------------------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{Adiabatic Theorem}
+	If a quantum system stays in an eigenstate of a slowly varying Hamiltonian at one time, it will remain in an eigenstate at later times, while its eigenenergy evolves continuously.\\
+	\begin{equation*}
+	\begin{split}
+	H(t)\ket{n(t)}=E_n(t)\ket{n(t)}\\
+	-t\frac{\partial}{\partial t}\ket{\Psi (t)} = H(t)\ket{\Psi(t)} \\
+	H_D(t)=U^{-1}(t)H(t)U^{1}(t)\\
+	H_D\ket{\Psi}_D = i \frac{\partial}{\partial t}\ket{\Psi}_D - i \frac{\partial}{\partial t} U^{-1} \ket{\Psi}\\
+	H_D(t)\ket{\Psi(t)}_D = i \frac{\partial}{\partial t} \ket{\Psi(t)}_D
+	\end{split}
+	\end{equation*}
 \end{frame}
 %------------------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{Landau-Zener Transition}
+	\begin{itemize}
+		\item Landau-Zener formula gives out the probability of a diabatic transition from a lower energy eigenstate to a higher energy eigenstate.
+		\item Although adiabatic theorem implies that no diabatic transition will occur if Hamiltonian could vary infinitely slow, this is not
+		the case for real system with a finite annealing time.
+	\end{itemize}
+	The probability of diabatic transition, $P_{diabatic}$, can be described by \\
+	\begin{equation*}
+	\begin{split}
+	P_{diabatic}(T) = \exp({\frac{-2\pi\Delta_{min}^2 T}{\alpha\Gamma_0}}),
+	\end{split}
+	\end{equation*}
+	where $T$ is the total annealing time, $\Delta$ is the minimum gap between two energy eigenstates which are always referred to the gap between the ground state and the first excited state in this report, $\alpha$ is the !relative slope of the two states, and $\Gamma_0$ is the initial strength of the transverse field which is set in $1$ in this report.
 \end{frame}
 %------------------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{Combinatorial Optimisation}
+	If one need to find the best choice among all available options consist of many independent factors, it can be considered
+	as a combinatorial optimisation problem.\\
+	A combinatorial optimisation has the following properties:\\
+	\begin{itemize}
+		\item The optimal solution is searched from a finite set of objects.
+		\item This finite set is discrete.
+		\item A Brute-force search is usually not feasible.
+	\end{itemize}
+		
 \end{frame}
 %------------------------------------------------------------------------------------------
 
@@ -121,6 +218,16 @@
 \begin{frame}
 	\frametitle{The 2-Satisfiability Problem}
 	\framesubtitle{General Aspect}
+	The boolean satisfiability problem, abbreviated as the SAT problem, is a task of checking whether a given
+	set of boolean formula can be satisfied.\\
+	A k-SAT problem is a problem with k as the upper limit of the
+	number of variables in one clause. \\
+	For example, an 2-SAT problem can be written as 
+	\begin{equation*}
+	(x_1\lor x_2)\land (x_3\lor \neg x_4),
+	\end{equation*}
+	where $\land$,$\lor$, and $\neg$ state for logical and, logical or, and logical not respectively. 
+	
 \end{frame}
 %------------------------------------------------------------------------------------------
 
@@ -128,12 +235,126 @@
 \begin{frame}
 	\frametitle{The 2-Satisfiability Problem}
 	\framesubtitle{Mapping a givent problem to the Hamiltonian}
+	A key question is how to map a given problem into the Hamiltonian. \\
+	A possible mapping is as follow :
+	\begin{table}[h!]
+		
+		
+		
+		\begin{center}
+			\begin{tabular}{|c|c|c|c|c|}
+				
+				\multicolumn{5}{c}{2-SAT Variables}\\
+				\hline
+				& T & T & T & F \\
+				\hline
+				\hline
+				$x_1$ & 1 & 1 & 0 & 0 \\
+				\hline
+				$x_2$ & 1 & 0 & 1 & 0 \\
+				\hline
+			\end{tabular}
+			\quad
+			$\Rightarrow$
+			\quad
+			\begin{tabular}{|c|c|c|c|c|}
+				\multicolumn{5}{c}{Ising variables}\\
+				\hline
+				& T & T & T & F \\
+				\hline
+				\hline
+				$\sigma_1$ & 1 & 1 & -1 & -1 \\
+				\hline
+				$\sigma_2$ & 1 & -1 & 1 & -1 \\
+				\hline
+				$m=\sigma_1+\sigma_2$ & 2 & 0 & 0 & -2 \\
+				\hline
+			\end{tabular}
+		\end{center}
+		
+		\begin{center}
+			\begin{tabular}{|c|c|c|c|c|}
+				
+				\hline
+				& T & T & T & F \\
+				\hline
+				\hline
+				$x_3$ & 1 & 1 & 0 & 0 \\
+				\hline
+				$x_4$ & 0 & 1 & 0 & 1 \\
+				\hline
+				
+			\end{tabular}
+			\quad
+			$\Rightarrow$
+			\quad
+			\begin{tabular}{|c|c|c|c|c|}
+				\hline
+				& T & T & T & F \\
+				\hline
+				\hline
+				$\sigma_3$ & 1 & 1 & -1 & -1 \\
+				\hline
+				$\sigma_4$ & -1 & 1 & -1 & 1 \\
+				\hline
+				$m=\sigma_3-\sigma_2$ & 2 & 0 & 0 & -2 \\
+				\hline
+			\end{tabular} 
+			
+		\end{center}
+%		\caption{A way to map the 2-SAT clauses to the Ising variables.}
+	\end{table} 
+	
 \end{frame}
 %------------------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
+	\frametitle{The 2-Satisfiability Problem}
+	\framesubtitle{Mapping a givent problem to the Hamiltonian}
+	
+	In order to encode the solution of the 2-SAT problem into the ground state of the Ising Hamiltonian, an Ising Hamiltonian can be built up with a magnetisation $m$. The Hamiltonian with magnetisation $m$ is given by 
+	
+	\begin{equation*}
+	\begin{split}
+	H & = m \cdot (m-2)\\
+	& = \sigma_i^2 + \sigma_j^2 + 2\sigma_i \sigma_j -2\sigma_i -2\sigma_j\\
+	& = 2\sigma_i \sigma_j -2\sigma_i -2\sigma_j + const.\\
+	\end{split}
+	\end{equation*}
+	
+	After comparing with the Hamiltonian mentioned in previous section, one can correspond $h_i^z$, $h_j^z$, and $J_{ij}$ to 2, 2, and -2 respectively. Then one just repeats this procedure for all clauses. 
+	%After this mapping is complete, the original 2-SAT problem can be solved with quantum annealing technique, because the ground state of the Ising Hamiltonian can be transformed back to the solution of the 2-SAT problem. \\  
+	
+	
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
 	\frametitle{The Quantum Annealing Algorithm}
+	\begin{tcolorbox}[title=Quantum Annealing Algorithm]
+		Set up $H_{problem}$ according to a given problem. Combine $H_{init}$ and $H_{problem}$ to Build $H(t)$. \\
+		%\begin{equation*}
+		%	H_{problem}=\sum_{i,j} \{J^x \sigma^x_i \sigma^x_j+J^y \sigma^y_i \sigma^y_j+J^z \sigma^z_i \sigma^z_j \}+ \sum_{i} \{h^x \sigma^x_i+h^y \sigma^y_i+h^z \sigma^z_i\}
+		%\end{equation*}   
+		
+		1. Initialise the system to the ground state of $H_{init}$.\\ %The ground state of $H_{iniy}$ is designed in a way that it is simple to construct.\\
+		%\begin{equation*}
+		%	H_i=\sum_{i=1}^{N}h_i^x \sigma_i^x
+		%\end{equation*}   
+		
+		
+		
+		2. Evolve the system by computing time-dependent Schrödinger equation for time $t$ according to a given time scheme. \\
+		%\begin{equation*}
+		%	T:linear 
+		%\end{equation*}
+		
+		3. The system will end up in the ground state of the $H_p$, if the total annealing T is long enough.\\
+		
+	\end{tcolorbox} 
 \end{frame}
 %------------------------------------------------------------------------------------------
 
@@ -143,30 +364,125 @@
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{Time-Dependent Schrödinger Equation}
+	The whole quantum annealing process can be described by time-dependent Schrödinger equation.\\ 
+	Namely, by solving time-dependent Schrödinger equation one can determine the final state of the system.\\
+	The solution of this is 
+	\begin{equation*}
+	\begin{split}
+	\Psi(t+\tau)&=U(t+\tau,t)\Psi(t)\\
+	&=\exp(i\int_{t}^{t+\tau}H(t)d\tau)\Psi(t),
+	\end{split}
+	\end{equation*}
+	where $\tau$ is the time step, and $U(t+\tau)$ is a unitary matrix that transform system from $t$ to $t+\tau$.\\
+	Assume the time step should be small enough to keep $H(t)$ piecewise constant, the solution can be rewritten as 
+	\begin{equation*}
+	\Psi(t+\tau) =\exp(iH(t)\tau)\Psi(t),
+	\end{equation*}
+%   In order
+%	to conduct numerical computation and ensure the unitary of the evolution operator, time is discretised to
+%	small time step τ and H(τ) is assumed to be piecewise constant within these time steps. Therefore, the size
+%	of the time step should be small enough to keep H(τ) piecewise. On the other hand, if the size is too small,
+%	the computational time will be too long. A proper length should be tested out before going into further
+%	simulation.
 \end{frame}
 %------------------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
+	\frametitle{Time-Dependent Schrödinger Equation}
+	The $\Psi$ is defined by the direct product state of the N single spin states in z-basis. Each single spin has two possible states, $\ket{0}$ or $\ket{1}$, which correspond to, $\ket{\uparrow}$ or $\ket{\downarrow}$ . The relation between them is defined as 	
+	\begin{equation*}
+	\ket{0}=\ket{\uparrow}=\left(\begin{array}{c} 1\\0 \end{array}\right), \ket{1}=\ket{\downarrow}=\left(\begin{array}{c} 0\\1 \end{array}\right)
+	\end{equation*}
+	
+	Thus, the single spin state can be written as a linear superposition of theses two basis state, 	
+	\begin{equation*}
+	\ket{\psi} = a(0)\ket{0} + a(1)\ket{1},
+	\end{equation*}
+	
+	where $a(0)$ and $a(1)$ are the coefficient of the amplitude of each state. Furthermore, a N-spin system is made up of $2^N$ state vectors and it can be written as 	
+	\begin{equation*}
+	\label{psi_in_compuationalbasis}
+	\Psi = a(00\dots0)\ket{00\dots0}+a(00\dots1)\ket{00\dots1}+\dots+a(11\dots0)\ket{11\dots0}+a(11\dots1)\ket{11\dots1},
+	\end{equation*}
+	where $a(00\dots0), a(00\dots1)\dots, a(11\dots1)$ are the coefficients of each components. 
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
 	\frametitle{Hamiltonian for a System at Zero Temperature}
+	(I should remove this page.)
 \end{frame}
 %------------------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{The Full Diagonalisation method}
+	\begin{itemize}
+		\item Hamiltonian H is an Hermitian operator formed by a $2^N \times 2^N$ matrix.
+		\item H can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors.
+		\item Thus the time evolution can be calculated as $U(\tau) = exp(-i\tau H) = V exp(-i\tau \Lambda) V^\dagger$.
+		\item This approach serves mostly as a tool to valid the correctness of other algorithm when solving with time-dependent Schrödinger
+	\end{itemize}
+%	Hamiltonian H is an Hermitian operator formed by a $2^N \times 2^N$ matrix it has a complete set of eigenvectors and eigenvalues. This implies that the matrix H can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors. The transformation is given by $H = V\Lambda V^\dagger$. Thus the time evolution can be calculated as $U(\tau) = exp(-i\tau H) = V exp(-i\tau \Lambda) V^\dagger$. If $V$ and $\Lambda$ are obtained by diagonalising H, time evolution becomes a series of simple matrix multiplication. Since diagonalisation is a typical matrix problem, there are already standard software library can be made use of. \\
+%	
 \end{frame}
 %------------------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{The Suzuki-Trotter Product Formula Approach}
+	\begin{itemize}
+		\item The Suzuki-Trotter product formula approach can handle a larger quantum system than the full diagonalisation method does.
+		\item Suzuki-Trotter product formula approximate a unitary matrix exponentials by decomposing the matrix properly, that is 
+		\begin{equation*}
+		\label{suzuki-trotter product formula}
+		\begin{split}
+		U(t) &= \exp(-i\tau H)\\
+		&=\exp(-t\tau(H_1+H_2+\dots+H_K))\\
+		&=\lim_{m \to \infty}(\prod_{k=1}^{K}\exp(-i\tau H_k/m))^m
+		\end{split}
+		\end{equation*}
+		\item  The crucial step of this approach is to choose $H_i$ properly in a way that it is easy enough to calculate there matrix exponential efficiently.
+	\end{itemize}
 \end{frame}
 %------------------------------------------------------------------------------------------
+
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{The Suzuki-Trotter Product Formula Approach}
+	Based on the Hamiltonian used in this study, one way to construct the (second order) approximation is 
+	
+	\begin{equation*}
+	\label{tilde_U}
+	\begin{split}
+	\tilde{U}(\tau) = \exp(\frac{-i\tau H_{\sigma_\alpha}}{2})\exp(\frac{-i\tau H_{\sigma_x \sigma_x}}{2})\exp(\frac{-i\tau H_{\sigma_y \sigma_y}}{2})\exp(-i\tau H_{\sigma_z \sigma_z})\\\exp(\frac{-i\tau H_{\sigma_y \sigma_y}}{2})\exp(\frac{-i\tau H_{\sigma_x \sigma_x}}{2})\exp(\frac{-i\tau H_{\sigma_\alpha}}{2})
+	\end{split}
+	\end{equation*}
+
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+
+
+
+
+
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{Hamiltonian for a System at Finite Temperature}
+	In order to simulate a system at finite temperature, the quantum subsystem S is coupled to a quantum environment E and the Hamiltonian of the entire system (i.e. S+E) is defined as
+	
+	\begin{equation*}
+	H = H_S + H_E + GH_{SE},
+	\end{equation*} 
+	
+	where $H_S$ is the Hamiltonian of the subsystem, $H_E$ is the Hamiltonian of the environment, and $H_{SE}$ is the interaction between the subsystem S and the environment E with $G$ indicates the global coupling strength between S and E. 
 \end{frame}
 %------------------------------------------------------------------------------------------
 
