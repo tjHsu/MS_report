@@ -488,15 +488,91 @@
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
-	\frametitle{Canonical-Thermal State}
+	\frametitle{Canonical Ensemble}
+	An observable A can be calculated by going through all energy eigenstate of the environment as following:\\
+%		with 
+	
+	\begin{equation*}
+	\begin{split}
+	\label{psi_assemble_method}
+	\ket{\Psi(t)}&=e^{-iHt} \ket{E_E}\ket{S'}\\
+%	&=e^{-iHt}\sum_{i} c_i \frac{e^{\frac{-\beta E_E}{2}}}{\sqrt{Z}}\ket{\Psi_E}\ket{S'}
+	\end{split}
+	\end{equation*}
+	\begin{equation*}
+	\langle A(t)\rangle = \mathbf{Tr} A(t) \rho_E \rho_S= \sum_{E}\frac{e^{(\beta E_E)}}{Z}\bra{\Psi(t)}A\ket{\Psi(t)}
+	\end{equation*}
+	
 \end{frame}
 %------------------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{The Random Sampling Method}
+	Based on the hypothesis that with random sampling one can approximate the solution of a time-dependent Schrödinger Equation by solving a sample of randomly chosen initial state.
+	\begin{equation*}
+	\begin{split}
+	TrA=\sum_{n=1}^{D} \bra{\Psi_n}A\ket{\Psi_n}\\
+	\end{split}
+	\end{equation*}
+	
+	Then a random vector $\ket{\phi}$ can be constructed by choosing D complex random numbers with which mean is 0.
+	
+	\begin{equation*}
+	\begin{split}
+	\ket{\phi}= \sum_{n=1}^{D} c_n \ket{{\Psi_n}}, ~~ with ~~c_n \equiv f_n + i g_n\\
+	\end{split}
+	\end{equation*}
 \end{frame}
 %------------------------------------------------------------------------------------------
+
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{The Random Sampling Method}
+	It follows that
+	
+	\begin{equation*}
+	\begin{split}
+	\bra{\phi}A\ket{\phi} = \sum_{m,n=1}^{D} c_m^\star c_n  \bra{\Psi_m}A\ket{\Psi_n}\\
+	\end{split}
+	\end{equation*}
+	
+	
+	It is possible to increase the accuracy by generate several samplings. If S realisations are sampled and then averaged out, it yields 
+	
+	\begin{equation*}
+	\begin{split}
+	\label{random_sampling}
+	\frac{1}{S}\sum_{p=1}^{S} \bra{\phi_p}A\ket{\phi_p} = \frac{1}{S} \sum_{p=1}^{S} \sum_{m,n=1}^{D} c_{m,p}^\star c_{n,p}  \bra{\Psi_{m,p}}A\ket{\Psi_{n,p}}
+	\end{split}
+	\end{equation*}
+	
+
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{The Random Sampling Method}
+	If there is no correlation between the random numbers in different realisation, and the random number $f_n$ and $g_n$ are drawn from an even and symmetric probability distribution, the argument can further be made as
+	\begin{equation*}
+	\begin{split}
+	\lim_{S \to \infty} \frac{1}{S} \sum_{p=1}^{S}  \bra{\phi_p}A\ket{\phi_p} &= E(|c|^2)\sum_{n=1}^{D}\bra{\Psi_n}A\ket{\Psi_n}\\
+	&=E(|c|^2) TrA,
+	\end{split}
+	\end{equation*}
+	where $E(\cdot)$ is the expectation value based on the probability distribution used to draw $c_n$.
+	
+
+	
+	
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+
+
+
 
 
 
