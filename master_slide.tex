@@ -76,6 +76,15 @@
 \end{frame}
 
 %------------------------------------------------------------------------------------------
+\note{Hello, so today my topic is about the Simulation of a Quantum Annealer for 2-satisfiability problem. A quick explaination here is that we use adiabatic quantum annealing process to solve a 2-satifiability problem on a quantum annealer. And the for the case at zero temperature, which is the ideal case. and at Finite temperature, which means the system is coupled with the heat bath and the effect of the temperature will be provided by the heat bath to the system. \\
+	A general idea that I will mention in the talk is first 
+	\begin{itemize}
+		\item Quantum annealing provides a different approach to solve the 2-SAT optimisation problem.\\
+		\item Quantum annealing makes use of quantum fluctuation while simulated annealing is based on thermal fluctuation. \\
+		\item The Quantum annealing process can be effected not only by the total annealing time, minimum gap between the ground state and the first excited state of the system, but also the temperature.
+	\end{itemize}
+	}
+
 
 %\section{Definitions and Properties}
 \section{Inroduction of the Quantum Annealing}
@@ -123,7 +132,7 @@
 		\begin{split}
 		&H(t)=(1-\frac{t}{T} )H_{init}+(\frac{t}{T})H_{problem} \\
 		&H_{init}= -\sum_{i=1}^{N}h_i^x \sigma_i^x\\
-		&H_{problem}= -\sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j ~+~ -\sum_{i}^N h_i^z \sigma^z_i,\\
+		&H_{problem}= -\sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j -\sum_{i}^N h_i^z \sigma^z_i,\\
 		\end{split}
 		\end{equation*} 
 		where $t$ is the current timestep and $T$ is the toatal annealing time.\\
@@ -132,9 +141,13 @@
 %------------------------------------------------------------------------------------------
 
 \note[itemize]{
-	\item<1-> The system is first prepared in the ground state of the initial Hamiltonian. \item<2-> During the annealing, the	transverse field is slowly turned off while the problem Hamiltonian is slowly turned on. 
-	\item<3-> If this procedure	progress slowly enough, the system will remain in the ground state. 
-	\item<4-> At the end of the annealing process, the transverse field is complete off and the system should have evolved to the ground state of the problem Hamiltonian that encoded the given optimisation problem.
+	\item What a quantum annealer can do is adiabatic quantum annealing.
+	\item Ising model
+	\item So how can a quantum annealer achieve this? The process can be decribed as follow.
+	\item The system is first prepared in the ground state of the initial Hamiltonian. 
+	\item During the annealing, the	transverse field is slowly turned off while the problem Hamiltonian is slowly turned on. 
+	\item If this procedure	progress slowly enough, the system will remain in the ground state. 
+	\item At the end of the annealing process, the transverse field is complete off and the system should have evolved to the ground state of the problem Hamiltonian that encoded the given optimisation problem.
 	}
 
 %%------------------------------------------------------------------------------------------
@@ -168,36 +181,39 @@
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{Adiabatic Theorem}
-	\begin{itemize}
-		\item 	If a quantum system stays in an eigenstate of a slowly varying Hamiltonian at one time, it will remain in an eigenstate at later times, while its eigenenergy evolves continuously.\\
-		\item 	A quantum system that evolves unitaryily through a time-dependent Schrödinger equation can be describe by 
-		\begin{equation*}
-		\begin{split}
-		-i\ket{\dot{\Psi}(t)} = H(t)\ket{\Psi(t)},
-		\end{split}
-		\end{equation*}
-		with $\hbar = 1$. Thus, a basis of eigenenergies can be defined by 
-		\begin{equation*}
-		\begin{split}
-		H(t)\ket{n(t)}=E_n(t)\ket{n(t)}.
-		\end{split}
-		\end{equation*}		
-		Since $H(t)$ is diagnolisable, we can have the following transformation.
-		\begin{equation*}
-		\begin{split}
-		H_D(t)=U^{-1}(t)H(t)U^{1}(t)\\
-		H_D\ket{\Psi}_D = i \ket{\dot{\Psi}}_D - i \dot{U^{-1}} \ket{\Psi}\\
-		H_D(t)\ket{\Psi(t)}_D = i \ket{\dot{\Psi}(t)}_D,
-		\end{split}
-		\end{equation*}
-		where $\ket{\Psi}_D \equiv U^{-1}\ket{\Psi}$.
-	\end{itemize}
+%	\begin{itemize}
+			If a quantum system stays in an eigenstate of a slowly varying Hamiltonian at one time, it will remain in an eigenstate at later times, while its eigenenergy evolves continuously.\\
+%		\item 	A quantum system that evolves unitaryily through a time-dependent Schrödinger equation can be describe by 
+%		\begin{equation*}
+%		\begin{split}
+%		-i\ket{\dot{\Psi}(t)} = H(t)\ket{\Psi(t)},
+%		\end{split}
+%		\end{equation*}
+%		with $\hbar = 1$. Thus, a basis of eigenenergies can be defined by 
+%		\begin{equation*}
+%		\begin{split}
+%		H(t)\ket{n(t)}=E_n(t)\ket{n(t)}.
+%		\end{split}
+%		\end{equation*}		
+%		Since $H(t)$ is diagnolisable, we can have the following transformation.
+%		\begin{equation*}
+%		\begin{split}
+%		H_D(t)=U^{-1}(t)H(t)U^{1}(t)\\
+%		H_D\ket{\Psi}_D = i \ket{\dot{\Psi}}_D - i \dot{U^{-1}} \ket{\Psi}\\
+%		H_D(t)\ket{\Psi(t)}_D = i \ket{\dot{\Psi}(t)}_D,
+%		\end{split}
+%		\end{equation*}
+%		where $\ket{\Psi}_D \equiv U^{-1}\ket{\Psi}$.
+%	\end{itemize}
 
 
 \end{frame}
 %------------------------------------------------------------------------------------------
 
-\note{A physical system remains in its instantaneous eigenstate if a given perturbation is acting on it slowly enough and if there is a gap between the eigenvalue and the rest of the Hamiltonian's spectrum\footnotemark[1]. 
+\note{A physical system remains in its instantaneous eigenstate if a given perturbation is acting on it slowly enough and if there is a gap between the eigenvalue and the rest of the Hamiltonian's spectrum\footnotemark[1]. \\
+
+This is the basis for quantum annealing, because it ensures that once the annealing time is infinitely long, the system will stay in its eigenstate during the annealing process. 
+	
 Based on Distributive property. 
 \footnotetext{ M. Born and V. A. Fock (1928). "Beweis des Adiabatensatzes". Zeitschrift für Physik A. 51 (3–4): 165–180. Bibcode:1928ZPhy...51..165B. doi:10.1007/BF01343193.}
 }
@@ -222,7 +238,7 @@ Based on Distributive property.
 	\begin{equation*}
 	\begin{split}
 	&P_{adiabatic}(T) = 1-P_{diabatic}(T)\\
-	&P_{diabatic}(T) = \exp(c\cdot \Delta_{min}^2 T).
+	&P_{diabatic}(T) = \exp(-c\cdot \Delta_{min}^2).
 	\end{split}
 	\end{equation*}
 	\begin{figure}
@@ -239,7 +255,9 @@ Based on Distributive property.
 \end{frame}
 %------------------------------------------------------------------------------------------
 
-\note{ Although adiabatic theorem implies that no diabatic transition will occur if Hamiltonian could vary infinitely slow, this is not	the case for real system with a finite annealing time. For the annealing with finite annealing time, Landau-Zener formula provides a good model to describe how the system transit between two different state.}
+\note{ Although adiabatic theorem implies that no diabatic transition will occur if Hamiltonian could vary infinitely slow, this is not	the case for real system with a finite annealing time. For the annealing with finite annealing time, Landau-Zener formula provides a good model to describe how the system transit between two different state.\\
+	Where $T$ is the total annealing time, $\Delta$ is the minimum gap between two energy eigenstates which are always referred to the gap between the ground state and the first excited state in this report, $\alpha$ is the !relative slope of the two states, and $\Gamma_0$ is the initial strength of the transverse field which is set in $1$ in this report.
+	}
 %	The probability of diabatic transition, $P_{diabatic}$, can be described by \\
 %	\begin{equation*}
 %	\begin{split}
@@ -249,29 +267,28 @@ Based on Distributive property.
 %	where $T$ is the total annealing time, $\Delta$ is the minimum gap between two energy eigenstates which are always referred to the gap between the ground state and the first excited state in this report, $\alpha$ is the !relative slope of the two states, and $\Gamma_0$ is the initial strength of the transverse field which is set in $1$ in this report.
 
 \section{The 2-Satisfiability Problem}
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{Combinatorial Optimisation}
-	If one need to find the best choice among all available options consist of many independent factors, it can be considered
-	as a combinatorial optimisation problem.\\
-	A combinatorial optimisation has the following properties:\\
-	\begin{itemize}
-		\item The optimal solution is searched from a finite set of objects.
-		\item This finite set is discrete.
-		\item A Brute-force search is usually not feasible.
-	\end{itemize}
-		
-\end{frame}
-%------------------------------------------------------------------------------------------
+%%------------------------------------------------------------------------------------------
+%\begin{frame}
+%	\frametitle{Combinatorial Optimisation}
+%	If one need to find the best choice among all available options consist of many independent factors, it can be considered
+%	as a combinatorial optimisation problem.\\
+%	A combinatorial optimisation has the following properties:\\
+%	\begin{itemize}
+%		\item The optimal solution is searched from a finite set of objects.
+%		\item This finite set is discrete.
+%		\item A Brute-force search is usually not feasible.
+%	\end{itemize}
+%		
+%\end{frame}
+%%------------------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{The 2-Satisfiability Problem}
-	\framesubtitle{General Aspect}
 
 	A k-SAT problem is a problem with k as the upper limit of the
 	number of variables in one clause. \\
-	For example, an 2-SAT problem can be written as 
+	For example, a 2-SAT problem can be written as 
 	\begin{equation*}
 	(x_1\lor x_2)\land (x_3\lor \neg x_4),
 	\end{equation*}
@@ -280,13 +297,24 @@ Based on Distributive property.
 \end{frame}
 %------------------------------------------------------------------------------------------
 
-\note{	The boolean satisfiability problem, abbreviated as the SAT problem, is a task of checking whether a given
-	set of boolean formula can be satisfied.\\}
+\note{	
+		2-satisfiability problem is a kind of combinatorial opimisation problem. What is a combinatorial optimisation? 
+		If one need to find the best choice among all available options consist of many independent factors, it can be considered
+		as a combinatorial optimisation problem.\\
+		A combinatorial optimisation has the following properties:\\
+		\begin{itemize}
+			\item The optimal solution is searched from a finite set of objects.
+			\item This finite set is discrete.
+			\item A Brute-force search is usually not feasible.
+		\end{itemize}
+	The boolean satisfiability problem, abbreviated as the SAT problem, is a task of checking whether a given
+	set of boolean formula can be satisfied.\\
+}
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{The 2-Satisfiability Problem}
-	\framesubtitle{Mapping a givent problem to the Hamiltonian}
+%	\framesubtitle{Mapping a givent problem to the Hamiltonian}
 	A key question is how to map a given problem into the Hamiltonian. \\
 	A possible mapping is as follow :
 	\begin{table}[h!]
@@ -349,7 +377,7 @@ Based on Distributive property.
 				\hline
 				$\sigma_4$ & -1 & 1 & -1 & 1 \\
 				\hline
-				$m=\sigma_3-\sigma_2$ & 2 & 0 & 0 & -2 \\
+				$m=\sigma_3-\sigma_4$ & 2 & 0 & 0 & -2 \\
 				\hline
 			\end{tabular} 
 			
@@ -363,7 +391,7 @@ Based on Distributive property.
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{The 2-Satisfiability Problem}
-	\framesubtitle{Mapping a givent problem to the Hamiltonian}
+%	\framesubtitle{Mapping a givent problem to the Hamiltonian}
 	
 	To encode the solution of the 2-SAT problem, the Hamiltonian can be first designed for the first clause as 
 	\begin{center}
@@ -390,7 +418,7 @@ Based on Distributive property.
 	\end{equation*}
 	Then one can correspond $h_1^z$, $h_2^z$, and $J_{12}$ in $H_{problem}$ to 2, 2, and -2 respectively, and repeat this procedure for all clauses. 
 	\begin{equation*}
-	H_{problem}= -\sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j ~+~- \sum_{i}^N h_i^z \sigma^z_i
+	H_{problem}= -\sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j - \sum_{i}^N h_i^z \sigma^z_i
 	\end{equation*} 
 	%After this mapping is complete, the original 2-SAT problem can be solved with quantum annealing technique, because the ground state of the Ising Hamiltonian can be transformed back to the solution of the 2-SAT problem. \\  
 	
@@ -432,7 +460,7 @@ Based on Distributive property.
 %------------------------------------------------------------------------------------------
 
 
-\section{Simulation Algorithm}
+\section{Simulation of a Quantum Annealer At Zero Temperature}
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
@@ -501,9 +529,11 @@ Based on Distributive property.
 
 \end{frame}
 %------------------------------------------------------------------------------------------
+\note{With the basis denotes in 0 and 1 is convenient, because we can now consider tha basis state as a binary number notation from 0 to $2^N-1$. It will be easier denote the ground state as a binary number. }
 %	\begin{equation*}
 %	\ket{\uparrow}=\ket{0}=\left(\begin{array}{c} 1\\0 \end{array}\right), \ket{\downarrow}=\ket{1}=\left(\begin{array}{c} 0\\1 \end{array}\right)
 %	\end{equation*}
+
 
 
 %%------------------------------------------------------------------------------------------
@@ -516,10 +546,13 @@ Based on Distributive property.
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{The Full Diagonalisation method}
+		\begin{equation*}
+		\Psi(t+\tau) =\exp(iH(t)\tau)\Psi(t).
+		\end{equation*}
 	\begin{itemize}
 %		\item Hamiltonian H is an Hermitian operator formed by a $2^N \times 2^N$ matrix.
-		\item The Hamiltonian $H$ can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors.
-		\item Thus the time evolution can be calculated as 
+%		\item the Hamiltonian $H$ can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors.
+		\item By diagonalisation, the time evolution can be calculated as 
 		\begin{equation*}
 		U(\tau) = exp(-i\tau H) = V exp(-i\tau \Lambda) V^\dagger.
 		\end{equation*}
@@ -531,7 +564,9 @@ Based on Distributive property.
 \end{frame}
 %------------------------------------------------------------------------------------------
 
-\note{\item Hamiltonian H is an Hermitian operator formed by a $2^N \times 2^N$ matrix.}
+\note{ Hamiltonian H is an Hermitian operator formed by a $2^N \times 2^N$ matrix.\\
+	   The complexity of the standard diagnolisation is in the order of $D^3$ D to the power of 3
+			The Hamiltonian $H$ can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors.}
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
@@ -559,7 +594,7 @@ Based on Distributive property.
 	\begin{equation*}
 		\begin{split}
 		&H(t)=(1-\frac{t}{T} )H_{init}+(\frac{t}{T})H_{problem} \\
-		&H_{init}= -\sum_{i=1}^{N}h_i^x \sigma_i^x ~,~~ H_{problem}= -\sum_{i}^N h_i^z \sigma^z_i ~+~ -\sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j\\
+		&H_{init}= -\sum_{i=1}^{N}h_i^x \sigma_i^x ~,~~ H_{problem}= -\sum_{i}^N h_i^z \sigma^z_i - -\sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j\\
 		\end{split}
 	\end{equation*} 
 	Based on the Hamiltonian used above, one way to construct the approximation is 
@@ -580,6 +615,103 @@ Based on Distributive property.
 %\tilde{U}(\tau) = \exp(\frac{-i\tau H_{\sigma_\alpha}}{2})\exp(\frac{-i\tau H_{\sigma_x \sigma_x}}{2})\exp(\frac{-i\tau H_{\sigma_y \sigma_y}}{2})\exp(-i\tau H_{\sigma_z \sigma_z})\\\exp(\frac{-i\tau H_{\sigma_y \sigma_y}}{2})\exp(\frac{-i\tau H_{\sigma_x \sigma_x}}{2})\exp(\frac{-i\tau H_{\sigma_\alpha}}{2})
 %\end{split}
 %\end{equation*}
+\note{The reason for decomposing Hamiltonian like this is that there is an analytical expression for the matrix expnential. The single spin term reduce to a 2x2 matrix multiplication. And the double spin term reduces to a 4x4 matrix multiplication.\\
+	What is the complexity?}
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Simulation Result: Ground Energy}
+%	Annealing time = 1000
+	\begin{figure}
+		\centering
+		\includegraphics[height=150pt]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_productf_EnergyvsLambda.eps}
+		\caption{An result with total annealing time = 1000}
+	\end{figure}
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Simulation Result: Success Probability}
+	Annealing time = 1000
+	\begin{figure}
+		\centering
+		\includegraphics[height=150pt]{result_picture/compare_full_product/Figure_result_1e-1.eps}
+		\caption{An result with total annealing time = 1000}
+	\end{figure}
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Simulation Result: Spin Value}
+		\begin{equation*}
+		\begin{split}
+		H_{init}= -\sum_{i=1}^{N}h_i^x \sigma_i^x ~,~~ H_{problem}= -\sum_{i}^N h_i^z \sigma^z_i  -\sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j
+		\end{split}
+		\end{equation*} 
+	\begin{figure}
+		\centering
+		\includegraphics[height=150pt]{result_picture/probability_spin_system/Figure_Annealing_spin.png}
+		\caption{An result with total annealing time = 1000}
+		% \caption{Insert Caption here}
+	\end{figure}
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Effect of Total Annealing Time}
+	\begin{figure}
+		\centering
+		\includegraphics[height=200pt]{result_picture/probability_spin_system/Figure_Annealing_probability.eps}
+		
+		% \caption{Insert Caption here}
+	\end{figure}
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{The Energy Specturm and the Effect of Minimum Gap}
+	\begin{figure}
+		\centering
+		\includegraphics[height=200pt]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_energy_spectrum.png}
+		
+		% \caption{Insert Caption here}
+	\end{figure}
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{The Energy Specturm and the Minimum Gap}
+	\begin{figure}
+		\centering
+		\includegraphics[height=200pt]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_closelook_energy_spectrum.png}
+		
+		% \caption{Insert Caption here}
+	\end{figure}
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Effect of Minimum Gap}
+		\begin{equation*}
+		\begin{split}
+		&P_{adiabatic}(T) = 1-P_{diabatic}(T)\\
+		&P_{diabatic}(T) = \exp(c\cdot \Delta_{min}^2 T).
+		\end{split}
+		\end{equation*}
+	\begin{figure}
+		\centering
+		\includegraphics[height=150pt]{result_picture/gap_result_environment/Figure_PvsGap_no_coupling_Temp1.eps}
+		
+		 \caption{A plot with 100 Hamiltonian sets.}
+	\end{figure}
+\end{frame}
+%------------------------------------------------------------------------------------------
 
 
 
@@ -689,7 +821,7 @@ Based on Distributive property.
 
 
 
-\section{Simulation Result}
+\section{Simulation of a Quantum Annealer At Finite Temperature}
 %%------------------------------------------------------------------------------------------
 %\begin{frame}
 %		\frametitle{Validate Suzuki-Trotter Product Formula Approach with Full Diaganolisation Method}
@@ -732,83 +864,12 @@ Based on Distributive property.
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
-	\frametitle{Simulation Result: Ground Energy}
-	Annealing time = 1000
+	\frametitle{Results of the Random Sampling Method}
 	\begin{figure}
 		\centering
-		\includegraphics[height=150pt]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_productf_EnergyvsLambda.eps}
-		% \caption{Insert Caption here}
-	\end{figure}
-\end{frame}
-%------------------------------------------------------------------------------------------
-
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{Simulation Result: Success Probability}
-	Annealing time = 1000
-	\begin{figure}
-		\centering
-		\includegraphics[height=150pt]{result_picture/compare_full_product/Figure_result_1e-1.eps}
-
-		% \caption{Insert Caption here}
-	\end{figure}
-\end{frame}
-%------------------------------------------------------------------------------------------
-
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{Simulation Result: Spin Value}
-	\begin{figure}
-		\centering
-		\includegraphics[height=180pt]{result_picture/probability_spin_system/Figure_Annealing_spin.png}
-		% \caption{Insert Caption here}
-	\end{figure}
-\end{frame}
-%------------------------------------------------------------------------------------------
-
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{Effect of Total Annealing Time}
-	\begin{figure}
-		\centering
-		\includegraphics[height=200pt]{result_picture/probability_spin_system/Figure_Annealing_probability.eps}
-		
-		% \caption{Insert Caption here}
-	\end{figure}
-\end{frame}
-%------------------------------------------------------------------------------------------
-
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{The Energy Specturm and the Effect of Minimum Gap}
-	\begin{figure}
-		\centering
-		\includegraphics[height=200pt]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_energy_spectrum.png}
-		
-		% \caption{Insert Caption here}
-	\end{figure}
-\end{frame}
-%------------------------------------------------------------------------------------------
-
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{The Energy Specturm and the Minimum Gap}
-	\begin{figure}
-		\centering
-		\includegraphics[height=200pt]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_closelook_energy_spectrum.png}
-		
-		% \caption{Insert Caption here}
-	\end{figure}
-\end{frame}
-%------------------------------------------------------------------------------------------
-
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{Effect of Minimum Gap}
-
-	\begin{figure}
-		\centering
-		\includegraphics[height=150pt]{result_picture/gap_result_environment/Figure_PvsGap_no_coupling_Temp1.eps}
+		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/T1/Figure_JvsT_T1e0_run1.eps}
+		\hfill
+		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}		
 		
 		% \caption{Insert Caption here}
 	\end{figure}
@@ -820,23 +881,9 @@ Based on Distributive property.
 	\frametitle{Results of the Random Sampling Method}
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.475\textwidth]{result_picture/JvsT_plot/T1/Figure_JvsT_T1e0_run1.eps}
+		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/T1/Figure_JvsT_T1e0_run5.eps}
 		\hfill
-		\includegraphics[width=0.475\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}		
-		
-		% \caption{Insert Caption here}
-	\end{figure}
-\end{frame}
-%------------------------------------------------------------------------------------------
-
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{Results of the Random Sampling Method}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.475\textwidth]{result_picture/JvsT_plot/T1/Figure_JvsT_T1e0_run5.eps}
-		\hfill
-		\includegraphics[width=0.475\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}		
+		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}		
 		
 		% \caption{Insert Caption here}
 	\end{figure}
@@ -849,9 +896,9 @@ Based on Distributive property.
 	\frametitle{Results of the Random Sampling Method}
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.475\textwidth]{result_picture/JvsT_plot/T1/Figure_JvsT_T1e0_run8.eps}
+		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/T1/Figure_JvsT_T1e0_run8.eps}
 		\hfill
-		\includegraphics[width=0.475\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}		
+		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}		
 		
 		% \caption{Insert Caption here}
 	\end{figure}
@@ -863,9 +910,9 @@ Based on Distributive property.
 	\frametitle{Results of the Random Sampling Method}
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.475\textwidth]{result_picture/JvsT_plot/T1/Figure_JvsT_T1e0_random.eps}
+		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/T1/Figure_JvsT_T1e0_random.eps}
 		\hfill
-		\includegraphics[width=0.475\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}		
+		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}		
 		
 		% \caption{Insert Caption here}
 	\end{figure}
@@ -875,8 +922,8 @@ Based on Distributive property.
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{Effect of Total Annealing Time at different Temperature}
-	A Quick look\\
-	Temperature = 0.02, 1, 1000
+
+%	Temperature = 0.02, 1, 1000
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.320\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T2e-2.eps}
@@ -884,7 +931,7 @@ Based on Distributive property.
 		\includegraphics[width=0.320\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}
 		\hfill
 		\includegraphics[width=0.320\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e3.eps}
-		% \caption{Insert Caption here}
+		 \caption{Left: Temp. = 0.02; Middle: Temp. = 1; Right: Temp. = 1000}
 	\end{figure}
 \end{frame}
 %------------------------------------------------------------------------------------------
@@ -892,12 +939,12 @@ Based on Distributive property.
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{Effect of Total Annealing Time at different Temperature}
-	Temperature = 1\\
-	Coherent - Non-equilibrium - Quasistatic
+	
+%	Coherent - Non-equilibrium - Quasistatic
 	\begin{figure}
 		\centering
 		\includegraphics[height=150pt]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}
-		% \caption{Insert Caption here}
+		 \caption{A result at Temperature = 1}
 	\end{figure}
 \end{frame}
 %------------------------------------------------------------------------------------------
@@ -961,6 +1008,16 @@ Based on Distributive property.
 \end{frame}
 %------------------------------------------------------------------------------------------
 
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Conclusion}
+	\begin{itemize}
+		\item The quantum annealing does provide a different approach to solve 2-SAT problem.
+		\item The quantum annealing process can be influenced not only by the total annealing time, minimum gap, but also the temperature.
+		\item A quantum annealing process at finite temperature will go through a coherent state, non-equlibrium state, and finally a quasistatic state as mentioned in a previous paper.
+	\end{itemize}
+\end{frame}
+%------------------------------------------------------------------------------------------
 
 
 
