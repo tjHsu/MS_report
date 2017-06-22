@@ -2,6 +2,7 @@
 %\documentclass[notes=only]{beamer} 
 %\documentclass[notes]{beamer}     
 \setbeamertemplate{footline}[frame number]
+\beamertemplatenavigationsymbolsempty
 
 \graphicspath{
 	{pictures/}
@@ -121,8 +122,8 @@
 		\label{Hamiltonian_set}
 		\begin{split}
 		&H(t)=(1-\frac{t}{T} )H_{init}+(\frac{t}{T})H_{problem} \\
-		&H_{init}= \sum_{i=1}^{N}h_i^x \sigma_i^x\\
-		&H_{problem}= \sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j + \sum_{i}^N h_i^z \sigma^z_i,\\
+		&H_{init}= -\sum_{i=1}^{N}h_i^x \sigma_i^x\\
+		&H_{problem}= -\sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j ~+~ -\sum_{i}^N h_i^z \sigma^z_i,\\
 		\end{split}
 		\end{equation*} 
 		where $t$ is the current timestep and $T$ is the toatal annealing time.\\
@@ -389,7 +390,7 @@ Based on Distributive property.
 	\end{equation*}
 	Then one can correspond $h_1^z$, $h_2^z$, and $J_{12}$ in $H_{problem}$ to 2, 2, and -2 respectively, and repeat this procedure for all clauses. 
 	\begin{equation*}
-	H_{problem}= \sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j + \sum_{i}^N h_i^z \sigma^z_i
+	H_{problem}= -\sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j ~+~- \sum_{i}^N h_i^z \sigma^z_i
 	\end{equation*} 
 	%After this mapping is complete, the original 2-SAT problem can be solved with quantum annealing technique, because the ground state of the Ising Hamiltonian can be transformed back to the solution of the 2-SAT problem. \\  
 	
@@ -558,7 +559,7 @@ Based on Distributive property.
 	\begin{equation*}
 		\begin{split}
 		&H(t)=(1-\frac{t}{T} )H_{init}+(\frac{t}{T})H_{problem} \\
-		&H_{init}= \sum_{i=1}^{N}h_i^x \sigma_i^x ~,~~ H_{problem}= \sum_{i}^N h_i^z \sigma^z_i + \sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j\\
+		&H_{init}= -\sum_{i=1}^{N}h_i^x \sigma_i^x ~,~~ H_{problem}= -\sum_{i}^N h_i^z \sigma^z_i ~+~ -\sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j\\
 		\end{split}
 	\end{equation*} 
 	Based on the Hamiltonian used above, one way to construct the approximation is 
@@ -953,9 +954,10 @@ Based on Distributive property.
 	
 	\begin{figure}
 		\centering
-		\includegraphics[height=150pt]{result_picture/gap_result_avoid_duplicate/gap_result_temperatur_G02/avoided_duplicate/Figure2_PvsGap_T2e2_G02.png}	
+		\includegraphics[height=220pt]{result_picture/gap_result_avoid_duplicate/gap_result_temperatur_G02_Time1e3/avoided_duplicate/Figure2_PvsGap_T1e3_G02.eps}	
 		% \caption{Insert Caption here}
 	\end{figure}
+%	/result_picture/gap_result_avoid_duplicate/gap_result_temperatur_G02_Time1e3
 \end{frame}
 %------------------------------------------------------------------------------------------
 
