@@ -25,6 +25,7 @@
 \usepackage{ifthen}
 \usepackage{tcolorbox}
 
+
 \usepackage[T1]{fontenc}
 \usepackage{pslatex}
 
@@ -32,14 +33,18 @@
 \usepackage{subfigure}
 \usepackage{url}
 
+\usepackage{appendixnumberbeamer}
+
 \usepackage{biblatex}
 \addbibresource{master_report.bib}
+
+
  
 %Information to be included in the title page:
-\title{Simulation of a Quantum Annealer for Solving the 2-satisfiability problem at Zero and Finite Temperature}
+\title{Simulation of a Quantum Annealer for Solving the 2-Satisfiability Problem at Zero and Finite Temperature}
 \author{Ting-Jui Hsu}
 \institute{Quantum Information Group}
-\date{22.06.2017}
+\date{27.06.2017}
   
 %------------------------------------------------------------------------------------------
 \AtBeginSection[]
@@ -135,7 +140,7 @@
 		&H_{problem}= -\sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j -\sum_{i}^N h_i^z \sigma^z_i,\\
 		\end{split}
 		\end{equation*} 
-		where $t$ is the current timestep and $T$ is the toatal annealing time.\\
+		where $t$ is the current time step and $T$ is the total annealing time.\\
 	\end{itemize}
 \end{frame}
 %------------------------------------------------------------------------------------------
@@ -166,12 +171,12 @@
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
-	\frametitle{Difference between the Quantum Annealing and Simulated Annealing}
+	\frametitle{The Difference between the Quantum Annealing and the Simulated Annealing}
 %	(I should redraw this figure)
 	\begin{figure}[h]
 		\centering
 		\includegraphics[height=150pt]{qaca.png}
-		\caption{An illustration shows the difference between the idea of the quantum annealing and thermal annealing. Image from [DC08]\footnotemark[1]. }
+		\caption{An illustration shows the difference between the idea of the quantum annealing and the thermal annealing. Image from [DC08]\footnotemark[1]. }
 		\label{diff_qa_ca}
 	\end{figure}
 	\footnotetext[1]{[DC08] Arnab Das and Bikas K. Chakrabarti. Colloquium: Quantum annealing and analog quantum computation. Reviews of Modern Physics, 2008.}
@@ -231,7 +236,7 @@ Based on Distributive property.
 \begin{frame}
 	\frametitle{Landau-Zener Transition}
 	\begin{itemize}
-		\item Landau-Zener formula gives out the probability of a diabatic transition from a lower energy eigenstate to a higher energy eigenstate.
+		\item The Landau-Zener formula gives out the probability of a diabatic transition from a lower energy eigenstate to a higher energy eigenstate.
 
 	\end{itemize}
 	The probability of a adiabatic transition, $P_{adiabatic}$, can be described by 
@@ -286,14 +291,16 @@ Based on Distributive property.
 \begin{frame}
 	\frametitle{The 2-Satisfiability Problem}
 
-	A k-SAT problem is a problem with k as the upper limit of the
+	A $k$-SAT problem is a problem with $k$ as the upper limit of the
 	number of variables in one clause. \\
-	For example, a 2-SAT problem can be written as 
+	An example 2-SAT problem with 8 boolean variables is shown below: %can be written as follows: 
+	\begin{tcolorbox}[title=Example]
 	\begin{equation*}
-	(x_1\lor x_2)\land (x_3\lor \neg x_4),
+	(x_1\lor x_2)\land (x_3\lor \neg x_4)\land(\neg x_5 \lor x_4)\land(\neg x_6 \lor \neg x_7)\land(\neg x_3 \lor \neg x_8),%\land(\neg x_5 \lor x_7)\land(x_5\lor \neg x_2)
+	%sol= 01011110
 	\end{equation*}
 	where $\land$,$\lor$, and $\neg$ state for logical and, logical or, and logical not respectively. 
-	
+	\end{tcolorbox}
 \end{frame}
 %------------------------------------------------------------------------------------------
 
@@ -315,8 +322,12 @@ Based on Distributive property.
 \begin{frame}
 	\frametitle{The 2-Satisfiability Problem}
 %	\framesubtitle{Mapping a givent problem to the Hamiltonian}
+	\begin{equation*}
+	(x_1\lor x_2)\land (x_3\lor \neg x_4)\land(\neg x_5 \lor x_4)\land(\neg x_6 \lor \neg x_7)\land(\neg x_3 \lor \neg x_8)%\land(\neg x_5 \lor x_7)\land(x_5\lor \neg x_2)
+	%sol= 01011110
+	\end{equation*}
 	A key question is how to map a given problem into the Hamiltonian. \\
-	A possible mapping is as follow :
+	For example, a possible mapping is as follows :
 	\begin{table}[h!]
 		
 		
@@ -393,7 +404,7 @@ Based on Distributive property.
 	\frametitle{The 2-Satisfiability Problem}
 %	\framesubtitle{Mapping a givent problem to the Hamiltonian}
 	
-	To encode the solution of the 2-SAT problem, the Hamiltonian can be first designed for the first clause as 
+	To encode the solution of the 2-SAT problem, the Hamiltonian can be designed for the first clause as 
 	\begin{center}
 		\begin{tabular}{|c|c|c|c|c|}
 			
@@ -436,7 +447,7 @@ Based on Distributive property.
 \begin{frame}
 	\frametitle{The Quantum Annealing Algorithm}
 	\begin{tcolorbox}[title=Quantum Annealing Algorithm]
-		Set up $H_{problem}$ according to a given problem. Combine $H_{init}$ and $H_{problem}$ to Build $H(t)$. \\
+		Set up $H_{problem}$ according to a given problem. Combine $H_{init}$ and $H_{problem}$ to build $H(t)$. \\
 		%\begin{equation*}
 		%	H_{problem}=\sum_{i,j} \{J^x \sigma^x_i \sigma^x_j+J^y \sigma^y_i \sigma^y_j+J^z \sigma^z_i \sigma^z_j \}+ \sum_{i} \{h^x \sigma^x_i+h^y \sigma^y_i+h^z \sigma^z_i\}
 		%\end{equation*}   
@@ -453,7 +464,7 @@ Based on Distributive property.
 		%	T:linear 
 		%\end{equation*}
 		
-		3. The system will end up in the ground state of the $H_p$, if the total annealing T is long enough.\\
+		3. The system will end up in the ground state of the $H_{problem}$, if the total annealing T is long enough.\\
 		
 	\end{tcolorbox} 
 \end{frame}
@@ -475,13 +486,13 @@ Based on Distributive property.
 		\begin{equation*}
 		\begin{split}
 		\Psi(t+\tau)&=U(t+\tau,t)\Psi(t)\\
-		&=\exp(i\int_{t}^{t+\tau}H(t)d\tau)\Psi(t),
+		&=\exp(-i\int_{t}^{t+\tau}H(\frac{t+\tau}{2})d\tau)\Psi(t),
 		\end{split}
 		\end{equation*}
 		where $\tau$ is the time step, and $U(t+\tau)$ is a unitary matrix that transform system from $t$ to $t+\tau$.
 		\item 	The time step should be small enough to keep $H(t)$ piecewise constant, and the solution can be rewritten as 
 		\begin{equation*}
-		\Psi(t+\tau) =\exp(iH(t)\tau)\Psi(t).
+		\Psi(t+\tau) =\exp(-iH(\frac{t+\tau}{2})\tau)\Psi(t).
 		\end{equation*}
 		
 	\end{itemize}
@@ -500,36 +511,36 @@ Based on Distributive property.
 \note{	Namely, by solving time-dependent Schrödinger equation one can determine the final state of the system.\\ }
 
 
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{Computational Basis}
-	\begin{itemize}
-		\item $\Psi$ is defined as a direct product state of the N single spin states in z-basis.
-		
-		\item Each single spin has two possible states, $\ket{\uparrow}$ or $\ket{\downarrow}$, which ,for convenience, are corresponded to $\ket{0}$ or $\ket{1}$. The relation is defined as 	
-		\begin{equation*}
-		\ket{\uparrow}\equiv \ket{0}, \ket{\downarrow} \equiv \ket{1}
-		\end{equation*}
-		
-		\item 
-		Thus, the single spin state can be written as a linear superposition of theses two basis state, 	
-		\begin{equation*}
-		\ket{\psi} = a(0)\ket{0} + a(1)\ket{1},
-		\end{equation*}
-		where $a(0)$ and $a(1)$ are the coefficient of the amplitude of each state.
-		
-		\item Furthermore, a N-spin system is made up of $2^N$ state vectors and it can be written as 	
-		\begin{equation*}
-		\label{psi_in_compuationalbasis}
-		\ket{\Psi} = a(00\dots0)\ket{00\dots0}+a(00\dots1)\ket{00\dots1}\cdots +a(11\dots0)\ket{11\dots0}+a(11\dots1)\ket{11\dots1},
-		\end{equation*}
-%		where $a(00\dots0), a(00\dots1)\dots, a(11\dots1)$ are the coefficients of each components. 
-		
-	\end{itemize}
-
-\end{frame}
-%------------------------------------------------------------------------------------------
-\note{With the basis denotes in 0 and 1 is convenient, because we can now consider tha basis state as a binary number notation from 0 to $2^N-1$. It will be easier denote the ground state as a binary number. }
+%%------------------------------------------------------------------------------------------
+%\begin{frame}
+%	\frametitle{Computational Basis}
+%	\begin{itemize}
+%		\item $\Psi$ is defined as a direct product state of the N single spin states in z-basis.
+%		
+%		\item Each single spin has two possible states, $\ket{\uparrow}$ or $\ket{\downarrow}$, which ,for convenience, are corresponded to $\ket{0}$ or $\ket{1}$. The relation is defined as 	
+%		\begin{equation*}
+%		\ket{\uparrow}\equiv \ket{0}, \ket{\downarrow} \equiv \ket{1}
+%		\end{equation*}
+%		
+%		\item 
+%		Thus, the single spin state can be written as a linear superposition of theses two basis state, 	
+%		\begin{equation*}
+%		\ket{\psi} = a(0)\ket{0} + a(1)\ket{1},
+%		\end{equation*}
+%		where $a(0)$ and $a(1)$ are the coefficient of the amplitude of each state.
+%		
+%		\item Furthermore, a N-spin system is made up of $2^N$ state vectors and it can be written as 	
+%		\begin{equation*}
+%		\label{psi_in_compuationalbasis}
+%		\ket{\Psi} = a(00\dots0)\ket{00\dots0}+a(00\dots1)\ket{00\dots1}\cdots +a(11\dots1)\ket{11\dots1}+a(11\dots1)\ket{11\dots1},
+%		\end{equation*}
+%%		where $a(00\dots0), a(00\dots1)\dots, a(11\dots1)$ are the coefficients of each components. 
+%		
+%	\end{itemize}
+%
+%\end{frame}
+%%------------------------------------------------------------------------------------------
+%\note{With the basis denotes in 0 and 1 is convenient, because we can now consider tha basis state as a binary number notation from 0 to $2^N-1$. It will be easier denote the ground state as a binary number. }
 %	\begin{equation*}
 %	\ket{\uparrow}=\ket{0}=\left(\begin{array}{c} 1\\0 \end{array}\right), \ket{\downarrow}=\ket{1}=\left(\begin{array}{c} 0\\1 \end{array}\right)
 %	\end{equation*}
@@ -543,49 +554,49 @@ Based on Distributive property.
 %\end{frame}
 %%------------------------------------------------------------------------------------------
 
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{The Full Diagonalisation method}
-		\begin{equation*}
-		\Psi(t+\tau) =\exp(iH(t)\tau)\Psi(t).
-		\end{equation*}
-	\begin{itemize}
-%		\item Hamiltonian H is an Hermitian operator formed by a $2^N \times 2^N$ matrix.
-%		\item the Hamiltonian $H$ can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors.
-		\item By diagonalisation, the time evolution can be calculated as 
-		\begin{equation*}
-		U(\tau) = exp(-i\tau H) = V exp(-i\tau \Lambda) V^\dagger.
-		\end{equation*}
-		\item The main limitation comes from the size of the quantum system.
-		\item This approach serves mostly as a tool to validate the correctness of other algorithm when solving a time-dependent Schrödinger equation.
-	\end{itemize}
-%	Hamiltonian H is an Hermitian operator formed by a $2^N \times 2^N$ matrix it has a complete set of eigenvectors and eigenvalues. This implies that the matrix H can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors. The transformation is given by $H = V\Lambda V^\dagger$. Thus the time evolution can be calculated as $U(\tau) = exp(-i\tau H) = V exp(-i\tau \Lambda) V^\dagger$. If $V$ and $\Lambda$ are obtained by diagonalising H, time evolution becomes a series of simple matrix multiplication. Since diagonalisation is a typical matrix problem, there are already standard software library can be made use of. \\
-%	
-\end{frame}
-%------------------------------------------------------------------------------------------
+%%------------------------------------------------------------------------------------------
+%\begin{frame}
+%	\frametitle{The Full Diagonalisation method}
+%		\begin{equation*}
+%		\Psi(t+\tau) =\exp(-iH(\frac{t+\tau}{2})\tau)\Psi(t).
+%		\end{equation*}
+%	\begin{itemize}
+%%		\item Hamiltonian H is an Hermitian operator formed by a $2^N \times 2^N$ matrix.
+%%		\item the Hamiltonian $H$ can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors.
+%		\item By diagonalisation, the time evolution can be calculated as 
+%		\begin{equation*}
+%		U(\tau) = exp(-i\tau H) = V exp(-i\tau \Lambda) V^\dagger.
+%		\end{equation*}
+%		\item The main limitation comes from the size of the quantum system.
+%		\item This approach serves mostly as a tool to validate the correctness of other algorithm when solving a time-dependent Schrödinger equation.
+%	\end{itemize}
+%%	Hamiltonian H is an Hermitian operator formed by a $2^N \times 2^N$ matrix it has a complete set of eigenvectors and eigenvalues. This implies that the matrix H can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors. The transformation is given by $H = V\Lambda V^\dagger$. Thus the time evolution can be calculated as $U(\tau) = exp(-i\tau H) = V exp(-i\tau \Lambda) V^\dagger$. If $V$ and $\Lambda$ are obtained by diagonalising H, time evolution becomes a series of simple matrix multiplication. Since diagonalisation is a typical matrix problem, there are already standard software library can be made use of. \\
+%%	
+%\end{frame}
+%%------------------------------------------------------------------------------------------
+%
+%\note{ Hamiltonian H is an Hermitian operator formed by a $2^N \times 2^N$ matrix.\\
+%	   The complexity of the standard diagnolisation is in the order of $D^3$ D to the power of 3
+%			The Hamiltonian $H$ can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors.}
 
-\note{ Hamiltonian H is an Hermitian operator formed by a $2^N \times 2^N$ matrix.\\
-	   The complexity of the standard diagnolisation is in the order of $D^3$ D to the power of 3
-			The Hamiltonian $H$ can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors.}
-
 %------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{The Suzuki-Trotter Product Formula Approach}
-	\begin{itemize}
-		\item The Suzuki-Trotter product formula approach can handle a larger quantum system than the full diagonalisation method does.
-		\item Suzuki-Trotter product formula approximate a unitary matrix exponentials by decomposing the matrix properly, that is 
-		\begin{equation*}
-		\label{suzuki-trotter product formula}
-		\begin{split}
-		U(t) &= \exp(-it H)\\
-		&=\exp(-it(H_1+H_2+\dots+H_K))\\
-		&=\lim_{m \to \infty}(\prod_{k=1}^{K}\exp(-it H_k/m))^m
-		\end{split}
-		\end{equation*}
-		\item  The crucial step of this approach is to choose $H_k$ properly in a way that it is easy enough to calculate there matrix exponential efficiently.
-	\end{itemize}
-\end{frame}
-%------------------------------------------------------------------------------------------
+%\begin{frame}
+%	\frametitle{The Suzuki-Trotter Product Formula Approach}
+%	\begin{itemize}
+%		\item The Suzuki-Trotter product formula approach can handle a larger quantum system than the full diagonalisation method does.
+%		\item Suzuki-Trotter product formula approximate a unitary matrix exponentials by decomposing the matrix properly, that is 
+%		\begin{equation*}
+%		\label{suzuki-trotter product formula}
+%		\begin{split}
+%		U(t) &= \exp(-it H)\\
+%		&=\exp(-it(H_1+H_2+\dots+H_K))\\
+%		&=\lim_{m \to \infty}(\prod_{k=1}^{K}\exp(-it H_k/m))^m
+%		\end{split}
+%		\end{equation*}
+%		\item  The crucial step of this approach is to choose $H_k$ properly in a way that it is easy enough to calculate there matrix exponential efficiently.
+%	\end{itemize}
+%\end{frame}
+%%------------------------------------------------------------------------------------------
 
 
 %------------------------------------------------------------------------------------------
@@ -594,15 +605,15 @@ Based on Distributive property.
 	\begin{equation*}
 		\begin{split}
 		&H(t)=(1-\frac{t}{T} )H_{init}+(\frac{t}{T})H_{problem} \\
-		&H_{init}= -\sum_{i=1}^{N}h_i^x \sigma_i^x ~,~~ H_{problem}= -\sum_{i}^N h_i^z \sigma^z_i - -\sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j\\
+		&H_{init}= -\sum_{i=1}^{N}h_i^x \sigma_i^x ~,~~ H_{problem}= -\sum_{i}^N h_i^z \sigma^z_i - \sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j\\
 		\end{split}
 	\end{equation*} 
 	Based on the Hamiltonian used above, one way to construct the approximation is 
 	\begin{equation*}
 	\label{tilde_U}
 	\begin{split}
-	&\Psi(t+\tau) =\tilde{U}(\tau)\Psi(t)\\
-	&\tilde{U}(\tau) = \exp(\frac{-i\tau H_{\sigma^{x,z}}}{2})\exp(-i\tau H_{\sigma_z \sigma_z})\exp(\frac{-i\tau H_{\sigma^{x,z}}}{2}).
+	&\Psi(t+\tau) =\tilde{U}(t)\Psi(t)\\
+	&\tilde{U}(t) = \exp(\frac{-i\tau H_{\sigma^{x,z}}}{2})\exp(-i\tau H_{\sigma_z \sigma_z})\exp(\frac{-i\tau H_{\sigma^{x,z}}}{2}).
 	\end{split}
 	\end{equation*}
 
@@ -618,9 +629,36 @@ Based on Distributive property.
 \note{The reason for decomposing Hamiltonian like this is that there is an analytical expression for the matrix expnential. The single spin term reduce to a 2x2 matrix multiplication. And the double spin term reduces to a 4x4 matrix multiplication.\\
 	What is the complexity?}
 
+%%------------------------------------------------------------------------------------------
+%\begin{frame}
+%	\frametitle{Validate Suzuki-Trotter Product Formula Approach with Full Diaganolisation Method}
+%	\begin{figure}[h]
+%		\centering
+%		\includegraphics[height=150pt]{result_picture/compare_full_product/result_1e0.eps}
+%		\caption{Insert caption here.}
+%		
+%	\end{figure}
+%\end{frame}
+%
+%%------------------------------------------------------------------------------------------
+%
+%
+%%------------------------------------------------------------------------------------------
+%\begin{frame}
+%	\frametitle{Validate Suzuki-Trotter Product Formula Approach with Full Diaganolisation Method}
+%	\begin{figure}[h]
+%		\centering
+%		\includegraphics[height=150pt]{result_picture/compare_full_product/result_1e-1.eps}
+%		\caption{Insert caption here.}
+%		
+%	\end{figure}
+%\end{frame}
+%
+%%------------------------------------------------------------------------------------------
+
 %------------------------------------------------------------------------------------------
 \begin{frame}
-	\frametitle{Simulation Result: Ground Energy}
+	\frametitle{Simulation Result: Ground State Energy}
 %	Annealing time = 1000
 	\begin{figure}
 		\centering
@@ -671,21 +709,21 @@ Based on Distributive property.
 \end{frame}
 %------------------------------------------------------------------------------------------
 
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{The Energy Specturm and the Effect of Minimum Gap}
-	\begin{figure}
-		\centering
-		\includegraphics[height=200pt]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_energy_spectrum.png}
-		
-		% \caption{Insert Caption here}
-	\end{figure}
-\end{frame}
-%------------------------------------------------------------------------------------------
+%%------------------------------------------------------------------------------------------
+%\begin{frame}
+%	\frametitle{The Energy Spectrum and the Effect of Minimum Gap}
+%	\begin{figure}
+%		\centering
+%		\includegraphics[height=200pt]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_energy_spectrum.png}
+%		
+%		% \caption{Insert Caption here}
+%	\end{figure}
+%\end{frame}
+%%------------------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
-	\frametitle{The Energy Specturm and the Minimum Gap}
+	\frametitle{The Energy Spectrum and the Minimum Gap}
 	\begin{figure}
 		\centering
 		\includegraphics[height=200pt]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_closelook_energy_spectrum.png}
@@ -701,14 +739,14 @@ Based on Distributive property.
 		\begin{equation*}
 		\begin{split}
 		&P_{adiabatic}(T) = 1-P_{diabatic}(T)\\
-		&P_{diabatic}(T) = \exp(c\cdot \Delta_{min}^2 T).
+		&P_{diabatic}(T) = \exp(-c\cdot \Delta_{min}^2).
 		\end{split}
 		\end{equation*}
 	\begin{figure}
 		\centering
 		\includegraphics[height=150pt]{result_picture/gap_result_environment/Figure_PvsGap_no_coupling_Temp1.eps}
 		
-		 \caption{A plot with 100 Hamiltonian sets.}
+		 \caption{A plot with 100 different 2-SAT problems.}
 	\end{figure}
 \end{frame}
 %------------------------------------------------------------------------------------------
@@ -716,7 +754,7 @@ Based on Distributive property.
 
 
 
-
+\section{Simulation of a Quantum Annealer At Finite Temperature}
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
@@ -731,193 +769,94 @@ Based on Distributive property.
 \end{frame}
 %------------------------------------------------------------------------------------------
 
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{Canonical Ensemble}
-	An observable A can be calculated by going through all energy eigenstate of the heat bath as following:\\
-%		with 
-	
-	\begin{equation*}
-	\begin{split}
-	\label{psi_assemble_method}
-	\ket{\Psi(t)}&=e^{-iHt} \ket{E_B}\ket{S'}\\
-%	&=e^{-iHt}\sum_{i} c_i \frac{e^{\frac{-\beta E_B}{2}}}{\sqrt{Z}}\ket{\Psi_E}\ket{S'}
-	\end{split}
-	\end{equation*}
-	\begin{equation*}
-	\langle A(t)\rangle = \mathbf{Tr} A(t) \rho_B \rho_S= \sum_{B}\frac{e^{(\beta E_B)}}{Z}\bra{\Psi(t)}A\ket{\Psi(t)}
-	\end{equation*}
-	
-\end{frame}
-%------------------------------------------------------------------------------------------
-
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{The Random Sampling Method}
-	Based on the hypothesis that with random sampling one can approximate the solution of a time-dependent Schrödinger Equation by solving a sample of randomly chosen initial state.
-	\begin{equation*}
-	\begin{split}
-	\mathbf{Tr}A=\sum_{n=1}^{D} \bra{\Psi_n}A\ket{\Psi_n}\\
-	\end{split}
-	\end{equation*}
-	
-	Then a random vector $\ket{\phi}$ can be constructed by choosing D complex random numbers with which mean is 0.
-	
-	\begin{equation*}
-	\begin{split}
-	\ket{\phi}= \sum_{n=1}^{D} c_n \ket{{\Psi_n}}, ~~ with ~~c_n \equiv f_n + i g_n\\
-	\end{split}
-	\end{equation*}
-\end{frame}
-%------------------------------------------------------------------------------------------
-
-
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{The Random Sampling Method}
-	It follows that
-	
-	\begin{equation*}
-	\begin{split}
-	\bra{\phi}A\ket{\phi} = \sum_{m,n=1}^{D} c_m^\star c_n  \bra{\Psi_m}A\ket{\Psi_n}\\
-	\end{split}
-	\end{equation*}
-	
-	
-	It is possible to increase the accuracy by generate several samplings. If S realisations are sampled and then averaged out, it yields 
-	
-	\begin{equation*}
-	\begin{split}
-	\label{random_sampling}
-	\frac{1}{S}\sum_{p=1}^{S} \bra{\phi_p}A\ket{\phi_p} = \frac{1}{S} \sum_{p=1}^{S} \sum_{m,n=1}^{D} c_{m,p}^\star c_{n,p}  \bra{\Psi_{m,p}}A\ket{\Psi_{n,p}}
-	\end{split}
-	\end{equation*}
-	
-
-\end{frame}
-%------------------------------------------------------------------------------------------
-
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{The Random Sampling Method}
-	If there is no correlation between the random numbers in different realisation, and the random number $f_n$ and $g_n$ are drawn from an even and symmetric probability distribution, the argument can further be made as
-	\begin{equation*}
-	\begin{split}
-	\lim_{S \to \infty} \frac{1}{S} \sum_{p=1}^{S}  \bra{\phi_p}A\ket{\phi_p} &= E(|c|^2)\sum_{n=1}^{D}\bra{\Psi_n}A\ket{\Psi_n}\\
-	&=E(|c|^2) TrA,
-	\end{split}
-	\end{equation*}
-	where $E(\cdot)$ is the expectation value based on the probability distribution used to draw $c_n$.
-	
-
-	
-	
-\end{frame}
-%------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-\section{Simulation of a Quantum Annealer At Finite Temperature}
 %%------------------------------------------------------------------------------------------
 %\begin{frame}
-%		\frametitle{Validate Suzuki-Trotter Product Formula Approach with Full Diaganolisation Method}
-%		\begin{figure}[h]
-%			\centering
-%			\includegraphics[height=150pt]{result_picture/compare_full_product/result_1e0.eps}
-%			\caption{Insert caption here.}
-%			
-%		\end{figure}
+%	\frametitle{Canonical Ensemble}
+%	An observable A can be calculated by going through all energy eigenstate of the heat bath as following:\\
+%%		with 
+%	
+%	\begin{equation*}
+%	\begin{split}
+%	\label{psi_assemble_method}
+%	\ket{\Psi(t)}&=e^{-iHt} \ket{E_B}\ket{S'}\\
+%%	&=e^{-iHt}\sum_{i} c_i \frac{e^{\frac{-\beta E_B}{2}}}{\sqrt{Z}}\ket{\Psi_E}\ket{S'}
+%	\end{split}
+%	\end{equation*}
+%	\begin{equation*}
+%	\langle A(t)\rangle = \mathbf{Tr} A(t) \rho_B \rho_S= \sum_{B}\frac{e^{(\beta E_B)}}{Z}\bra{\Psi(t)}A\ket{\Psi(t)}
+%	\end{equation*}
+%	
 %\end{frame}
-%
 %%------------------------------------------------------------------------------------------
 %
 %%------------------------------------------------------------------------------------------
 %\begin{frame}
-%	\frametitle{Validate Suzuki-Trotter Product Formula Approach with Full Diaganolisation Method}
-%	\begin{figure}[h]
-%		\centering
-%		\includegraphics[height=150pt]{result_picture/compare_full_product/result_1e-1.eps}
-%		\caption{Insert caption here.}
-%		
-%	\end{figure}
+%	\frametitle{The Random Sampling Method}
+%	Based on the hypothesis that with random sampling one can approximate the solution of a time-dependent Schrödinger Equation by solving a sample of randomly chosen initial state.
+%	\begin{equation*}
+%	\begin{split}
+%	\mathbf{Tr}A=\sum_{n=1}^{D} \bra{\Psi_n}A\ket{\Psi_n}\\
+%	\end{split}
+%	\end{equation*}
+%	
+%	Then a random vector $\ket{\phi}$ can be constructed by choosing D complex random numbers with which mean is 0.
+%	
+%	\begin{equation*}
+%	\begin{split}
+%	\ket{\phi}= \sum_{n=1}^{D} c_n \ket{{\Psi_n}}, ~~ with ~~c_n \equiv f_n + i g_n\\
+%	\end{split}
+%	\end{equation*}
 %\end{frame}
-%
 %%------------------------------------------------------------------------------------------
-
+%
+%
 %%------------------------------------------------------------------------------------------
 %\begin{frame}
-%	\frametitle{Validate Suzuki-Trotter Product Formula Approach with Full Diaganolisation Method}
-%	Annealing time = 1000
-%	\begin{figure}[h]
-%		\centering
-%		\includegraphics[height=150pt]{result_picture/compare_full_product/Figure_result_1e-1.eps}
-%		\caption{Insert caption here}
-%		
-%	\end{figure}
+%	\frametitle{The Random Sampling Method}
+%	It follows that
+%	
+%	\begin{equation*}
+%	\begin{split}
+%	\bra{\phi}A\ket{\phi} = \sum_{m,n=1}^{D} c_m^\star c_n  \bra{\Psi_m}A\ket{\Psi_n}\\
+%	\end{split}
+%	\end{equation*}
+%	
+%	
+%	It is possible to increase the accuracy by generate several samplings. If S realisations are sampled and then averaged out, it yields 
+%	
+%	\begin{equation*}
+%	\begin{split}
+%	\label{random_sampling}
+%	\frac{1}{S}\sum_{p=1}^{S} \bra{\phi_p}A\ket{\phi_p} = \frac{1}{S} \sum_{p=1}^{S} \sum_{m,n=1}^{D} c_{m,p}^\star c_{n,p}  \bra{\Psi_{m,p}}A\ket{\Psi_{n,p}}
+%	\end{split}
+%	\end{equation*}
+%	
+%
 %\end{frame}
+%%------------------------------------------------------------------------------------------
 %
 %%------------------------------------------------------------------------------------------
-
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{Results of the Random Sampling Method}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/T1/Figure_JvsT_T1e0_run1.eps}
-		\hfill
-		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}		
-		
-		% \caption{Insert Caption here}
-	\end{figure}
-\end{frame}
-%------------------------------------------------------------------------------------------
-
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{Results of the Random Sampling Method}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/T1/Figure_JvsT_T1e0_run5.eps}
-		\hfill
-		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}		
-		
-		% \caption{Insert Caption here}
-	\end{figure}
-\end{frame}
-%------------------------------------------------------------------------------------------
+%\begin{frame}
+%	\frametitle{The Random Sampling Method}
+%	If there is no correlation between the random numbers in different realisation, and the random number $f_n$ and $g_n$ are drawn from an even and symmetric probability distribution, the argument can further be made as
+%	\begin{equation*}
+%	\begin{split}
+%	\lim_{S \to \infty} \frac{1}{S} \sum_{p=1}^{S}  \bra{\phi_p}A\ket{\phi_p} &= E(|c|^2)\sum_{n=1}^{D}\bra{\Psi_n}A\ket{\Psi_n}\\
+%	&=E(|c|^2) TrA,
+%	\end{split}
+%	\end{equation*}
+%	where $E(\cdot)$ is the expectation value based on the probability distribution used to draw $c_n$.
+%	
+%
+%	
+%	
+%\end{frame}
+%%------------------------------------------------------------------------------------------
 
 
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{Results of the Random Sampling Method}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/T1/Figure_JvsT_T1e0_run8.eps}
-		\hfill
-		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}		
-		
-		% \caption{Insert Caption here}
-	\end{figure}
-\end{frame}
-%------------------------------------------------------------------------------------------
 
-%------------------------------------------------------------------------------------------
-\begin{frame}
-	\frametitle{Results of the Random Sampling Method}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/T1/Figure_JvsT_T1e0_random.eps}
-		\hfill
-		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}		
-		
-		% \caption{Insert Caption here}
-	\end{figure}
-\end{frame}
-%------------------------------------------------------------------------------------------
+
+
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
@@ -1015,12 +954,293 @@ Based on Distributive property.
 		\item The quantum annealing does provide a different approach to solve 2-SAT problem.
 		\item The quantum annealing process can be influenced not only by the total annealing time, minimum gap, but also the temperature.
 		\item A quantum annealing process at finite temperature will go through a coherent state, non-equlibrium state, and finally a quasistatic state as mentioned in a previous paper.
+		\item The simulation done in this study can be tested on an D-Wave annealer.
 	\end{itemize}
 \end{frame}
 %------------------------------------------------------------------------------------------
 
+%%%%%%%%%%%
+%%%%%%%%%%%
+%%%%%%%%%%%
+\appendix
+
+%------------------------------------------------------------------------------------------
+\mode<presentation>{
+	{   
+		\setbeamercolor{background canvas}{bg=black}
+		\begin{frame}[plain]{}
+		\end{frame}
+	}
+}
+\mode<presentation>{\setbeamercolor{background canvas}{bg=white}}
+\mode*
+%------------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\centering
+	Appendix
+\end{frame}
+%------------------------------------------------------------------------------------------
 
 
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Appendix: Computational Basis}
+	\begin{itemize}
+		\item $\Psi$ is defined as a direct product state of the N single spin states in z-basis.
+		
+		\item Each single spin has two possible states, $\ket{\uparrow}$ or $\ket{\downarrow}$, which ,for convenience, are corresponded to $\ket{0}$ or $\ket{1}$. The relation is defined as 	
+		\begin{equation*}
+		\ket{\uparrow}\equiv \ket{0}, \ket{\downarrow} \equiv \ket{1}
+		\end{equation*}
+		
+		\item 
+		Thus, the single spin state can be written as a linear superposition of theses two basis state, 	
+		\begin{equation*}
+		\ket{\psi} = a(0)\ket{0} + a(1)\ket{1},
+		\end{equation*}
+		where $a(0)$ and $a(1)$ are the coefficient of the amplitude of each state.
+		
+		\item Furthermore, a N-spin system is made up of $2^N$ state vectors and it can be written as 	
+		\begin{equation*}
+		\label{psi_in_compuationalbasis}
+		\ket{\Psi} = a(00\dots0)\ket{00\dots0}+a(00\dots1)\ket{00\dots1}\cdots +a(11\dots1)\ket{11\dots1}+a(11\dots1)\ket{11\dots1},
+		\end{equation*}
+		%		where $a(00\dots0), a(00\dots1)\dots, a(11\dots1)$ are the coefficients of each components. 
+		
+	\end{itemize}
+	
+\end{frame}
+%------------------------------------------------------------------------------------------
+\note{With the basis denotes in 0 and 1 is convenient, because we can now consider tha basis state as a binary number notation from 0 to $2^N-1$. It will be easier denote the ground state as a binary number. }
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Appendix: The Full Diagonalisation method}
+	\begin{equation*}
+	\Psi(t+\tau) =\exp(-iH(\frac{t+\tau}{2})\tau)\Psi(t).
+	\end{equation*}
+	\begin{itemize}
+		%		\item Hamiltonian H is an Hermitian operator formed by a $2^N \times 2^N$ matrix.
+		%		\item the Hamiltonian $H$ can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors.
+		\item By diagonalisation, the time evolution can be calculated as 
+		\begin{equation*}
+		U(\tau) = exp(-i\tau H) = V exp(-i\tau \Lambda) V^\dagger.
+		\end{equation*}
+		\item The main limitation comes from the size of the quantum system.
+		\item This approach serves mostly as a tool to validate the correctness of other algorithm when solving a time-dependent Schrödinger equation.
+	\end{itemize}
+	%	Hamiltonian H is an Hermitian operator formed by a $2^N \times 2^N$ matrix it has a complete set of eigenvectors and eigenvalues. This implies that the matrix H can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors. The transformation is given by $H = V\Lambda V^\dagger$. Thus the time evolution can be calculated as $U(\tau) = exp(-i\tau H) = V exp(-i\tau \Lambda) V^\dagger$. If $V$ and $\Lambda$ are obtained by diagonalising H, time evolution becomes a series of simple matrix multiplication. Since diagonalisation is a typical matrix problem, there are already standard software library can be made use of. \\
+	%	
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+\note{ Hamiltonian H is an Hermitian operator formed by a $2^N \times 2^N$ matrix.\\
+	The complexity of the standard diagnolisation is in the order of $D^3$ D to the power of 3
+	The Hamiltonian $H$ can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors.}
+
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Appendix: The Suzuki-Trotter Product Formula Approach}
+	\begin{itemize}
+		\item The Suzuki-Trotter product formula approach can handle a larger quantum system than the full diagonalisation method does.
+		\item Suzuki-Trotter product formula approximate a unitary matrix exponentials by decomposing the matrix properly, that is 
+		\begin{equation*}
+		\label{suzuki-trotter product formula}
+		\begin{split}
+		U(t) &= \exp(-it H)\\
+		&=\exp(-it(H_1+H_2+\dots+H_K))\\
+		&=\lim_{m \to \infty}(\prod_{k=1}^{K}\exp(-it H_k/m))^m
+		\end{split}
+		\end{equation*}
+		\item  The crucial step of this approach is to choose $H_k$ properly in a way that it is easy enough to calculate there matrix exponential efficiently.
+	\end{itemize}
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Appendix: The Suzuki-Trotter Product Formula Approach and The Full Diaganolisation Method}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[height=150pt]{result_picture/compare_full_product/result_1e0.eps}
+%		\caption{Insert caption here.}
+		
+	\end{figure}
+\end{frame}
+
+%------------------------------------------------------------------------------------------
+
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Appendix: The Suzuki-Trotter Product Formula Approach and the Full Diaganolisation Method}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[height=150pt]{result_picture/compare_full_product/result_1e-1.eps}
+%		\caption{Insert caption here.}
+		
+	\end{figure}
+\end{frame}
+
+%------------------------------------------------------------------------------------------
+
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Appendix: The Energy Spectrum and the Effect of Minimum Gap}
+	\begin{figure}
+		\centering
+		\includegraphics[height=200pt]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_energy_spectrum.png}
+		
+		% \caption{Insert Caption here}
+	\end{figure}
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Appendix: Canonical Ensemble}
+	An observable A can be calculated by going through all energy eigenstate of the heat bath as following:\\
+	%		with 
+	
+	\begin{equation*}
+	\begin{split}
+	\label{psi_assemble_method}
+	\ket{\Psi(t)}&=e^{-iHt} \ket{E_B}\ket{S'}\\
+	%	&=e^{-iHt}\sum_{i} c_i \frac{e^{\frac{-\beta E_B}{2}}}{\sqrt{Z}}\ket{\Psi_E}\ket{S'}
+	\end{split}
+	\end{equation*}
+	\begin{equation*}
+	\langle A(t)\rangle = \mathbf{Tr} A(t) \rho_B \rho_S= \sum_{B}\frac{e^{(\beta E_B)}}{Z}\bra{\Psi(t)}A\ket{\Psi(t)}
+	\end{equation*}
+	
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Appendix: The Random Sampling Method}
+	Based on the hypothesis that with random sampling one can approximate the solution of a time-dependent Schrödinger Equation by solving a sample of randomly chosen initial state.
+	\begin{equation*}
+	\begin{split}
+	\mathbf{Tr}A=\sum_{n=1}^{D} \bra{\Psi_n}A\ket{\Psi_n}\\
+	\end{split}
+	\end{equation*}
+	
+	Then a random vector $\ket{\phi}$ can be constructed by choosing D complex random numbers with which mean is 0.
+	
+	\begin{equation*}
+	\begin{split}
+	\ket{\phi}= \sum_{n=1}^{D} c_n \ket{{\Psi_n}}, ~~ with ~~c_n \equiv f_n + i g_n\\
+	\end{split}
+	\end{equation*}
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Appendix: The Random Sampling Method}
+	It follows that
+	
+	\begin{equation*}
+	\begin{split}
+	\bra{\phi}A\ket{\phi} = \sum_{m,n=1}^{D} c_m^\star c_n  \bra{\Psi_m}A\ket{\Psi_n}\\
+	\end{split}
+	\end{equation*}
+	
+	
+	It is possible to increase the accuracy by generate several samplings. If S realisations are sampled and then averaged out, it yields 
+	
+	\begin{equation*}
+	\begin{split}
+	\label{random_sampling}
+	\frac{1}{S}\sum_{p=1}^{S} \bra{\phi_p}A\ket{\phi_p} = \frac{1}{S} \sum_{p=1}^{S} \sum_{m,n=1}^{D} c_{m,p}^\star c_{n,p}  \bra{\Psi_{m,p}}A\ket{\Psi_{n,p}}
+	\end{split}
+	\end{equation*}
+	
+	
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Appendix: The Random Sampling Method}
+	If there is no correlation between the random numbers in different realisation, and the random number $f_n$ and $g_n$ are drawn from an even and symmetric probability distribution, the argument can further be made as
+	\begin{equation*}
+	\begin{split}
+	\lim_{S \to \infty} \frac{1}{S} \sum_{p=1}^{S}  \bra{\phi_p}A\ket{\phi_p} &= E(|c|^2)\sum_{n=1}^{D}\bra{\Psi_n}A\ket{\Psi_n}\\
+	&=E(|c|^2) TrA,
+	\end{split}
+	\end{equation*}
+	where $E(\cdot)$ is the expectation value based on the probability distribution used to draw $c_n$.
+	
+	
+	
+	
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Appendix: Results of the Random Sampling Method}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/T1/Figure_JvsT_T1e0_run1.eps}
+		\hfill
+		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}		
+		
+		% \caption{Insert Caption here}
+	\end{figure}
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Appendix: Results of the Random Sampling Method}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/T1/Figure_JvsT_T1e0_run5.eps}
+		\hfill
+		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}		
+		
+		% \caption{Insert Caption here}
+	\end{figure}
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Appendix: Results of the Random Sampling Method}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/T1/Figure_JvsT_T1e0_run8.eps}
+		\hfill
+		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}		
+		
+		% \caption{Insert Caption here}
+	\end{figure}
+\end{frame}
+%------------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Appendix: Results of the Random Sampling Method}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/T1/Figure_JvsT_T1e0_random.eps}
+		\hfill
+		\includegraphics[width=0.495\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}		
+		
+		% \caption{Insert Caption here}
+	\end{figure}
+\end{frame}
+%------------------------------------------------------------------------------------------
 
 %%%%%%%%%%%%%%
 %%%%%%%%%%%%%%
