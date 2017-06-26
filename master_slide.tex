@@ -248,7 +248,7 @@ Based on Distributive property.
 		\item The Landau-Zener formula gives out the probability of a diabatic transition from a lower energy eigenstate to a higher energy eigenstate.
 
 	\end{itemize}
-	The probability of a adiabatic transition, $P_{adiabatic}$, can be described by 
+	The probability of an adiabatic transition, $P_{adiabatic}$, can be described by 
 	\begin{equation*}
 	\begin{split}
 	&P_{adiabatic}(T) = 1-P_{diabatic}(T)\\
@@ -473,7 +473,7 @@ Based on Distributive property.
 		%	T:linear 
 		%\end{equation*}
 		
-		3. The system will end up in the ground state of the $H_{problem}$, if the total annealing T is long enough.\\
+		3. The system will end up in the ground state of $H_{problem}$, if the total annealing time T is long enough.\\
 		
 	\end{tcolorbox} 
 \end{frame}
@@ -672,7 +672,7 @@ Based on Distributive property.
 	\begin{figure}
 		\centering
 		\includegraphics[height=150pt]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_productf_EnergyvsLambda.eps}
-		\caption{An result with total annealing time = 1000}
+		\caption{A result with total annealing time = 1000}
 	\end{figure}
 \end{frame}
 %------------------------------------------------------------------------------------------
@@ -680,11 +680,11 @@ Based on Distributive property.
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{Simulation Result: Success Probability}
-	Annealing time = 1000
+%	Annealing time = 1000
 	\begin{figure}
 		\centering
 		\includegraphics[height=150pt]{result_picture/compare_full_product/Figure_result_1e-1.eps}
-		\caption{An result with total annealing time = 1000}
+		\caption{A result with total annealing time = 1000}
 	\end{figure}
 \end{frame}
 %------------------------------------------------------------------------------------------
@@ -694,7 +694,7 @@ Based on Distributive property.
 	\frametitle{Simulation Result: Spin Value}
 		\begin{equation*}
 		\begin{split}
-		H_{init}= -\sum_{i=1}^{N}h_i^x \sigma_i^x ~,~~ H_{problem}= -\sum_{i}^N h_i^z \sigma^z_i  -\sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j
+		~~~~~~~~~~H_{init}= -\sum_{i=1}^{N}h_i^x \sigma_i^x ~,~~ H_{problem}= -\sum_{i}^N h_i^z \sigma^z_i  -\sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j
 		\end{split}
 		\end{equation*} 
 	\begin{figure}
@@ -748,7 +748,7 @@ Based on Distributive property.
 		\begin{equation*}
 		\begin{split}
 		&P_{adiabatic}(T) = 1-P_{diabatic}(T)\\
-		&P_{diabatic}(T) = \exp(-c\cdot \Delta_{min}^2).
+		&P_{diabatic}(T) = \exp(-c\cdot \Delta_{min}^2)
 		\end{split}
 		\end{equation*}
 	\begin{figure}
@@ -986,10 +986,10 @@ Based on Distributive property.
 \begin{frame}
 	\frametitle{Conclusion}
 	\begin{itemize}
-		\item The quantum annealing does provide a different approach to solve 2-SAT problem.
+		\item The quantum annealing does provide a different approach to solve the 2-SAT problem.
 		\item A quantum annealing process at finite temperature will go through a coherent state, non-equlibrium state, and finally a quasistatic state as mentioned in a previous paper.
-		\item The quantum annealing process can be influenced not only by the total annealing time, minimum gap, but also the temperature.
-		\item The simulation done in this study can be tested on a D-Wave annealer and provide explanation for some behaviour of it.
+		\item The quantum annealing process can be influenced not only by the total annealing time, the minimum gap value, but also the temperature.
+		\item The simulation done in this study can be tested on a D-Wave quantum annealer.% and provide explanation for some behaviour of it.
 	\end{itemize}
 \end{frame}
 %------------------------------------------------------------------------------------------
