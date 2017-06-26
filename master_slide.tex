@@ -431,12 +431,12 @@ Based on Distributive property.
 	\end{center}
 	\begin{equation*}
 	\begin{split}
-	H & = m \cdot (m-2)\\
-	& = \sigma_1^2 + \sigma_2^2 + 2\sigma_1 \sigma_2 -2\sigma_1 -2\sigma_2\\
+	H & = (m-2) \cdot m\\
+	& = 2\sigma_1 \sigma_2 -2\sigma_1 -2\sigma_2 + \sigma_1^2 + \sigma_2^2\\
 	& = 2\sigma_1 \sigma_2 -2\sigma_1 -2\sigma_2 + const.\\
 	\end{split}
 	\end{equation*}
-	Then one can correspond $h_1^z$, $h_2^z$, and $J_{12}$ in $H_{problem}$ to 2, 2, and -2 respectively, and repeat this procedure for all clauses. 
+	Then one can correspond  $J_{12}$, $h_2^z$, and $h_1^z$ in $H_{problem}$ to -2, 2, and 2 respectively, and repeat this procedure for all clauses. 
 	\begin{equation*}
 	H_{problem}= -\sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j - \sum_{i}^N h_i^z \sigma^z_i
 	\end{equation*} 
@@ -897,15 +897,16 @@ Based on Distributive property.
 \end{frame}
 %------------------------------------------------------------------------------------------
 
+
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{Effect of Total Annealing Time at different Temperature}
 	
-%	Coherent - Non-equilibrium - Quasistatic
+	%	Coherent - Non-equilibrium - Quasistatic
 	\begin{figure}
 		\centering
-		\includegraphics[height=200pt]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}
-		 \caption{A result at Temperature = 1}
+		\includegraphics[height=200pt]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e3.eps}
+		\caption{A result at Temperature = 1000}
 	\end{figure}
 \end{frame}
 %------------------------------------------------------------------------------------------
@@ -917,8 +918,8 @@ Based on Distributive property.
 	%	Coherent - Non-equilibrium - Quasistatic
 	\begin{figure}
 		\centering
-		\includegraphics[height=200pt]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e3.eps}
-		\caption{A result at Temperature = 1000}
+		\includegraphics[height=200pt]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}
+		\caption{A result at Temperature = 1}
 	\end{figure}
 \end{frame}
 %------------------------------------------------------------------------------------------
