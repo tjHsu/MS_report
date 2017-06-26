@@ -168,20 +168,29 @@
 %	\end{itemize}
 %\end{frame}
 %%------------------------------------------------------------------------------------------
-
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{The Difference between the Quantum Annealing and the Simulated Annealing}
-%	(I should redraw this figure)
+	%	(I should redraw this figure)
 	\begin{figure}[h]
 		\centering
-		\includegraphics[height=150pt]{qaca.png}
-		\caption{An illustration shows the difference between the idea of the quantum annealing and the thermal annealing. Image from [DC08]\footnotemark[1]. }
-		\label{diff_qa_ca}
+		\includegraphics[height=200pt]{result_picture/cost_function/Figure_cost_function.eps}
 	\end{figure}
-	\footnotetext[1]{[DC08] Arnab Das and Bikas K. Chakrabarti. Colloquium: Quantum annealing and analog quantum computation. Reviews of Modern Physics, 2008.}
 \end{frame}
 %------------------------------------------------------------------------------------------
+%%------------------------------------------------------------------------------------------
+%\begin{frame}
+%	\frametitle{The Difference between the Quantum Annealing and the Simulated Annealing}
+%%	(I should redraw this figure)
+%	\begin{figure}[h]
+%		\centering
+%		\includegraphics[height=150pt]{qaca.png}
+%		\caption{An illustration shows the difference between the idea of the quantum annealing and the thermal annealing. Image from [DC08]\footnotemark[1]. }
+%		\label{diff_qa_ca}
+%	\end{figure}
+%	\footnotetext[1]{[DC08] Arnab Das and Bikas K. Chakrabarti. Colloquium: Quantum annealing and analog quantum computation. Reviews of Modern Physics, 2008.}
+%\end{frame}
+%%------------------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
@@ -471,7 +480,7 @@ Based on Distributive property.
 %------------------------------------------------------------------------------------------
 
 
-\section{Simulation of a Quantum Annealer At Zero Temperature}
+\section{Simulation of a Quantum Annealer at Zero Temperature}
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
@@ -690,7 +699,7 @@ Based on Distributive property.
 		\end{equation*} 
 	\begin{figure}
 		\centering
-		\includegraphics[width=270pt]{result_picture/probability_spin_system/Figure_Annealing_sigma_value.eps}
+		\includegraphics[height=135pt]{result_picture/probability_spin_system/Figure_Annealing_sigma_value.eps}
 %		\caption{An result with total annealing time = 1000}
 		% \caption{Insert Caption here}
 	\end{figure}
@@ -702,7 +711,7 @@ Based on Distributive property.
 	\frametitle{Effect of Total Annealing Time}
 	\begin{figure}
 		\centering
-		\includegraphics[height=200pt]{result_picture/probability_spin_system/Figure_Annealing_probability.eps}
+		\includegraphics[height=220pt]{result_picture/probability_spin_system/Figure_Annealing_probability.eps}
 		
 		% \caption{Insert Caption here}
 	\end{figure}
@@ -754,7 +763,7 @@ Based on Distributive property.
 
 
 
-\section{Simulation of a Quantum Annealer At Finite Temperature}
+\section{Simulation of a Quantum Annealer at Finite Temperature}
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
@@ -858,19 +867,32 @@ Based on Distributive property.
 
 
 
+%%------------------------------------------------------------------------------------------
+%\begin{frame}
+%	\frametitle{Effect of Total Annealing Time at different Temperature}
+%
+%%	Temperature = 0.02, 1, 1000
+%	\begin{figure}
+%		\centering
+%		\includegraphics[width=0.320\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T2e-2.eps}
+%		\hfill
+%		\includegraphics[width=0.320\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}
+%		\hfill
+%		\includegraphics[width=0.320\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e3.eps}
+%		 \caption{Left: Temp. = 0.02; Middle: Temp. = 1; Right: Temp. = 1000}
+%	\end{figure}
+%\end{frame}
+%%------------------------------------------------------------------------------------------
+
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{Effect of Total Annealing Time at different Temperature}
-
-%	Temperature = 0.02, 1, 1000
+	
+	%	Coherent - Non-equilibrium - Quasistatic
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.320\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T2e-2.eps}
-		\hfill
-		\includegraphics[width=0.320\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}
-		\hfill
-		\includegraphics[width=0.320\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e3.eps}
-		 \caption{Left: Temp. = 0.02; Middle: Temp. = 1; Right: Temp. = 1000}
+		\includegraphics[height=200pt]{result_picture/JvsT_plot/Exact/Figure_JvsT_T2e-2.eps}
+		\caption{A result at Temperature = 0.02}
 	\end{figure}
 \end{frame}
 %------------------------------------------------------------------------------------------
@@ -882,7 +904,7 @@ Based on Distributive property.
 %	Coherent - Non-equilibrium - Quasistatic
 	\begin{figure}
 		\centering
-		\includegraphics[height=150pt]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}
+		\includegraphics[height=200pt]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}
 		 \caption{A result at Temperature = 1}
 	\end{figure}
 \end{frame}
@@ -891,33 +913,46 @@ Based on Distributive property.
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{Effect of Total Annealing Time at different Temperature}
-	Temperature = 1\\
-	Coherent - Non-equilibrium - Quasistatic
+	
+	%	Coherent - Non-equilibrium - Quasistatic
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.475\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0_coherent.eps}
+		\includegraphics[height=200pt]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e3.eps}
+		\caption{A result at Temperature = 1000}
+	\end{figure}
+\end{frame}
+%------------------------------------------------------------------------------------------
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+%------------------------------------------------------------------------------------------
+\begin{frame}
+	\frametitle{Effect of Total Annealing Time at different Temperature}
+	~~~~~~~~~~~~~~~~~Temperature = 1\\
+%	Coherent - Non-equilibrium - Quasistatic
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.49\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0_coherent.eps}
 		\hfill
-		\includegraphics[width=0.475\textwidth]{Coherent.png}\footnotemark[1]
+		\includegraphics[width=0.49\textwidth]{Coherent.png}\footnotemark[1]
 		% \caption{Insert Caption here}
 	\end{figure}
 	
-	\footnote[1]{Amin, M. H. (2015). Searching for quantum speedup in quasistatic quantum annealers. Physical Review A - Atomic, Molecular, and Optical Physics, 92(5), 1–5. https://doi.org/10.1103/PhysRevA.92.052323}
+	\footnotetext[1]{Amin, M. H. (2015). Searching for quantum speedup in quasistatic quantum annealers. Physical Review A - Atomic, Molecular, and Optical Physics, 92(5), 1–5. https://doi.org/10.1103/PhysRevA.92.052323}
 \end{frame}
 %------------------------------------------------------------------------------------------
 
 %------------------------------------------------------------------------------------------
 \begin{frame}
 	\frametitle{Effect of Total Annealing Time at different Temperature}
-	Temperature = 1000\\
-	Coherent - Non-equilibrium -X- Quasistatic
+	~~~~~~~~~~~~~~Temperature = 1000~~~~~~~~~~~~~~~~~~~~
+%	Coherent - Non-equilibrium -X- Quasistatic
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.475\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e3_coherent.eps}
+		\includegraphics[width=0.49\textwidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e3_coherent.eps}
 		\hfill
-		\includegraphics[width=0.475\textwidth]{Coherent.png}\footnotemark[1]		
+		\includegraphics[width=0.49\textwidth]{Coherent.png}\footnotemark[1]
 		% \caption{Insert Caption here}
 	\end{figure}
-	\footnote[1]{Amin, M. H. (2015). Searching for quantum speedup in quasistatic quantum annealers. Physical Review A - Atomic, Molecular, and Optical Physics, 92(5), 1–5. https://doi.org/10.1103/PhysRevA.92.052323}
+	\footnotetext[1]{Amin, M. H. (2015). Searching for quantum speedup in quasistatic quantum annealers. Physical Review A - Atomic, Molecular, and Optical Physics, 92(5), 1–5. https://doi.org/10.1103/PhysRevA.92.052323}
 \end{frame}
 %------------------------------------------------------------------------------------------
 
@@ -929,7 +964,7 @@ Based on Distributive property.
 		\centering
 		\includegraphics[height=220pt]{result_picture/gap_result_avoid_duplicate/gap_result_environment/avoided_duplicate/Figure_PvsGap_T2e2_Temp1.eps}
 		
-		% \caption{Insert Caption here}
+		\caption{Plots with different problem set}
 	\end{figure}
 \end{frame}
 %------------------------------------------------------------------------------------------
@@ -952,9 +987,9 @@ Based on Distributive property.
 	\frametitle{Conclusion}
 	\begin{itemize}
 		\item The quantum annealing does provide a different approach to solve 2-SAT problem.
-		\item The quantum annealing process can be influenced not only by the total annealing time, minimum gap, but also the temperature.
 		\item A quantum annealing process at finite temperature will go through a coherent state, non-equlibrium state, and finally a quasistatic state as mentioned in a previous paper.
-		\item The simulation done in this study can be tested on an D-Wave annealer.
+		\item The quantum annealing process can be influenced not only by the total annealing time, minimum gap, but also the temperature.
+		\item The simulation done in this study can be tested on a D-Wave annealer and provide explanation for some behaviour of it.
 	\end{itemize}
 \end{frame}
 %------------------------------------------------------------------------------------------
