@@ -27,7 +27,8 @@
 \usepackage{pslatex}
 
 \usepackage{psfrag}
-\usepackage{subfigure}
+%\usepackage{subfigure}
+\usepackage{subcaption} 	
 \usepackage{url}
 
 % =========================================================================
@@ -82,7 +83,7 @@
 %
 %\cite{Ronnow2014} Detect quantum speed up\\
 
-Adiabatic quantum annealing can be considered as a special kind of quantum computation achieved by adiabatic evolution and quantum annealer is a device that can perform adiabatic quantum annealing. The idea of quantum computation was brought up in early 80s \cite{Feynman1982}. It indicated that a simulation of quantum phenomena is not always available on an classical computer, because the amount of resource required grows exponentially along with the size of the physical system. Instead, a quantum phenomena should be simulate by a computer making use of quantum property. The amount of resource required by the simulation is only proportional to the size of the physical system. \\
+Quantum annealing can be considered as a special kind of quantum computation. Quantum annealer is a device that can perform quantum annealing. The idea of quantum computation was brought up in the early 80s \cite{Feynman1982}. Feynman thought that a simulation of quantum phenomena is not always on a classical computer, because the amount of resources required for the computation grows exponentially with the size of the physical system. Instead, quantum phenomena should be simulated by a computer making use of quantum properties. The amount of resources required for the simulation is only proportional to the size of the physical system. \\
 
 After this idea, an interesting topic for scientists is that how computation can benefit from storing, transferring and processing information with quantum properties. Quantum computation is expected to do more than just simulation of a quantum phenomena. Some quantum algorithm has been presented and shown to have a significantly speed-up compared to classical ones. The following are some example. Simon's algorithm can reduce the runtime for the task from an exponential time on a classical computer to a polynomial time on a quantum computer. \cite{Simon1994}. Furthermore, this also serve as the stepping-stone to Shor's Algorithm. Shor's Algorithm for factoring is one of the most well-know quantum algorithm. The time it takes to factor an n-digit number grows as a polynomial in n on a quantum computer. The time for the same task grows exponentially with n on a classical computer \cite{Shor1995}. The toughness of factoring problem is the basis of many cryptography techniques and information is usually encrypted and protected by a large semi prime number. Classical cryptography seems to break down and  quantum cryptography is under research as a response to this. The last one is Grover's search algorithm. To search an item in an unstructured list of size N costs a classical computer running time in an order of N. Grover's algorithm can solve the same task in the order of $\sqrt{N}$ \cite{Grover1996}. Not like Shor's algorithm, which has an exponential speed-up, Grover's algorithm has only a quadratic improvement. It is still a important algorithm because of its board applications, such as speedup the time required to solve NP-complete problems \cite{Cerf2000} \cite{Bennett1997}. \\
 
@@ -132,8 +133,8 @@ On the other hand, quantum annealing may become more efficient and perform bette
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[height=150pt]{qaca.png}
-	\caption{The difference between QA and CA. Image from \cite{Das2008}. }
+	\includegraphics[height=150pt]{Figure_cost_function.eps}
+	\caption{The difference between QA and C }
 	\label{diff_qa_ca}
 \end{figure}
 
@@ -204,8 +205,8 @@ At $t=0$ the annealing process starts and the quantum fluctuation dominate the $
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[height=150pt]{doge.jpeg}
-	\caption{Linear time scheme. (It should be drawn here later on.) }
+	\includegraphics[height=150pt]{Figure_time_scheme.eps}
+	\caption{Linear time scheme.  }
 	\label{linear_timescheme}
 \end{figure}
 
@@ -297,8 +298,8 @@ where $T$ is the total annealing time in Equation \ref{Hamiltonian_set}, $\Delta
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[height=150pt]{doge.jpeg}
-	\caption{a graph show the landau formula parameter. (it should drawn here later on.) Image from\cite{Santoro2002}. }
+	\includegraphics[height=150pt]{Figure_Landau_Zener.eps}
+	\caption{a graph show the landau formula parameter.}
 	\label{landau}
 \end{figure}
 
@@ -806,57 +807,100 @@ where $E(\cdot)$ is the expectation value based on the probability distribution 
 \end{equation}
 
 
-
+\newpage
 \section{Quantum Annealer Simulation: Ideal Case}
 \label{result_ideal}
-	There is no ideal system. Environment will always affect the subsystem. However, I start from a simple case, that is a subsystem without environment effect. 
-\subsection{??Simulation Set up}
-	8 spin without environment spin. With linear time scheme. 
+For the ideal case, the system consists of 8 spins in the simulation. There is no heat bath coupled with the system, which means there is no temperature effect and the system is in its ideal condition. The time scheme of the annealing is linear time scheme.  
+
+%	There is no ideal system. Environment will always affect the subsystem. However, I start from a simple case, that is a subsystem without environment effect. 
+%\subsection{Simulation Set up}
+
+  
 
 \subsection{Result}
 \subsection{the evolution of the spin, energy, and success probability during the annealing}
-	A general picture on the annealing behaviour. The expectation value of spin should start from x direction and end up in z direction. During the process y may only have some fluctuation. For the energy of subsystem we expect it to first increase and then decrease to a lower level. We knew the ground state ready, so in the end we expect to see the ground state evolute form 0 to 1, if this is a successful annealing.
-	\begin{itemize}
-		\item \checkmark Figure here: The system energy vs. lambda
-		\item \checkmark Figure here: The spin x vs. lambda
-		\item \checkmark Figure here: The spin z vs. lambda
-		\item \checkmark Figure here: The success probability vs. lambda
-	\end{itemize}
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[height=300pt]{result_picture/energy_evolution_full_diag/Figure_EnergyvsLambda.png}
-		\caption{Insert caption here.}
-		\label{example_figure}
-	\end{figure}
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[height=250pt]{result_picture/probability_spin_system/Figure_Annealing_spin.png}
-		\caption{Insert caption here.}
-		\label{example_figure}
-	\end{figure}
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[height=300pt]{result_picture/probability_spin_system/Figure_Annealing_probability.png}
-		\caption{Insert caption here: Success Probability vs. $\lambda$.}
-		\label{example_figure}
-	\end{figure}
-\subsubsection{The Effect of step size tau}
-	After having a look at the general properties. Now I try to investigate the size of time step. When the Hamiltonian is time-dependent. The tau should be small enough.  other wise the result would deviate. 
-	\begin{itemize}
-		\item \checkmark Figure here: compare the result of product formula with the result of full diagonalization: success probability vs. annealing Time with different tau.
-	\end{itemize}
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[height=300pt]{result_picture/compare_full_product/Figure_product_formula.png}
-		\caption{Insert caption here.}
-		\label{example_figure}
-	\end{figure}
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[height=300pt]{result_picture/compare_full_product/Figure_full_diag.png}
-		\caption{Insert caption here.}
-		\label{example_figure}
-	\end{figure}
+
+%	\begin{itemize}
+%		\item \checkmark Figure here: The system energy vs. lambda
+%		\item \checkmark Figure here: The spin x vs. lambda
+%		\item \checkmark Figure here: The spin z vs. lambda
+%		\item \checkmark Figure here: The success probability vs. lambda
+%	\end{itemize}
+
+For the ideal case, the simulation methods used are the full diagonalisation method and suzuki-trotter product formula approach. First, the result from the suzuki-trotter product formula approach is compared with the results from the full diagonalisation method in Figure \ref{compare_fd_pf}, in order to validate the correctness of the result from the suzuki-trotter product formula approach. At the beginning of the annealing, the system is in the ground state of the initial Hamiltonian, so the success probability is low. During the annealing, the system slowly transit from the ground state of the initial Hamiltonian to the ground state of the problem Hamiltonian. As a result, the success probability proceeds towards one at the end of the annealing process. \\
+
+\begin{figure}
+	\centering
+	
+	\begin{subfigure}[t]{0.55\textheight}
+%		\centering
+		\includegraphics[width=\linewidth]{Figure_compare_1e0.eps}
+		\caption{$\tau$ = 1.0}\label{fig:fig_a}
+	\end{subfigure}
+	\\
+	\begin{subfigure}[t]{0.55\textheight}
+%		\centering
+		\includegraphics[width=\linewidth]{Figure_compare_1e-1.eps}
+		\caption{$\tau$ = 0.1}\label{fig:fig_b}
+	\end{subfigure}
+	\\
+	
+	\begin{subfigure}[t]{0.55\textheight}
+%		\centering
+		\vspace{0pt}% set the real top as the top
+		\includegraphics[width=\linewidth]{Figure_compare_1e-2.eps}
+		\caption{$\tau$ = 0.01}\label{fig:fig_c}
+	\end{subfigure}
+	\\
+	\begin{minipage}[t]{\linewidth}
+%		\centering
+		\caption{ A comparison of the result from the Suzuki-Trotter product formula approach (blue curve) and the result from the full diaganolisaiton method (red curve) for the success probability as a function of the annealing progress $t / T$ for different time steps,  $\tau$. The success probability is defined as the overlap of the current wave function with the wave function of the exact ground state, $\bra{\Psi(t/T)}\ket{\Psi_{gs}}$, in which the exact ground state is known beforehand. }	
+		\label{compare_fd_pf}
+	\end{minipage}
+\end{figure}
+
+The energy of the system is also an important observable to watch on during the annealing. The result of a particular 2-SAT problem is shown in Figure \ref{fig:energy_evo}. The system starts with an energy equal to $-8$ because its in the ground state of $H_{init}$, which is $-\sum_{i=1}^{8}h_i^x \sigma_i^x$ for a 8 spins system. At the end of the annealing, the system becomes in the ground state of $H_{problem}$, which is $-\sum_{i=1}^8 h_i^z \sigma^z_i - \sum_{i,j =1}^8 J_{ij}^z \sigma^z_i \sigma^z_j$. In this particular case, the ground state energy of $H_{problem}$ is $-9$. \\
+
+
+
+\begin{figure}
+	\centering
+%	\includegraphics[width=\linewidth]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_productf_EnergyvsLambda.eps}
+	\includegraphics[width=\linewidth]{Figure_productf_EnergyvsLambda.eps}
+	\caption{The energy evolution of an 8 spins system for a particular 2-SAT problem.}
+	\label{fig:energy_evo}
+\end{figure} 
+
+Another interesting observable is the spin value which is shown in Figure \ref{fig:spin_evo}. In similar fashion, since the system starts from the ground state of $H_{init}$, the value of $\sigma_1^x, \sigma_2^x \cdots \sigma_8^x$ are $1$. During the annealing, these values approach $0$. On the other hand, the value of $\sigma_1^z, \sigma_2^z \cdots \sigma_8^z$ evolves from $0$ towards the configuration of the ground state of $H_{problem}$.\\
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{result_picture/probability_spin_system/Figure_Annealing_sigma_value.eps}
+	\caption{The evolution of the spin values for a particular 2-SAT problem. }
+	\label{fig:spin_evo}
+\end{figure}
+
+To be brief, the simulation result indicates that a successful quantum annealing process can leads the system to the ground state of problem Hamiltonian and let the spin value end up in the ground state configuration. According to the adiabatic theorem and the Landau-Zener formula, the total annealing time and the minimun gap between the ground state and the first excited state may effect the quantum annealing process. The result of these effect will be shown in the following subsection. 
+%	A general picture on the annealing behaviour. The expectation value of spin should start from x direction and end up in z direction. During the process y may only have some fluctuation. For the energy of subsystem we expect it to first increase and then decrease to a lower level. We knew the ground state ready, so in the end we expect to see the ground state evolute form 0 to 1, if this is a successful annealing.
+
+%\subsubsection{The Effect of step size tau}
+%	After having a look at the general properties. Now I try to investigate the size of time step. When the Hamiltonian is time-dependent. The tau should be small enough.  other wise the result would deviate. 
+%	\begin{itemize}
+%		\item \checkmark Figure here: compare the result of product formula with the result of full diagonalization: success probability vs. annealing Time with different tau.
+%	\end{itemize}
+%%	\begin{figure}[h!]
+%%		\centering
+%%		\includegraphics[height=300pt]{result_picture/compare_full_product/Figure_product_formula.png}
+%%		\caption{Insert caption here.}
+%%		\label{example_figure}
+%%	\end{figure}
+%%	\begin{figure}[h!]
+%%		\centering
+%%		\includegraphics[height=300pt]{result_picture/compare_full_product/Figure_full_diag.png}
+%%		\caption{Insert caption here.}
+%%		\label{example_figure}
+%%	\end{figure}
+
 \subsubsection{The Effect of Annealing Time}
 	Setting up the proper $\tau$. Then I start to simulate the annealing process with different annealing time. The annealing should be long enough to find a ground state. Also I compare the result of full diagonalization and product formula algorithm. 
 	\begin{itemize}
@@ -872,20 +916,29 @@ where $E(\cdot)$ is the expectation value based on the probability distribution 
 		\item \checkmark Figure here: a close view of the result above: the energy for lowest 20~30 states vs. lambda
 		\item \checkmark Figure here: compare: the success probability under the annealing time that maximise the minimum gap difference vs. minimum gap value 
 	\end{itemize}
-		\begin{figure}[h!]
-			\centering
-			\includegraphics[height=300pt]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_energy_spectrum.png}
-			\caption{Insert caption here.}
-			\label{example_figure}
-		\end{figure}
-		
+%	\begin{figure}[h!]
+%		\centering
+%		\includegraphics[height=300pt]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_energy_spectrum.png}
+%		\caption{Insert caption here.}
+%		\label{example_figure}
+%	\end{figure}
+%	
 \newpage
+
+
 	
 \section{Quantum Annealer Simulation with Temperature Effect}
 \label{result_temp}
-	After the case without environment, now we move on to the one with environment.
-\subsection{??Simulation Set up}
-	Here the system consist of a 8-spins subsystem and 8-spins environment. The interaction depend on the coupling factor. When factor is 0, the subsystem cannot be affected by the environment at all. On the other, if the factor is 1, the spin of environment may fully interact with subsystem just as one of the spin inside.
+%After the case without environment, now we move on to the one with environment.
+	In order to simulate a system at finite temperature, the quantum system S is coupled to a heat bath B and the Hamiltonian of the entire system (i.e. S+B) is defined as
+	
+	\begin{equation*}
+	H = H_S + H_B + gH_{SB},
+	\end{equation*} 
+	
+	where $H_S$ is the Hamiltonian of the system, $H_B$ is the Hamiltonian of the heat bath, and $H_{SB}$ is the interaction between the subsystem S and the heat bath B with $g$ indicates the global coupling strength between S and B. 
+%\subsection{Simulation Set up}
+%	Here the system consist of a 8-spins subsystem and 8-spins environment. The interaction depend on the coupling factor. When factor is 0, the subsystem cannot be affected by the environment at all. On the other, if the factor is 1, the spin of environment may fully interact with subsystem just as one of the spin inside.
 
 \subsection{Result}
 \subsubsection{The Effect of Temperature}
@@ -901,13 +954,13 @@ where $E(\cdot)$ is the expectation value based on the probability distribution 
 		
 		\item \checkmark Figure here: repeat above plots with Random wave function
 	\end{itemize}
-	
-		\begin{figure}[h]
-			\centering
-			\includegraphics[height=300pt]{result_picture/JvsT_plot/T1/JvsTwTemp1.png}
-			\caption{Insert caption here.}
-			\label{example_figure}
-		\end{figure}
+%
+%	\begin{figure}[h]
+%		\centering
+%		\includegraphics[height=300pt]{result_picture/JvsT_plot/T1/JvsTwTemp1.png}
+%		\caption{Insert caption here.}
+%		\label{example_figure}
+%	\end{figure}
 	
 \subsubsection{The Effect of Annealing Time}
 	This subsection may be removed 
@@ -916,22 +969,22 @@ where $E(\cdot)$ is the expectation value based on the probability distribution 
 	\begin{itemize}
 		\item \checkmark Figure here: compare: the success probability under the annealing time that maximise the minimum gap difference vs. minimum gap value.
 	\end{itemize}
-		\begin{figure}[h!]
-			\centering
-			\includegraphics[height=350pt]{result_picture/gap_result_environment/Figure_PvsGap_T2e2_Temp1.png}
-			\caption{Insert caption here.}
-			\label{example_figure}
-		\end{figure}
-\section{??D-wave Practice}
-	\cite{Johnson2011}
-	D-wave use of super conducting qubit
-	
-\section{??Parallelization}
-	\definecolor{light-gray}{gray}{0.4}
-	\textcolor{light-gray}{Shoul I put the result of openMP parallerization?}
-	It is obvious that i cant put the parallization in between the different time step, because they depend on each other. So i put openmp in side each step for the state. also because the calculation may cause race condition, i have to put it in the second loop instead of the most outside one. this may decrease the optimisation of the running time. However, i think this is the moderate way to get a balance of not getting code too complicate and too slow running time.
-	
-	! \textcolor{red}{The runtime difference for a single run with core 1,2,4,8,16,32,64,128.}
+%	\begin{figure}[h!]
+%		\centering
+%		\includegraphics[height=350pt]{result_picture/gap_result_environment/Figure_PvsGap_T2e2_Temp1.png}
+%		\caption{Insert caption here.}
+%		\label{example_figure}
+%	\end{figure}
+%\section{??D-wave Practice}
+%	\cite{Johnson2011}
+%	D-wave use of super conducting qubit
+%	
+%\section{??Parallelization}
+%	\definecolor{light-gray}{gray}{0.4}
+%	\textcolor{light-gray}{Shoul I put the result of openMP parallerization?}
+%	It is obvious that i cant put the parallization in between the different time step, because they depend on each other. So i put openmp in side each step for the state. also because the calculation may cause race condition, i have to put it in the second loop instead of the most outside one. this may decrease the optimisation of the running time. However, i think this is the moderate way to get a balance of not getting code too complicate and too slow running time.
+%	
+%	! \textcolor{red}{The runtime difference for a single run with core 1,2,4,8,16,32,64,128.}
 
 	
 \section{Applicatoin on Machine Learning / Simulation}
