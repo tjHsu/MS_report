@@ -292,15 +292,16 @@ $P_{adiabatic}$ is the probability of the system remaining ground state and evol
 \begin{equation}
 \begin{split}
 P_{diabatic}(T) = \exp({\frac{-2\pi\Delta_{min}^2 T}{\alpha\Gamma_0}}),
+\label{eq:landau}
 \end{split}
 \end{equation}
-where $T$ is the total annealing time in Equation \ref{Hamiltonian_set}, $\Delta$ is the minimum gap between two energy eigenstates which are always referred to the gap between the ground state and the first excited state in this report, $\alpha$ is the !relative slope of the two states, and $\Gamma_0$ is the initial strength of the transverse field which is set in $1$ in this report. An illustration of Landau formula can be found in Figure. \ref{landau}. \\
+where $T$ is the total annealing time in Equation \ref{Hamiltonian_set}, $\Delta$ is the minimum gap between two energy eigenstates which are always referred to the gap between the ground state and the first excited state in this report, $\alpha$ is the !relative slope of the two states, and $\Gamma_0$ is the initial strength of the transverse field which is set in $1$ in this report. An illustration of Landau formula can be found in Figure. \ref{fig:landau}. \\
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[height=150pt]{Figure_Landau_Zener.eps}
 	\caption{a graph show the landau formula parameter.}
-	\label{landau}
+	\label{fig:landau}
 \end{figure}
 
 The probability of a successful quantum annealing is thus confined by the minimum gap, $\Delta_{min}$ and the annealing time $T$ correspondingly. The relation between the successful probability and $\Delta_{min}$ can indeed be investigated with a fixed annealing time $T$. Further detail will be presented in Section \ref{result_ideal} and Section \ref{result_temp}. 
@@ -902,20 +903,38 @@ To be brief, the simulation result indicates that a successful quantum annealing
 %%	\end{figure}
 
 \subsubsection{The Effect of Annealing Time}
-	Setting up the proper $\tau$. Then I start to simulate the annealing process with different annealing time. The annealing should be long enough to find a ground state. Also I compare the result of full diagonalization and product formula algorithm. 
-	\begin{itemize}
-		\item Figure here: compare the result of different annealing time of full diagonalization: success probability vs.lambda with different annealing time
-		\item \checkmark Figure here: compare the result of different annealing time of full diagonalization: success probability vs.lambda with different annealing time
-		\item \checkmark Figure here: compare the result of different annealing time of full diagonalization: energy vs.lambda with different annealing time
-		\item \checkmark Figure here: compare the result of different annealing time of full diagonalization: energy vs.lambda with different annealing time
-	\end{itemize}
+%	Setting up the proper $\tau$. Then I start to simulate the annealing process with different annealing time. The annealing should be long enough to find a ground state. Also I compare the result of full diagonalization and product formula algorithm. 
+%	\begin{itemize}
+%		\item Figure here: compare the result of different annealing time of full diagonalization: success probability vs.lambda with different annealing time
+%		\item \checkmark Figure here: compare the result of different annealing time of full diagonalization: success probability vs.lambda with different annealing time
+%		\item \checkmark Figure here: compare the result of different annealing time of full diagonalization: energy vs.lambda with different annealing time
+%		\item \checkmark Figure here: compare the result of different annealing time of full diagonalization: energy vs.lambda with different annealing time
+%	\end{itemize}
+The adiabatic theorem requires a slowly varying Hamiltonian to make the system remain in the ground state while its eigenenergy evolves continuously. In other words, the total annealing time should be long enough. The effect of the total annealing time can be seem in Figure \ref{fig:effect_time_probability}. When the total annealing time is not long enough, the success probability can not reach one in the end. Instead of sticking to the ground state energy, the annealing path of the energy enters a mixed state of the ground state and the other excited state, which ends in a higher energy state. This effect is shown in Figure \ref{fig:effect_time_energy}.  
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{Figure_Annealing_probability.eps}
+	\caption{The evolution of success probability with different total annealing time.}
+	\label{fig:effect_time_probability}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{Figure_productf_EnergyvsLambda_time.eps}
+	\caption{The evolution of energy with different total annealing time.}
+	\label{fig:effect_time_energy}
+\end{figure}
+
+
 \subsubsection{The Effect of Minimum Gap}
-	According to Landau-Zener theorem, the successful probability depend on the gap in between the ground state and the first excited state.
-	\begin{itemize}
-		\item \checkmark Figure here: energy spectrum: the energy for all states vs. lambda
-		\item \checkmark Figure here: a close view of the result above: the energy for lowest 20~30 states vs. lambda
-		\item \checkmark Figure here: compare: the success probability under the annealing time that maximise the minimum gap difference vs. minimum gap value 
-	\end{itemize}
+%	According to Landau-Zener theorem, the successful probability depend on the gap in between the ground state and the first excited state.
+%	\begin{itemize}
+%		\item \checkmark Figure here: energy spectrum: the energy for all states vs. lambda
+%		\item \checkmark Figure here: a close view of the result above: the energy for lowest 20~30 states vs. lambda
+%		\item \checkmark Figure here: compare: the success probability under the annealing time that maximise the minimum gap difference vs. minimum gap value 
+%	\end{itemize}
 %	\begin{figure}[h!]
 %		\centering
 %		\includegraphics[height=300pt]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_energy_spectrum.png}
@@ -923,10 +942,44 @@ To be brief, the simulation result indicates that a successful quantum annealing
 %		\label{example_figure}
 %	\end{figure}
 %	
-\newpage
+It is known that the minimum gap will effect the annealing according to the Landau-Zener formula. With Eq. \ref{eq:landau}, the success probability is expected to decrease when the minimum gap decreases. In Figure \ref{fig:energy_spectrum_whole}, an example energy spectrum of a particular 2-SAT problem is shown. The minimum gap is always defined as the smallest gap between the ground state and the first excited state through out this work. \\
 
-
+\begin{figure}
+	\centering
 	
+	\begin{subfigure}[t]{0.55\textheight}
+	\centering
+	\includegraphics[width=\linewidth]{Figure_energy_spectrum.eps}	
+	\caption{}
+	\label{fig:energy_spectrum}
+	\end{subfigure}
+	\\
+	\begin{subfigure}[t]{0.55\textheight}
+		\centering
+		\includegraphics[width=\linewidth]{Figure_closelook_energy_spectrum.eps}	
+		\caption{}
+		\label{fig:energy_spectrum_close}
+	\end{subfigure}
+	\\
+	\begin{minipage}[t]{\linewidth}
+		%		\centering
+		\caption{ (a) The energy spectrum of a particular 2-SAT problem. The minimum gap between the ground state and the first excited state occures at $t/T = 0.475$ with value$=0.393014$. (b) A close look on the energy spectrum. }	
+		\label{fig:energy_spectrum_whole}
+	\end{minipage}
+\end{figure}
+
+In Figure \ref{fig:minimum_gap_ideal}, each cross point stands for the simulation result of a particular 2-SAT problem and in total 100 2-SAT problems are shown in the plot. The trend between the success probability and the minimum gap of the simulation does agree with what the Landau-Zener formula describes. Base on this result, it can be seen that the difficulty of a problem rely on the value of the minimum gap. If the minimum gap of a 2-SAT problem is quite small, the system may need longer total annealing time to reach the ground state of the problem Hamiltonian.  \\
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{Figure_PvsGap_no_coupling_Temp1.eps}	
+	\caption{A plot with 100 different 2-SAT problems. The total annealing time of the simulation is 200.	 The green line is the fit to $P_{adiabatic} = 1-\exp(-c\cdot \Delta_{min}^2)$. The asymptotic standard error is 0.0178.}
+	\label{fig:minimum_gap_ideal}
+\end{figure}
+
+
+
+\newpage
 \section{Quantum Annealer Simulation with Temperature Effect}
 \label{result_temp}
 %After the case without environment, now we move on to the one with environment.
@@ -1007,112 +1060,109 @@ To be brief, the simulation result indicates that a successful quantum annealing
 
 
 \section{Conclusion}
-\section{miscellaneous}
-
-
-
-
-Please specify your name, matriculation number, name of advisor and the title of your report in \linebreak
-\verb+titlepage.tex+.
-The title page will not count for the 20 pages.
-
-Using bibtex you can cite in an organized way and without much work.
-Just enter the information about a paper or an article you want to cite in the \verb+seminar_report.bib+ file and use \verb+\cite+ to cite them. For example \cite{Author08CVPR},\cite{Author04IJCV}.
-Don't forget to compile the bib file and Latex will add all the cited references at the end.
-Cite all the literature you use and state where figures are from!
-
-I am a section. Latex will give me a number \emph{automatically} and put me into the table of contents.
-Using \verb+\label+ and \verb+\ref+ you can use Latex to write that this is Section \ref{section}.
-
-
-
-\subsection{a subsection}
-I am a subsection.
-
-\begin{itemize}
-	\item I am an item.
-	\item [-] I am another item.
-\end{itemize}
-
-\subsubsection{a small subsection}
-I am a subsubsection, an even smaller subsection.
-
-\begin{tabular}{|l|c|}
-\hline
-I am a tabular & with two columns. \\
-\hline
-The left column is aligned left & and the right columns is centered. \\
-\hline
-\end{tabular}
-
-
-\begin{figure}[h]
-\centering
-\includegraphics[height=100pt]{doge.jpeg}
-\caption{Insert caption here. Image from \cite{lenna}. }
-\label{example_figure}
-\end{figure}
-Figure \ref{example_figure} also gets a number automatically and will be placed where Latex thinks it looks good. You can specify a preference with h(ere), t(op), b(ottom), p(age).
-
-
-%\begin{figure}
-%%	\begin{center}
-%		\resizebox{!}{!}{\input{pvsgap}}
-%%	\end{center}
+%\section{miscellaneous}
+%
+%Please specify your name, matriculation number, name of advisor and the title of your report in \linebreak
+%\verb+titlepage.tex+.
+%The title page will not count for the 20 pages.
+%
+%Using bibtex you can cite in an organized way and without much work.
+%Just enter the information about a paper or an article you want to cite in the \verb+seminar_report.bib+ file and use \verb+\cite+ to cite them. For example \cite{Author08CVPR},\cite{Author04IJCV}.
+%Don't forget to compile the bib file and Latex will add all the cited references at the end.
+%Cite all the literature you use and state where figures are from!
+%
+%I am a section. Latex will give me a number \emph{automatically} and put me into the table of contents.
+%Using \verb+\label+ and \verb+\ref+ you can use Latex to write that this is Section \ref{section}.
+%
+%
+%
+%\subsection{a subsection}
+%I am a subsection.
+%
+%\begin{itemize}
+%	\item I am an item.
+%	\item [-] I am another item.
+%\end{itemize}
+%
+%\subsubsection{a small subsection}
+%I am a subsubsection, an even smaller subsection.
+%
+%\begin{tabular}{|l|c|}
+%\hline
+%I am a tabular & with two columns. \\
+%\hline
+%The left column is aligned left & and the right columns is centered. \\
+%\hline
+%\end{tabular}
+%
+%
+%\begin{figure}[h]
+%\centering
+%\includegraphics[height=100pt]{doge.jpeg}
+%\caption{Insert caption here. Image from \cite{lenna}. }
+%\label{example_figure}
 %\end{figure}
-
-Latex is also really good at printing equations: $E=mc^2$
-
-\begin{equation}
-A = \sum_{i=1}^N A_1 \cdot A_2
-\end{equation}
-
-\subsubsection{Possible Material}
-Result on spin and Energy env,sys,se
-
-success probability of ground state
-
-spin system
-
-energy spectrum
-
-evolution of spin and energy
-
-Runtime comparison
-
-Parallel possibility
-
--Introduction
-
--Annealing Theorem
-
--Full-diagonalization
-
--suzuki-trotter product formula
-
--size of tau
-
--The effect of annealing Time w/ w/o Heat bath
-
--The effect of minimum gap w/ w/o Heat bath
-
--Landau-Zener Theorem
-
--2-SAT problem 
-
--Random wave function  
-
--The effect of heat bath(Coherent - Transverse - quasiequilibrium) at different temperature
-
-D-wave practice
-
--Hamiltonian Mapping
-
--Annealing Time scheme
-
--Time-Dependent Schr�dinger Equation
-
--Boltzmann distribution + trace of the observable
+%Figure \ref{example_figure} also gets a number automatically and will be placed where Latex thinks it looks good. You can specify a preference with h(ere), t(op), b(ottom), p(age).
+%
+%
+%%\begin{figure}
+%%%	\begin{center}
+%%		\resizebox{!}{!}{\input{pvsgap}}
+%%%	\end{center}
+%%\end{figure}
+%
+%Latex is also really good at printing equations: $E=mc^2$
+%
+%\begin{equation}
+%A = \sum_{i=1}^N A_1 \cdot A_2
+%\end{equation}
+%
+%\subsubsection{Possible Material}
+%Result on spin and Energy env,sys,se
+%
+%success probability of ground state
+%
+%spin system
+%
+%energy spectrum
+%
+%evolution of spin and energy
+%
+%Runtime comparison
+%
+%Parallel possibility
+%
+%-Introduction
+%
+%-Annealing Theorem
+%
+%-Full-diagonalization
+%
+%-suzuki-trotter product formula
+%
+%-size of tau
+%
+%-The effect of annealing Time w/ w/o Heat bath
+%
+%-The effect of minimum gap w/ w/o Heat bath
+%
+%-Landau-Zener Theorem
+%
+%-2-SAT problem 
+%
+%-Random wave function  
+%
+%-The effect of heat bath(Coherent - Transverse - quasiequilibrium) at different temperature
+%
+%D-wave practice
+%
+%-Hamiltonian Mapping
+%
+%-Annealing Time scheme
+%
+%-Time-Dependent Schr�dinger Equation
+%
+%-Boltzmann distribution + trace of the observable
 
 
 % +++++++++++++++++++++++++
