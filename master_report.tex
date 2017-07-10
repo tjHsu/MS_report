@@ -983,17 +983,75 @@ In Figure \ref{fig:minimum_gap_ideal}, each cross point stands for the simulatio
 \section{Quantum Annealer Simulation with Temperature Effect}
 \label{result_temp}
 %After the case without environment, now we move on to the one with environment.
-	In order to simulate a system at finite temperature, the quantum system S is coupled to a heat bath B and the Hamiltonian of the entire system (i.e. S+B) is defined as
+	In the previous section, the simulation result of the ideal case has been presented. However, in the real world, the system will always be influenced by the environment. The main difference is the temperature. For the ideal case, the system is perfectly isolated from the environment and stay at zero temperature. On the other hand, for the real case, the system evolves with finite temperature instead of zero temperature. \\
+	
+	In order to simulate the influence of the finite temperature, the quantum system S is coupled to a heat bath B and the Hamiltonian of the entire system (i.e. S+B) is defined as
 	
 	\begin{equation*}
 	H = H_S + H_B + gH_{SB},
 	\end{equation*} 
 	
-	where $H_S$ is the Hamiltonian of the system, $H_B$ is the Hamiltonian of the heat bath, and $H_{SB}$ is the interaction between the subsystem S and the heat bath B with $g$ indicates the global coupling strength between S and B. 
+	where $H_S$ is the Hamiltonian of the system, $H_B$ is the Hamiltonian of the heat bath, and $H_{SB}$ is the interaction between the subsystem S and the heat bath B with $g$ indicates the global coupling strength between S and B. \\
+	
+	
 %\subsection{Simulation Set up}
 %	Here the system consist of a 8-spins subsystem and 8-spins environment. The interaction depend on the coupling factor. When factor is 0, the subsystem cannot be affected by the environment at all. On the other, if the factor is 1, the spin of environment may fully interact with subsystem just as one of the spin inside.
 
 \subsection{Result}
+\subsubsection{Validation of the Random Sampling Method}
+	In principal, the simulation of the entire system can be done with the Suzuki-Trotter product formula approach and approximate the heat bath by canonical thermal state. However, when the size of the system increase, the computational time become not practical. Consequently, the random sampling method is much preferred in order to reduce the computational time. A result comparison of the random sampling method and the canonical ensemble approach is shown in Figure \ref{fig:validation_random_sampling}. The size of the system and the heat bath both are 8 spins. Different colour states for different coupling strength. It is obvious that under this situation, the result is not stable with only one run. If the simulation is repeat several times with different random wave function, the average result can be close to that of the canonical ensemble approach.  \\
+	
+\begin{figure}
+	\centering
+	
+	\begin{subfigure}[t]{.48\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{Figure_JvsT_T1e0_run1.eps}	
+		\caption{}
+%		\label{fig:energy_spectrum}
+	\end{subfigure}
+	\begin{subfigure}[t]{.48\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{Figure_JvsT_T1e0_run2.eps}	
+		\caption{}
+%		\label{fig:energy_spectrum_close}
+	\end{subfigure}
+
+	\begin{subfigure}[t]{.48\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{Figure_JvsT_T1e0_run3.eps}	
+		\caption{}
+		%		\label{fig:energy_spectrum_close}
+	\end{subfigure}
+	\begin{subfigure}[t]{.48\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{Figure_JvsT_T1e0_run4.eps}	
+		\caption{}
+		%		\label{fig:energy_spectrum_close}
+	\end{subfigure}
+	
+	\begin{subfigure}[t]{.48\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{Figure_JvsT_T1e0_random.eps}	
+		\caption{}
+		%		\label{fig:energy_spectrum_close}
+	\end{subfigure}
+	\begin{subfigure}[t]{.48\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{Figure_JvsT_T1e0.eps}	
+		\caption{}
+		%		\label{fig:energy_spectrum_close}
+	\end{subfigure}
+
+	
+	\begin{minipage}[t]{\textwidth}
+		\centering
+		\caption{Each colour states for a different coupling strength between the system and the heat bath. Along the same colour line, each data point represent an annealing result with different total annealing time. The temperature of this set of simulation is 1. Plot (a), (b), (c), and (d) are the results of a single run correspondingly with the random sampling method. Plot (e) is the average result of the 12 runs. Plot (f) is the result computed by going over all canonical ensemble state. It can be seen that Plot (e) and Plot (f) are similar to each other.}	
+		\label{fig:validation_random_sampling}
+	\end{minipage}
+\end{figure}
+
+
 \subsubsection{The Effect of Temperature}
 	\begin{itemize}
 		\item Figure here: display plots with different coupling factor: success probability of a coupling factor with different temperature vs. annealing Time
