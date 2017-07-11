@@ -1053,28 +1053,99 @@ In Figure \ref{fig:minimum_gap_ideal}, each cross point stands for the simulatio
 
 
 \subsubsection{The Effect of Temperature}
-	\begin{itemize}
-		\item Figure here: display plots with different coupling factor: success probability of a coupling factor with different temperature vs. annealing Time
-	\end{itemize}
-\subsubsection{The Process toward Quasi-static}
-	See Fig 3 of this reference	\cite{Amin2015} 
+	A set of simulation result with different temperature is shown in Figure \ref{fig:diff_temperature_heat_bath}. Base on this, some interpretations can be made. First, the purple line always stays the same across different temperature simulation. The reason for this is the zero coupling factor between the system and the heat bath. That is, although the temperature of the heat bath changes, it cannot influence the system. Hence the system is isolated from the environment as it is in the ideal case. Second, the effect of finite temperature does harm the annealing process. However, the effect of this does not uniformly reduce the success probability. Instead, the overall success probability does decrease, but with the trend of going up when the total annealing time is short, then going down, and going up again when the total annealing time is longer. A further detail of this effect is shown in Figure \ref{fig:coherent-non-quasi}. It can be explained by the thermal equilibrium process between the system and the heat bath\cite{Amin2015}. When the total annealing time is short, the heat bath does not yet have enough time to influence the system and the system can stay in its coherent state. In this case, the way that the system evolves during the annealing is similar to the case in ideal condition. As a result, the success probability increase when the total annealing time gets longer. After the total annealing time increase to a certain range, it becomes enough for the heat bath to influence the system. Inside this regime, the heat bath start to really interact with the system and harm the coherency of the system. The entire system enters a non-equilibrium state. Therefore, when the total annealing time increase, the success probability goes down. If the total annealing gets even longer, the system and the heat bath will reach a quasi-static state. That is the influence from the heat bath happens slowly enough for the system to keep itself in an equilibrium state. Therefore, the system can again evolves likes it is in an ideal condition and the success probability can become larger with longer total annealing time. \\
 	
-	In the beginning of the annealing. The probability of finding the ground state may still increase, because the environment haven't yet to affect the subsystem. Then when the environment start interacting with subsystem. After it equilibrium with the subsystem. It will continuous to anneal and the probability will increase. 
-	\begin{itemize}
-		\item \checkmark Figure here: display plots with different temperature: success probability with different coupling factor vs. annealing time
-		
-		\item \checkmark Figure here: repeat above plots with Random wave function
-	\end{itemize}
-%
-%	\begin{figure}[h]
-%		\centering
-%		\includegraphics[height=300pt]{result_picture/JvsT_plot/T1/JvsTwTemp1.png}
-%		\caption{Insert caption here.}
-%		\label{example_figure}
-%	\end{figure}
+\begin{figure}
+	\centering
 	
-\subsubsection{The Effect of Annealing Time}
-	This subsection may be removed 
+	\begin{subfigure}[t]{.55\textheight}
+		\centering
+		\includegraphics[width=\linewidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T2e-2.eps}	
+		\caption{A result at Temperature = 0.02}
+		%		\label{fig:energy_spectrum}
+	\end{subfigure}
+	
+	\begin{subfigure}[t]{.55\textheight}
+		\centering
+		\includegraphics[width=\linewidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0.eps}	
+		\caption{A result at Temperature = 1}
+		%		\label{fig:energy_spectrum_close}
+	\end{subfigure}
+	
+	\begin{subfigure}[t]{.55\textheight}
+		\centering
+		\includegraphics[width=\linewidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e3.eps}	
+		\caption{A result at Temperature = 1000}
+		%		\label{fig:energy_spectrum_close}
+	\end{subfigure}
+	
+	\begin{minipage}[t]{\textwidth}
+		\centering
+		\caption{The simulation is done with canonical ensemble approach.}	
+		\label{fig:diff_temperature_heat_bath}
+	\end{minipage}
+\end{figure}
+
+\begin{figure}
+	\centering
+	
+	\begin{subfigure}[t]{.45\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{Figure_JvsT_T2e-2_coherent.eps}	
+		\caption{Temperature = 0.02}
+		%		\label{fig:energy_spectrum}
+	\end{subfigure}
+	\begin{subfigure}[t]{.45\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{Figure_JvsT_T1e0_coherent.eps}	
+		\caption{Temperature = 1}
+		%		\label{fig:energy_spectrum}
+	\end{subfigure}
+
+	
+	\begin{subfigure}[t]{.45\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{Figure_JvsT_T1e3_coherent.eps}	
+		\caption{Temperature = 1000}
+		%		\label{fig:energy_spectrum_close}
+	\end{subfigure}
+	\begin{subfigure}[t]{.45\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{Coherent.png}	
+		\caption{}
+		%		\label{fig:energy_spectrum_close}
+	\end{subfigure}
+	
+	\begin{minipage}[t]{\textwidth}
+		\centering
+		\caption{In Figure (a) the temperature is so low that the heat bath is also in its ground state, so the temperature effect does not influence the system much and both curve are quite similar. On the other hand, in Figure (c) the temperature is too high and the heat bath damage the coherence of the system a lot within the non-equilibrium regime. Consequently, the success probability becomes very low and very hard to go up again. In Figure (b) the heat bath is in a moderate temperature which can show the phenomenon more clearly. The curve first goes up because the system is still in its coherent state. Then the curve goes down in the cause of the influence of the heat bath. The curve goes up again since the entire system enters a quasi-static state and the system can evolves coherently.}	
+		\label{fig:coherent-non-quasi}
+	\end{minipage}
+\end{figure}
+
+
+
+
+
+%\subsubsection{The Process toward Quasi-static}
+%	See Fig 3 of this reference	\cite{Amin2015} 
+%	
+%	In the beginning of the annealing. The probability of finding the ground state may still increase, because the environment haven't yet to affect the subsystem. Then when the environment start interacting with subsystem. After it equilibrium with the subsystem. It will continuous to anneal and the probability will increase. 
+%	\begin{itemize}
+%		\item \checkmark Figure here: display plots with different temperature: success probability with different coupling factor vs. annealing time
+%		
+%		\item \checkmark Figure here: repeat above plots with Random wave function
+%	\end{itemize}
+%%
+%%	\begin{figure}[h]
+%%		\centering
+%%		\includegraphics[height=300pt]{result_picture/JvsT_plot/T1/JvsTwTemp1.png}
+%%		\caption{Insert caption here.}
+%%		\label{example_figure}
+%%	\end{figure}
+%	
+%\subsubsection{The Effect of Annealing Time}
+%	This subsection may be removed 
 \subsubsection{The Effect of Minimum Gap}
 	So the scatter effect come from the spin numbering. When the coupling factor become larger and larger. The sccatering effect become more clear. On the other hand, Temperature is not the critical reason to this phenomenon. But the temperature will also enlarge the scatter. The temperature has an influence on how many environment state are part of the evolution. If the temperature is low the revolution only in the ground state. When temperatrue is high, almost all environment state is part of the evolution. the state is average out by the environment states. So the scatter of the problem hamiltonian is not clear. Also since we are in an effective temperature unit. delta gap/Temperature. Therefore, when temperature is larger than gap, they are in excited state. so the annealing is not clear and cant find the ground state. vice versa. when the temperature is smaller than 1. we can see the annealing effect and probability to find the ground state. 
 	\begin{itemize}
