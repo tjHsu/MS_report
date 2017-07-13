@@ -1146,17 +1146,49 @@ In Figure \ref{fig:minimum_gap_ideal}, each cross point stands for the simulatio
 %	
 %\subsubsection{The Effect of Annealing Time}
 %	This subsection may be removed 
-\subsubsection{The Effect of Minimum Gap}
-	So the scatter effect come from the spin numbering. When the coupling factor become larger and larger. The sccatering effect become more clear. On the other hand, Temperature is not the critical reason to this phenomenon. But the temperature will also enlarge the scatter. The temperature has an influence on how many environment state are part of the evolution. If the temperature is low the revolution only in the ground state. When temperatrue is high, almost all environment state is part of the evolution. the state is average out by the environment states. So the scatter of the problem hamiltonian is not clear. Also since we are in an effective temperature unit. delta gap/Temperature. Therefore, when temperature is larger than gap, they are in excited state. so the annealing is not clear and cant find the ground state. vice versa. when the temperature is smaller than 1. we can see the annealing effect and probability to find the ground state. 
-	\begin{itemize}
-		\item \checkmark Figure here: compare: the success probability under the annealing time that maximise the minimum gap difference vs. minimum gap value.
-	\end{itemize}
-%	\begin{figure}[h!]
-%		\centering
-%		\includegraphics[height=350pt]{result_picture/gap_result_environment/Figure_PvsGap_T2e2_Temp1.png}
-%		\caption{Insert caption here.}
-%		\label{example_figure}
-%	\end{figure}
+\subsubsection{The Effect of the Minimum Gap}
+	It is already known from the Landau-Zener formula that the minimum gap has an effect on the difficulty of the annealing process. If the minimum gap is small, the annealing may need longer annealing time to keep on the ground state instead of a mix state with higher energy during the process. In the ideal case, the simulation result can be fitted well with the model as shown in Figure \ref{fig:minimum_gap_ideal}. Following the similar set up, the simulation is done again but with the heat bath. Since each instance is a 16 spins problem (i.e. S = 8, B = 8) and in total 100 2-SAT problems are involved, the algorithm used here is the random sampling method in order to reduce the computational time. The result is shown in Figure \ref{fig:minimum_gap_coupling} and Figure \ref{fig:minimum_gap_temperature}.\\
+	
+	In Figure \ref{fig:minimum_gap_coupling}, the plot with $g=0.0$ can be considered as the result in the ideal condition, because there is no interaction between the system and the heat bath. If the coupling factor is turned on, the first effect is the drop of the success probability. It can be seen clearly that when the success probability of the result with $g = 0.0$ climbs up to around $0.8$, the success probability of the result with $g = 1.0$ stays only between $0$ and $0.2$. Furthermore, the role of the coupling factor not only cut down the success probability, but also causes scattering. In the result with $g = 0.0$, the data points can almost form a smooth line, which can be describe by the Landau-Zener formula. On the other hand, in the result with $g = 0.5$ the data point scatter in the range of $0$ to $0.5$. However, in the result with $g = 0.0$ the range of scattering become narrower. This can be understood as a combined effect of the both. The strong interaction between the system and the heat bath suppresses the growth of the success probability even with a greater minimum gap value. Although a large coupling factor tend to enlarge the range of scattering, this range is made narrower because of the reduction of the overall success probability. As a result, the range of scattering in the result $g = 1.0$ is narrower than that in the result with $g = 0.5$.\\
+	
+	In Figure \ref{fig:minimum_gap_temperature}, the similar fact can be observed. In the result with temperature $= 0.01$, it can be seen that with an enough annealing time, the success probability can go up to around $1$. The increase of the temperature causes the drop of the overall success probability and the scattering of the data point. The comparison of the result with temperature $= 0.5$ and the result with temperature $= 1.0$ also shown that a combined effect of the both may narrow the range of the scattering instead of enlarging it. It is worth explaining why there is no much difference between the result with temperature $= 0.01$ and the result with temperature $= 0.05$. The reason is that under this particular simulation setting the heat bath is in its ground state with both temperature. Consequently, the result of these two setting are quite similar to each other.\\
+	
+
+%	the scatter effect come from the spin numbering. When the coupling factor become larger and larger. The sccatering effect become more clear. On the other hand, Temperature is not the critical reason to this phenomenon. But the temperature will also enlarge the scatter. The temperature has an influence on how many environment state are part of the evolution. If the temperature is low the revolution only in the ground state. When temperatrue is high, almost all environment state is part of the evolution. the state is average out by the environment states. So the scatter of the problem hamiltonian is not clear. Also since we are in an effective temperature unit. delta gap/Temperature. Therefore, when temperature is larger than gap, they are in excited state. so the annealing is not clear and cant find the ground state. vice versa. when the temperature is smaller than 1. we can see the annealing effect and probability to find the ground state.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{Figure_PvsGap_T2e2_Temp1.eps}	
+	\caption{A set of simulation result with 100 different 2-SAT problems. The total annealing time of the simulation is $200$ and the temperature is $1$.}
+	\label{fig:minimum_gap_coupling}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{Figure_PvsGap_T2e2_Temp1_avoid_duplicate.eps}	
+	\caption{A set of simulation result with 48 2-SAT problems with different minimum gap values. The total annealing time of the simulation is $200$ and the temperature is $1$.}
+	\label{fig:minimum_gap_coupling_avoid_duplicate}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{Figure_PvsGap_T1e3_G02.eps}	
+	\caption{A set of simulation result with 100 different 2-SAT problems. The total annealing time of the simulation is $1000$ and the coupling factor is $0.2$.}
+	\label{fig:minimum_gap_temperature}
+\end{figure}
+
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{Figure_PvsGap_T1e3_G02_avoid_duplicate.eps}	
+	\caption{A set of simulation result with 48 2-SAT problems with different minimum gap values. The total annealing time of the simulation is $1000$ and the coupling factor is $0.2$.}
+	\label{fig:minimum_gap_temperature_avoid_duplicate}
+\end{figure}
+
+
+
+
 %\section{??D-wave Practice}
 %	\cite{Johnson2011}
 %	D-wave use of super conducting qubit
@@ -1168,26 +1200,55 @@ In Figure \ref{fig:minimum_gap_ideal}, each cross point stands for the simulatio
 %	
 %	! \textcolor{red}{The runtime difference for a single run with core 1,2,4,8,16,32,64,128.}
 
-	
+\newpage
 \section{Applicatoin on Machine Learning / Simulation}
 	
+	The properties of the quantum annealing in dealing with optimisation problem makes it a potential candidate for machine learning application. A tree cover detector based on aerial photography was implemented with quantum annealer processor \cite{Boyda2017}. Boosting is the learning algorithm used in the paper. The main idea of boosting is that a strong classifier can be constructed by properly combining a set of weak classifier. A weak classifier is required to classify only slightly better than random guess, which is $50\%$. The critical part of boosting is to find a proper weight of these weak classifiers and build the strong classifier. In order to fit the algorithm with a quantum annealer, the original boosting formula can be modified into the following one [??]. \\
+	
+	\begin{equation}
+	C(t) = sign\left(\sum_{i=1}^{N} w_i c_i(t)\right)
+	\end{equation} 
+	
+	, where t is the data sample, $c_i\in\{-1,+1\}$ is the weak classifier, and $w_i\in\{0,+1\}$ is the weight of the weak classifier. The weights are required to be binary in this modified version. As a result, the strong classifier becomes just a majority vote of the weak classifiers. The cost function choose here is regulated quadratic loss function. With a set of training data, $T$, if each single data $t$ has been classified correctly and labelled by $y(t)\in\{-1,+1\}$, the goal of the learning is \\
+	
+	\begin{equation}
+	\operatorname*{arg\,min}_{w_i} \left\{ \sum_{t\in T} \left( \sum_{i=1}^{N} w_i c_i(t) - y(t) \right)^2 + \lambda \sum_{i=1}^{N} w_i  \right\}
+	\end{equation}
+	
+	, where $\lambda$ is the regularisation parameter. The formula implies that if a weak classifier, $c_i(t)$, can in general give data the same label as $y(t)$ does, it is better to keep this weak classifier, which can be done by setting $w_i$ to $1$. On the other hand, if $c_i(t)$ cannot labelled the training data set correctly most of the time, this classifier should probably be discarded. The role of regularisation parameter is to prevent overfitting. That is, only the important weak classifier are selected as part of the strong classifier. If the algorithm tries to include more weak classifiers than what it actually needs, the regularisation parameter will penalise this behave by raising up the cost value. This formula can be rewritten as following by expanding quadratic part.\\
+	
+	\begin{equation}
+	\operatorname*{arg\,min}_{w_i} \left\{
+	\sum_{i}\left( \lambda -2\sum_{t\in T}c_i(t)y(t) \right) w_i + \sum_{i,j}\left( \sum_{t\in T} c_i(t)c_j(t) \right) w_i w_j +const
+	\right\}
+	\end{equation}
+	
+	The format of the argument is similar to the optimisation problem that can be solved by a quantum annealer. However, the quantum annealing algorithm prefers variables $w_i$ to be in a set of $\{-1,+1\}$ instead of $\{0,+1\}$. A transformation can be made by assigning $s_i = 2w_i -1$ and the formula becomes \\
+	
+	\begin{equation}
+	\operatorname*{arg\,min}_{s_i} \left\{
+	\sum_{i}\left( \frac{\lambda}{2} -\sum_{t\in T}c_i(t)y(t) +\frac{1}{2}\sum_{j}\left( \sum_{t\in T} c_i(t)c_j(t) \right)\right) s_i + \frac{1}{2}\sum_{i>j}\left( \sum_{t\in T} c_i(t)c_j(t) \right) s_i s_j +const
+	\right\}
+	\end{equation}
+	
+	With this proper format, the quantum annealer can step in and solve the optimisation problem. Another possible way to construct this format is simply setting $w_i$ in a set of $\{-1,+1\}$, but there is no corresponding regularisation part to prevent the algorithm from overfitting. The performance of these two formats depends on the dataset and needs to be tested out. \\
+	
+	The second application is a feature extraction of the human face implemented on a quantum annealer\cite{OMalley2017}. The use of a feature extraction is to transform a large set of raw data into a reduced set of informative and non-redundant feature. In order to implement this with quantum annealer processor, nonnegative binary matrix factorisation (NBMF) is used. NBMF can be described by the following factorisation. \\
+	
+	\begin{equation}
+	V^{n\times m} \approx W^{n\times k}H^{k\times m}
+	\end{equation}
+	
+	,where n is the dimension of the data, m is the number of the data, k is the number of the feature extracted and $k < n$. The matrix elements of $W$ must be nonnegative and the matrix elements of $H$ must be binary. \\
+	
+	 
 	\cite{Adachi2015}
 	\cite{Benedetti2016}
 	\cite{Boyda2017}
 	\cite{OMalley2017}
 	\cite{Potok2017}
 	
-	
-	Application
-	 
-	-tree recognition
-	
-	-hand writing
-	
-	-face detection
-	
-
-
+\newpage	
 \section{Conclusion}
 %\section{miscellaneous}
 %
@@ -1293,9 +1354,8 @@ In Figure \ref{fig:minimum_gap_ideal}, each cross point stands for the simulatio
 %
 %-Boltzmann distribution + trace of the observable
 
-
+\newpage
 % +++++++++++++++++++++++++
-
 % =========================================================================
 \bibliographystyle{alpha}
 \bibliography{master_report}
