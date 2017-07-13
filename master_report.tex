@@ -1239,17 +1239,72 @@ In Figure \ref{fig:minimum_gap_ideal}, each cross point stands for the simulatio
 	V^{n\times m} \approx W^{n\times k}H^{k\times m}
 	\end{equation}
 	
-	,where n is the dimension of the data, m is the number of the data, k is the number of the feature extracted and $k < n$. The matrix elements of $W$ must be nonnegative and the matrix elements of $H$ must be binary. \\
+	,where n is the dimension of the data, m is the number of the data, k is the number of the feature extracted and $k < n$. The matrix elements of $W$ must be nonnegative and the matrix elements of $H$ must be binary. The goal of the learning is \\
 	
+	\begin{equation}
+	\operatorname*{arg\,min}_{H}  \| V-WH \|_F 
+	\label{eq:NBMF}
+	\end{equation}
+	
+	,where $\|\cdot\|_F$ is the Frobenius norm. This formula can be decomposed into a set of independent optimisation problems based on each column of $H$, because $i^{th}$ column of $WH$ only depends only on the $i^{th}$ column of $H$ and other columns of $H$ do not have any impact on this at all. Therefore the Equation \ref{eq:NBMF} can be simplified a series of the following equation for $i = 1, 2, \cdots, m$ . \\
 	 
-	\cite{Adachi2015}
-	\cite{Benedetti2016}
-	\cite{Boyda2017}
-	\cite{OMalley2017}
-	\cite{Potok2017}
+	\begin{equation}
+	H_i = \operatorname*{arg\,min}_{q}  \| V_i - Wq\|_2 
+	\end{equation} 
+	 
+	,where $H_i$ denotes the $i^{th}$ column of $H$ and $V_i$ denotes the $i^{th}$ column of $V$. In order to solve this linear least squares problem with a quantum annealer, a further transformation can be made and it results in \\
 	
+	\begin{equation}
+	\operatorname*{arg\,min}_{q}\left\{  
+	\sum_{i}^{k}\left( \sum_{r}^{n} V_r W_{ir} \right) q_i + \sum_{i,j}^{k} \left( \sum_{r}^{n}W^T_{ir}W_{rj}\right) q_i q_j + const
+	\right\}
+	\end{equation}
+	 
+	 Although with this form $q_i$ will be solved in a set of $\{-1,+1\}$ by a quantum annealer rather than the required binary set $\{0,+1\}$, the feature extraction can still be achieved. One can reform the formula by substituting variable $s_i=2q_i -1$ as the previous example and make the final configuration of $q_i$ in $\{-1,+1\}$. The performance of these both again can only be benchmarked with real data.\\
+	 
+	As the two example shown above, the quantum annealing technique can be considered as a different computational approach when implementing some machine learning algorithms. However, there are some drawbacks. First, the original algorithm needs to be transformed into a combinatorial optimisation problem that can be solved by a quantum annealer. This may constrain the generality of the quantum annealing technique, because not all machine learning algorithm can be transformed into a combinatorial optimisation problem. The second drawback is the limitation of the problem size. The computational power offered by the currently available machine restricts the size to be quite small when comparing to what a conventional computer can solve nowadays. These imperfect properties nonetheless make the quantum annealing suitable to certain kind of machine learning that needs large amount of simple computations without requiring a high accuracy, such as boosting. To summarise, while the machine learning has been identified as one of the area where the quantum annealing technique may be useful, whether it will become a competitive player in the long run depends on the maturation of its hardware, which is the quantum annealer.  \\	 
+	
+%	\cite{Adachi2015}
+%	\cite{Benedetti2016}
+%	\cite{Boyda2017}
+%	\cite{OMalley2017}
+%	\cite{Potok2017}
+%	
 \newpage	
 \section{Conclusion}
+
+This work attempted to simulate a quantum annealer solving the 2-SAT problem at zero and finite temperature. After encoding the 2-SAT problem into the problem Hamiltonian, the simulation can be done by solving a time-dependent Schrödinger equation which describes the quantum annealing process. \\
+
+
+For the zero temperature case, the first algorithm used is the full diagonalisation. It is a straightforward approach and standard libraries, such as LAPACK, are available for diagonalising matrix. The limitation is that the size of the problem cannot be large, otherwise the computational time becomes not practical. In spite of this, the full diagonalisation method can well serve as a validation for other algorithm when solving the time-dependent Schrödinger equation. The second algorithm used is the Suzuki-Trotter product formula approach. With this approach, one can decompose a matrix exponential into a series product of small matrix exponential. If the analytical expression of the small matrix exponential is known, the simulation can be done without matrix diagonalisation. This approach is validated by the full diagonalisation method and then be used to simulate a 8 spin system at zero temperature. \\
+
+For the finite temperature case, the temperature effect is provided by coupling a heat bath to the system. The heat bath can be approximated by the canonical ensemble. The quantum annealing process of the entire system can then be simulated by running simulation on the system and every energy state of the hear bath respectively. The computational time of this approach grows linearly with the number of the energy state of the hear bath. Therefore, if the size of the heat bath is large, this approach cannot be considered practical. To reduce the computational time in a proper range, the random sampling method is presented. The main assumption is that the heat bath can be approximate with a random initial state, which means the simulation can be done with this random initial state instead of all energy states. Although multiple runs are usually necessary in order to improve the accuracy, the random sampling method still reduces the computational time greatly. \\
+
+The simulation result of the quantum annealing at zero temperature matched what Landau-Zener formula describes. the success probability decreases, when the minimum gap value gets smaller. This also indicates that the difficulty of a quantum annealing process can be estimated by its minimum gap value. The result at zero temperature also shown that without enough annealing time, the system cannot end in the ground state of the problem Hamiltonian, which is described by the adiabatic theorem. \\
+
+The simulation result of the quantum annealing at finite temperature shows that the trend of the success probability can be explained by thermal equilibrium. When the total annealing time is short, the heat bath has not yet influenced the system and the system can evolve coherently. If the total annealing time becomes longer, the heat bath and the system start to really interact with each other. The success probability reduces with longer total annealing time in this regime. If the total annealing time gets ever longer, the entire system reaches a quasi-static state. As a result the system can again evolve coherently and the success probability increases with longer total annealing time. The effect of the temperature and the coupling factor lowers the overall success probability. Furthermore, the effect of these both causes data to be scattering instead of a smooth line described by the Landau-Zener formula. \\
+
+In summary, this work demonstrated some general properties of a quantum annealer and all simulation done in this work can be implemented in a quantum annealer hardware for comparison. The quantum annealing technique provides a different approach to solve the 2-SAT problem. Furthermore, this technique can be applied in other area such as machine learning, if one can transform the problem into a proper form for a quantum annealer.  The \\
+
+
+ 
+%The quantum annealing process of the entire system can be simulated by approximating the heat bath with canonical ensemble and running the Suzuki-Trotter product formula approach on the system with every energy state of the heat bath. 
+
+
+
+
+ 
+
+
+
+
+
+Title: 
+Simulation of a quantum annealer for solving the 2-satisfiability problem at zero and finite temperature.
+
+Abstract:
+In this study, we simulated a quantum annealing process at zero and finite temperature by using full diagonalisation and the Suzuki-Trotter product formula approach. We used quantum annealing to solve the 2-satisfiability ( 2-SAT) problem. We have demonstrated that the probability for finding the solution depends not only on the total annealing time, the minimum gap between the ground state and the first excited state of the system during the annealing process, but also on the temperature.
+
 %\section{miscellaneous}
 %
 %Please specify your name, matriculation number, name of advisor and the title of your report in \linebreak
