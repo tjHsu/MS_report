@@ -520,7 +520,7 @@ Please note that the operation mentioned here are done in place. Namely, instead
 
 \subsection{Algorithm for Ideal Case}
 
-So here i am going to try out two algorithm. First is full diagonalization, which i use Lapack to solve the eigensystem. Product formula break the evolution into small operation and make the computation of large system possible.\\
+So here I am going to try out two algorithm. First is full diagonalization, which i use Lapack to solve the eigensystem. Product formula break the evolution into small operation and make the computation of large system possible.\\
 
 
 \subsubsection{Full Diagonalisation}
@@ -784,22 +784,18 @@ where $E(\cdot)$ is the expectation value based on the probability distribution 
 \section{Quantum Annealer Simulation: Ideal Case}
 \label{result_ideal}
 
-For the ideal case, the system consists of 8 spins in the simulation. There is no heat bath coupled with the system, which means there is no temperature effect and the system is in its ideal condition. The time scheme of the annealing is linear time scheme.  \\
+For the ideal case, the system consists of 8 spins in the simulation. There is no heat bath coupled with the system. In other words, there is no temperature effect and the system is in its ideal condition. The time scheme of the annealing is the linear time scheme.  \\
 
 %	There is no ideal system. Environment will always affect the subsystem. However, I start from a simple case, that is a subsystem without environment effect. 
 %\subsection{Simulation Set up}
 
+
+
 \subsection{Result}
-\subsection{the evolution of the spin, energy, and success probability during the annealing}
+\subsubsection{The Evolution of the Energy, the Success Probability, and the Spin Value}
 
-%	\begin{itemize}
-%		\item \checkmark Figure here: The system energy vs. lambda
-%		\item \checkmark Figure here: The spin x vs. lambda
-%		\item \checkmark Figure here: The spin z vs. lambda
-%		\item \checkmark Figure here: The success probability vs. lambda
-%	\end{itemize}
 
-For the ideal case, the simulation methods used are the full diagonalisation method and suzuki-trotter product formula approach. First, the result from the suzuki-trotter product formula approach is compared with the results from the full diagonalisation method in Figure \ref{compare_fd_pf}, in order to validate the correctness of the result from the suzuki-trotter product formula approach. At the beginning of the annealing, the system is in the ground state of the initial Hamiltonian, so the success probability is low. During the annealing, the system slowly transit from the ground state of the initial Hamiltonian to the ground state of the problem Hamiltonian. As a result, the success probability proceeds towards one at the end of the annealing process. \\
+For the ideal case, the simulation methods used are the full diagonalisation method and suzuki-trotter product formula approach. First, the result from the suzuki-trotter product formula approach is compared with the results from the full diagonalisation method in Figure \ref{compare_fd_pf}, in order to validate the correctness of the result from the suzuki-trotter product formula approach. At the beginning of the annealing, the system is in the ground state of the initial Hamiltonian, so the success probability is low. During the annealing, the system slowly transit from the ground state of the initial Hamiltonian to the ground state of the problem Hamiltonian. As a result, the success probability proceeds towards $1$ at the end of the annealing process. \\
 
 \begin{figure}
 	\centering
@@ -835,7 +831,6 @@ The energy of the system is also an important observable to watch on during the 
 
 \begin{figure}
 	\centering
-%	\includegraphics[width=\linewidth]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_productf_EnergyvsLambda.eps}
 	\includegraphics[width=\linewidth]{Figure_productf_EnergyvsLambda.eps}
 	\caption{The energy evolution of an 8 spins system for a particular 2-SAT problem.}
 	\label{fig:energy_evo}
@@ -850,43 +845,18 @@ Another interesting observable is the spin value which is shown in Figure \ref{f
 	\label{fig:spin_evo}
 \end{figure}
 
-To be brief, the simulation result indicates that a successful quantum annealing process can leads the system to the ground state of problem Hamiltonian and let the spin value end up in the ground state configuration. According to the adiabatic theorem and the Landau-Zener formula, the total annealing time and the minimun gap between the ground state and the first excited state may effect the quantum annealing process. The result of these effect will be shown in the following subsection. \\
+To be brief, the simulation result indicates that a successful quantum annealing process can leads the system to the ground state of the problem Hamiltonian and let the spin value end up in the ground state configuration. According to the adiabatic theorem and the Landau-Zener formula, the total annealing time and the minimun gap between the ground state and the first excited state may influence the quantum annealing process. The result of these effects will be shown in the following subsection. \\
+
 %	A general picture on the annealing behaviour. The expectation value of spin should start from x direction and end up in z direction. During the process y may only have some fluctuation. For the energy of subsystem we expect it to first increase and then decrease to a lower level. We knew the ground state ready, so in the end we expect to see the ground state evolute form 0 to 1, if this is a successful annealing.
 
-%\subsubsection{The Effect of step size tau}
-%	After having a look at the general properties. Now I try to investigate the size of time step. When the Hamiltonian is time-dependent. The tau should be small enough.  other wise the result would deviate. 
-%	\begin{itemize}
-%		\item \checkmark Figure here: compare the result of product formula with the result of full diagonalization: success probability vs. annealing Time with different tau.
-%	\end{itemize}
-%%	\begin{figure}[h!]
-%%		\centering
-%%		\includegraphics[height=300pt]{result_picture/compare_full_product/Figure_product_formula.png}
-%%		\caption{Insert caption here.}
-%%		\label{example_figure}
-%%	\end{figure}
-%%	\begin{figure}[h!]
-%%		\centering
-%%		\includegraphics[height=300pt]{result_picture/compare_full_product/Figure_full_diag.png}
-%%		\caption{Insert caption here.}
-%%		\label{example_figure}
-%%	\end{figure}
-
-
 \subsubsection{The Effect of Annealing Time}
-%	Setting up the proper $\tau$. Then I start to simulate the annealing process with different annealing time. The annealing should be long enough to find a ground state. Also I compare the result of full diagonalization and product formula algorithm. 
-%	\begin{itemize}
-%		\item Figure here: compare the result of different annealing time of full diagonalization: success probability vs.lambda with different annealing time
-%		\item \checkmark Figure here: compare the result of different annealing time of full diagonalization: success probability vs.lambda with different annealing time
-%		\item \checkmark Figure here: compare the result of different annealing time of full diagonalization: energy vs.lambda with different annealing time
-%		\item \checkmark Figure here: compare the result of different annealing time of full diagonalization: energy vs.lambda with different annealing time
-%	\end{itemize}
 
-The adiabatic theorem requires a slowly varying Hamiltonian to make the system remain in the ground state while its eigenenergy evolves continuously. In other words, the total annealing time should be long enough. The effect of the total annealing time can be seem in Figure \ref{fig:effect_time_probability}. When the total annealing time is not long enough, the success probability can not reach one in the end. Instead of sticking to the ground state energy, the annealing path of the energy enters a mixed state of the ground state and the other excited state, which ends in a higher energy state. This effect is shown in Figure \ref{fig:effect_time_energy}.  \\
+The adiabatic theorem requires a slowly varying Hamiltonian to make the system remain in the ground state while its eigenenergy evolves continuously. In other words, the total annealing time should be long enough. The effect of the total annealing time can be seem in Figure \ref{fig:effect_time_probability}. When the total annealing time is not long enough, the success probability cannot reach one in the end. Instead of sticking to the ground state energy, the annealing path of the energy develops gradually larger than the ground state energy, which indicates the system ends in a higher energy state. This effect is shown in Figure \ref{fig:effect_time_energy}.  \\
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{Figure_Annealing_probability.eps}
-	\caption{The evolution of success probability with different total annealing time.}
+	\caption{The evolution of the success probability with different total annealing times.}
 	\label{fig:effect_time_probability}
 \end{figure}
 
@@ -894,26 +864,14 @@ The adiabatic theorem requires a slowly varying Hamiltonian to make the system r
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{Figure_productf_EnergyvsLambda_time.eps}
-	\caption{The evolution of energy with different total annealing time.}
+	\caption{The evolution of the energy with different total annealing times.}
 	\label{fig:effect_time_energy}
 \end{figure}
 
 
 \subsubsection{The Effect of Minimum Gap}
-%	According to Landau-Zener theorem, the successful probability depend on the gap in between the ground state and the first excited state.
-%	\begin{itemize}
-%		\item \checkmark Figure here: energy spectrum: the energy for all states vs. lambda
-%		\item \checkmark Figure here: a close view of the result above: the energy for lowest 20~30 states vs. lambda
-%		\item \checkmark Figure here: compare: the success probability under the annealing time that maximise the minimum gap difference vs. minimum gap value 
-%	\end{itemize}
-%	\begin{figure}[h!]
-%		\centering
-%		\includegraphics[height=300pt]{result_picture/energy_evolution_product_formula/with_product_formula/Figure_energy_spectrum.png}
-%		\caption{Insert caption here.}
-%		\label{example_figure}
-%	\end{figure}
-%	
-It is known that the minimum gap will effect the annealing according to the Landau-Zener formula. With Eq. \ref{eq:landau}, the success probability is expected to decrease when the minimum gap decreases. In Figure \ref{fig:energy_spectrum_whole}, an example energy spectrum of a particular 2-SAT problem is shown. The minimum gap is always defined as the smallest gap between the ground state and the first excited state through out this work. \\
+	
+It is known that the minimum gap influences the annealing according to the Landau-Zener formula. With Eq. (\ref{eq:landau}), the success probability is expected to decrease when the minimum gap decreases. In Figure \ref{fig:energy_spectrum_whole}, an example energy spectrum of a particular 2-SAT problem is shown. The minimum gap is always defined as the smallest gap between the ground state and the first excited state through out this report. \\
 
 \begin{figure}
 	\centering
@@ -934,12 +892,12 @@ It is known that the minimum gap will effect the annealing according to the Land
 	\\
 	\begin{minipage}[t]{\linewidth}
 		%		\centering
-		\caption{ (a) The energy spectrum of a particular 2-SAT problem. The minimum gap between the ground state and the first excited state occures at $t/T = 0.475$ with value$=0.393014$. (b) A close look on the energy spectrum. }	
+		\caption{ (a) The energy spectrum of a particular 2-SAT problem. The minimum gap between the ground state and the first excited state occurs at $t/T = 0.475$ with value$=0.393014$. (b) A close look on the energy spectrum. }	
 		\label{fig:energy_spectrum_whole}
 	\end{minipage}
 \end{figure}
 
-In Figure \ref{fig:minimum_gap_ideal}, each cross point stands for the simulation result of a particular 2-SAT problem and in total 100 2-SAT problems are shown in the plot. The trend between the success probability and the minimum gap of the simulation does agree with what the Landau-Zener formula describes. Base on this result, it can be seen that the difficulty of a problem rely on the value of the minimum gap. If the minimum gap of a 2-SAT problem is quite small, the system may need longer total annealing time to reach the ground state of the problem Hamiltonian.  \\
+In Figure \ref{fig:minimum_gap_ideal}, each cross point stands for the simulation result of a particular 2-SAT problem and in total 100 2-SAT problems are shown in the plot. The trend between the success probability and the minimum gap of the simulation does agree with what the Landau-Zener formula describes. Base on this result, it can be seen that the difficulty of a problem relies on the value of the minimum gap. If the minimum gap of a 2-SAT problem is quite small, the system may need longer total annealing time to reach the ground state of the problem Hamiltonian.  \\
 
 \begin{figure}
 	\centering
@@ -955,7 +913,7 @@ In Figure \ref{fig:minimum_gap_ideal}, each cross point stands for the simulatio
 \label{result_temp}
 %After the case without environment, now we move on to the one with environment.
 
-In the previous section, the simulation result of the ideal case has been presented. However, in the real world, the system will always be influenced by the environment. The main difference is the temperature. For the ideal case, the system is perfectly isolated from the environment and stay at zero temperature. On the other hand, for the real case, the system evolves with finite temperature instead of zero temperature. \\
+In the previous section, the simulation result of the ideal case has been presented. However, in the real world, the system will always be influenced by the environment. The main difference is the temperature. For the ideal case, the system is perfectly isolated from the environment and stay at zero temperature. On the other hand, for the real case, the system evolves at finite temperature instead of zero temperature. \\
 	
 In order to simulate the influence of the finite temperature, the quantum system S is coupled to a heat bath B and the Hamiltonian of the entire system (i.e. S+B) is defined as
 	
@@ -973,7 +931,7 @@ where $H_S$ is the Hamiltonian of the system, $H_B$ is the Hamiltonian of the he
 
 \subsubsection{Validation of the Random Sampling Method}
 
-	In principal, the simulation of the entire system can be done with the Suzuki-Trotter product formula approach and approximate the heat bath by canonical thermal state. However, when the size of the system increase, the computational time become not practical. Consequently, the random sampling method is much preferred in order to reduce the computational time. A result comparison of the random sampling method and the canonical ensemble approach is shown in Figure \ref{fig:validation_random_sampling}. The size of the system and the heat bath both are 8 spins. Different colour states for different coupling strength. It is obvious that under this situation, the result is not stable with only one run. If the simulation is repeat several times with different random wave function, the average result can be close to that of the canonical ensemble approach.  \\
+	In principal, the simulation of the entire system can be done with the Suzuki-Trotter product formula approach and approximate the heat bath by canonical thermal state. However, when the size of the entire system increase, the run time of the simulation causes the simulation to become not practical. Consequently, the random sampling method is much preferred in order to reduce the run time of the simulation. A result comparison of the random sampling method and the canonical ensemble approach is shown in Figure \ref{fig:validation_random_sampling}. The size of the system and the heat bath both are 8 spins. Different colours state for different coupling strengths. It is obvious that under this situation, the result is not stable with only one run. If the simulation is repeat several times with different initial random wave function, the average result can be close to that of the canonical ensemble approach.  \\
 	
 \begin{figure}
 	\centering
@@ -1020,7 +978,7 @@ where $H_S$ is the Hamiltonian of the system, $H_B$ is the Hamiltonian of the he
 	
 	\begin{minipage}[t]{\textwidth}
 		\centering
-		\caption{Each colour states for a different coupling strength between the system and the heat bath. Along the same colour line, each data point represent an annealing result with different total annealing time. The temperature of this set of simulation is 1. Plot (a), (b), (c), and (d) are the results of a single run correspondingly with the random sampling method. Plot (e) is the average result of the 12 runs. Plot (f) is the result computed by going over all canonical ensemble state. It can be seen that Plot (e) and Plot (f) are similar to each other.}	
+		\caption{Each colour states a different coupling strength between the system and the heat bath. Along the same colour line, each data point represent an annealing result with different total annealing time. The temperature of this set of simulation is 1. Plot (a), (b), (c), and (d) are the results of a single run simulation with the random sampling method. Plot (e) is the average result of 12 runs. Plot (f) is the result done by computing all canonical ensemble states. It can be seen that Plot (e) and Plot (f) are similar to each other.}	
 		\label{fig:validation_random_sampling}
 	\end{minipage}
 \end{figure}
@@ -1028,7 +986,7 @@ where $H_S$ is the Hamiltonian of the system, $H_B$ is the Hamiltonian of the he
 
 \subsubsection{The Effect of Temperature}
 
-A set of simulation result with different temperature is shown in Figure \ref{fig:diff_temperature_heat_bath}. Base on this, some interpretations can be made. First, the purple line always stays the same across different temperature simulation. The reason for this is the zero coupling factor between the system and the heat bath. That is, although the temperature of the heat bath changes, it cannot influence the system. Hence the system is isolated from the environment as it is in the ideal case. Second, the effect of finite temperature does harm the annealing process. However, the effect of this does not uniformly reduce the success probability. Instead, the overall success probability does decrease, but with the trend of going up when the total annealing time is short, then going down, and going up again when the total annealing time is longer. A further detail of this effect is shown in Figure \ref{fig:coherent-non-quasi}. It can be explained by the thermal equilibrium process between the system and the heat bath\cite{Amin2015}. When the total annealing time is short, the heat bath does not yet have enough time to influence the system and the system can stay in its coherent state. In this case, the way that the system evolves during the annealing is similar to the case in ideal condition. As a result, the success probability increase when the total annealing time gets longer. After the total annealing time increase to a certain range, it becomes enough for the heat bath to influence the system. Inside this regime, the heat bath start to really interact with the system and harm the coherency of the system. The entire system enters a non-equilibrium state. Therefore, when the total annealing time increase, the success probability goes down. If the total annealing gets even longer, the system and the heat bath will reach a quasi-static state. That is the influence from the heat bath happens slowly enough for the system to keep itself in an equilibrium state. Therefore, the system can again evolves likes it is in an ideal condition and the success probability can become larger with longer total annealing time. \\
+A set of simulation result with different temperature is shown in Figure \ref{fig:diff_temperature_heat_bath}. Base on this, some interpretations can be made. First, the purple line always stays the same across different temperature simulation. The reason for this is the zero coupling strength between the system and the heat bath. That is, although the temperature of the heat bath raises from zero temperature to finite temperature, it cannot influence the system. Hence the system is isolated from the environment as what it is in the ideal case. Second, the effect of finite temperature harms the annealing process. However, the effect of this does not uniformly reduce the success probability. Instead, the overall success probability does decrease, but with the trend of going up when the total annealing time is short, then going down, and going up again when the total annealing time is longer. A further detail of this effect is shown in Figure \ref{fig:coherent-non-quasi}. It can be explained by the thermal equilibrium process between the system and the heat bath\cite{Amin2015}. When the total annealing time is short, the heat bath does not yet have enough time to influence the system and the system can stay in its coherent state. In this case, the way that the system evolves during the annealing process is similar to the case in ideal condition. As a result, the success probability increase when the total annealing time gets longer. After the total annealing time increase to a certain range, it becomes sufficient for the heat bath to influence the system. Inside this regime, the heat bath starts to really interact with the system and harm the coherency of the system. The entire system enters a non-equilibrium state. Therefore, when the total annealing time increase, the success probability goes down. If the total annealing gets even longer, the system and the heat bath will reach a quasi-static state. In other words, the influence from the heat bath happens slowly enough for the system to keep itself in an equilibrium state. Therefore, the system can again evolves likes it is in an ideal condition and the success probability can become larger with longer total annealing time. \\
 	
 \begin{figure}
 	\centering
@@ -1056,7 +1014,7 @@ A set of simulation result with different temperature is shown in Figure \ref{fi
 	
 	\begin{minipage}[t]{\textwidth}
 		\centering
-		\caption{The simulation is done with canonical ensemble approach.}	
+		\caption{The results of the quantum annealing at different temperatures. The simulation is done with canonical ensemble approach.}	
 		\label{fig:diff_temperature_heat_bath}
 	\end{minipage}
 \end{figure}
@@ -1093,7 +1051,7 @@ A set of simulation result with different temperature is shown in Figure \ref{fi
 	
 	\begin{minipage}[t]{\textwidth}
 		\centering
-		\caption{In Figure (a) the temperature is so low that the heat bath is also in its ground state, so the temperature effect does not influence the system much and both curve are quite similar. On the other hand, in Figure (c) the temperature is too high and the heat bath damage the coherence of the system a lot within the non-equilibrium regime. Consequently, the success probability becomes very low and very hard to go up again. In Figure (b) the heat bath is in a moderate temperature which can show the phenomenon more clearly. The curve first goes up because the system is still in its coherent state. Then the curve goes down in the cause of the influence of the heat bath. The curve goes up again since the entire system enters a quasi-static state and the system can evolves coherently.}	
+		\caption{In Plot (a) the temperature is lower enough that the heat bath is in its ground state, so the temperature effect does not influence the system much and both curve are quite similar. On the other hand, in Figure (c) the temperature is high and the heat bath damages the coherence of the system. Consequently, the success probability becomes very low in the regime of non-equilibrium and very hard to go up again even when the entire system reaches a quasi-static state. In Figure (b) the heat bath is in a moderate temperature which can show the mentioned phenomenon more clearly. The curve first goes up because the system is still in its coherent state. Then the curve goes down in the cause of the influence of the heat bath. The curve goes up again since the entire system enters a quasi-static state and the system can evolves coherently.}	
 		\label{fig:coherent-non-quasi}
 	\end{minipage}
 \end{figure}
@@ -1121,11 +1079,11 @@ A set of simulation result with different temperature is shown in Figure \ref{fi
 
 \subsubsection{The Effect of the Minimum Gap}
 
-It is already known from the Landau-Zener formula that the minimum gap has an effect on the difficulty of the annealing process. If the minimum gap is small, the annealing may need longer annealing time to keep on the ground state instead of a mix state with higher energy during the process. In the ideal case, the simulation result can be fitted well with the model as shown in Figure \ref{fig:minimum_gap_ideal}. Following the similar set up, the simulation is done again but with the heat bath. Since each instance is a 16 spins problem (i.e. S = 8, B = 8) and in total 100 2-SAT problems are involved, the algorithm used here is the random sampling method in order to reduce the computational time. The result is shown in Figure \ref{fig:minimum_gap_coupling} and Figure \ref{fig:minimum_gap_temperature}.\\
+According to the Landau-Zener formula, the minimum gap has an influence on the difficulty of the annealing process. If the minimum gap is small, the annealing may need longer total annealing time to keep the system in the ground state instead of a state with higher energy during the annealing process. In the ideal case, the simulation result can be fitted well with the model as shown in Figure \ref{fig:minimum_gap_ideal}. Following the similar set up, the simulation is done again but with the heat bath. Since each instance is a 16 spins problem (i.e. S = 8, B = 8) and in total 100 2-SAT problems are involved, the algorithm used here is the random sampling method in order to reduce the run time of the simulation. The result is shown in Figure \ref{fig:minimum_gap_coupling} and Figure \ref{fig:minimum_gap_temperature}.\\
 	
-In Figure \ref{fig:minimum_gap_coupling}, the plot with $g=0.0$ can be considered as the result in the ideal condition, because there is no interaction between the system and the heat bath. If the coupling factor is turned on, the first effect is the drop of the success probability. It can be seen clearly that when the success probability of the result with $g = 0.0$ climbs up to around $0.8$, the success probability of the result with $g = 1.0$ stays only between $0$ and $0.2$. Furthermore, the role of the coupling factor not only cut down the success probability, but also causes scattering. In the result with $g = 0.0$, the data points can almost form a smooth line, which can be describe by the Landau-Zener formula. On the other hand, in the result with $g = 0.5$ the data point scatter in the range of $0$ to $0.5$. However, in the result with $g = 0.0$ the range of scattering become narrower. This can be understood as a combined effect of the both. The strong interaction between the system and the heat bath suppresses the growth of the success probability even with a greater minimum gap value. Although a large coupling factor tend to enlarge the range of scattering, this range is made narrower because of the reduction of the overall success probability. As a result, the range of scattering in the result $g = 1.0$ is narrower than that in the result with $g = 0.5$.\\
+In Figure \ref{fig:minimum_gap_coupling}, the plot with $g=0.0$ can be considered as the result in the ideal condition, because there is no interaction between the system and the heat bath. If the coupling strength is turned on, the first effect is the drop of the success probability. It can be seen clearly that when the success probability of the result with $g = 0.0$ climbs up to around $0.8$, the success probability of the result with $g = 1.0$ stays only between $0$ and $0.2$. Furthermore, the role of the coupling factor not only cuts down the success probability, but also causes scattering. In the result with $g = 0.0$, the data points can almost form a smooth line, which can be described by the Landau-Zener formula. On the other hand, in the result with $g = 0.5$ the data points scatter in the range of $0$ to $0.5$. However, in the result with $g = 0.0$ the range of scattering becomes narrower. This can be understood as a combined effect of the both. The strong interaction between the system and the heat bath suppresses the growth of the success probability. The range is made narrower because of the reduction of the overall success probability, although a large coupling factor tends to enlarge the range of scattering.  As a result, the range of scattering in the result with $g = 1.0$ is narrower than that in the result with $g = 0.5$.\\
 	
-In Figure \ref{fig:minimum_gap_temperature}, the similar fact can be observed. In the result with temperature $= 0.01$, it can be seen that with an enough annealing time, the success probability can go up to around $1$. The increase of the temperature causes the drop of the overall success probability and the scattering of the data point. The comparison of the result with temperature $= 0.5$ and the result with temperature $= 1.0$ also shown that a combined effect of the both may narrow the range of the scattering instead of enlarging it. It is worth explaining why there is no much difference between the result with temperature $= 0.01$ and the result with temperature $= 0.05$. The reason is that under this particular simulation setting the heat bath is in its ground state with both temperature. Consequently, the result of these two setting are quite similar to each other.\\
+In Figure \ref{fig:minimum_gap_temperature}, the similar fact can be seen. In the result with temperature $= 0.01$, the success probability can raise to around $1$. The increase of the temperature causes the drop of the overall success probability and the scattering of the data points. The comparison of the result with temperature $= 0.5$ and the result with temperature $= 1.0$ also shown that a combined effect of the both may narrow the range of the scattering instead of enlarging it. It is worth explaining why there is no much difference between the result with temperature $= 0.01$ and the result with temperature $= 0.05$. The reason is that, under this particular simulation setting, the heat bath is in its ground state with both temperature. Consequently, the result of these two setting are quite similar to each other.\\
 	
 %	the scatter effect come from the spin numbering. When the coupling factor become larger and larger. The sccatering effect become more clear. On the other hand, Temperature is not the critical reason to this phenomenon. But the temperature will also enlarge the scatter. The temperature has an influence on how many environment state are part of the evolution. If the temperature is low the revolution only in the ground state. When temperatrue is high, almost all environment state is part of the evolution. the state is average out by the environment states. So the scatter of the problem hamiltonian is not clear. Also since we are in an effective temperature unit. delta gap/Temperature. Therefore, when temperature is larger than gap, they are in excited state. so the annealing is not clear and cant find the ground state. vice versa. when the temperature is smaller than 1. we can see the annealing effect and probability to find the ground state.
 
@@ -1172,21 +1130,21 @@ In Figure \ref{fig:minimum_gap_temperature}, the similar fact can be observed. I
 
 
 \newpage
-\section{Applicatoin on Machine Learning / Simulation}
+\section{Applicatoin on Machine Learning}
 	
-The properties of the quantum annealing in dealing with optimisation problem makes it a potential candidate for machine learning application. A tree cover detector based on aerial photography was implemented with quantum annealer processor \cite{Boyda2017}. Boosting is the learning algorithm used in the paper. The main idea of boosting is that a strong classifier can be constructed by properly combining a set of weak classifier. A weak classifier is required to classify only slightly better than random guess, which is $50\%$. The critical part of boosting is to find a proper weight of these weak classifiers and build the strong classifier. In order to fit the algorithm with a quantum annealer, the original boosting formula can be modified into the following one [??]. \\
+The properties of the quantum annealing when dealing with optimisation problem makes it a potential candidate for machine learning application. A tree cover detector based on aerial photography was implemented with quantum annealer processor \cite{Boyda2017}. Boosting is the learning algorithm used in the paper. The main idea of boosting is that a strong classifier can be constructed by properly combining a set of weak classifier. A weak classifier is required to classify only slightly better than random guess, which is $50\%$. The critical part of boosting is to find a proper weight of these weak classifiers and build the strong classifier. In order to implement the algorithm in a quantum annealer, the original boosting formula can be modified into the following one. \\
 	
 \begin{equation}
-	C(t) = sign\left(\sum_{i=1}^{N} w_i c_i(t)\right)
+	C(t) = sign\left(\sum_{i=1}^{N} w_i c_i(t)\right),
 \end{equation} 
 	
-, where t is the data sample, $c_i\in\{-1,+1\}$ is the weak classifier, and $w_i\in\{0,+1\}$ is the weight of the weak classifier. The weights are required to be binary in this modified version. As a result, the strong classifier becomes just a majority vote of the weak classifiers. The cost function choose here is regulated quadratic loss function. With a set of training data, $T$, if each single data $t$ has been classified correctly and labelled by $y(t)\in\{-1,+1\}$, the goal of the learning is \\
+where t is the data sample, $c_i\in\{-1,+1\}$ are the weak classifiers, and $w_i\in\{0,+1\}$ is the weight of the weak classifiers. The weights are required to be binary in this modified version. As a result, the strong classifier becomes just a majority vote of the weak classifiers. The cost function chosen here is the regulated quadratic loss function. With a set of training data, $T$, if each single data $t$ has been classified correctly and labelled by $y(t)\in\{-1,+1\}$, the goal of the learning is \\
 	
 \begin{equation}
-	\operatorname*{arg\,min}_{w_i} \left\{ \sum_{t\in T} \left( \sum_{i=1}^{N} w_i c_i(t) - y(t) \right)^2 + \lambda \sum_{i=1}^{N} w_i  \right\}
+	\operatorname*{arg\,min}_{w_i} \left\{ \sum_{t\in T} \left( \sum_{i=1}^{N} w_i c_i(t) - y(t) \right)^2 + \lambda \sum_{i=1}^{N} w_i  \right\},
 \end{equation}
 	
-, where $\lambda$ is the regularisation parameter. The formula implies that if a weak classifier, $c_i(t)$, can in general give data the same label as $y(t)$ does, it is better to keep this weak classifier, which can be done by setting $w_i$ to $1$. On the other hand, if $c_i(t)$ cannot labelled the training data set correctly most of the time, this classifier should probably be discarded. The role of regularisation parameter is to prevent overfitting. That is, only the important weak classifier are selected as part of the strong classifier. If the algorithm tries to include more weak classifiers than what it actually needs, the regularisation parameter will penalise this behave by raising up the cost value. This formula can be rewritten as following by expanding quadratic part.\\
+where $\lambda$ is the regularisation parameter. The formula implies that if a weak classifier, $c_i(t)$, can in general give data the same label as $y(t)$ does, it is better to keep this weak classifier, which can be done by setting $w_i$ equal to $1$. On the other hand, if $c_i(t)$ cannot labelled the training data set correctly most of the time, this weak classifier should probably be discarded. The role of regularisation parameter is to prevent overfitting. That is, only the important weak classifiers are selected as part of the strong classifier. If the algorithm tries to include more weak classifiers than what it actually needs, the regularisation parameter will penalise this behaviour by raising up the cost value. This formula can be rewritten as following by expanding quadratic part.\\
 	
 \begin{equation}
 	\operatorname*{arg\,min}_{w_i} \left\{
@@ -1202,28 +1160,28 @@ The format of the argument is similar to the optimisation problem that can be so
 	\right\}
 \end{equation}
 	
-With this proper format, the quantum annealer can step in and solve the optimisation problem. Another possible way to construct this format is simply setting $w_i$ in a set of $\{-1,+1\}$, but there is no corresponding regularisation part to prevent the algorithm from overfitting. The performance of these two formats depends on the dataset and needs to be tested out. \\
+With this proper form, the quantum annealer can step in and solve the optimisation problem. Another possible way to construct this format is simply setting $w_i$ in a set of $\{-1,+1\}$, but there is no corresponding regularisation part to prevent the algorithm from overfitting. The performance of these two forms depends on the application and its data. \\
 	
-The second application is a feature extraction of the human face implemented on a quantum annealer\cite{OMalley2017}. The use of a feature extraction is to transform a large set of raw data into a reduced set of informative and non-redundant feature. In order to implement this with quantum annealer processor, nonnegative binary matrix factorisation (NBMF) is used. NBMF can be described by the following factorisation. \\
+The second application is a feature extraction of the human face implemented on a quantum annealer\cite{OMalley2017}. The aim of a feature extraction is to transform a large set of raw data into a reduced set of informative and non-redundant feature. In order to implement this with quantum annealer processor, nonnegative binary matrix factorisation (NBMF) is used. NBMF can be described as follows. \\
 	
 \begin{equation}
-	V^{n\times m} \approx W^{n\times k}H^{k\times m}
+	V^{n\times m} \approx W^{n\times k}H^{k\times m},
 \end{equation}
 	
-,where n is the dimension of the data, m is the number of the data, k is the number of the feature extracted and $k < n$. The matrix elements of $W$ must be nonnegative and the matrix elements of $H$ must be binary. The goal of the learning is \\
+where $n$ is the dimension of the data, $m$ is the number of the data, $k$ is the number of the feature extracted and $k < n$. The matrix elements of $W$ must be nonnegative and the matrix elements of $H$ must be binary. The goal of the learning is \\
 	
 \begin{equation}
-	\operatorname*{arg\,min}_{H}  \| V-WH \|_F 
+	\operatorname*{arg\,min}_{H}  \| V-WH \|_F, 
 	\label{eq:NBMF}
 \end{equation}
 	
-,where $\|\cdot\|_F$ is the Frobenius norm. This formula can be decomposed into a set of independent optimisation problems based on each column of $H$, because $i^{th}$ column of $WH$ only depends only on the $i^{th}$ column of $H$ and other columns of $H$ do not have any impact on this at all. Therefore the Equation \ref{eq:NBMF} can be simplified a series of the following equation for $i = 1, 2, \cdots, m$ . \\
+where $\|\cdot\|_F$ is the Frobenius norm. This formula can be decomposed into a set of independent optimisation problems based on each column of $H$, because $i^{th}$ column of $WH$ only depends only on the $i^{th}$ column of $H$ and other columns of $H$ do not have any impact on this at all. Therefore the Equation \ref{eq:NBMF} can be simplified a series of the following equation for $i = 1, 2, \cdots, m$ . \\
 	 
 \begin{equation}
-	H_i = \operatorname*{arg\,min}_{q}  \| V_i - Wq\|_2 
+	H_i = \operatorname*{arg\,min}_{q}  \| V_i - Wq\|_2, 
 \end{equation} 
 	 
-,where $H_i$ denotes the $i^{th}$ column of $H$ and $V_i$ denotes the $i^{th}$ column of $V$. In order to solve this linear least squares problem with a quantum annealer, a further transformation can be made and it results in \\
+where $H_i$ denotes the $i^{th}$ column of $H$ and $V_i$ denotes the $i^{th}$ column of $V$. In order to solve this linear least squares problem with a quantum annealer, a further transformation can be made and it results in \\
 	
 \begin{equation}
 	\operatorname*{arg\,min}_{q}\left\{  
@@ -1231,9 +1189,9 @@ The second application is a feature extraction of the human face implemented on 
 	\right\}
 \end{equation}
 	 
-Although with this form $q_i$ will be solved in a set of $\{-1,+1\}$ by a quantum annealer rather than the required binary set $\{0,+1\}$, the feature extraction can still be achieved. One can reform the formula by substituting variable $s_i=2q_i -1$ as the previous example and make the final configuration of $q_i$ in $\{-1,+1\}$. The performance of these both again can only be benchmarked with real data.\\
+Although with this form $q_i$ will be solved in a set of $\{-1,+1\}$ by a quantum annealer rather than the required binary set $\{0,+1\}$, the feature extraction can still be achieved. One can reform the formula by substituting variable $s_i=2q_i -1$ as the previous example and make the final configuration of $q_i$ in $\{-1,+1\}$. The performance of these two forms again can only be benchmarked with real data.\\
 	 
-As the two example shown above, the quantum annealing technique can be considered as a different computational approach when implementing some machine learning algorithms. However, there are some drawbacks. First, the original algorithm needs to be transformed into a combinatorial optimisation problem that can be solved by a quantum annealer. This may constrain the generality of the quantum annealing technique, because not all machine learning algorithm can be transformed into a combinatorial optimisation problem. The second drawback is the limitation of the problem size. The computational power offered by the currently available machine restricts the size to be quite small when comparing to what a conventional computer can solve nowadays. These imperfect properties nonetheless make the quantum annealing suitable to certain kind of machine learning that needs large amount of simple computations without requiring a high accuracy, such as boosting. To summarise, while the machine learning has been identified as one of the area where the quantum annealing technique may be useful, whether it will become a competitive player in the long run depends on the maturation of its hardware, which is the quantum annealer.  \\	 
+As the two example shown above, the quantum annealing technique can be considered as a different computational approach when implementing some machine learning algorithms. However, there are some drawbacks. First, the original algorithm needs to be transformed into a form of combinatorial optimisation that can be solved by a quantum annealer. This may constrain the generality of the quantum annealing technique, because not all machine learning algorithm can be transformed into a combinatorial optimisation. The second drawback is the limitation of the problem size. The computational power offered by the currently available machine restricts the size to be quite small when comparing to what a conventional computer can solve nowadays. These imperfect properties nonetheless make the quantum annealing suitable to certain kind of machine learning that needs large amount of simple computations without requiring a high accuracy, such as boosting. To summarise, while the machine learning has been identified as one of the area where the quantum annealing technique may be useful, whether it will become a competitive player in the long run depends on the maturation of its hardware, which is the quantum annealer.  \\	 
 	
 %	\cite{Adachi2015}
 %	\cite{Benedetti2016}
@@ -1249,142 +1207,24 @@ As the two example shown above, the quantum annealing technique can be considere
 
 This work attempted to simulate a quantum annealer solving the 2-SAT problem at zero and finite temperature. After encoding the 2-SAT problem into the problem Hamiltonian, the simulation can be done by solving a time-dependent Schrödinger equation which describes the quantum annealing process. \\
 
+For the zero temperature case, the first algorithm used is the full diagonalisation. It is a straightforward approach and standard libraries, such as LAPACK, are available for diagonalising matrix. The limitation is that the size of the problem cannot be large, otherwise the run time becomes not practical. In spite of this, the full diagonalisation method can well serve as a validation for other algorithms when solving the time-dependent Schrödinger equation. The second algorithm used is the Suzuki-Trotter product formula approach. With this approach, one can decompose a matrix exponential into a series product of small matrix exponential. If the analytical expression of the small matrix exponential is known, the simulation can be done without matrix diagonalisation. This approach is validated by the full diagonalisation method and then be used to simulate a 8 spin system at zero temperature. \\
 
-For the zero temperature case, the first algorithm used is the full diagonalisation. It is a straightforward approach and standard libraries, such as LAPACK, are available for diagonalising matrix. The limitation is that the size of the problem cannot be large, otherwise the computational time becomes not practical. In spite of this, the full diagonalisation method can well serve as a validation for other algorithm when solving the time-dependent Schrödinger equation. The second algorithm used is the Suzuki-Trotter product formula approach. With this approach, one can decompose a matrix exponential into a series product of small matrix exponential. If the analytical expression of the small matrix exponential is known, the simulation can be done without matrix diagonalisation. This approach is validated by the full diagonalisation method and then be used to simulate a 8 spin system at zero temperature. \\
+For the finite temperature case, the temperature effect is provided by coupling a heat bath to the system. The heat bath can be approximated by the canonical ensemble. The quantum annealing process of the entire system can then be simulated by running simulation on the system and every energy state of the hear bath respectively. The computational time of this approach grows linearly with the number of the energy state of the hear bath. Therefore, if the size of the heat bath is large, this approach cannot be considered practical. To reduce the run time of the simulation, the random sampling method is presented. The main assumption is that the heat bath can be approximated with a random initial state, which means the simulation can be done with this random initial state instead of all energy states. Although multiple runs are usually necessary in order to improve the accuracy, the random sampling method still reduce the run time of the simulation greatly. \\
 
-For the finite temperature case, the temperature effect is provided by coupling a heat bath to the system. The heat bath can be approximated by the canonical ensemble. The quantum annealing process of the entire system can then be simulated by running simulation on the system and every energy state of the hear bath respectively. The computational time of this approach grows linearly with the number of the energy state of the hear bath. Therefore, if the size of the heat bath is large, this approach cannot be considered practical. To reduce the computational time in a proper range, the random sampling method is presented. The main assumption is that the heat bath can be approximate with a random initial state, which means the simulation can be done with this random initial state instead of all energy states. Although multiple runs are usually necessary in order to improve the accuracy, the random sampling method still reduces the computational time greatly. \\
+The simulation result of the quantum annealing at zero temperature matched what Landau-Zener formula describes. The success probability decreases, when the minimum gap value gets smaller. This also indicates that the difficulty of a quantum annealing process can be estimated by its minimum gap value. The result at zero temperature also showed that without enough annealing time, the system cannot end in the ground state of the problem Hamiltonian, which is described by the adiabatic theorem. \\
 
-The simulation result of the quantum annealing at zero temperature matched what Landau-Zener formula describes. the success probability decreases, when the minimum gap value gets smaller. This also indicates that the difficulty of a quantum annealing process can be estimated by its minimum gap value. The result at zero temperature also shown that without enough annealing time, the system cannot end in the ground state of the problem Hamiltonian, which is described by the adiabatic theorem. \\
+The simulation result of the quantum annealing at finite temperature showed that the trend of the success probability can be explained by thermal equilibrium. When the total annealing time is short, the heat bath has not yet influenced the system and the system can evolve coherently. If the total annealing time becomes longer, the heat bath and the system start to really interact with each other. The success probability reduces with longer total annealing time in this regime. If the total annealing time gets ever longer, the entire system reaches a quasi-static state. As a result, the system can again evolve coherently and the success probability increases with longer total annealing time. The effect of the temperature and the coupling factor lowers the overall success probability. Besides, the effect of these both causes data to be scattering instead of a smooth line described by the Landau-Zener formula. \\
 
-The simulation result of the quantum annealing at finite temperature shows that the trend of the success probability can be explained by thermal equilibrium. When the total annealing time is short, the heat bath has not yet influenced the system and the system can evolve coherently. If the total annealing time becomes longer, the heat bath and the system start to really interact with each other. The success probability reduces with longer total annealing time in this regime. If the total annealing time gets ever longer, the entire system reaches a quasi-static state. As a result the system can again evolve coherently and the success probability increases with longer total annealing time. The effect of the temperature and the coupling factor lowers the overall success probability. Furthermore, the effect of these both causes data to be scattering instead of a smooth line described by the Landau-Zener formula. \\
-
-In summary, the quantum annealing technique does provide a different approach to solve the 2-SAT problem. Furthermore, this technique can be applied in other area such as machine learning, if one can transform the problem into a proper form for a quantum annealer. While a practical use of the quantum annealer relies on the future maturation of the hardware, this work demonstrated some general properties of a quantum annealer when solving an optimisation problem and all simulation done in this work can be implemented in a quantum annealer hardware for comparison.\\
-
-
+In summary, the quantum annealing technique provides a different approach to solve 2-SAT problems. Furthermore, this technique can be applied in other area such as machine learning, if one can transform the problem into a proper form for a quantum annealer. While a practical use of the quantum annealer relies on the future maturation of the hardware, this work demonstrated some general properties of a quantum annealer when solving an optimisation problem and all simulations done in this work can be implemented in a quantum annealer for comparison.\\
  
 %The quantum annealing process of the entire system can be simulated by approximating the heat bath with canonical ensemble and running the Suzuki-Trotter product formula approach on the system with every energy state of the heat bath. 
-
-
-
-
- 
-
-
-
-
-
-
-
-%\section{miscellaneous}
-%
-%Please specify your name, matriculation number, name of advisor and the title of your report in \linebreak
-%\verb+titlepage.tex+.
-%The title page will not count for the 20 pages.
-%
-%Using bibtex you can cite in an organized way and without much work.
-%Just enter the information about a paper or an article you want to cite in the \verb+seminar_report.bib+ file and use \verb+\cite+ to cite them. For example \cite{Author08CVPR},\cite{Author04IJCV}.
-%Don't forget to compile the bib file and Latex will add all the cited references at the end.
-%Cite all the literature you use and state where figures are from!
-%
-%I am a section. Latex will give me a number \emph{automatically} and put me into the table of contents.
-%Using \verb+\label+ and \verb+\ref+ you can use Latex to write that this is Section \ref{section}.
-%
-%
-%
-%\subsection{a subsection}
-%I am a subsection.
-%
-%\begin{itemize}
-%	\item I am an item.
-%	\item [-] I am another item.
-%\end{itemize}
-%
-%\subsubsection{a small subsection}
-%I am a subsubsection, an even smaller subsection.
-%
-%\begin{tabular}{|l|c|}
-%\hline
-%I am a tabular & with two columns. \\
-%\hline
-%The left column is aligned left & and the right columns is centered. \\
-%\hline
-%\end{tabular}
-%
-%
-%\begin{figure}[h]
-%\centering
-%\includegraphics[height=100pt]{doge.jpeg}
-%\caption{Insert caption here. Image from \cite{lenna}. }
-%\label{example_figure}
-%\end{figure}
-%Figure \ref{example_figure} also gets a number automatically and will be placed where Latex thinks it looks good. You can specify a preference with h(ere), t(op), b(ottom), p(age).
-%
-%
-%%\begin{figure}
-%%%	\begin{center}
-%%		\resizebox{!}{!}{\input{pvsgap}}
-%%%	\end{center}
-%%\end{figure}
-%
-%Latex is also really good at printing equations: $E=mc^2$
-%
-%\begin{equation}
-%A = \sum_{i=1}^N A_1 \cdot A_2
-%\end{equation}
-%
-%\subsubsection{Possible Material}
-%Result on spin and Energy env,sys,se
-%
-%success probability of ground state
-%
-%spin system
-%
-%energy spectrum
-%
-%evolution of spin and energy
-%
-%Runtime comparison
-%
-%Parallel possibility
-%
-%-Introduction
-%
-%-Annealing Theorem
-%
-%-Full-diagonalization
-%
-%-suzuki-trotter product formula
-%
-%-size of tau
-%
-%-The effect of annealing Time w/ w/o Heat bath
-%
-%-The effect of minimum gap w/ w/o Heat bath
-%
-%-Landau-Zener Theorem
-%
-%-2-SAT problem 
-%
-%-Random wave function  
-%
-%-The effect of heat bath(Coherent - Transverse - quasiequilibrium) at different temperature
-%
-%D-wave practice
-%
-%-Hamiltonian Mapping
-%
-%-Annealing Time scheme
-%
-%-Time-Dependent Schrï¿½dinger Equation
-%
-%-Boltzmann distribution + trace of the observable
-
 \newpage
-% +++++++++++++++++++++++++
-% =========================================================================
-\bibliographystyle{alpha}
-\bibliography{master_report}
 
+
+
+% =========================================================================
+\bibliographystyle{acm}
+\bibliography{master_report}
 % =========================================================================
 
 \end{document}
