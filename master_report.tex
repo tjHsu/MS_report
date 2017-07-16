@@ -292,47 +292,47 @@ The probability of a successful quantum annealing is thus confined by the minimu
 %From the previous sector, we can noticed that the time scheme for $\lambda$ should be chosen and set. Here we use linear scheme for $\lambda$.
 
 \newpage
-\section{Optimisation Problem}
+\section{Optimisation Problems}
 \subsection{Combinatorial Optimisation}
 
-Combinatorial optimisation problem is one of the most important task people want to solve. If one need to find the best choice among all available options consist of many independent factors, it can be considered as a combinatorial optimisation problem. Some practical examples are like travelling salesman problem, closure problem and assignment problem. Take travelling salesman problem for instance, there are N cities located randomly in an area and the goal is to plan an trip that visit every city once in the shortest travel distance. A straightforward approach is to try out all permutations and find the shortest path. The running time for this brute-force search is $\mathcal{O}(n!)$ , which means it grows as the factorial of the number of cities and the search space easily becomes too large for this approach to be feasible even for a relatively small N ($N \sim 30$) \cite{Santoro2006}. \\
+Combinatorial optimisation is one of the most important tasks people want to solve. If one needs to find the best choice among all available options, it can be considered as a combinatorial optimisation problem. Some practical examples are the travelling salesman problem, the closure problem and the assignment problem. The travelling salesman problem for instance, there are N cities located randomly in a given area and the goal is to plan a trip to visit every city once in the shortest travel distance. A straightforward approach is to try out all permutations and find the shortest path. The running time for this brute-force search is $\mathcal{O}(N!)$ , which means that it grows as the factorial of the number of cities and the search space easily becomes too large for this approach to be feasible even for relatively small N ($N \sim 30$) \cite{Santoro2006}. \\
 
-Many combinatorial optimisation problems can be cast into a problem of minimising a given cost function $H(S_1,S_2,S_3,...S_N)$ with respect to N variables $S_1$, $S_2$ to $S_N$ \cite{Das2008}. The aim is to determine a set of values for the variables that yield the minimum value of the cost function. Combinatorial optimisation problem often has the following properties. The optimal solution is searched from a finite set of objects. The set of objects is discrete. Brute-force search is usually not feasible. Besides, even some problems with continuous variables can be reduced to combinatorial problems \cite{Papadimitriou1984}. \\
+Many combinatorial optimisation problems can be cast into a problem of minimising a given cost function $H(S_1,S_2,S_3, \dots S_N)$ with respect to N variables $S_1$, $S_2$, $\dots$ $S_N$ \cite{Das2008}. The aim is to determine a set of values for the variables that yield the minimum value of the cost function. Combinatorial optimisation often has the following properties. The optimal solution is searched from a finite set of objects. The set of objects is discrete. Brute-force search is usually not feasible. Besides, even some problems with continuous variables can be reduced to combinatorial problems \cite{Papadimitriou1984}. \\
 
-In the field of computer science, the complexity of a computational task are classified by the running time needed by the fastest algorithm relative to the size of the task. If a given task can be solved in polynomial time by using polynomial bound resource on classical computer, it is considered to be in the class P. Although a P problem does not necessary means an easy problem, a polynomial bond on the evaluation time implies its difficulty won't grow exponentially along with the problem size. Unfortunately, not all cases fall in this class, and some of the important ones are fall outside, like the travelling salesman problem mentioned above.\\
+In the field of computer science, the complexity of a computational task is classified by the running time needed by the fastest algorithm relative to the size of the task. If a given task can be solved in polynomial time by using polynomially bound resources on a classical computer, it is considered to be in the class P. Although a P problem does not necessary means an easy problem, a polynomial bound on the evaluation time implies its difficulty won't grow exponentially with the problem size. Unfortunately, not all cases fall in this class, and some of the important ones fall outside, like the travelling salesman problem mentioned above.\\
 
-A given task is said to be in the class NP, if the solution can be found in polynomial time by non-deterministic Turing machine. A deterministic Turing machine can only perform one action for a given situation according to its set of rules, while a non-deterministic Turing machine can perform more than one action for a given situation and if any of them find the solution, it achieves its goal. In other word, a non-deterministic Turing machine has the potential to explore exponentially many paths in parallel with time and check if any on of them can solve the task. It's clearly that deterministic Turing machine is a weak version of non-deterministic one. Therefore class P is also included inside the class NP as a special case. Not like a problem in class P, the polynomial-time algorithm know to be exist, problems in class NP are believed to require super-polynomial time. \\
+A given task is said to be in the class NP, if the solution can be found in polynomial time by a non-deterministic Turing machine. A deterministic Turing machine can only perform one action for a given situation according to its set of rules, while a non-deterministic Turing machine can perform more than one action for a given situation and if any of them finds the solution, it achieves its goal. In other words, a non-deterministic Turing machine has the potential to explore exponentially many paths in parallel with time and check if any on of them can solve the task. It's clear that a deterministic Turing machine is a weak version of a non-deterministic one. Therefore class P is also included inside class NP as a special case. Not like a problem in class P, for which a polynomial-time algorithm is known to exist, problems in class NP are believed to require super-polynomial time. \\
 
-There is a subset inside class NP called NP-complete, which is considered to be the hardest set among class NP and any NP problem can be reduced into class NP-complete with a polynomial overhead. It is general believed that if one can find an polynomial algorithm to solve an NP-complete problem, all problems in class NP can also be solved by this polynomial algorithm.  The task fall inside either class NP or class NP-complete are considered to be hard, because non-deterministic Turing machine is not yet possible to be simulated by a deterministic Turing machine without an exponential growth of execution time. \\ 
+There is a subset inside class NP called NP-complete, which is considered to be the hardest set among class NP and any NP problem can be reduced into class NP-complete with a polynomial overhead. It is generally believed that if one can find a polynomial algorithm to solve an NP-complete problem, all problems in class NP can also be solved by this polynomial algorithm.  The tasks that fall inside either class NP or class NP-complete are considered to be hard, because a non-deterministic Turing machine cannot yet be simulated by a deterministic Turing machine without an exponential growth of execution time. \\ 
 
-Indeed there are algorithms can solve some easy optimisation problems in polynomial time. For harder cases like class NP-complete, although one cannot find the exact solution in a polynomial time, there are still some specialised algorithm that can approximate the solution in an polynomial time. The downside is that these algorithm are very problem specific, which means a success in one NP-complete problem does not ensure the success when attacking other NP problems by using the same algorithm. \\
+Indeed there are algorithms that can solve some easy optimisation problems in polynomial time. For harder cases like the one belonging to the class NP-complete, although one cannot find the exact solution in polynomial time, there exists some specialised algorithms that can approximate the solution in a polynomial time. The downside is that these algorithms are very problem specific, which means a success in one NP-complete problem does not ensure the success when attacking other NP problems by using the same algorithm. \\
 
-\subsection{Boolean Satisfiability Problem}
+\subsection{Boolean Satisfiability Problems}
 
-The boolean satisfiability problem, abbreviated as the SAT problem, is a task of checking whether a given set of boolean formula can be satisfied. To be more specific, the goal here is to find a configuration of true or false for all variables in a given Boolean formula and it leads the final evaluation of the formula to true. The formula is called satisfiable when this is the case. On the other hand, the formula is not satisfiable, if the evaluation is false for all possible configuration.  \\
+The boolean satisfiability problem, abbreviated as the SAT problem, is a task of checking whether a given Boolean formula can be satisfied. To be more specific, the goal here is to find a configuration of true or false values for all variables in a given Boolean formula so that the final evaluation of the formula is true. The formula is called satisfiable when this is the case. On the other hand, the formula is not satisfiable, if the evaluation is false for all possible configurations.  \\
 
-The k-SAT problem with k>2 has been proven to be in class NP-complete, which implies that no algorithm can efficiently solve SAT problems in polynomial time. The parameter k defines the upper limit of the number of variables in one clause. An example is 
+The k-SAT problem with k>2 has been proven to be in the class NP-complete, which implies that no algorithm can efficiently solve SAT problems in polynomial time. The parameter k defines the upper limit of the number of variables in one clause. An example is 
 
 \begin{equation*}
  (x_1\lor x_2\lor x_3)\land (x_4\lor x_5\lor \neg x_6),
 \end{equation*}
 
-where $\land$,$\lor$, and $\neg$ state for logical and, logical or, and logical not respectively. This is a Boolean formula in 3-SAT form, in which has two clauses and each clause consist of at most 3 variables. This formula is satisfiable because the final evaluation is true while one of the variable is true among $x_1, x_2, x_3$ in the first clause ,and one of the variable is true among $x_4, x_5$ or $x_6$ is false in the second clause. \\
+where $\land$,$\lor$, and $\neg$ state for logical and, logical or, and logical not respectively. This is a Boolean formula in 3-SAT form, which has two clauses and each clause consists of 3 variables. This formula is satisfiable because the final evaluation is true if one of the variables $x_1, x_2, x_3$ is true in the first clause ,and one of the variable $x_4, x_5$ or $\neg x_6$ is true in the second clause. \\
 
-In this work, 2-SAT problem is the target task to understand. Similarly, the definition of a 2-SAT problem is that one clause can contain at most two variables. In contrast to those more general ones which are known to be NP-complete, 2-SAT problem can be solved in polynomial time. A detail should be mentioned is that the 2-SAT problems studied in this work all has only one unique configuration which leads the evaluation to be true. In other words, there is no degenerate ground states for the problem. \\
+In this work, 2-SAT problems are considered In contrast to those more general ones which are known to be NP-complete, the 2-SAT problem can be solved in polynomial time. A detail that should be mentioned is that the 2-SAT problems studied in this work all have only one unique configuration which leads to a true evaluation.\\
  
-\subsection{The Mapping of Hamiltonian}
+\subsection{Mapping the 2-SAT Problem to the Ising Hamiltonian}
 \label{The Mapping of Hamiltonian}
 
-A 2-SAT problem can only be solved when its Boolean formula is mapped in to an Ising Hamiltonian. In Ising model, an spin can take either 1 or -1 as its value, so it is straightforward to correspond spin value 1 for logical true and spin value 0 for logical false. \\
+A 2-SAT problem can only be solved by quantum annealing when its Boolean formula is mapped to an Ising Hamiltonian. In the Ising model, a spin can take either value 1 or -1. It is straightforward to map spin value 1 to logical true and spin value 0 to logical false. \\
 
-The following simple example can help demonstrate the mapping of Hamiltonian. 
+The following simple example can help demonstrates how a Boolean formula is mapped on the Ising Hamiltonian. Consider the Boolean formula 
 
 \begin{equation*}
 (x_1\lor x_2)\land (x_3\lor \neg x_4)
 \end{equation*}
 
-The whole statement is true if in the first clause, either $x_1$ or $x_2$ is true and in the second clause, $x_3$ is true or $x_4$ is false. The mapping is as follow:
+The whole statement is true if in the first clause, either $x_1$ or $x_2$ is true and in the second clause, $x_3$ is true or $x_4$ is false. The mapping is as follows:
 
 \begin{table}[h!]
 
@@ -399,10 +399,10 @@ The whole statement is true if in the first clause, either $x_1$ or $x_2$ is tru
 		\end{tabular} 
 
 \end{center}
-\caption{A way to map the 2-SAT clauses to the Ising variables.}
+\caption{Mapping a 2-SAT problem in term of the Ising variables.}
 \end{table} 
 
-In order to encode the solution of the 2-SAT problem into the ground state of the Ising Hamiltonian, an Ising Hamiltonian can be built up with a magnetisation $m$. The Hamiltonian with magnetisation $m$ is given by 
+In order to encode the solution of the 2-SAT problem into the ground state of the Ising Hamiltonian, an Ising Hamiltonian can be written down with a magnetisation $m$. The Hamiltonian with magnetisation $m$ is given by 
 
 \begin{equation}
 \begin{split}
@@ -412,7 +412,7 @@ H & = m \cdot (m-2)\\
 \end{split}
 \end{equation}
 
-After comparing with the Hamiltonian mentioned in previous section, one can correspond $h_i^z$, $h_j^z$, and $J_{ij}$ to 2, 2, and -2 respectively. Then one just repeats this procedure for all clauses. After this mapping is complete, the original 2-SAT problem can be solved with quantum annealing technique, because the ground state of the Ising Hamiltonian can be transformed back to the solution of the 2-SAT problem. \\  
+After comparing with the Hamiltonian given in Eq. (??), one finds that $h_i^z$, $h_j^z$, and $J_{ij}$ correspond to 2, 2, and -2 respectively. Then one just repeats this procedure for all clauses. After this mapping is complete, the original 2-SAT problem can be solved with the quantum annealing technique, because the ground state of the Ising Hamiltonian can be transformed back to the solution of the 2-SAT problem. \\  
 
 
 
