@@ -659,66 +659,82 @@ With these two algorithm, the full diagonalisation algorithm and the Suzuki-Trot
 \subsection{Algorithm for system with Temperature Effect}
 %Here since we have in total 16 spins, of course we cannot use product formula algorithm. But we because have temperature term now, which means we may run over several states, therefore the product formula algorithm is not enough for use now. Therefore, we use random sampling method.
 
-\subsubsection{Canonical-Thermal State}
+\subsubsection{Canonical-Thermal Ensemble}
 %\subsubsection{Boltzmann Distribution/ Assemble Average}
 
-!In order to simulate a system at finite temperature, the quantum subsystem S is coupled to a quantum environment E and the Hamiltonian of the entire system (i.e. S+E) is defined as
+In order to simulate a system at finite temperature, the quantum subsystem S is coupled to a heat bath B and the Hamiltonian of the entire system (i.e. S+B) is defined as
 
 \begin{equation}
-H = H_S + H_E + GH_{SE},
+H = H_S + H_B + gH_{SB},
 \end{equation} 
 
-where $H_S$ is the Hamiltonian of the subsystem, $H_E$ is the Hamiltonian of the environment, and $H_{SE}$ is the interaction between the subsystem S and the environment E with $G$ indicates the global coupling strength between S and E. \\
+where $H_S$ is the Hamiltonian of the system, $H_B$ is the Hamiltonian of the heat bath, and $H_{SB}$ is the interaction between the system S and the heat bath B with $g$ indicates the global coupling strength between S and B. \\
 
-!The quantum subsystem S and the environment E can be described respectively by density matrix 
-
-\begin{equation}
-\begin{split}
-\rho_S = \ket{S'}\bra{S'}\\
-\rho_E = \frac{e^{-\beta H_E}}{Z}, 
-\end{split}
-\end{equation}
-
-\begin{equation}
-\rho(0)=\rho_S\rho_E, \rho(t)=\ket{\Psi(t)}\bra{\Psi(t)}, \ket{\Psi(t)}= U(t)\ket{\Psi(0)}
-\end{equation}
+After coupling a heat bath to the system, the entire system can no longer be describe by a pure state. Instead, the entire system should be considered as a mixed state constructed by statistically combining certain pure states. The entire system can be represented with a canonical ensemble, in which the energy is not known but the temperature is specified. Let $A$ be an observable, and the expectation value of $A$ can then be written as \\
 
 \begin{equation}
 \begin{split}
-&=Tr A(t)\rho(0), ~~A(t)=e^{iHt}Ae^{-iHt}=U^\dagger AU(t)\\
-&=Tr A \rho(t), ~~\rho(t)=U^\dagger \rho U(t)\\
-&=Tr A(t) \rho_S \rho_E \\
-&=Tr A e^{-iHt} \rho_S \rho_E e^{iHt}\\
-&=\bra{S}\bra{E}Ae^{-iHt}\ket{S'}\bra{S'}\rho_E e^{iHt}\ket{E}\ket{S}\\
-&=\bra{S'}\bra{E} Ae^{-iHt} \rho_E e^{iHt}\ket{E}\ket{S'}\\
-&=\sum_{E}\frac{e^{\beta E_E}}{Z}\bra{S'}\bra{E_E} e^{-iHt}Ae^{iHt}\ket{E_E}\ket{S'}\\
-&=\sum_{E}\frac{e^{\beta E_E}}{Z}\bra{\Psi(t)}A\ket{\Psi(t)},
+&\langle A(t)\rangle = \sum_{B}\frac{e^{\beta E_B}}{Z}\bra{E_B}\bra{S} e^{-iHt}Ae^{iHt}\ket{S}\ket{E_B},\\
+&Z = \sum_B e^{-\beta E_B},
 \end{split}
+\label{eq: canonical_ensemble}
 \end{equation}
 
-,!!where $S'$ is ???, $\beta$ is the thermodynamic beta defined as $\frac{1}{k_b T}$,  and Z is partition function defined as $Z = \sum_i e^{-\beta E_i}$. In order to calculate the observable numerically, it is convenient to separate the ground state energy, $E^0_E$, from the $\frac{e^\beta E_E}{Z}$. Then $\langle A(t)\rangle$ becomes
+where $Z$ is the canonical partition function, $\beta$ is the inverse temperature, $\ket{E_B}$ are the microstates of the heat bath with energy $E_B$. Eq. (\ref{eq: canonical_ensemble}) can be further rewritten as\\  
 
 \begin{equation}
-\langle A(t)\rangle = \sum_{E}\frac{e^{\beta E^0_E}e^{(\beta E_E-E^0_E)}}{e^{\beta E^0_E}Z'}\bra{\Psi(t)}A\ket{\Psi(t)},
+\langle A(t)\rangle = \sum_{B}\frac{e^{\beta E_B}}{Z}\bra{\Psi(t)} A\ket{\Psi(t)}.
+\label{eq: canonical_ensemble_simplified}
 \end{equation}
 
-with 
+This form implies that the core part of the simulation of a isolated system and a system coupled with a heat bath is similar. The only difference between them is that, for the letter case, the simulation need to be repeated over all possible microstates of the hear bath and assembled with the corresponding probability distribution. Hence the run time growths exponentially with the size of the heat bath. This property makes the canonical ensemble approach unpractical when dealing with a large heat bath, although this approach can well describe the entire system.\\  
 
-\begin{equation}
-\begin{split}
-\label{psi_assemble_method}
-\ket{\Psi(t)}&=e^{-iHt} \frac{e^{\frac{-\beta H_E}{2}}}{\sqrt{Z}}\ket{\Psi_E}\ket{S'}\\
-&=e^{-iHt}\sum_{i} c_i \frac{e^{\frac{-\beta E_E}{2}}}{\sqrt{Z}}\ket{\Psi_E}\ket{S'}
-\end{split}
-\end{equation}
+%
+%!The quantum subsystem S and the heat bath B can be described respectively by density matrix 
+%
+%\begin{equation}
+%\begin{split}
+%\rho_S = \ket{S'}\bra{S'}\\
+%\rho_E = \frac{e^{-\beta H_E}}{Z}, 
+%\end{split}
+%\end{equation}
+%
+%\begin{equation}
+%\rho(0)=\rho_S\rho_E, \rho(t)=\ket{\Psi(t)}\bra{\Psi(t)}, \ket{\Psi(t)}= U(t)\ket{\Psi(0)}
+%\end{equation}
+%
+%\begin{equation}
+%\begin{split}
+%&=Tr A(t)\rho(0), ~~A(t)=e^{iHt}Ae^{-iHt}=U^\dagger AU(t)\\
+%&=Tr A \rho(t), ~~\rho(t)=U^\dagger \rho U(t)\\
+%&=Tr A(t) \rho_S \rho_E \\
+%&=Tr A e^{-iHt} \rho_S \rho_E e^{iHt}\\
+%&=\bra{S}\bra{E}Ae^{-iHt}\ket{S'}\bra{S'}\rho_E e^{iHt}\ket{E}\ket{S}\\
+%&=\bra{S'}\bra{E} Ae^{-iHt} \rho_E e^{iHt}\ket{E}\ket{S'}\\
+%&=\sum_{E}\frac{e^{\beta E_E}}{Z}\bra{S'}\bra{E_E} e^{-iHt}Ae^{iHt}\ket{E_E}\ket{S'}\\
+%&=\sum_{E}\frac{e^{\beta E_E}}{Z}\bra{\Psi(t)}A\ket{\Psi(t)},
+%\end{split}
+%\end{equation}
+%
+%,!!where $S'$ is ???, $\beta$ is the thermodynamic beta defined as $\frac{1}{k_b T}$,  and Z is partition function defined as $Z = \sum_i e^{-\beta E_i}$. In order to calculate the observable numerically, it is convenient to separate the ground state energy, $E^0_E$, from the $\frac{e^\beta E_E}{Z}$. Then $\langle A(t)\rangle$ becomes
+%
+%\begin{equation}
+%\langle A(t)\rangle = \sum_{E}\frac{e^{\beta E^0_E}e^{(\beta E_E-E^0_E)}}{e^{\beta E^0_E}Z'}\bra{\Psi(t)}A\ket{\Psi(t)},
+%\end{equation}
+%
+%with 
+%
+%\begin{equation}
+%\begin{split}
+%\label{psi_assemble_method}
+%\ket{\Psi(t)}&=e^{-iHt} \frac{e^{\frac{-\beta H_E}{2}}}{\sqrt{Z}}\ket{\Psi_E}\ket{S'}\\
+%&=e^{-iHt}\sum_{i} c_i \frac{e^{\frac{-\beta E_E}{2}}}{\sqrt{Z}}\ket{\Psi_E}\ket{S'}
+%\end{split}
+%\end{equation}
+%
+%This is called a canonical-thermal state\cite{Novotny2016}, the Suzuki-Trotter product formula approach is used to calculate the time evolution of this state. The different is that now the same calculation need to be repeated for all different energy eigenstates of the environment. For example, if a system is coupled with a heat bath which consist of 8 spins, the computation will then need to be repeated $2^8$ times for all energy eigenstates. Thus, simply going through all energy eigenstate with Suzuki-Trotter product formula approach becomes not practical because of a long CPU time even for a small environment. A random sampling method that can reduce the CPU time will be introduced in the next subsection.\\ \\
 
-This is called a canonical-thermal state\cite{Novotny2016}, the Suzuki-Trotter product formula approach is used to calculate the time evolution of this state. The different is that now the same calculation need to be repeated for all different energy eigenstates of the environment. For example, if a subsystem is coupled with a environment which consist of 8 spins, the computation will then need to repeated $2^8$ times for all energy eigenstates. Thus, simply going through all energy eigenstate with Suzuki-Trotter product formula approach becomes not practical because of a long CPU time even for a small environment. A random sampling method that can reduce the CPU time will be introduced in the next subsection.\\
-
-%We still use product formula. and we use assemble average to calculate each initial state exactly.
-
-
-
-\subsubsection{Random sampling method}
+\subsubsection{Random Sampling Method}
 %\subsubsection{Random wave function}
 %Reference check! II Theory part.
 %\cite{Hams2000} 
@@ -840,7 +856,7 @@ Another interesting observable is the spin value which is shown in Figure \ref{f
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{result_picture/probability_spin_system/Figure_Annealing_sigma_value.eps}
+	\includegraphics[width=\linewidth]{Figure_Annealing_sigma_value.eps}
 	\caption{The evolution of the spin values for a particular 2-SAT problem. }
 	\label{fig:spin_evo}
 \end{figure}
@@ -1094,12 +1110,12 @@ In Figure \ref{fig:minimum_gap_temperature}, the similar fact can be seen. In th
 	\label{fig:minimum_gap_coupling}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{Figure_PvsGap_T2e2_Temp1_avoid_duplicate.eps}	
-	\caption{A set of simulation result with 48 2-SAT problems with different minimum gap values. The total annealing time of the simulation is $200$ and the temperature is $1$.}
-	\label{fig:minimum_gap_coupling_avoid_duplicate}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=\linewidth]{Figure_PvsGap_T2e2_Temp1_avoid_duplicate.eps}	
+%	\caption{A set of simulation result with 48 2-SAT problems with different minimum gap values. The total annealing time of the simulation is $200$ and the temperature is $1$.}
+%	\label{fig:minimum_gap_coupling_avoid_duplicate}
+%\end{figure}
 
 \begin{figure}
 	\centering
@@ -1108,12 +1124,12 @@ In Figure \ref{fig:minimum_gap_temperature}, the similar fact can be seen. In th
 	\label{fig:minimum_gap_temperature}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{Figure_PvsGap_T1e3_G02_avoid_duplicate.eps}	
-	\caption{A set of simulation result with 48 2-SAT problems with different minimum gap values. The total annealing time of the simulation is $1000$ and the coupling factor is $0.2$.}
-	\label{fig:minimum_gap_temperature_avoid_duplicate}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=\linewidth]{Figure_PvsGap_T1e3_G02_avoid_duplicate.eps}	
+%	\caption{A set of simulation result with 48 2-SAT problems with different minimum gap values. The total annealing time of the simulation is $1000$ and the coupling factor is $0.2$.}
+%	\label{fig:minimum_gap_temperature_avoid_duplicate}
+%\end{figure}
 
 %\section{??D-wave Practice}
 %	\cite{Johnson2011}
