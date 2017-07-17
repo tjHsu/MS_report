@@ -420,7 +420,7 @@ After comparing with the Hamiltonian given in Eq. (??), one finds that $h_i^z$, 
 \section {Simulation Algorithm}
 \subsubsection{Time-Dependent Schrodinger Equation and Quantum Spin System}
 
-The whole quantum annealing process can be described by time-dependent Schrödinger equation ( Equation \ref{tdse}), that is by solving time-dependent Schrödinger equation one can determine the final state of the system. The solution of this is 
+The quantum annealing process can be described by time-dependent Schrödinger equation, and therefore the final state of the system can be determined by solving time-dependent Schrödinger equation. The solution is \\
 
 \begin{equation}
 \begin{split}
@@ -429,7 +429,7 @@ The whole quantum annealing process can be described by time-dependent Schröding
 \end{split}
 \end{equation}
 
-!where $\tau$ is the time step, and $U(t+\tau)$ is a unitary matrix that transform system from $t$ to $t+\tau$. In order to conduct numerical computation and ensure the unitary of the evolution operator, time is discretised to small time step $\tau$ and $H(\tau)$ is assumed to be piecewise constant within these time steps. Therefore, the size of the time step should be small enough to keep $H(\tau)$ piecewise. On the other hand, if the size is too small, the computational time will be too long. A proper length should be tested out before going into further simulation. \\
+where $\tau$ is the size of the time step, and $U(t+\tau)$ is a unitary matrix that transforms the system from $t$ to $t+\tau$. In order to conduct a numerical computation and ensure the unitary of the evolution operator, time is discretised to small time step $\tau$ and $H(\tau)$ is assumed to be piecewise constant within these time steps, hence the reason that the size of the time step should be small enough to keep $H(\tau)$ piecewise. However, if the size is too small, the run time of the simulation will be too long. A proper length of the time step should be tested out before going into further simulation. \\
 
 The $\Psi$ is defined by the direct product state of the N single spin states in z-basis, which is the computational basis used in this report. Each single spin has two possible states, $\ket{0}$ or $\ket{1}$, which correspond to, $\ket{\uparrow}$ or $\ket{\downarrow}$ . The relation between them is defined as 
 
@@ -440,62 +440,66 @@ The $\Psi$ is defined by the direct product state of the N single spin states in
 Thus, the single spin state can be written as a linear superposition of theses two basis state, 
 
 \begin{equation}
-\ket{\psi} = a(0)\ket{0} + a(1)\ket{1},
+\ket{\Psi} = a(0)\ket{0} + a(1)\ket{1},
 \end{equation}
 
-where $a(0) and a(1)$ are the coefficient of the amplitude of each state. Furthermore, a N-spin system is made up of $2^N$ state vectors and it can be written as 
+where $a(0)$ and $a(1)$ are the probability amplitudes of each state. With the same representation, a N-spin system can be constructed with $2^N$ state vectors and written as 
 
 \begin{equation}
 \label{psi_in_compuationalbasis}
-\Psi = a(00\dots0)\ket{00\dots0}+a(00\dots1)\ket{00\dots1}+\dots+a(11\dots0)\ket{11\dots0}+a(11\dots1)\ket{11\dots1},
+\ket{\Psi} = a(00\dots0)\ket{00\dots0}+a(00\dots1)\ket{00\dots1}+\dots+a(11\dots0)\ket{11\dots0}+a(11\dots1)\ket{11\dots1}
 \end{equation}
+%where $a(00\dots0), a(00\dots1)\dots, a(11\dots1)$ are the coefficients of each components. 
+%It should fulfil the normalisation requirement, $\braket{\Psi}{\Psi} = 1$. That is, the following equation should hold. 
 
-where $a(00\dots0), a(00\dots1)\dots, a(11\dots1)$ are the coefficients of each components. It should fulfil the normalisation requirement, $\braket{\Psi}{\Psi} = 1$. That is, the following equation should hold. 
+The following equation should hold because of the normalisation requirement, $\braket{\Psi}{\Psi} = 1$.\\
 
 \begin{equation}
 \sum_{\sigma_1,\sigma_2, \dots, \sigma_N=\ket{0},\ket{1}} |a(\sigma_1,\sigma_2, \dots, \sigma_N)|^2 = 1. 
 \end{equation}
 
-One may noticed that the format of basis vectors in Equation \ref{psi_in_compuationalbasis} is similar to the format of binary number notation. !If the first is considered to be the least significat bit of an integer, the basis vector can be denoted as a integer ranging from 0 to $2^N-1$. \\
+One may notice that the form of basis vectors in Eq. (\ref{psi_in_compuationalbasis}) is similar to the binary number notation. With the binary number notation, the basis vector can be denoted as a integer ranging from 0 to $2^N-1$. When comparing the simulation result with the know solution state, this notation makes the comparison simpler.\\
+%If the first is considered to be the least significat bit of an integer, the basis vector can be denoted as a integer ranging from 0 to $2^N-1$. \\
 %According to Equation \ref{psi_in_compuationalbasis}, it is 
 
-It is clear that the memory request for the computation will increase exponentially with the size of the quantum system, which may soon make the computation not practical on a classical computer. However, it turns out there is a simple way to calculate the result without accessing to the entire matrix every time. Namely, during applying $\sigma^x_i, \sigma^z_i, and \sigma^z_i\sigma^z_j$ to $\ket{\Psi}$ the computation can be reduced to series of $2x2$ and $4x4$ matrix calculation instead of a calculation of entire $2^N x 2^N$ matrix. After applying Hamiltonian operator to Equation \ref{psi_in_compuationalbasis}, the state vectors become 
-
+%The memory requests for the simulation scales exponentially with the size of the quantum system, which may soon make the computation not practical on a classical computer. However, it turns out that there is a simple way to calculate the result without accessing to the entire matrix every time.
+In Eq. (\ref{Hamiltonian_set}), there are 2 kinds of terms, which are the single spin term and the double spin term. When applying these terms to $\ket{\Psi}$, the computation can be reduced to a series of $2\times 2$ and $4\times 4$ in-place matrix computations instead of a computation of the entire $2^N \times 2^N$ matrix. After applying these terms to the state vector, the state vector are written as follows.
+%$\sigma^x_i, \sigma^z_i,$ and $\sigma^z_i\sigma^z_j$
 \begin{equation}
 \begin{split}
-\ket{\Psi'} &= \sigma^\alpha_i \ket{\Psi} \\
+\sigma^\alpha_i \ket{\Psi} &= \ket{\Psi'} \\
 			&= a'(00\dots0)\ket{00\dots0}+a'(00\dots1)\ket{00\dots1}+\dots+a'(11\dots0)\ket{11\dots0}+a'(11\dots1)\ket{11\dots1},
 \end{split}
 \end{equation}
 
-If the operator is $\sigma^x_i$, it interchanges state up and state down, which corresponds to a swap of a pair component of $\Psi$. 
+If the operator is $\sigma^x_i$, it interchanges the state up and state down, which corresponds to a swap of a pair component of $\Psi$. This leads to the following eqaution.
 
 \begin{equation}
 \begin{split}
 a'(\bullet \cdots \bullet 0 \bullet \cdots \bullet) = +a(\bullet \cdots \bullet 1 \bullet \cdots \bullet)\\
-a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet) = +a(\bullet \cdots \bullet 0 \bullet \cdots \bullet)
+a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet) = +a(\bullet \cdots \bullet 0 \bullet \cdots \bullet),
 \end{split}
 \end{equation}
 
-If the operator is $\sigma^y_i$, according to Equation \ref{pauli_matrix}, the coefficient has the relation 
+where the $\bullet$ is used to indicate that the bits on the corresponding position are the same. If the operator is $\sigma^y_i$, according to Equation \ref{pauli_matrix}, the coefficient has the relation 
 
 \begin{equation}
 \begin{split}
 a'(\bullet \cdots \bullet 0 \bullet \cdots \bullet) = -i\times a(\bullet \cdots \bullet 1 \bullet \cdots \bullet)\\
-a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet) = +i\times a(\bullet \cdots \bullet 0 \bullet \cdots \bullet)
+a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet) = +i\times a(\bullet \cdots \bullet 0 \bullet \cdots \bullet).
 \end{split}
 \end{equation}
 
-If the operator is $\sigma^z_i$, it reverses the sign of all coefficients of $\ket{\Psi}$ for which the $i-th$ bit of the vector has value 1, which yields
+Although Eq. (\ref{Hamiltonian_set}) does not have $\sigma^y_i$ component, $\sigma^y_i$ will later be used in the case at finite temperature. If the operator is $\sigma^z_i$, it reverses the sign of all coefficients of $\ket{\Psi}$ for which the $i-th$ bit of the vector has value 1, which yields
 
 \begin{equation}
 \begin{split}
 a'(\bullet \cdots \bullet 0 \bullet \cdots \bullet) = +a(\bullet \cdots \bullet 1 \bullet \cdots \bullet)\\
-a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet) = -a(\bullet \cdots \bullet 0 \bullet \cdots \bullet)
+a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet) = -a(\bullet \cdots \bullet 0 \bullet \cdots \bullet).
 \end{split}
 \end{equation}
 
-Similarly, applying two spin operator $\sigma^z_i\sigma^z_j$ leads to a sign interchange between coefficients of $\ket{\Psi}$ for which the $i-th$ bit and the $j-th$ bit of the vector has different valus. Hence it is 
+Similarly, applying two spin operator $\sigma^z_i\sigma^z_j$ leads to a sign interchange between coefficients of $\ket{\Psi}$ for which the $i-th$ bit and the $j-th$ bit of the vector has different values. Hence it is 
 
 \begin{equation}
 \begin{split}
@@ -506,7 +510,7 @@ a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet 1 \bullet \cdots \bullet) = -
 \end{split}
 \end{equation}
 
-Please note that the operation mentioned here are done in place. Namely, instead of creating and using extra unnecessary vector, these operation manipulate the necessary component in the state vector $\ket{\Psi}$. Hence, $\ket{\Psi'}=H\ket{\Psi}$ can be calculated easily. This approach serves as the basis of the algorithm introduced in following subsections. \\
+It is worth mentioning again that the operation mentioned here are done in place. Namely, instead of creating and using extra unnecessary vector, these operations only manipulate the necessary component in the state vector $\ket{\Psi}$. Thus, $\ket{\Psi'}=H\ket{\Psi}$ can be calculated easily. This approach serves as the basis of the algorithms introduced in following subsections. \\
 %\begin{equation}
 %i\hbar\frac{\partial \psi}{\partial t}=H\psi
 %\end{equation}
@@ -520,52 +524,54 @@ Please note that the operation mentioned here are done in place. Namely, instead
 
 \subsection{Algorithm for Ideal Case}
 
-So here I am going to try out two algorithm. First is full diagonalization, which i use Lapack to solve the eigensystem. Product formula break the evolution into small operation and make the computation of large system possible.\\
-
-
 \subsubsection{Full Diagonalisation}
 
-Base on the fact that Hamiltonian H is an Hermitian operator formed by a $2^N \times 2^N$ matrix, it has a complete set of eigenvectors and eigenvalues. This implies that the matrix H can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors. The transformation is given by $H = V\Lambda V^\dagger$. Thus the time evolution can be calculated as $U(\tau) = exp(-i\tau H) = V exp(-i\tau \Lambda) V^\dagger$. If $V$ and $\Lambda$ are obtained by diagonalising H, time evolution becomes a series of simple matrix multiplication. Since diagonalisation is a typical matrix problem, there are already standard software library can be made use of. \\
+Based on the fact that the Hamiltonian H is a Hermitian operator formed by a $2^N \times 2^N$ matrix, it has a complete set of eigenvectors and eigenvalues. This implies that the Hamiltonian H can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors. The transformation is given by $H = V\Lambda V^\dagger$. Thus, the time evolution can be calculated as $U(\tau) = exp(-i\tau H) = V exp(-i\tau \Lambda) V^\dagger$. If $V$ and $\Lambda$ can be obtained by diagonalising H, time evolution becomes a series of simple matrix multiplication. Since diagonalisation is a classic matrix transformation, there are already standard software library can be made use of. \\
 
-The element of H can be computed by repeatedly applying Hamiltonian H to basis vector $\ket{\Psi}$, that is $\ket{\Psi'} = H\ket{\Psi}$. ! First, $\ket{\Psi}$ is set to be $(1,0,\dots,0)^T$. $\ket{\Psi'} = H\ket{\Psi}$ will then result in the first column of the matrix H. Same calculation for  $(0,1,0,\dots,0)^T$ will lead to the second column of the matrix H and so forth. Consequently, the matrix H will be determined. \\
+The element of H can be computed by repeatedly applying Hamiltonian H to basis vector $\ket{\Psi}$, which results in $\ket{\Psi'} = H\ket{\Psi}$. The $\ket{\Psi'}$ is the column of H in matrix form. In more detail, $\ket{\Psi}$ is firstly assigned to be $(1,0,\dots,0)^T$. $\ket{\Psi'} = H\ket{\Psi}$ will then result in the first column of the matrix H. Same calculation for $(0,1,0,\dots,0)^T$ will lead to the second column of the matrix H and so forth. Consequently, the elements of the matrix H can be determined. \\
 
-The main drawback of this approach is the limitation on scaling. !Whlie diagonalising the matrix H, the memory request and CPU time of the standard algorithm scale as $D^2$ and $D^3$ with $D=2^N$. Due to the exponential growth of the matrix size $D$, full diagonalisation approach fits only small quantum system. Therefore, this approach serves mostly as a tool to valid the correctness of other algorithm when solving with time-dependent Schrödinger equation\cite{DeRaedt2004}.\\
+The main drawback of this approach is the limitation on scaling. Whlie diagonalising the matrix H, the memory request and the run time of the standard algorithm scale as $D^2$ and $D^3$ ($D=2^N$) respectively. Due to the exponential growth of the matrix size $D$, the full diagonalisation method only fits a quantum system with small size. Therefore, this approach serves mostly as a tool to validate the correctness of other algorithms when solving with time-dependent Schrödinger equation.%\cite{DeRaedt2004}.\\
 %Use Lapack to diagonalize the H for $\Psi_{t} = e^{iH\tau} \Psi_{t-\tau}$. 
 
 
 \subsubsection{Suzuki-Trotter Product Formula}
-Check Reference \cite{DeRaedt2004}  E. Suzuki-Trotter Product-Formula Algorithms
 
-The Suzuki-Trotter product formula approach is the one that will suit for a larger quantum system. Suzuki-Trotter product formula approximate a unitary matrix exponentials by decomposing the matrix properly, that is 
+Suzuki-Trotter product formula approach can reduce the memory request and the run time when dealing with a larger quantum system \cite{DeRaedt2004}. The main idea is that a unitary matrix exponential can be approximated by decomposing it properly into the matrix exponentials with small matrix size,
+
+%Suzuki-Trotter product formula approach approximates a unitary matrix exponentials by decomposing the matrix properly, that is 
 
 \begin{equation}
 \label{suzuki-trotter product formula}
 \begin{split}
-U(t) &= \exp(-i\tau H)\\
-&=\exp(-t\tau(H_1+H_2+\dots+H_K))\\
-&=\lim_{m \to \infty}(\prod_{k=1}^{K}\exp(-i\tau H_k/m))^m
+U(t) &= \exp(-itH)\\
+&=\exp(-it(H_1+H_2+\dots+H_K))\\
+&=\lim_{m \to \infty}(\prod_{k=1}^{K}\exp(-it H_k/m))^m.
 \end{split}
 \end{equation}
 
-If the time step $\tau$ is small enough, a good approximation of $U(t)$ suggested by Equation \ref{suzuki-trotter product formula} is 
+If the size of the time step is sufficiently small, a good approximation of $U(t)$ suggested by Eq. (\ref{suzuki-trotter product formula}) is 
 
 \begin{equation}
 \label{suzuki-trotter product formula 1st}
-\tilde{U}_1(\tau) = \exp(-i\tau H_1) \exp(-t\tau H_2) \dots \exp(-t\tau H_K).
+\tilde{U}_1(\tau) = \exp(-i\tau H_1) \exp(-t\tau H_2) \dots \exp(-t\tau H_K),
 \end{equation} 
  
- !The Taylor series of $U(t)$ and $\tilde{U}_1(t)$ are identical up to first order in $\tau$. Thus $\tilde{U}_1(t)$ is the first order approximation of $U(t)$. Furthermore, if all $H_i$ in Equation \ref{suzuki-trotter product formula 1st} are Hermitian, $\tilde{U}_1(t)$ is unitary by construction and hence the algorithm based on Equation \ref{suzuki-trotter product formula 1st} will be unconditionally stable. The accuracy of the algorithm can be increased by applying second order approximation and it is defined by 
+where $\tau = t / m$ is the size of the time step. The Taylor series of $U(t)$ and $\tilde{U}_1(t)$ are identical up to first order in $\tau$. Thus $\tilde{U}_1(t)$ is the first order approximation of $U(t)$. Furthermore, if all $H_i$ in Eq. (\ref{suzuki-trotter product formula 1st}) are Hermitian, $\tilde{U}_1(t)$ is unitary by construction. Consequently, the algorithm based on Eq. (\ref{suzuki-trotter product formula 1st}) will be unconditionally stable. The accuracy of the algorithm can be increased by applying second order approximation and it yields 
  
 \begin{equation}
 \begin{split}
 \tilde{U}_2(\tau) &= \tilde{U}_1(\frac{\tau}{2})^T\tilde{U}_1(\frac{\tau}{2}) \\
-&=\exp(\frac{-t\tau H_K}{2})\exp(\frac{-t\tau H_{K-1}}{2})\dots\exp(\frac{-t\tau H_1}{2})\exp(\frac{-t\tau H_1}{2})\dots\exp(\frac{-t\tau H_K}{2})
+&=\exp(\frac{-t\tau H_K}{2})\exp(\frac{-t\tau H_{K-1}}{2})\dots\exp(\frac{-t\tau H_1}{2})\exp(\frac{-t\tau H_1}{2})\dots\exp(\frac{-t\tau H_K}{2}).
 \end{split}
 \end{equation} 
 
-Here $\tilde{U}_2(\tau)$ is again unitary by construction as $\tilde{U}_1(\tau)$. !For a fixed accuracy in this $\tilde{U}_2(\tau)$ approximation, memory required and CPU time scale as $\order{D}$ and $\order{\tau^{1+1/2}D}$ respectively. The crucial step of this algorithm is to choose $H_i$ properly in a way that it is easy enough to calculate there matrix exponential, $\exp(\frac{-t\tau H_1}{2})\dots\exp(\frac{-t\tau H_K}{2})$, efficiently.  \\
+$\tilde{U}_2(\tau)$ is also unitary by construction as $\tilde{U}_1(\tau)$. !For a fixed accuracy in this $\tilde{U}_2(\tau)$ approximation, memory required and CPU time scale as $\order{D}$. The crucial step of this algorithm is to choose $H_i$ properly that makes the calculation of there matrix exponentials simple and efficient.\\
+%, $\exp(\frac{-t\tau H_1}{2})\dots\exp(\frac{-t\tau H_K}{2})$, efficiently.  \\
 
-The Hamiltonian used in this report is listed in Equation \ref{Hamiltonian_set}. One efficient way to construct second order approximation is 
+%For a fixed accuracy in this $\tilde{U}_2(\tau)$ approximation, memory required and CPU time scale as $\order{D}$ and $\order{\tau^{1+1/2}D}$ respectively
+
+
+Based on the Hamiltonian listed in Eq. (\ref{Hamiltonian_set}), one efficient way to construct second order approximation is 
 
 \begin{equation}
 \label{tilde_U}
@@ -574,36 +580,34 @@ The Hamiltonian used in this report is listed in Equation \ref{Hamiltonian_set}.
 \end{split}
 \end{equation}
 
-with !(!should remove t in the braket)
+with 
 
 %\begin{equation}
 \begin{align}
 \label{single_spin}
-&\exp(\frac{-i\tau H_{\sigma_\alpha}}{2})= \exp(\frac{-i\tau(-\sum_{i=1}^{N}\sum_{\alpha=x,y,z}h^\alpha_i(t)\sigma^\alpha_i)}{2})\\
+&\exp(\frac{-i\tau H_{\sigma_\alpha}}{2})= \exp(\frac{-i\tau\left(-\sum_{i=1}^{N}\sum_{\alpha=x,y,z}h^\alpha_i(t)\sigma^\alpha_i\right)}{2})\\
 \label{double_spin_x}
-&\exp(\frac{-i\tau H_{\sigma_x \sigma_x}}{2})=\exp(\frac{-i\tau(-\sum_{i=1}^{N}J^x_{ij}(t)\sigma^x_i\sigma^x_j)}{2})\\
+&\exp(\frac{-i\tau H_{\sigma_x \sigma_x}}{2})=\exp(\frac{-i\tau\left(-\sum_{i=1}^{N}J^x_{ij}(t)\sigma^x_i\sigma^x_j\right)}{2})\\
 \label{double_spin_y}
-&\exp(\frac{-i\tau H_{\sigma_y \sigma_y}}{2})=\exp(\frac{-i\tau(-\sum_{i=1}^{N}J^y_{ij}(t)\sigma^y_i\sigma^y_j)}{2})\\
+&\exp(\frac{-i\tau H_{\sigma_y \sigma_y}}{2})=\exp(\frac{-i\tau\left(-\sum_{i=1}^{N}J^y_{ij}(t)\sigma^y_i\sigma^y_j\right)}{2})\\
 \label{double_spin_z}
-&\exp({-i\tau H_{\sigma_z \sigma_z}})=\exp({-i\tau(-\sum_{i=1}^{N}J^z_{ij}(t)\sigma^z_i\sigma^z_j)})
+&\exp({-i\tau H_{\sigma_z \sigma_z}})=\exp({-i\tau\left(-\sum_{i=1}^{N}J^z_{ij}(t)\sigma^z_i\sigma^z_j\right)}),
 \end{align}
 %\end{equation}
 
-, !where $h^\alpha_i(t), J^x_i(t), J^y_i(t)$, and $J^z_i(t)$ are the strength of Hamiltonian at the current time step according to Equation \ref{Hamiltonian_set}. Equation \ref{single_spin} can be further elaborated as 
-
+, where $h^\alpha_i(t), J^x_i(t), J^y_i(t)$, and $J^z_i(t)$ are the strength of Hamiltonian at the current time step according to Eq. (\ref{Hamiltonian_set}). The reason why decomposing in this way is that the analytical expression of each matrix exponential is known. First, Eq. (\ref{single_spin}) can be further elaborated as\\
 \begin{equation}
 \label{single_spin 2}
 \exp(\frac{-i\tau(-\sum_{i=1}^{N}\sum_{\alpha=x,y,z}h^\alpha_i(t)\sigma^\alpha_i)}{2}) = \prod_{i=1}^{N}\exp(\frac{i\tau \sum_{\alpha_{x,y,z}}h^\alpha_i(t)\sigma^\alpha_i}{2}).
 \end{equation}
- 
-The following equation set out a rotation of the vector $\mathbf{S}$ about the vector $\mathbf{v}$,
+The analytical expression of Eq. (\ref{single_spin 2}) can be shown with the aid of the following equation, which sets out a rotation of the vector $\mathbf{S}$ about the vector $\mathbf{v}$.
 
 \begin{equation}
 \label{single_spin 3}
-!\exp(i\mathbf{v}\cdot \mathbf{S}) = \mathbb{I} cos(\frac{v}{2}) + \frac{2i\mathbf{v}\cdot \mathbf{S}}{v}sin(\frac{v}{2}),
+\exp(i\mathbf{v}\cdot \mathbf{S}) = \mathbb{I} cos(\frac{v}{2}) + \frac{2i\mathbf{v}\cdot \mathbf{S}}{v}sin(\frac{v}{2}),
 \end{equation}
 
-where $v$ is the norm of $\mathbf{v}$. With the aid of this equation, the matrix exponential of these single spin terms can be calculated analytically as 
+where $v$ is the norm of $\mathbf{v}$. The matrix exponential of Eq. (\ref{single_spin 2}) can be written as 
 
 \begin{equation}
 \label{single_spin 4}
@@ -613,14 +617,14 @@ cos\frac{\tau h_i}{2}+\frac{ih^z_i}{h_i}sin\frac{\tau h_i}{2} & \frac{ij^x_i+h^y
 \end{pmatrix},
 \end{equation}
 
-where $h_i$ is the norm of the vector $\mathbf{h_i}=(h^x_i,h^y_i,h^z_i)$. It can be conclude from Equation \ref{single_spin 2}, \ref{single_spin 3}, and \ref{single_spin 4}, that the time evolution for single spin terms turns out to be a $2\times2$ matrix calculation and multiplication. !This can be done by picking right pairs of coefficient in the state vector and applying Equation \ref{single_spin 4}. \\
+where $h_i$ is the norm of the vector $\mathbf{h_i}=(h^x_i,h^y_i,h^z_i)$. It can be conclude from Equation \ref{single_spin 2}, \ref{single_spin 3}, and \ref{single_spin 4}, that the calculation of the time evolution for single spin terms becomes a series of  $2\times2$ matrix calculations and multiplications. In addition, this calculation can be done by picking right pairs of coefficient in the state vector and applying Equation \ref{single_spin 4}. \\
 
-For the case of double spin operator, since the spin operator with different labels commute, Equation \ref{double_spin_x}, \ref{double_spin_y}, and \ref{double_spin_z} can be decomposed into 
+For the case of the double spin operator, since the spin operators with different labels commute, Eq. (\ref{double_spin_x}), Eq. (\ref{double_spin_y}), and Eq. (\ref{double_spin_z}) can be decomposed into 
 
 \begin{align}
-&\exp(\frac{-i\tau(-\sum_{i=1}^{N}J^x_{ij}(t)\sigma^x_i\sigma^x_j)}{2}) = \prod_{i,j=1}^{N}\exp(\frac{i\tau J^x_{i,j}(t)\sigma^x_i\sigma^x_i}{2})\\
-&\exp(\frac{-i\tau(-\sum_{i=1}^{N}J^y_{ij}(t)\sigma^y_i\sigma^y_j)}{2}) = \prod_{i,j=1}^{N}\exp(\frac{i\tau J^y_{i,j}(t)\sigma^y_i\sigma^y_i}{2})\\
-&\exp({-i\tau(-\sum_{i=1}^{N}J^z_{ij}(t)\sigma^z_i\sigma^z_j)}) = \prod_{i,j=1}^{N}\exp(i\tau J^z_{i,j}(t)\sigma^z_i\sigma^z_i).
+&\exp(\frac{-i\tau\left(-\sum_{i=1}^{N}J^x_{ij}(t)\sigma^x_i\sigma^x_j\right)}{2}) = \prod_{i,j=1}^{N}\exp(\frac{i\tau J^x_{i,j}(t)\sigma^x_i\sigma^x_j}{2})\\
+&\exp(\frac{-i\tau\left(-\sum_{i=1}^{N}J^y_{ij}(t)\sigma^y_i\sigma^y_j\right)}{2}) = \prod_{i,j=1}^{N}\exp(\frac{i\tau J^y_{i,j}(t)\sigma^y_i\sigma^y_j}{2})\\
+&\exp({-i\tau\left(-\sum_{i=1}^{N}J^z_{ij}(t)\sigma^z_i\sigma^z_j\right)}) = \prod_{i,j=1}^{N}\exp(i\tau J^z_{i,j}(t)\sigma^z_i\sigma^z_j).
 \end{align}
 
 The above expressions, likewise, can be determined analytically and yield 
@@ -649,9 +653,10 @@ i \sin(-J^y_{i,j}\tau) & 0 & 0 & \cos(-J^y_{i,j}\tau)
 \end{pmatrix} 
 \end{align}
 
-In a similar way, the time evolution of double spin operators can be evaluated by picking the 4 corresponding states, calculating the matrix, applying the matrix on $\ket{\Psi}$. Moreover, with these analytical expression (i.e. Equation \ref{single_spin 4}, \ref{double_spin_x 2}, \ref{double_spin_y 2}, and \ref{double_spin_z 2} ), it it now possible to carry out $\tilde{U}(\tau)$ in Equation \ref{tilde_U} and apply it to $\ket{\Psi(t)}$. Hence, the time evolution of the wave function can be calculated. \\
+In a similar way, the calculation of the time evolution of double spin operators can be evaluated by picking the 4 corresponding states. Moreover, with these analytical expressions (i.e. Eq. (\ref{single_spin 4}), Eq. (\ref{double_spin_x 2}), Eq. (\ref{double_spin_y 2}), and Eq. (\ref{double_spin_z 2}) ), it it now possible to carry out $\tilde{U}(\tau)$ in Eq. (\ref{tilde_U}) and apply it to $\ket{\Psi(t)}$. Thus, the time evolution of the wave function can be calculated. \\
+%, calculating the matrix, applying the matrix on $\ket{\Psi}$
 
-With these two algorithm, the full diagonalisation algorithm and the Suzuki-Trotter Product Formula algorithm, it is sufficient to simulate an quantum annealer at zero temperature, namely under ideal condition, on a classical computer. However, in order to simulate a quantum annealer at finite temperature, the computation process will be more complicated and a simple implementation of these two algorithm will not be practical. Further detail will be presented in the next section. \\
+With these two algorithms, the full diagonalisation methods and Suzuki-Trotter Product Formula approach, it is sufficient to simulate a quantum annealer at zero temperature, namely in ideal condition, on a classical computer. Nevertheless, in order to simulate a quantum annealer at finite temperature, the computation process will be more complicated and a simple implementation of these two algorithm will not be practical. Further details will be presented in the next subsection. \\
 
 %Break the H to small operation that operate on the state. According to $J^x , J^y, and Jz; h^x, h^y, and h^z$, we need to find the pair or quad pair for the $\Psi$
 
