@@ -78,15 +78,17 @@ In this study, we simulated a quantum annealing process at zero and finite tempe
 
 The idea of quantum computation was brought up in the early 80s \cite{Feynman1982}. Feynman thought that a simulation of quantum phenomena is not always possible on a classical computer, because the amount of resources required for the computation grows exponentially with the size of the physical system. Instead, quantum phenomena should be simulated by a computer making use of quantum properties. The amount of resources required for the simulation is only proportional to the size of the physical system. \\
 
-After this idea, an interesting topic for scientists is that computation can benefit from storing, transferring and processing information with quantum properties. Quantum computation is expected to do more than just simulation of quantum phenomena. Some quantum algorithms were presented and shown to have a significantly speed-up compared to classical ones. Here follows some examples. Simon's algorithm can reduce the runtime for the task from an exponential time on a classical computer to a polynomial time on a quantum computer. \cite{Simon1994}. Furthermore, this also serves as the stepping-stone to Shor's Algorithm. Shor's Algorithm for factoring large intergers is one of the most well-known quantum algorithms. The time it takes to factor an n-digit number grows as a polynomial in n on a quantum computer. The time for the same task grows exponentially with n on a classical computer \cite{Shor1995}. The toughness of the factoring problem is the basis of many cryptography techniques and information is usually encrypted and protected by a large semi prime number. Classical cryptography seems to break down and  quantum cryptography is under research as a response to this. The last one is Grover's search algorithm. To search an item in an unstructured list of size N costs a classical computer running time on the order of N. Grover's algorithm can solve the same task in the order of $\sqrt{N}$ \cite{Grover1996}. Not like Shor's algorithm, which has an exponential speed-up, Grover's algorithm has only a quadratic improvement. It is still an important algorithm because of its board applications, such as to speedup the time required to solve NP-complete problems \cite{Cerf2000,Bennett1997}. \\
+After this idea, an interesting topic for scientists is how computation can benefit from storing, transferring and processing information with quantum properties. Quantum computation is expected to do more than just simulation of quantum phenomena. Some quantum algorithms were presented and shown to have a significantly speed-up compared to classical ones. Here follows some examples. Simon's algorithm can reduce the run time from an exponential time on a classical computer to a polynomial time on a quantum computer when solving a black box problem \cite{Simon1994}. Furthermore, this also serves as the stepping-stone to Shor's Algorithm. Shor's Algorithm for factoring large integers is one of the most well-known quantum algorithms. The time it takes to factor an $n$-digit number grows as a polynomial in $n$ on a quantum computer. The time for the same task grows exponentially with $n$ on a classical computer \cite{Shor1995}. The toughness of the factoring problem is the basis of many cryptography techniques and information is usually encrypted and protected by a large semi prime number. Therefore, some classical cryptography algorithms, like RSA, seems to break down and  quantum cryptography is under research as a response to this. The last one is Grover's search algorithm. To search an item in an unstructured list of size $N$ costs a classical computer running time on the order of $N$. Grover's algorithm can solve the same task in the order of $\sqrt{N}$ \cite{Grover1996}. Not like Shor's algorithm, which has an exponential speed-up, Grover's algorithm has only a quadratic improvement. It is still an important algorithm because of its board applications, such as to speedup the time required to solve NP-complete problems \cite{Cerf2000,Bennett1997}. \\
 
-All algorithms mentioned above are expected to run on a universal quantum computer, which is usually referred to a machine based on the quantum gate model. However, building a quantum gate computer may be a challenging task. The main difficulty comes from the close box requirement \cite{Ladd2010}. The quantum system of a quantum computer should be isolated from its environment while being controlled. The quantum system is so fragile that even a little amount of noise can cause harm to the system, known as decoherence. Furthermore, due to the environmental noise, the entropy of the system will keep increasing with time. Therefore, there must exist a way to cool the quantum system and maintain its quantum state. How to measure results is another important issue, because the computational result makes sense to us only when we are able to measure it. Also, the possibility to scale up the system is crucial. A general quantum computer can be realised only when the above requirements are all fulfilled. Another approach to quantum computation is adiabatic quantum computer, which is more robust than a gate based computer !!cite decoherence in AQC!!. There are debates on whether an adiabatic quantum computer can be considered as a general quantum computer. It has shown that the model of adiabatic computation differs from the standard model of quantum computation within a polynomial time \cite{Aharonov2004,Farhi2000}. Some criticised that this only holds under ideal circumstance without noise. There are effective model for building a fault-tolerant gate based quantum computer. By contrast, whether fault-tolerant is possible on a quantum annealer is unknown !!cite Classical signature of quantum annealing!!\\
+All algorithms mentioned above are expected to run on a universal quantum computer, which is usually referred to a machine based on the quantum gate model. However, building a quantum gate computer may be a challenging task. The main difficulty comes from the close box requirement \cite{Ladd2010}. The quantum system of a quantum computer should be isolated from its environment while being controlled. The quantum system is so fragile that even a little amount of noise can cause harm to the system, known as decoherence. Furthermore, due to the environmental noise, the entropy of the system will keep increasing with time. Therefore, there must exist a way to cool the quantum system and maintain its quantum state. How to measure results is another important issue, because the computational result makes sense only when it can be measured. Also, the possibility to scale up the system is crucial. A general quantum computer can be realised only when the above requirements are all fulfilled. Another approach to quantum computation is adiabatic quantum computer, which is more robust than a gate based computer. There are debates on whether an adiabatic quantum computer can be considered as a general quantum computer. It has shown that the model of adiabatic computation differs from the standard model of quantum computation within a polynomial time \cite{Aharonov2004,Farhi2000}. Some criticised that this only holds under ideal circumstance without noise. There are effective model for building a fault-tolerant gate based quantum computer. By contrast, whether fault-tolerant is possible on a quantum annealer is unknown \cite{Smolin2013}\\
 
-Quantum annealing can be considered as a special kind of quantum computation. Quantum annealer is a device that can perform quantum annealing. D-Wave Systems Inc. is a company which focuses on building a quantum annealer and the target is optimisation. Many application can be cast into a optimisation problem of finding the minimum of cost function, which is equivalent to finding the ground state of a system of interacting spins. Finding such state remains still a computationally hard problem. It is believed that if one can encode the cost function into the hardware, quantum annealing process can effectively achieve the goal\cite{Johnson2011}. During a quantum annealing process, the system starts with a ground state. At the end of the evolution, the system is expected to be in the ground state of the problem Hamiltonian, which is the solution of the optimisation problem. This is the reason why the quantum annealer is sometimes considered to be specialised in optimisation only instead of being a universal quantum computer. D-wave Systems was founded in 1999 and released the first commercial system in 2010 with 128 qubits. The latest system is D-Wave 2000Q with 2048 qubits. By emphasising on optimisation, a quantum annealer has potential application in fields like machine learning, pattern recognition and computer vision. \\
+%is more robust than a gate based computer !!cite decoherence in AQC!!
+
+Quantum annealing can be considered as a special kind of quantum computation. Quantum annealer is a device that can perform quantum annealing. D-Wave Systems Inc. is a company which focuses on building a quantum annealer and the target is optimisation. Many application can be cast into an optimisation problem of finding the minimum of cost function, which is equivalent to finding the ground state of a system of interacting spins. Finding such state remains still a computationally hard problem. It is believed that if one can encode the cost function into the hardware, quantum annealing process can effectively achieve the goal\cite{Johnson2011}. During a quantum annealing process, the system starts with a ground state. At the end of the evolution, the system is expected to be in the ground state of the problem Hamiltonian, which is the solution of the optimisation problem. This is the reason why the quantum annealer is sometimes considered to be specialised in optimisation only instead of being a universal quantum computer. D-wave Systems Inc. was founded in 1999 and released the first commercial system in 2010 with 128 qubits. The latest system is D-Wave 2000Q with 2048 qubits. By emphasising on optimisation, a quantum annealer has potential application in fields like machine learning, pattern recognition and computer vision. \\
 
 A quantum annealer is built based on a spin 1/2 system, which is Ising-model. The qubits in this system have two state. Start from an initial Hamiltonian, we slowly turn off initial Hamiltonian and turn on the problem Hamiltonian. If the system is in its ground state and the whole process is slow enough, the system will also end at ground state with the problem Hamiltonian and we get th e solution of the 2-SAT problem. According to the adiabatic theorem this should work in a pure system, however, in the real case with environment. The system will be coupled with a heat bath. This heat bath may damage the coherent of the system evolution. \\ 
 
-The outline of the report is as follows. In section 2, the general idea of a quantum annealing and the theory behind it is introduced. Section 3 presents the definition and the characteristics of optimisation problems. Section 4 provides the algorithms used for the simulation of a spin-system. In Section 5 and section 6, the simulation results of a ideal system and a system with Temperature effect will be discuss respectively. Section 7 is about some applications on machine learning and computer vision based on quantum annealing.\\
+The outline of the report is as follows. In section 2, the general idea of a quantum annealing and the theory behind it is introduced. Section 3 presents the definition and the characteristics of optimisation problems. Section 4 provides the algorithms used for the simulation of a spin-system. In Section 5 and section 6, the simulation results of a ideal system and a system with temperature effect will be discuss respectively. Section 7 is about the applications of quantum annealing in the field of machine learning.\\
 
 % In section 3, I will introduce the optimization porblem, which believed to be a potential application of the quantum annealer. In section 4, I first simulate the quantum annealer without the heat bath. In section 5, I then simulate the quantum annealing process with hear bath. In the last section we try to discuss the possibility of using quantum annealing for machine learning.  \\
 
@@ -107,13 +109,15 @@ The outline of the report is as follows. In section 2, the general idea of a qua
 %\cite{Jin2013} quantum decoherence \\
 %\cite{Smolin2013} Classical signature of quantum annealing p2 \\
 
-Before going into quantum annealing, it's worth mentioning first the reason why using the annealing technique in general and what the difference between simulated annealing and quantum annealing. First, the reason for using the annealing technique are the properties of combinatorial optimisation problems. The goal of this kind of problem is to find an optimal solution among a finite set of possible solutions. The set of solutions is discrete. A brute-force search for the optimal one is not practical on a classical computer when the problem size is large. To reduce runtime, one approximate method is annealing. If one can encode the problem into a cost function of which the minimum value corresponds to the solution of the optimisation problem, an annealing algorithm can help to find the lowest point in the landscape constructed by the cost function.  \\
+Before going into quantum annealing, it's worth mentioning first the reason why using the annealing technique in general and what the difference between simulated annealing and quantum annealing. The reason for using the annealing technique is the properties of combinatorial optimisation problems. The goal of this kind of problems is to find an optimal solution among a finite set of candidate solutions. The set of candidate solutions is discrete. A brute-force search for the optimal one is not practical on a classical computer when the problem size is large. To reduce run time, one possible method is annealing. If one can encode the problem into a cost function of which the minimum value corresponds to the solution of the optimisation problem, an annealing algorithm can help to find the lowest point in the landscape constructed by the cost function.  \\
 
 The annealing algorithm is inspired by the annealing in metallurgy and material science. It is a heat treatment that first heats up a material up to a temperature at which recrystallisation occurs, and then cools it down again. Recrystalisation processes lower the free energy of the crystals \cite{Schader2012}. It's an ancient technique to improve the properties of materials and make them more workable. \\
 
-Following this process, simulated annealing is an optimisation method for approximating the global minimum of a given function. In simulated annealing, the system starts from a high energy state and by lowering the temperature very slowly, the system is expected to end up in the lowest energy state or at least a close approximation. However, there are two situations which may turn simulated annealing into an inefficient algorithm. First, if the landscape is too rugged and the energy barrier around local minima is too high, the system may get stuck in one of the local minima which is apparently not the optimal solution. These deep barriers may trap the system for a very long time during the evolution. The second problem is the complexity. The number of possible solutions grows exponentially with the problem size, because $n$ Ising spins have $2^n$ configurations. Simulated annealing can only go through one configuration at a time. Unless there is a gradient that can guide the system towards the global minimum from any point of the configuration space, the simulated annealing algorithm can do no better than a random search one. \\
+Following this process, simulated annealing is an optimisation method for approximating the global minimum of a given function. In simulated annealing, the system starts from a high energy state and by lowering the temperature very slowly, the system is expected to end up in the lowest energy state or at least a close approximation. However, there are two situations which may turn simulated annealing into an inefficient algorithm. First, if the landscape is too rugged and the energy barrier around local minima is too high, the system may get stuck in one of the local minima which is apparently not the optimal solution. These deep barriers may trap the system for a very long time during the evolution. The second problem is the complexity. The number of the candidate solutions usually grows exponentially with the problem size, but simulated annealing can only go through one configuration at a time. Unless there is a gradient that can guide the system towards the global minimum from any point of the configuration space, the simulated annealing algorithm can do no better than a random search. \\
 
-On the other hand, quantum annealing may become more efficient and perform better than simulated annealing when facing these two situations, because the phenomenon of quantum tunnelling helps to explore the search space. More precisely, quantum mechanics allows the system to tunnel through very high barriers in a classically inaccessible path once barriers are narrow enough. Furthermore, if the Hamiltonian of a given problem is applied properly to the system, the quantum mechanical wave function can delocalise over the whole search space, that is, it has the ability to see the entire landscape during annealing. In contrast, simulated annealing can only search the configuration space randomly and escape from local minima by the aid of thermal fluctuations. Therefore, quantum annealing is superior to simulated annealing algorithm in these two aspects. However, empirically quantum annealing does not always improve the search process and it has its own limitations. Some counter cases have been observed for k-SAT problems \cite{Battaglia2005}. In brief, although for both algorithms the system may stop evolving at a local minimum state instead of the global minimum, if the barrier constraining the local minimum is narrow enough, the quantum tunnelling can give the system a chance to tunnel through the barrier and keep evolving towards the true minimum. An illustration is shown in Fig.\ref{diff_qa_ca}. \\ 
+%The number of the candidate solutions grows exponentially with the problem size, because $n$ Ising spins have $2^n$
+
+On the other hand, quantum annealing may become more efficient and perform better than simulated annealing when facing these two situations, because the phenomenon of quantum tunnelling helps to explore the search space. More precisely, quantum mechanics allows the system to tunnel through very high barriers in a classically inaccessible path once barriers are narrow enough. Furthermore, if the Hamiltonian of a given problem is applied properly to the system, the quantum mechanical wave function can delocalise over the whole search space, that is, it has the ability to see the entire landscape during annealing \cite{Das2008}. In contrast, simulated annealing can only search the configuration space randomly and escape from local minima by the aid of thermal fluctuations. Therefore, quantum annealing is superior to simulated annealing algorithm in these two aspects. However, empirically quantum annealing does not always improve the search process and it has its own limitations. Some counter cases have been observed for k-SAT problems \cite{Battaglia2005}. In brief, although for both algorithms the system may stop evolving at a local minimum state instead of the global minimum, if the barrier constraining the local minimum is narrow enough, the quantum tunnelling can give the system a chance to tunnel through the barrier and keep evolving towards the true minimum. An illustration is shown in Fig.\ref{diff_qa_ca}. \\ 
 
 \begin{figure}[h]
 	\centering
@@ -124,40 +128,33 @@ On the other hand, quantum annealing may become more efficient and perform bette
 
 %The idea of annealing in general is to find the lowest-energy state, which sometime cast into a problem that try to find the lowest value of a cost function. When performing classic annealing, the system start from a random state in a high temperature. Then the temperature decrease, simulated algorithm choose the new state by some criteria. The system evolve by reducing the energy, and the result is usually end up in a local minima instead of global minima. !!The choose criteria\\
 
-The main dynamics in the quantum annealing process is quantum fluctuation. To achieve this, the system is first prepared in the ground state of the initial Hamiltonian. Next, to bring in quantum fluctuations, a strong transverse field is applied to the system. During the annealing, the transverse field is slowly turned off while the problem Hamiltonian is slowly turned on. If this procedure progresses slowly enough, the system will stay still in the ground state. At the end of the annealing process, the transverse field is complete switched off and the system should have evolved to the ground state of the problem Hamiltonian that encodes the given optimisation problem. The Hamiltonian used here is the classical Ising model Hamiltonian. 
+The main feature of the quantum annealing process is the quantum fluctuation. To bring in quantum fluctuations, a strong transverse field is applied and the system is prepared in the ground state of this Hamiltonian at the beginning of the annealing process. During the annealing, the transverse field is slowly turned off while the problem Hamiltonian is slowly turned on. If this procedure progresses slowly enough, the system will stay still in the ground state. At the end of the annealing process, the transverse field is complete switched off and the system should have evolved to the ground state of the problem Hamiltonian that encodes the given optimisation problem. The Hamiltonian used here is the classical Ising model Hamiltonian. 
+%To achieve this, the system is first prepared in the ground state of the initial Hamiltonian. Next, 
 %and will be introduced in the next paragraph. How to encode an optimisation problem into a Ising model Hamiltonian will be presented in detail in Section \ref{The Mapping of Hamiltonian}. \\
 
-%\begin{equation}
-%H_{problem}=\sum_{i,j}^N \{J^x \sigma^x_i \sigma^x_j+J^y \sigma^y_i \sigma^y_j+J^z \sigma^z_i \sigma^z_j \}+ \sum_{i}^N \{h^x \sigma^x_i+h^y \sigma^y_i+h^z \sigma^z_i\}
-%\end{equation}
-
-%\begin{equation}
-%H_{Ising}=\sum_{i,j}^N \{J^z \sigma^z_i \sigma^z_j \}+ \sum_{i}^N \{h^z \sigma^z_i\}
-%\end{equation}
 
 \begin{equation}
-H_{Ising}=\sum_{i,j}^N \{J_{ij} \sigma_i \sigma_j \}+ \sum_{i}^N \{h_i \sigma_i\},
+H_{Ising}=-\sum_{i,j}^N\sum_{\alpha=x,y,z}J^\alpha_{ij} \sigma^\alpha_i \sigma^\alpha_j -\sum_{i}^N\sum_{\alpha=x,y,z}h^\alpha_i \sigma^\alpha_i.
 \end{equation}
 
-where $\sigma_i$ stands for the Pauli matrices 
+The classical Ising model is broadly used in statistical physics to study phase transitions. The model describes a set of lattice sites with discrete variables that represent the atomic spins while in either up ($\ket{\uparrow}$) or down ($\ket{\downarrow}$). The three component of the operators when applying to the Hilbert space spanned by $\ket{\uparrow}$ and $\ket{\downarrow}$ are defined as 
 
 \begin{equation}
 \label{pauli_matrix}
 \begin{split}
-&\sigma^x= \begin{pmatrix}
+\sigma^x= \begin{pmatrix}
 			0&1\\1&0
-		  \end{pmatrix}\\
-&\sigma^y=\begin{pmatrix}
+		  \end{pmatrix},
+\sigma^y=\begin{pmatrix}
 			0&-i\\i&0
-		  \end{pmatrix}\\
-&\sigma^z=\begin{pmatrix}
+		  \end{pmatrix},
+\sigma^z=\begin{pmatrix}
 			1&0\\0&-1
 		 \end{pmatrix}.
 \end{split}
 \end{equation}
 
-%!The Hamiltonian of classical Ising model with N spins can be written as above. 
-The classical Ising model is broadly used in statistical physics to study phase transitions. The model describes a set of lattice sites with discrete variables that represent the atomic spins while in either up ($+1$) or down ($-1$). The model allows interaction between neighbours according to factor $J_{ij}$. If $J_{ij}<0$, the interaction is called ferromagnetic and the neighbour spins have a higher probability to align parallel. In contrast, if $J_{ij}>0$, it is antiferromagnetic and the neighbour spins favour opposite states. An external field $h_i$ interacts with each spin. The spin tends to have negative direction when $h_i>0$, and positive direction when $h_i<0$. Obviously, finding the spin configuration of the ground state given a parameter set is the main and difficult task after mapping an optimisation problem into the Hamiltonian. \\
+Please note that $\ket{\uparrow}$ and $\ket{\downarrow}$ are the eigenstates of $\sigma^z$. The model allows interaction between neighbours according to factor $J_{ij}$. If $J_{ij}<0$, the interaction is called ferromagnetic and the neighbour spins have a higher probability to align parallel. In contrast, if $J_{ij}>0$, it is antiferromagnetic and the neighbour spins favour opposite states. An external field $h_i$ interacts with each spin. The spin tends to have negative direction when $h_i>0$, and positive direction when $h_i<0$. Obviously, finding the spin configuration of the ground state given a parameter set is the main difficult task after mapping an optimisation problem into the Hamiltonian. \\
 
 Based on the classical Ising model, the Hamiltonian used in the quantum annealing process can be written as
 
@@ -170,20 +167,28 @@ Based on the classical Ising model, the Hamiltonian used in the quantum annealin
 \end{split}
 \end{equation} 
 
-where t is the current timestep and T is total annealing time. It should be noted that by using $(1-\frac{t}{T})$ and $\frac{t}{T}$ as $H_{init}$ and $H_{problem}$ in Eq. (\ref{Hamiltonian_set}), it implies that the annealing proceeds with a linear time scheme. There are more general time schemes that can be implemented for the annealing process rather than a linear one. For the sake of simplicity, the linear time scheme is applied in the annealing process in this report. A illustration of coefficients for this shown in Figure \ref{linear_timescheme}.\\
+where t is the current timestep and T is total annealing time. It should be noted that by using $\left(1-\frac{t}{T}\right)$ and $\left(\frac{t}{T}\right)$ as the time factors for $H_{init}$ and $H_{problem}$ respectively in Eq. (\ref{Hamiltonian_set}), it implies that the annealing proceeds with a linear time scheme. There are more general time schemes that can be implemented for the annealing process rather than a linear one. For the sake of simplicity, the linear time scheme is applied in the annealing process in this report. A illustration of coefficients for this shown in Figure \ref{linear_timescheme}.\\
 
-The key feature of $H_{init}$ is that it should be straightforward to construct and its ground state is easy to find. A transverse field in the x-direction is the choice here. The ground of $H_{init}$ is $\ket{x_1=0}\ket{x_2=0}\ket{x_3=0}\dots\ket{x_n=0}$. This state can be written in our computational basis, the z-basis, in a superposition of all the $2^n$ basis vectors and the states $\ket{z_i}$ are eigenstates of the i-th spin in z-direction,
+The key feature of $H_{init}$ is that it should be straightforward to construct and its ground state is easy to find. With this chosen $H_{init}$, the ground state is as follows:\\
+%A transverse field in the x-direction is the choice here. The ground of $H_{init}$ is $\ket{x_1=\uparrow}\ket{x_2=\uparrow}\ket{x_3=\uparrow}\dots\ket{x_n=\uparrow}$.
+\begin{equation}
+\ket{x_1=\uparrow}\ket{x_2=\uparrow}\ket{x_3=\uparrow}\dots\ket{x_n=\uparrow}.
+\end{equation}
+
+This state can be rewritten in a superposition of all the $2^n$ basis eigenvectors of $\sigma^z$, %and the states $\ket{z_i}$ are eigenstates of the i-th spin in z-direction,
 
 \begin{equation}
-\ket{x_1=0}\ket{x_2=0}\ket{x_3=0}\dots\ket{x_n=0}=\frac{1}{2^{n/2}}\ket{z_1}\ket{z_2}\dots\ket{z_n}.
+\sum_{2^n}\frac{1}{\sqrt{2^{n}}}\ket{z_1=\uparrow,\downarrow}\ket{z_2=\uparrow,\downarrow}\dots\ket{z_n=\uparrow,\downarrow}.
 \end{equation}
 
 %$H_{problem}$ is spanned by the computational basis, z-basis. 
-The ground state of $H_{problem}$ can be found only when $z_1, z_2 \dots z_n$ in the superposition of the states $\ket{z_1}\ket{z_2}\dots\ket{z_n}$ can satisfy all clauses of the given optimisation problem. \\
+It is convenient to do so, because the ground state of $H_{problem}$ can also be denoted by the same set of eigenvectors.\\
+
+%can be found only when $z_1, z_2 \dots z_n$ in the superposition of the states $\ket{z_1}\ket{z_2}\dots\ket{z_n}$ can satisfy all clauses of the given optimisation problem. \\
 
 %Quantum annealing does not evolve by reducing temperature. The system is affect by two Hamiltonian, one is $H_i$, which is our starting Hamiltonian, and the requirement of this Hamiltonian is that the ground state of this is easy to prepared. On the other hand, $H_p$ is the problem Hamiltonian. We map the problem in to $H_p$. The idea is that, if we start from the ground state of $H_i$, and then the $H_i$ is turned off and the $H_p$ is turned on sufficiently slow. The system will end up in the ground state of $H_p$, which is the solution we want to find.\\
 
-At $t=0$ the annealing process starts in the ground state of $H_init$ and the quantum fluctuations dominate. According to the adiabatic theorem, which is introduced in section \ref{adiabatic theorem}, if the total annealing time is long enough, the system can evolve adiabatically and remain in the ground state. As a result, when $t=T$ and $H(t)$ shifts from $H_{init}$ to $H_{problem}$ completely, the final state is in the ground state of $H_{problem}$.  
+At $t=0$ the annealing process starts in the ground state of $H_{init}$ and the quantum fluctuations dominate. According to the adiabatic theorem, which is introduced in section \ref{adiabatic theorem}, if the total annealing time is long enough, the system can evolve adiabatically and remain in the ground state. As a result, when $t=T$ and $H(t)$ shifts from $H_{init}$ to $H_{problem}$ completely, the final state is in the ground state of $H_{problem}$.  
 
 \begin{figure}[h]
 	\centering
@@ -195,15 +200,15 @@ At $t=0$ the annealing process starts in the ground state of $H_init$ and the qu
 The adiabatic quantum annealing algorithm is presented as follow \cite{Farhi2000}:\\
 
 \begin{tcolorbox}[title=Quantum Annealing Algorithm]
-1. Initialise the system in the ground state of $H_{init}$. The ground state of $H_{init}$ is designed in a way that it is simple to construct.\\
-%\begin{equation*}
-%	H_i=\sum_{i=1}^{N}h_i^x \sigma_i^x
-%\end{equation*}   
-
-2. Set up $H_{problem}$ according to a given problem. Combine $H_{init}$ and $H_{problem}$ to build $H(t)$. \\
+1. Set up $H_{problem}$ according to a given problem. Combine $H_{init}$ and $H_{problem}$ to build $H(t)$. \\
 %\begin{equation*}
 %	H_{problem}=\sum_{i,j} \{J^x \sigma^x_i \sigma^x_j+J^y \sigma^y_i \sigma^y_j+J^z \sigma^z_i \sigma^z_j \}+ \sum_{i} \{h^x \sigma^x_i+h^y \sigma^y_i+h^z \sigma^z_i\}
-%\end{equation*}   
+%\end{equation*}     
+
+2. Initialise the system in the ground state of $H_{init}$. The ground state of $H_{init}$ is designed in a way that it is simple to construct.\\
+%\begin{equation*}
+%	H_i=\sum_{i=1}^{N}h_i^x \sigma_i^x
+%\end{equation*} 
 
 3. Evolve the system by computing time-dependent Schrödinger equation for time $t$ according to a given annealing scheme. \\
 %\begin{equation*}
@@ -225,16 +230,16 @@ There are two crucial problems for quantum annealing. First, the length of the t
 \subsection{Adiabatic Theorem}
 \label{adiabatic theorem} %\cite{Sarandy2004}
 
-The adiabatic theorem mainly serves as the basis of quantum annealing. The concept is that if the Hamiltonian of an eigenstate alters gradually, then the state will remain an eigenstate at later times while the eigenenergy evolves continuously. The relation between gradually varying Hamiltonian and adiabatic behaviour can be demonstrated as follows. A quantum system that evolve it according to a time-dependent Schrödinger equation ($\hbar = 1$).
+The adiabatic theorem mainly serves as the basis of quantum annealing. The concept is that if the Hamiltonian of an eigenstate alters gradually, then the state will remain an eigenstate at later times while the eigenenergy evolves continuously. The relation between gradually varying Hamiltonian and adiabatic behaviour can be demonstrated as follows \cite{Sarandy2004}. A time-dependent Schrödinger equation with $\hbar = 1$ is written as 
 
-Equation \ref{tdse} states a quantum system which evolves unitarily.
+%Eq. (\ref{tdse}) states a quantum system which evolves unitarily.
 
 \begin{equation}
 \label{tdse}
--t\frac{\partial}{\partial t}\ket{\Psi (t)} = H(t)\ket{\Psi(t)},
+i\frac{\partial \ket{\psi (t)}}{\partial t} = H(t)\ket{\psi(t)},
 \end{equation}
 
-where $H(t)$ is the time-dependent Hamiltonian and $\ket{\Psi(t)}$ is a quantum state. Assume that the spectrum of $H(t)$ is nondegenerate. As a result, a basis can be defined as 
+where $H(t)$ is the time-dependent Hamiltonian and $\ket{\psi(t)}$ is a quantum state. Assume that the spectrum of $H(t)$ is nondegenerate. As a result, a basis can be defined as 
 
 \begin{equation}
 	H(t)\ket{n(t)}=E_n(t)\ket{n(t)},
@@ -244,22 +249,53 @@ where $\ket{n(t)}$ is the set of eigenvector chosen to be orthonormal. Suppose t
 
 \begin{equation}
 \label{unitary}
-H_D(t)=U^{-1}(t)H(t)U^{1}(t),
+H_D(t)=U^{-1}(t)H(t)U(t),
 \end{equation} 
 
-where $H_D(t)$ stands for the diagonalised Hamiltonian and $U(t)$ is its unitary transformation. By multiplying $U^{-1}$ to Eq (\ref{tdse}), it can be rewritten as 
- 
-\begin{equation}
-H_D\ket{\Psi}_D = i \frac{\partial}{\partial t}\ket{\Psi}_D - i \frac{\partial}{\partial t} U^{-1} \ket{\Psi},
-\end{equation}
-
-where $\ket{\Psi}_D \equiv U^{-1}\ket{\Psi}$ is the state of the system in the basis of eigenvectors of $H(t)$. If $H(t)$ changes slowly enough in time, $\frac{\partial H(t)}{\partial t}$ approximates to zero. It can then be assumed that the unitary transformation, $U(t)$, and its inverse, $U^{-1}(t)$ are slowly varying operators, which leads to 
+where $H_D(t)$ stands for the diagonalised Hamiltonian and $U(t)$ is unitary transformation that diagonalises it. By multiplying $U^{-1}$ to Eq (\ref{tdse}) from the left, it yields\\
 
 \begin{equation}
-H_D(t)\ket{\Psi(t)}_D = i \frac{\partial}{\partial t} \ket{\Psi(t)}_D.
+\label{eq:adiabatic_theorem_base}
+iU^{-1}(t)\frac{\partial \ket{\psi (t)}}{\partial t} = U^{-1}H(t)\ket{\psi(t)}.
 \end{equation}
 
-Consequently, the system can evolve separetely in each energy eigenstate, because $H_d(t)$ is diagonal. In other words, this assures that if the quantum system is in an instantaneous eigenstate of $H(t)$ at a certain point in time, it will remain in this eigenstate at all time. \\ 
+The right hand side of Eq. (\ref{eq:adiabatic_theorem_base}) can be transformed by using Eq. (\ref{unitary}) as follows: \\
+
+\begin{equation}
+\label{eq:adiabatic_theorem_base2}
+\centering
+\begin{split}
+U^{-1}(t)H(t) &= H_D(t)U^{-1}(t),\\
+U^{-1}(t)H(t)\ket{\psi(t)} &= H_D(t)U^{-1}(t)\ket{\psi(t)} = H_D(t)\ket{\psi(t)}_D,
+\end{split}
+\end{equation}
+
+where  $\ket{\psi(t)}_D \equiv U^{-1}\ket{\psi(t)}$  is the state of the system in the basis of eigenvectors of $H(t)$. The left hand side of Eq. (\ref{eq:adiabatic_theorem_base}) can be transformed as following based on integration by parts.\\
+
+\begin{equation}
+\label{eq:adiabatic_theorem_base3}
+\begin{split}
+\frac{\partial U^{-1}(t)\ket{\psi(t)} }{\partial t} =\frac{\partial U^{-1}(t)}{\partial t } \ket{\psi(t)} + U^{-1}(t) \frac{\partial \ket{\psi(t)} }{\partial t},\\
+i U^{-1}(t) \frac{\partial \ket{\psi(t)} }{\partial t} = i\frac{\partial \ket{\psi(t)}_D }{\partial t} - i\frac{\partial U^{-1}(t)}{\partial t } \ket{\psi(t)}. 
+\end{split}
+\end{equation}
+
+Combining Eq. (\ref{eq:adiabatic_theorem_base2}) and Eq. (\ref{eq:adiabatic_theorem_base3}), Eq. (\ref{eq:adiabatic_theorem_base}) can be rewritten as \\
+
+%\begin{equation}
+%i U^{-1}(t) \frac{\partial \ket{\psi(t)} }{\partial t} = \frac{\partial U^{-1}(t)\ket{\psi(t)} }{\partial t} - \frac{\partial U^{-1}(t)}{\partial t } \ket{\psi(t)}. 
+%\end{equation}
+\begin{equation}
+i \frac{\partial \ket{\psi(t)}_D}{\partial t} - i \frac{\partial U^{-1} }{\partial t}  \ket{\psi(t)} = H_D\ket{\psi(t)}_D
+\end{equation}
+
+If $H(t)$ changes sufficiently slow, ${\partial H(t)}/{\partial t}$ approaches zero. Thus, the unitary transformation, $U(t)$, and its inverse, $U^{-1}(t)$ are assumed to be slowly varying operators, which leads to \\
+
+\begin{equation}
+i \frac{\partial \ket{\psi(t)}_D}{\partial t} = H_D(t)\ket{\psi(t)}_D.
+\end{equation}
+
+Consequently, the system can evolve separetely in each energy eigenstate, because $H_D(t)$ is diagonal. In other words, this assures that, with a sufficiently slowly varying Hamiltonian, if the quantum system is in an instantaneous eigenstate of $H(t)$ at a certain point in time, it will remain in this eigenstate at all time \\ 
 
 %Once the annealing time is long enough. We should be able to find the ground state.
 
@@ -276,16 +312,16 @@ P_{diabatic}(T) = \exp({\frac{-2\pi\Delta_{min}^2 T}{\alpha\Gamma_0}}),
 \end{split}
 \end{equation}
 
-where $T$ is the total annealing time, $\Delta$ is the minimum gap between two energy eigenstates during the annealing process which are always referred to the gap between the ground state and the first excited state in this report, $\alpha$ is the relative slope of the two states, and $\Gamma_0$ is the initial strength of the transverse field which is set equal to $1$ in this report. An illustration of the Landau-Zener formula can be found in Figure. \ref{fig:landau}. \\
+where $T$ is the total annealing time, $\Delta$ is the minimum gap between two energy eigenstates during the annealing process which are always referred to the gap between the ground state and the first excited state in this report, $\alpha$ is the relative slope of the two states, and $\Gamma_0$ is the initial strength of the transverse field which is set equal to $1$ in this report. An illustration of the minimum gap can be found in Figure. \ref{fig:landau}. \\
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[height=150pt]{Figure_Landau_Zener.eps}
-	\caption{A graph showing the Landau-Zener formula.}
+	\caption{A graph showing the minimum gap between the ground state energy and the first excited state energy during an annealing process.}
 	\label{fig:landau}
 \end{figure}
 
-The probability of a successful quantum annealing is thus confined by the minimum gap, $\Delta_{min}$ and the annealing time $T$ correspondingly. The relation between the successful probability and $\Delta_{min}$ can indeed be investigated with a fixed annealing time $T$. Further details will be presented in Section \ref{result_ideal} and Section \ref{result_temp}. \\
+The probability of a successful quantum annealing is thus confined by the minimum gap, $\Delta_{min}$ and the annealing time $T$ correspondingly. The relation between the successful probability and $\Delta_{min}$ can indeed be investigated with a fixed annealing time $T$. Simulation results will be presented in Section \ref{result_ideal} and Section \ref{result_temp}. \\
 
 %The probability of finding the ground state is depend on the temperature and the gap.
 %\subsection{Annealing Time scheme}
