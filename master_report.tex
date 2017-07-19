@@ -1,4 +1,4 @@
-\documentclass[twoside,a4paper,article]{combine}
+\documentclass[12pt,twoside,a4paper,article]{combine}
 %\documentclass[12pt,twoside,a4paper]{article}
 
 % =========================================================================
@@ -38,7 +38,7 @@
 \setlength{\topskip}{10pt}
 \setlength{\footskip}{42pt}
 
-\setlength{\parindent}{0pt}
+%\setlength{\parindent}{10pt}
 
 % =========================================================================
 
@@ -66,7 +66,7 @@
 In this study, we simulated a quantum annealing process at zero and finite temperature by using the full diagonalisation method and the Suzuki-Trotter product formula approach. We used quantum annealing to solve the 2-satisfiability problem. We have demonstrated that the probability for finding the solution depends not only on the total annealing time, the minimum gap between the ground state energy and the first excited state energy of the system during the annealing process, but also on the temperature.
 % +++++++++++++++++++++++++
 \end{abstract}
-
+\newpage
 \tableofcontents
 \newpage
 % =========================================================================
@@ -76,16 +76,18 @@ In this study, we simulated a quantum annealing process at zero and finite tempe
 %\cite{Boixo2016} The supremacy
 %\cite{Ronnow2014} Detect quantum speed up
 
-The idea of quantum computation was brought up in the early 80s \cite{Feynman1982}. Feynman thought that a simulation of quantum phenomena is not always possible on a classical computer, because the amount of resources required for the computation grows exponentially with the size of the physical system. Instead, quantum phenomena should be simulated by a computer making use of quantum properties. The amount of resources required for the simulation is only proportional to the size of the physical system. \\
+The idea of quantum computation was brought up in the early 80s \cite{Feynman1982}. Feynman thought that a simulation of quantum phenomena is not always feasible on a classical computer, because the amount of resources required for the computation grows exponentially with the size of the physical system. Instead, quantum phenomena should be simulated by a computer making use of quantum properties, with which the amount of resources required for the simulation is only proportional to the size of the physical system. \\
 
 After this idea, an interesting topic for scientists is how computation can benefit from storing, transferring and processing information with quantum properties. Quantum computation is expected to do more than just simulation of quantum phenomena. Some quantum algorithms were presented and shown to have a significantly speed-up compared to classical ones. Here follows some examples. Simon's algorithm can reduce the run time from an exponential time on a classical computer to a polynomial time on a quantum computer when solving a black box problem \cite{Simon1994}. Furthermore, this also serves as the stepping-stone to Shor's Algorithm. Shor's Algorithm for factoring large integers is one of the most well-known quantum algorithms. The time it takes to factor an $n$-digit number grows as a polynomial in $n$ on a quantum computer. The time for the same task grows exponentially with $n$ on a classical computer \cite{Shor1995}. The toughness of the factoring problem is the basis of many cryptography techniques and information is usually encrypted and protected by a large semi prime number. Therefore, some classical cryptography algorithms, like RSA, seems to break down and  quantum cryptography is under research as a response to this. The last one is Grover's search algorithm. To search an item in an unstructured list of size $N$ costs a classical computer running time on the order of $N$. Grover's algorithm can solve the same task in the order of $\sqrt{N}$ \cite{Grover1996}. Not like Shor's algorithm, which has an exponential speed-up, Grover's algorithm has only a quadratic improvement. It is still an important algorithm because of its board applications, such as to speedup the time required to solve NP-complete problems \cite{Cerf2000,Bennett1997}. \\
 
-All algorithms mentioned above are expected to run on a universal quantum computer, which is usually referred to a machine based on the quantum gate model. However, building a quantum gate computer may be a challenging task. The main difficulty comes from the close box requirement \cite{Ladd2010}. The quantum system of a quantum computer should be isolated from its environment while being controlled. The quantum system is so fragile that even a little amount of noise can cause harm to the system, known as decoherence. Furthermore, due to the environmental noise, the entropy of the system will keep increasing with time. Therefore, there must exist a way to cool the quantum system and maintain its quantum state. How to measure results is another important issue, because the computational result makes sense only when it can be measured. Also, the possibility to scale up the system is crucial. A general quantum computer can be realised only when the above requirements are all fulfilled. Another approach to quantum computation is adiabatic quantum computation. While the computation based on the quantum gate model is encoded into a series of quantum logic gates, adiabatic quantum computation relies on a proceeding from an initial Hamiltonian to a final Hamiltonian, which encodes the solution of the desired problem. There are debates on whether an adiabatic quantum computation can be considered as a universal quantum computation. It has shown that the model of adiabatic quantum computation differs from the standard model of universal quantum computation within a polynomial time \cite{Aharonov2004,Farhi2000}. It implies that adiabatic quantum computation and the computation based on the quantum gate model can simulated each other with a polynomial overhead. Some criticised that this only holds under ideal circumstance without noise. There are effective model for building a fault-tolerant gate based quantum computer. By contrast, whether fault-tolerant is possible on a quantum annealer is unknown \cite{Smolin2013}\\
+All algorithms mentioned above are expected to run on a universal quantum computer, which is usually referred to a machine based on the quantum gate model. However, building a quantum gate computer may be a challenging task. The main difficulty comes from the close box requirement \cite{Ladd2010}. The quantum system of a quantum computer should be isolated from its environment while being controlled. The quantum system is so fragile that even a little amount of noise can cause harm to the system, known as decoherence. Furthermore, due to the environmental noise, the entropy of the system will keep increasing with time. Therefore, there must exist a way to cool the quantum system and maintain its quantum state. How to measure results is another important issue, because the computational result makes sense only when it can be measured. Also, the possibility to scale up the system is crucial. A universal quantum computation can be implemented only when the above requirements on the hardware are fulfilled. \\
+
+Another approach to universal quantum computation is adiabatic quantum computation. While the computation based on the quantum gate model is encoded into a series of quantum logic gates, adiabatic quantum computation proceeds from an initial Hamiltonian to a final Hamiltonian, which encodes the solution of the desired problem. There are debates on whether adiabatic quantum computation can be considered as universal quantum computation. It has shown that the model of adiabatic quantum computation differs from the standard model of universal quantum computation within a polynomial time \cite{Aharonov2004,Farhi2000}. It implies that adiabatic quantum computation and the computation based on the quantum gate model can simulated each other with a polynomial overhead. Some criticised that this only holds under ideal circumstance without noise. There are effective model for building a fault-tolerant gate based quantum computer. By contrast, whether fault-tolerant is possible on a quantum annealer is unknown \cite{Smolin2013}.\\
 %cite Adiabatic Quantum Computing Tameem Albash
 %Based on the adiabatic theorem, the system can remain in the ground state, if the Hamiltonian varying sufficiently slowly.    
 %is more robust than a gate based computer !!cite decoherence in AQC!!
 
-With the idea of encoding the solution of combinatorial optimisation to the Hamiltonian, quantum annealing can be considered as a special kind of adiabatic quantum computation. An experimental implementation of quantum annealing in a disordered magnet \cite{Brooke1999} demonstrated a possibility to design a machine that solves optimisation problem by quantum evolution, namely a quantum annealer. D-Wave Systems Inc. is a company which focuses on building a quantum annealer and the target is optimisation. Many application can be cast into an optimisation problem of finding the minimum of cost function, which is equivalent to finding the ground state of a system of interacting spins. Finding such state remains still a computationally hard problem. It is believed that if one can encode the cost function into the hardware, quantum annealing process can effectively achieve the goal\cite{Johnson2011}. During a quantum annealing process, the system starts with a ground state. At the end of the evolution, the system is expected to be in the ground state of the problem Hamiltonian, which is the solution of the optimisation problem. This is the reason why the quantum annealer is sometimes considered to be specialised in optimisation only instead of being a universal quantum computer. D-wave Systems Inc. was founded in 1999 and released the first commercial system in 2010 with 128 qubits. The latest system is D-Wave 2000Q with 2048 qubits. By emphasising on optimisation, a quantum annealer has potential application in fields like machine learning, pattern recognition and computer vision. \\
+With the idea of encoding the solution of combinatorial optimisation to the Hamiltonian, quantum annealing can be considered as a special kind of adiabatic quantum computation. An experimental implementation of quantum annealing in a disordered magnet \cite{Brooke1999} demonstrated a possibility to design a machine that solves optimisation problem by quantum evolution, namely a quantum annealer. D-Wave Systems Inc. is a company which focuses on building a quantum annealer and the target is optimisation. Many application can be cast into an optimisation problem of finding the minimum of a cost function, which is equivalent to finding the ground state of a system of interacting spins. Finding such state remains still a computationally hard problem. It is believed that if one can encode the cost function into the hardware, quantum annealing process can effectively achieve the goal \cite{Johnson2011}. During a quantum annealing process, the system starts from a ground state of initial Hamiltonian. At the end of the evolution, the system is expected to be in the ground state of the problem Hamiltonian, which is the solution of the optimisation problem. The adiabatic theorem assures this behaviour provided the Hamiltonian varies sufficiently slowly. This behaviour is also the reason why the quantum annealer is sometimes considered to be specialised in optimisation only instead of being a universal quantum computer. D-wave Systems Inc. was founded in 1999 and released the first commercial system in 2010 with 128 qubits. The latest system is D-Wave 2000Q with 2048 qubits. By emphasising on optimisation, a quantum annealer has potential application in fields like machine learning, pattern recognition and computer vision. \\
 
 The 2-satisfiability problem is investigated in this report. A 2-satisfiability problem can be expressed as a Boolean formula. This Boolean formula is constructed by a series of conjunctions of clauses. Each clause contains 2 Boolean variables at most. Once a 2-satisfiability problem is mapped to a problem Hamiltonian, it can be solve on a quantum annealer. The probability of finding the correct ground state after the annealing is expected to increase with the length of the total annealing time. This is the case in ideal condition, which corresponds to a quantum system at zero temperature. However, when a quantum annealing process is done at finite temperature, this probability does not increase monotonically. \\
 
@@ -112,15 +114,15 @@ The outline of the report is as follows. In section 2, the general idea of a qua
 %\cite{Jin2013} quantum decoherence \\
 %\cite{Smolin2013} Classical signature of quantum annealing p2 \\
 
-Before going into quantum annealing, it's worth mentioning first the reason why using the annealing technique in general and what the difference between simulated annealing and quantum annealing. The reason for using the annealing technique is the properties of combinatorial optimisation problems. The goal of this kind of problems is to find an optimal solution among a finite set of candidate solutions. The set of candidate solutions is discrete. A brute-force search for the optimal one is not practical on a classical computer when the problem size is large. To reduce run time, one possible method is annealing. If one can encode the problem into a cost function of which the minimum value corresponds to the solution of the optimisation problem, an annealing algorithm can help to find the lowest point in the landscape constructed by the cost function.  \\
+Before going into quantum annealing, it is worth mentioning first the reason why using the annealing technique in general and what is the difference between simulated annealing and quantum annealing. The annealing technique is because of the properties of combinatorial optimisation problems. The goal of this kind of problems is to find an optimal solution among a finite set of candidate solutions. The set of candidate solutions is discrete. A brute-force search for the optimal one is not practical on a classical computer when the problem size is large. To reduce run time, one possible method is annealing. If one can encode the problem into a cost function of which the minimum value corresponds to the solution of the optimisation problem, an annealing algorithm can help to find the lowest point in the landscape constructed by the cost function.  \\
 
-The annealing algorithm is inspired by the annealing in metallurgy and material science. It is a heat treatment that first heats up a material up to a temperature at which recrystallisation occurs, and then cools it down again. Recrystalisation processes lower the free energy of the crystals \cite{Schader2012}. It's an ancient technique to improve the properties of materials and make them more workable. \\
+The annealing algorithm is inspired by the annealing in metallurgy and material science. It is a heat treatment that first heats up a material to a temperature at which recrystallisation occurs, and then cools it down again. Recrystalisation processes lower the free energy of the crystals \cite{Schader2012}. It is an ancient technique to improve the properties of materials and make them more workable. \\
 
 Following this process, simulated annealing is an optimisation method for approximating the global minimum of a given function. In simulated annealing, the system starts from a high energy state and by lowering the temperature very slowly, the system is expected to end up in the lowest energy state or at least a close approximation. However, there are two situations which may turn simulated annealing into an inefficient algorithm. First, if the landscape is too rugged and the energy barrier around local minima is too high, the system may get stuck in one of the local minima which is apparently not the optimal solution. These deep barriers may trap the system for a very long time during the evolution. The second problem is the complexity. The number of the candidate solutions usually grows exponentially with the problem size, but simulated annealing can only go through one configuration at a time. Unless there is a gradient that can guide the system towards the global minimum from any point of the configuration space, the simulated annealing algorithm can do no better than a random search. \\
 
 %The number of the candidate solutions grows exponentially with the problem size, because $n$ Ising spins have $2^n$
 
-On the other hand, quantum annealing may become more efficient and perform better than simulated annealing when facing these two situations, because the phenomenon of quantum tunnelling helps to explore the search space. More precisely, quantum mechanics allows the system to tunnel through very high barriers in a classically inaccessible path once barriers are narrow enough. Furthermore, if the Hamiltonian of a given problem is applied properly to the system, the quantum mechanical wave function can delocalise over the whole search space, that is, it has the ability to see the entire landscape during annealing \cite{Das2008}. In contrast, simulated annealing can only search the configuration space randomly and escape from local minima by the aid of thermal fluctuations. Therefore, quantum annealing is superior to simulated annealing algorithm in these two aspects. However, empirically quantum annealing does not always improve the search process and it has its own limitations. Some counter cases have been observed for k-SAT problems \cite{Battaglia2005}. In brief, although for both algorithms the system may stop evolving at a local minimum state instead of the global minimum, if the barrier constraining the local minimum is narrow enough, the quantum tunnelling can give the system a chance to tunnel through the barrier and keep evolving towards the true minimum. An illustration is shown in Fig.\ref{diff_qa_ca}. \\ 
+On the other hand, quantum annealing may become more efficient and perform better than simulated annealing when facing these two situations, because the phenomenon of quantum tunnelling helps to explore the search space. More precisely, quantum mechanics allows the system to tunnel through very high barriers in a classically inaccessible path once barriers are narrow enough. Furthermore, if the Hamiltonian of a given problem is applied properly to the system, the quantum mechanical wave function can delocalise over the whole search space, that is, it has the ability to see the entire landscape during annealing \cite{Das2008}. In contrast, simulated annealing can only search the configuration space randomly and escape from local minima by the aid of thermal fluctuations. Therefore, quantum annealing when implemented on a quantum annealer is superior to simulated annealing algorithm in these two aspects. However, empirically quantum annealing does not always improve the search process and it has its own limitations. Some counter cases have been observed for k-SAT problems \cite{Battaglia2005}. In brief, although for both algorithms the system may stop evolving at a local minimum state instead of the global minimum, if the barrier constraining the local minimum is narrow enough, the quantum tunnelling can give the system a chance to tunnel through the barrier and keep evolving towards the true minimum. An illustration is shown in Figure.\ref{diff_qa_ca}. \\ 
 
 \begin{figure}[h]
 	\centering
@@ -131,7 +133,7 @@ On the other hand, quantum annealing may become more efficient and perform bette
 
 %The idea of annealing in general is to find the lowest-energy state, which sometime cast into a problem that try to find the lowest value of a cost function. When performing classic annealing, the system start from a random state in a high temperature. Then the temperature decrease, simulated algorithm choose the new state by some criteria. The system evolve by reducing the energy, and the result is usually end up in a local minima instead of global minima. !!The choose criteria\\
 
-The main feature of the quantum annealing process is the quantum fluctuation. To bring in quantum fluctuations, a strong transverse field is applied and the system is prepared in the ground state of this Hamiltonian at the beginning of the annealing process. During the annealing, the transverse field is slowly turned off while the problem Hamiltonian is slowly turned on. If this procedure progresses slowly enough, the system will stay still in the ground state. At the end of the annealing process, the transverse field is complete switched off and the system should have evolved to the ground state of the problem Hamiltonian that encodes the given optimisation problem. The Hamiltonian used here is the classical Ising model Hamiltonian. 
+In contrast to the thermal fluctuation used in simulated annealing, the main feature of the quantum annealing process is the quantum fluctuation. To bring in quantum fluctuations, a strong transverse field is applied and the system is prepared in the ground state of this Hamiltonian at the beginning of the quantum annealing process. During the annealing, the transverse field is slowly turned off while the problem Hamiltonian is slowly turned on. If this procedure progresses slowly enough, the system will stay still in the ground state. At the end of the quantum annealing process, the transverse field is complete switched off and the system should have evolved to the ground state of the problem Hamiltonian that encodes the given optimisation problem. The Hamiltonian used here is the Ising model Hamiltonian. \\
 %To achieve this, the system is first prepared in the ground state of the initial Hamiltonian. Next, 
 %and will be introduced in the next paragraph. How to encode an optimisation problem into a Ising model Hamiltonian will be presented in detail in Section \ref{The Mapping of Hamiltonian}. \\
 
@@ -140,7 +142,7 @@ The main feature of the quantum annealing process is the quantum fluctuation. To
 H_{Ising}=-\sum_{i,j}^N\sum_{\alpha=x,y,z}J^\alpha_{ij} \sigma^\alpha_i \sigma^\alpha_j -\sum_{i}^N\sum_{\alpha=x,y,z}h^\alpha_i \sigma^\alpha_i.
 \end{equation}
 
-The classical Ising model is broadly used in statistical physics to study phase transitions. The model describes a set of lattice sites with discrete variables that represent the atomic spins while in either up ($\ket{\uparrow}$) or down ($\ket{\downarrow}$). The three component of the operators when applying to the Hilbert space spanned by $\ket{\uparrow}$ and $\ket{\downarrow}$ are defined as 
+The Ising model is broadly used in statistical physics to study phase transitions. The model describes a set of lattice sites with discrete variables that represent the atomic spins while in either up ($\ket{\uparrow}$) or down ($\ket{\downarrow}$). The three component of the operators when applying to the Hilbert space spanned by $\ket{\uparrow}$ and $\ket{\downarrow}$ are defined as \\
 
 \begin{equation}
 \label{pauli_matrix}
@@ -156,8 +158,7 @@ The classical Ising model is broadly used in statistical physics to study phase 
 		 \end{pmatrix}.
 \end{split}
 \end{equation}
-
-Please note that $\ket{\uparrow}$ and $\ket{\downarrow}$ are the eigenstates of $\sigma^z$. The model allows interaction between neighbours according to factor $J_{ij}$. If $J_{ij}<0$, the interaction is called ferromagnetic and the neighbour spins have a higher probability to align parallel. In contrast, if $J_{ij}>0$, it is antiferromagnetic and the neighbour spins favour opposite states. An external field $h_i$ interacts with each spin. The spin tends to have negative direction when $h_i>0$, and positive direction when $h_i<0$. Obviously, finding the spin configuration of the ground state given a parameter set is the main difficult task after mapping an optimisation problem into the Hamiltonian. \\
+Please note that $\ket{\uparrow}$ and $\ket{\downarrow}$ are the eigenstates of $\sigma^z$. The model allows interaction between neighbours according to factor $J_{ij}$. If $J_{ij}>0$, the interaction is called ferromagnetic and the neighbour spins have a higher probability to align parallel. In contrast, if $J_{ij}<0$, it is antiferromagnetic and the neighbour spins favour opposite states. An external field $h_i$ interacts with each spin. The spin tends to have positive direction when $h_i>0$, and negative direction when $h_i<0$. Obviously, finding the spin configuration of the ground state given a parameter set is the main difficult task after mapping an optimisation problem into the Hamiltonian. \\
 
 Based on the classical Ising model, the Hamiltonian used in the quantum annealing process can be written as
 
@@ -169,7 +170,6 @@ Based on the classical Ising model, the Hamiltonian used in the quantum annealin
 &H_{problem}= -\sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j - \sum_{i}^N h_i^z \sigma^z_i,\\
 \end{split}
 \end{equation} 
-
 where t is the current timestep and T is total annealing time. It should be noted that by using $\left(1-\frac{t}{T}\right)$ and $\left(\frac{t}{T}\right)$ as the time factors for $H_{init}$ and $H_{problem}$ respectively in Eq. (\ref{Hamiltonian_set}), it implies that the annealing proceeds with a linear time scheme. There are more general time schemes that can be implemented for the annealing process rather than a linear one. For the sake of simplicity, the linear time scheme is applied in the annealing process in this report. A illustration of coefficients for this shown in Figure \ref{linear_timescheme}.\\
 
 The key feature of $H_{init}$ is that it should be straightforward to construct and its ground state is easy to find. With this chosen $H_{init}$, the ground state is as follows:\\
@@ -177,30 +177,28 @@ The key feature of $H_{init}$ is that it should be straightforward to construct 
 \begin{equation}
 \ket{x_1=\uparrow}\ket{x_2=\uparrow}\ket{x_3=\uparrow}\dots\ket{x_n=\uparrow}.
 \end{equation}
-
 This state can be rewritten in a superposition of all the $2^n$ basis eigenvectors of $\sigma^z$, %and the states $\ket{z_i}$ are eigenstates of the i-th spin in z-direction,
 
 \begin{equation}
 \sum_{2^n}\frac{1}{\sqrt{2^{n}}}\ket{z_1=\uparrow,\downarrow}\ket{z_2=\uparrow,\downarrow}\dots\ket{z_n=\uparrow,\downarrow}.
 \end{equation}
-
 %$H_{problem}$ is spanned by the computational basis, z-basis. 
-It is convenient to do so, because the ground state of $H_{problem}$ can also be denoted by the same set of eigenvectors.\\
+This may make the calculation easier, because the ground state of $H_{problem}$ is also denoted by the same set of eigenvectors.\\
 
 %can be found only when $z_1, z_2 \dots z_n$ in the superposition of the states $\ket{z_1}\ket{z_2}\dots\ket{z_n}$ can satisfy all clauses of the given optimisation problem. \\
 
 %Quantum annealing does not evolve by reducing temperature. The system is affect by two Hamiltonian, one is $H_i$, which is our starting Hamiltonian, and the requirement of this Hamiltonian is that the ground state of this is easy to prepared. On the other hand, $H_p$ is the problem Hamiltonian. We map the problem in to $H_p$. The idea is that, if we start from the ground state of $H_i$, and then the $H_i$ is turned off and the $H_p$ is turned on sufficiently slow. The system will end up in the ground state of $H_p$, which is the solution we want to find.\\
 
-To summarise, the quantum annealing starts evolving with the system initialised in the ground state of $H_{init}$. According to the adiabatic theorem, which is introduced in section \ref{adiabatic theorem}, if the total annealing time is long enough, the system can evolve adiabatically and remain in the ground state. As a result, when $H(t)$ shifts from $H_{init}$ to $H_{problem}$ completely at the end of the annealing, the system is expected to remain in the ground state of $H_{problem}$.  
+To summarise, the quantum annealing starts evolving with the system initialised in the ground state of $H_{init}$. According to the adiabatic theorem, which is introduced in section \ref{adiabatic theorem}, if the total annealing time is long enough, the system can evolve adiabatically and remain in the ground state. As a result, when $H(t)$ shifts from $H_{init}$ to $H_{problem}$ completely at the end of the annealing, the system is expected to remain in the ground state of $H_{problem}$.  \\
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[height=150pt]{Figure_time_scheme.eps}
-	\caption{Linear time scheme.  }
+	\caption{A Linear time scheme.  }
 	\label{linear_timescheme}
 \end{figure}
 
-The adiabatic quantum annealing algorithm is presented as follows \cite{Farhi2000}:\\
+The quantum annealing algorithm is presented as follows \cite{Farhi2000}:\\
 
 \begin{tcolorbox}[title=Quantum Annealing Algorithm]
 1. Set up $H_{problem}$ according to a given problem. Combine $H_{init}$ and $H_{problem}$ to build $H(t)$. \\
@@ -209,7 +207,7 @@ The adiabatic quantum annealing algorithm is presented as follows \cite{Farhi200
 
 3. Evolve the system by computing time-dependent Schrödinger equation for time $t$ according to a given annealing scheme. \\
 
-4. The system will end up in the ground state of $H_p$, if the total annealing T is long enough.\\
+4. The system will end up in the ground state of $H_{problem}$, if the total annealing T is long enough.\\
 
 %6. Measure the coefficient of $z_1,z_2 \dots z_n$. The result of the measurement will be the solution to the given problem, if it is satisfiable. If the given problem is not satisfiable, the system will end up in a configuration that minimise the number of violated clause.\\
 
@@ -224,7 +222,7 @@ It is worthwhile to mention the inherent difference between simulated annealing 
 \subsection{Adiabatic Theorem}
 \label{adiabatic theorem} %\cite{Sarandy2004}
 
-The adiabatic theorem mainly serves as the basis of quantum annealing. The concept is that if the Hamiltonian of an eigenstate alters gradually, then the state will remain an eigenstate at later times while the eigenenergy evolves continuously. The relation between gradually varying Hamiltonian and adiabatic behaviour can be demonstrated as follows \cite{Sarandy2004}. A time-dependent Schrödinger equation with $\hbar = 1$ is written as 
+The adiabatic theorem mainly serves as the basis of quantum annealing. The concept is that if the Hamiltonian of an eigenstate alters gradually, then the state will remain an eigenstate at later times while the eigenenergy evolves continuously. The relation between gradually varying Hamiltonian and adiabatic behaviour can be demonstrated as follows \cite{Sarandy2004}. A time-dependent Schrödinger equation with $\hbar = 1$ is written as \\
 
 %Eq. (\ref{tdse}) states a quantum system which evolves unitarily.
 
@@ -232,27 +230,23 @@ The adiabatic theorem mainly serves as the basis of quantum annealing. The conce
 \label{tdse}
 i\frac{\partial \ket{\psi (t)}}{\partial t} = H(t)\ket{\psi(t)},
 \end{equation}
-
-where $H(t)$ is the time-dependent Hamiltonian and $\ket{\psi(t)}$ is a quantum state. Assume that the spectrum of $H(t)$ is nondegenerate. As a result, a basis can be defined as 
+where $H(t)$ is the time-dependent Hamiltonian and $\ket{\psi(t)}$ is a quantum state. Assume that the spectrum of $H(t)$ is nondegenerate. As a result, a basis can be defined as \\
 
 \begin{equation}
 	H(t)\ket{n(t)}=E_n(t)\ket{n(t)},
 \end{equation}
-
-where $\ket{n(t)}$ is the set of eigenvector chosen to be orthonormal. Suppose that the time-dependent Hamiltonian can be diagonalised by unitary transformation  
+where $\ket{n(t)}$ is the set of eigenvector chosen to be orthonormal. Suppose that the time-dependent Hamiltonian can be diagonalised by a unitary transformation  \\
 
 \begin{equation}
 \label{unitary}
 H_D(t)=U^{-1}(t)H(t)U(t),
 \end{equation} 
-
-where $H_D(t)$ stands for the diagonalised Hamiltonian and $U(t)$ is unitary transformation that diagonalises it. By multiplying $U^{-1}$ to Eq (\ref{tdse}) from the left, it yields\\
+where $H_D(t)$ stands for the diagonalised Hamiltonian and $U(t)$ is a unitary transformation that diagonalises it. By multiplying $U^{-1}$ to Eq (\ref{tdse}) from the left, it yields\\
 
 \begin{equation}
 \label{eq:adiabatic_theorem_base}
 iU^{-1}(t)\frac{\partial \ket{\psi (t)}}{\partial t} = U^{-1}H(t)\ket{\psi(t)}.
 \end{equation}
-
 The right hand side of Eq. (\ref{eq:adiabatic_theorem_base}) can be transformed by using Eq. (\ref{unitary}) as follows: \\
 
 \begin{equation}
@@ -263,17 +257,15 @@ U^{-1}(t)H(t) &= H_D(t)U^{-1}(t),\\
 U^{-1}(t)H(t)\ket{\psi(t)} &= H_D(t)U^{-1}(t)\ket{\psi(t)} = H_D(t)\ket{\psi(t)}_D,
 \end{split}
 \end{equation}
-
-where  $\ket{\psi(t)}_D \equiv U^{-1}\ket{\psi(t)}$  is the state of the system in the basis of eigenvectors of $H(t)$. The left hand side of Eq. (\ref{eq:adiabatic_theorem_base}) can be transformed as following based on integration by parts.\\
+where  $\ket{\psi(t)}_D \equiv U^{-1}\ket{\psi(t)}$  is the state of the system in the basis of eigenvectors of $H_D(t)$. The left hand side of Eq. (\ref{eq:adiabatic_theorem_base}) can be transformed as following based on integration by parts.\\
 
 \begin{equation}
 \label{eq:adiabatic_theorem_base3}
 \begin{split}
-\frac{\partial U^{-1}(t)\ket{\psi(t)} }{\partial t} =\frac{\partial U^{-1}(t)}{\partial t } \ket{\psi(t)} + U^{-1}(t) \frac{\partial \ket{\psi(t)} }{\partial t},\\
+i\frac{\partial U^{-1}(t)\ket{\psi(t)} }{\partial t} = i\frac{\partial U^{-1}(t)}{\partial t } \ket{\psi(t)} + iU^{-1}(t) \frac{\partial \ket{\psi(t)} }{\partial t},\\
 i U^{-1}(t) \frac{\partial \ket{\psi(t)} }{\partial t} = i\frac{\partial \ket{\psi(t)}_D }{\partial t} - i\frac{\partial U^{-1}(t)}{\partial t } \ket{\psi(t)}. 
 \end{split}
 \end{equation}
-
 Combining Eq. (\ref{eq:adiabatic_theorem_base2}) and Eq. (\ref{eq:adiabatic_theorem_base3}), Eq. (\ref{eq:adiabatic_theorem_base}) can be rewritten as \\
 
 %\begin{equation}
@@ -282,7 +274,6 @@ Combining Eq. (\ref{eq:adiabatic_theorem_base2}) and Eq. (\ref{eq:adiabatic_theo
 \begin{equation}
 i \frac{\partial \ket{\psi(t)}_D}{\partial t} - i \frac{\partial U^{-1} }{\partial t}  \ket{\psi(t)} = H_D\ket{\psi(t)}_D
 \end{equation}
-
 If $H(t)$ changes sufficiently slow, ${\partial H(t)}/{\partial t}$ approaches zero. Thus, the unitary transformation, $U(t)$, and its inverse, $U^{-1}(t)$ are assumed to be slowly varying operators, which leads to \\
 
 \begin{equation}
@@ -295,9 +286,9 @@ Consequently, the system can evolve separetely in each energy eigenstate, becaus
 
 \subsection{Landau-Zener Transition} %theorem
 
-According to the Landau-Zener formula, another constraint on the quantum annealing process is the distance between the ground state and the first excited state. Landau-Zener formula gives the probability of a diabatic transition from a lower energy eigenstate to a higher energy eigenstate. Although the adiabatic theorem implies that no diabatic transition will occur if $H(t)$ in Eq. (\ref{Hamiltonian_set}) could vary infinitely slow, this is not the case for real systems with a finite annealing time. Once the system evolves in a finite annealing time from a lower energy eigenstate, the probability of finding the system in a higher energy state in the future can be determined by the Landau-Zener formula.\\
+According to the Landau-Zener formula, another constraint on the quantum annealing process is the distance between the ground state and the first excited state. The Landau-Zener formula gives the probability of a diabatic transition from a lower energy eigenstate to a higher energy eigenstate. Although the adiabatic theorem implies that no diabatic transition will occur if $H(t)$ in Eq. (\ref{Hamiltonian_set}) could vary infinitely slowly, this is not the case for real systems with a finite annealing time. Once the system evolves in a finite annealing time from a lower energy eigenstate, the probability of finding the system in a higher energy state in the future can be determined by the Landau-Zener formula.\\
 
-$P_{adiabatic}$ is the probability of the system remaining in the ground state and evolving adiabatically. $P_{diabatic}$ is the probability for a diabatic transition. The relation between these two is $P_{adiabatic} = 1 - P_{diabatic}$. According to the Landau-Zener formula, $P_{diabatic}$ is given by 
+$P_{adiabatic}$ is the probability of the system remaining in the ground state and evolving adiabatically. $P_{diabatic}$ is the probability for a diabatic transition. The relation between these two is $P_{adiabatic} = 1 - P_{diabatic}$. According to the Landau-Zener formula, $P_{diabatic}$ is given by \\
 
 \begin{equation}
 \begin{split}
@@ -314,11 +305,11 @@ where c is a constant, $T$ is the total annealing time, $\Delta_{min}$ is the mi
 \begin{figure}[h]
 	\centering
 	\includegraphics[height=150pt]{Figure_Landau_Zener.eps}
-	\caption{A graph showing the minimum gap between the ground state energy and the first excited state energy during an annealing process.}
+	\caption{A plot showing the minimum gap between the ground state energy and the first excited state energy during a quantum annealing process.}
 	\label{fig:landau}
 \end{figure}
 
-The probability of a successful quantum annealing is thus confined by the minimum gap, $\Delta_{min}$ and the annealing time $T$ correspondingly. The relation between the successful probability and $\Delta_{min}$ can indeed be investigated with a fixed annealing time $T$. Simulation results will be presented in Section \ref{result_ideal} and Section \ref{result_temp}. \\
+The probability of a successful quantum annealing is thus confined by the minimum gap, $\Delta_{min}$ and the annealing time $T$ correspondingly. The relation between the successful probability and $\Delta_{min}$ can be investigated with a fixed annealing time $T$. Simulation results will be presented in Section \ref{result_ideal} and Section \ref{result_temp}. \\
 
 %The probability of finding the ground state is depend on the temperature and the gap.
 %\subsection{Annealing Time scheme}
@@ -328,9 +319,10 @@ The probability of a successful quantum annealing is thus confined by the minimu
 \section{Optimisation Problems}
 \subsection{Combinatorial Optimisation}
 
-Combinatorial optimisation is one of the most important tasks people want to solve. If one needs to find the best choice among all available options, it can be considered as a combinatorial optimisation problem. Some practical examples are the travelling salesman problem, the closure problem and the assignment problem. The travelling salesman problem for instance, there are N cities located randomly in a given area and the goal is to plan a trip to visit every city once in the shortest travel distance. A straightforward approach is to try out all permutations and find the shortest path. The running time for this brute-force search is $\mathcal{O}(N!)$ , which means that it grows as the factorial of the number of cities and the search space easily becomes too large for this approach to be feasible even for relatively small N ($N \sim 30$) \cite{Santoro2006}. \\
+%Combinatorial optimisation is one of the most important tasks people want to solve. 
+If one needs to find the best choice among all available options, it can be considered as a combinatorial optimisation problem. Some practical examples are the travelling salesman problem, the closure problem and the assignment problem. The travelling salesman problem for instance, there are $N$ cities located randomly in a given area and the goal is to plan a trip to visit every city once in the shortest travel distance. A straightforward approach is to try out all permutations and find the shortest path. The run time for this brute-force search is $\mathcal{O}(N!)$ , which means that it grows as the factorial of the number of cities and the search space easily becomes too large for this approach to be feasible even for relatively small $N$ ($N \sim 30$) \cite{Santoro2006}. \\
 
-Many combinatorial optimisation problems can be cast into a problem of minimising a given cost function $H(S_1,S_2,S_3, \dots S_N)$ with respect to N variables $S_1$, $S_2$, $\dots$ $S_N$, where the values of $S_i$ belong to a finite discrete set. \cite{Das2008}. The aim is to determine a set of values for the variables that yield the minimum value of the cost function. Combinatorial optimisation often has the following properties. The optimal solution is searched from a finite set of objects. The set of objects is discrete. Brute-force search is usually not feasible. Besides, even some problems with continuous variables can be reduced to combinatorial problems \cite{Papadimitriou1984}. \\
+Many combinatorial optimisation problems can be cast into a problem of minimising a given cost function $H(S_1,S_2,S_3, \dots S_N)$ with respect to $N$ variables $S_1$, $S_2$, $\dots$ $S_N$, where the values of $S_i$ belong to a finite discrete set \cite{Das2008}. The aim is to determine a set of values for the variables that yield the minimum value of the cost function. Combinatorial optimisation often has the following properties. The optimal solution is searched from a finite set of candidate solutions. The set of candidate solutions is discrete. Brute-force search is usually not feasible. Besides, even some problems with continuous variables can be reduced to combinatorial optimisation \cite{Papadimitriou1984}. \\
 
 In the field of computer science, the complexity of a computational task is classified by the running time needed by the fastest algorithm relative to the size of the task. If a given task can be solved in polynomial time by using polynomially bound resources on a classical computer, it is considered to be in the class P. Although a P problem does not necessary means an easy problem, a polynomial bound on the evaluation time implies its difficulty won't grow exponentially with the problem size. Unfortunately, not all cases fall in this class, and some of the important ones fall outside, like the travelling salesman problem mentioned above.\\
 
@@ -344,26 +336,26 @@ Indeed there are algorithms that can solve some easy optimisation problems in po
 
 The boolean satisfiability problem, abbreviated as the SAT problem, is a task of checking whether a given Boolean formula can be satisfied. To be more specific, the goal here is to find a configuration of true or false values for all variables in a given Boolean formula so that the final evaluation of the formula is true. The formula is called satisfiable when this is the case. On the other hand, the formula is not satisfiable, if the evaluation is false for all possible configurations.  \\
 
-The k-SAT problem with k>2 has been proven to be in the class NP-complete, which implies that no algorithm can efficiently solve SAT problems in polynomial time. The parameter k defines the upper limit of the number of variables in one clause. An example is 
+The $k$-SAT problem with $k$ > 2 has been proven to be in the class NP-complete, which implies that no algorithm can efficiently solve SAT problems in polynomial time. The parameter k defines the upper limit of the number of variables in one clause. An example is \\
 
 \begin{equation*}
  (x_1\lor x_2\lor x_3)\land (x_4\lor x_5\lor \neg x_6),
 \end{equation*}
 
-where $\land$,$\lor$, and $\neg$ state for logical and, logical or, and logical not respectively. This is a Boolean formula in 3-SAT form, which has two clauses and each clause consists of 3 variables. This formula is satisfiable because the final evaluation is true if one of the variables $x_1, x_2, x_3$ is true in the first clause ,and one of the variable $x_4, x_5$ or $\neg x_6$ is true in the second clause. \\
+where $\land$,$\lor$, and $\neg$ state for logical and, logical or, and logical not respectively. This is a Boolean formula in 3-SAT form, which has two clauses and each clause consists of 3 variables. This formula is satisfiable because the final evaluation is true if one of the variables $x_1, x_2, x_3$ is true in the first clause ,and one of the variables $x_4, x_5, \neg x_6$ is true in the second clause. \\
 
-In this work, 2-SAT problems are considered In contrast to those more general ones which are known to be NP-complete, the 2-SAT problem can be solved in polynomial time. A detail that should be mentioned is that the 2-SAT problems studied in this work all have only one unique configuration which leads to a true evaluation.\\
+In this report, 2-SAT problems are investigated. In contrast to those more general ones which are known to be NP-complete, the 2-SAT problem can be solved in polynomial time. A detail that should be mentioned is that the 2-SAT problems studied in this work all have only one unique configuration which leads to a true evaluation.\\
  
 \subsection{Mapping the 2-SAT Problem to the Ising Hamiltonian}
 \label{The Mapping of Hamiltonian}
 
-A 2-SAT problem can only be solved by quantum annealing when its Boolean formula is mapped to an Ising Hamiltonian. The following simple example demonstrates how a Boolean formula is mapped on the Ising Hamiltonian. Consider the Boolean formula, 
+A 2-SAT problem can only be solved by quantum annealing when its Boolean formula is mapped to an Ising Hamiltonian. The following simple example demonstrates how a Boolean formula is mapped on the Ising Hamiltonian. Consider the Boolean formula, \\
 %It is straightforward to map spin value 1 to logical true and spin value 0 to logical false. \\
 \begin{equation*}
 (x_1\lor x_2)\land (x_3\lor \neg x_4).
 \end{equation*}
 
-The first clause is true, when either $x_1$ or $x_2$ is true. The second clause is true, when $x_3$ is true or $x_4$ is false. The whole statement is true only when the evaluation of the both clauses are true. The aim is to cast the Boolean variables of this sample problem to the Ising variables. One possible way of mapping is as follows:
+The first clause is true, when either $x_1$ or $x_2$ is true. The second clause is true, when $x_3$ is true or $x_4$ is false. The whole statement is true only when the evaluations of the both clauses are true. The aim is to cast the Boolean variables of this sample problem to the Ising variables. One possible way of mapping is as follows:
 
 \begin{table}[h!]
 \begin{center}
@@ -430,7 +422,7 @@ The first clause is true, when either $x_1$ or $x_2$ is true. The second clause 
 \caption{Mapping a 2-SAT problem in term of the Ising variables.}
 \end{table} 
 
-In order to encode the solution of the 2-SAT problem into the ground state of the Ising Hamiltonian, an Ising Hamiltonian can be written down with a variable $m$. It yields
+In order to encode the solution of the 2-SAT problem into the ground state of the Ising Hamiltonian, an Ising Hamiltonian can be written down with a variable $m$. It yields\\
 
 \begin{equation}
 \begin{split}
@@ -441,26 +433,31 @@ H & = m \cdot (m-2)\\
 \end{split}
 \end{equation}
 
-By comparing Eq. (\ref{eq: mapping}) with $H_{problem}$ of the Hamiltonian given in Eq. (\ref{Hamiltonian_set}), one finds that $h_i^z$, $h_j^z$, and $J_{ij}$ correspond to 2, 2, and -2 respectively. The same procedure can be repeated for all clauses. After mapping, the original 2-SAT problem is ready to be solved with the quantum annealing technique, because the ground state of the problem Hamiltonian can be transformed back to the solution of the original 2-SAT problem. \\  
+By comparing Eq. (\ref{eq: mapping}) with $H_{problem}$ of the Hamiltonian given in Eq. (\ref{Hamiltonian_set}), one finds that $h_1^z$, $h_2^z$, and $J_{12}$ correspond to 2, 2, and -2 respectively. The same procedure can be repeated for all clauses. After mapping, the original 2-SAT problem is ready to be solved with the quantum annealing technique, because the ground state of the problem Hamiltonian can be transformed back to the solution of the original 2-SAT problem. \\  
 
 
 
 \newpage
 \section {Simulation Algorithm}
-\subsubsection{Time-Dependent Schrodinger Equation and Quantum Spin System}
 
-The quantum annealing process can be described by time-dependent Schrödinger equation, and therefore the final state of the system can be determined by solving time-dependent Schrödinger equation. The solution is \\
+\subsection{The Time-Dependent Schrodinger Equation and the Quantum Spin System}
+
+The quantum annealing process can be described by the time-dependent Schrödinger equation, and thus the final state of the system can be determined by solving the time-dependent Schrödinger equation. The solution is \\
 
 \begin{equation}
 \begin{split}
 \Psi(t+\tau)&=U(t+\tau,t)\Psi(t)\\
-&=\exp(i\int_{t}^{t+\tau}H(\tau)d\tau)\Psi(t),
+&=\exp(-i\int_{t}^{t+\tau}H(\tau)d\tau)\Psi(t),
 \end{split}
 \end{equation}
+where $\tau$ is the size of the time step, and $U(t+\tau)$ is a unitary matrix that transforms the system from $t$ to $t+\tau$. In order to conduct a numerical computation and ensure the unitary of the evolution operator, time is discretised to small time step $\tau$ and $H(\tau)$ is assumed to be piecewise constant within these time steps. The solution can be written as\\
 
-where $\tau$ is the size of the time step, and $U(t+\tau)$ is a unitary matrix that transforms the system from $t$ to $t+\tau$. In order to conduct a numerical computation and ensure the unitary of the evolution operator, time is discretised to small time step $\tau$ and $H(\tau)$ is assumed to be piecewise constant within these time steps, hence the reason that the size of the time step should be small enough to keep $H(\tau)$ piecewise. However, if the size is too small, the run time of the simulation will be too long. A proper length of the time step should be tested out before going into further simulation. \\
+\begin{equation*}
+	\Psi(t+\tau) =\exp(-iH(t+\frac{\tau}{2})\tau)\Psi(t).
+\end{equation*}
+To preserve the accuracy of the numerical solution, the size of the time step should be small enough to keep $H(\tau)$ piecewise. However, if the size is too small, the run time of the simulation will be too long. A proper length of the time step should be tested out before going into further simulation. \\
 
-The wave function, $\ket{\Psi}$, of the $N$-spin system is constructed as the direct product state of the N single spin states in z component. Each single spin has two possible states, $\ket{\uparrow}$ or $\ket{\downarrow}$. For the sake of convenience, these two states are noted as $\ket{0}$ or $\ket{1}$ respectively. The reason will be explained after presenting the expression of the $\ket{\Psi}$. The relation between them is defined as 
+The wave function, $\ket{\Psi}$, of the $N$-spin system is constructed as the direct product state of the N single spin states in z component. Each single spin has two possible states, $\ket{\uparrow}$ or $\ket{\downarrow}$. For the sake of convenience, these two states are noted as $\ket{0}$ or $\ket{1}$ respectively. The reason will be explained after presenting the expression of the $\ket{\Psi}$. The relation between these notations is defined as \\
 
 \begin{equation}
 \ket{\uparrow}=\ket{0},
@@ -468,13 +465,13 @@ The wave function, $\ket{\Psi}$, of the $N$-spin system is constructed as the di
 %\ket{\uparrow}=\left(\begin{array}{c} 1\\0 \end{array}\right) :=\ket{0},~ \ket{\downarrow}=\left(\begin{array}{c} 0\\1 \end{array}\right) :=\ket{1}.
 \end{equation}
 
-Thus, the single spin state can be written as a linear superposition of theses two basis state, 
+Thus, the single spin state can be written as a superposition of theses two basis state, \\
 
 \begin{equation}
 \ket{\Psi} = a(0)\ket{0} + a(1)\ket{1},
 \end{equation}
 
-where $a(0)$ and $a(1)$ are the probability amplitudes of each state. With the same representation, a N-spin system can be constructed with $2^N$ state vectors and written as 
+where $a(0)$ and $a(1)$ are the probability amplitudes of each state. With the same representation, a N-spin system can be constructed with $2^N$ state vectors and written as \\ 
 
 \begin{equation}
 \label{psi_in_compuationalbasis}
@@ -489,7 +486,7 @@ The following equation should hold because of the normalisation requirement, $\b
 \sum_{\sigma_1,\sigma_2, \dots, \sigma_N=\ket{0},\ket{1}} |a(\sigma_1,\sigma_2, \dots, \sigma_N)|^2 = 1. 
 \end{equation}
 
-One may notice that by notating in $\ket{0}$ and $\ket{1}$, the product states in Eq. (\ref{psi_in_compuationalbasis}) is presented in binary number notation. With binary number notation, the basis vectors can be read as a integer ranging from 0 to $2^N-1$. When comparing the simulation result with the know solution state, this notation makes the comparison simpler. In addition, it is easy to estimate the memory request to store the wave function in this notation. It immediately follows that the memory request scales exponentially with the number of spins, $N$.\\
+One may notice that by notating in $\ket{0}$ and $\ket{1}$, the product states in Eq. (\ref{psi_in_compuationalbasis}) is presented in binary number notation. With binary number notation, the basis vectors can be read as integers ranging from 0 to $2^N-1$. When comparing the simulation result with the know solution state, this notation makes the comparison simpler. In addition, it is easy to estimate the memory request to store the wave function in this notation. It immediately follows that the memory request scales exponentially with the number of spins, $N$.\\
 
 
 
@@ -497,7 +494,7 @@ One may notice that by notating in $\ket{0}$ and $\ket{1}$, the product states i
 %According to Equation \ref{psi_in_compuationalbasis}, it is 
 
 %The memory requests for the simulation scales exponentially with the size of the quantum system, which may soon make the computation not practical on a classical computer. However, it turns out that there is a simple way to calculate the result without accessing to the entire matrix every time.
-In Eq. (\ref{Hamiltonian_set}), there are 2 kinds of terms, which are the single spin term and the double spin term. When applying these terms to $\ket{\Psi}$, the computation can be reduced to a series of $2\times 2$ and $4\times 4$ in-place matrix computations instead of a computation of the entire $2^N \times 2^N$ matrix. After applying these terms to the state vector, the state vector are written as follows.
+In Eq. (\ref{Hamiltonian_set}), there are 2 kinds of terms in the Hamiltonian, which are the single spin term and the double spin term. When applying these terms to $\ket{\Psi}$, the computation can be reduced to a series of $2\times 2$ and $4\times 4$ in-place matrix computations instead of a computation of the entire $2^N \times 2^N$ matrix. After applying these terms to the state vector, the state vector are written as follows.\\
 %$\sigma^x_i, \sigma^z_i,$ and $\sigma^z_i\sigma^z_j$
 \begin{equation}
 \begin{split}
@@ -505,8 +502,7 @@ In Eq. (\ref{Hamiltonian_set}), there are 2 kinds of terms, which are the single
 			&= a'(00\dots0)\ket{00\dots0}+a'(00\dots1)\ket{00\dots1}+\dots+a'(11\dots0)\ket{11\dots0}+a'(11\dots1)\ket{11\dots1},
 \end{split}
 \end{equation}
-
-If the operator is $\sigma^x_i$, it interchanges the state up and state down, which corresponds to a swap of a pair component of $\ket{\Psi}$. This leads to the following eqaution.
+where $\alpha = x, y, z$. If the operator is $\sigma^x_i$, it interchanges the state up and state down, which corresponds to a swap of a pair component of $\ket{\Psi}$. This leads to the following eqaution.\\
 
 \begin{equation}
 \begin{split}
@@ -514,8 +510,7 @@ a'(\bullet \cdots \bullet 0 \bullet \cdots \bullet) = +a(\bullet \cdots \bullet 
 a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet) = +a(\bullet \cdots \bullet 0 \bullet \cdots \bullet),
 \end{split}
 \end{equation}
-
-where the $\bullet$ is used to indicate that the bits on the corresponding position are the same. If the operator is $\sigma^y_i$, according to Equation \ref{pauli_matrix}, the coefficient has the relation 
+where the $\bullet$ is used to indicate that the bits on the corresponding position are the same. If the operator is $\sigma^y_i$, according to Eq. (\ref{pauli_matrix}), the coefficient has the relation \\
 
 \begin{equation}
 \begin{split}
@@ -523,8 +518,7 @@ a'(\bullet \cdots \bullet 0 \bullet \cdots \bullet) = -i\times a(\bullet \cdots 
 a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet) = +i\times a(\bullet \cdots \bullet 0 \bullet \cdots \bullet).
 \end{split}
 \end{equation}
-
-Although Eq. (\ref{Hamiltonian_set}) does not have $\sigma^y_i$ component, $\sigma^y_i$ will later be used in the case at finite temperature. If the operator is $\sigma^z_i$, it reverses the sign of all coefficients of $\ket{\Psi}$ for which the $i-th$ bit of the vector has value 1, which yields
+Although Eq. (\ref{Hamiltonian_set}) does not have $\sigma^y_i$ component, $\sigma^y_i$ will later be used in the case at finite temperature. If the operator is $\sigma^z_i$, it reverses the sign of all coefficients of $\ket{\Psi}$ for which the $i-th$ bit of the vector has value 1, which yields\\
 
 \begin{equation}
 \begin{split}
@@ -533,7 +527,7 @@ a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet) = -a(\bullet \cdots \bullet 
 \end{split}
 \end{equation}
 
-Similarly, applying two spin operator $\sigma^z_i\sigma^z_j$ leads to a sign interchange between coefficients of $\ket{\Psi}$ for which the $i-th$ bit and the $j-th$ bit of the vector has different values. Hence it is 
+Similarly, applying two spin operator $\sigma^z_i\sigma^z_j$ leads to a sign interchange between coefficients of $\ket{\Psi}$ for which the $i-th$ bit and the $j-th$ bit of the vector has different values. Hence it is \\
 
 \begin{equation}
 \begin{split}
@@ -544,7 +538,7 @@ a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet 1 \bullet \cdots \bullet) = -
 \end{split}
 \end{equation}
 
-It is worth mentioning again that the operation mentioned here are done in place. Namely, instead of creating and using extra unnecessary vector, these operations only manipulate the necessary component in the state vector $\ket{\Psi}$. Thus, $\ket{\Psi'}=H\ket{\Psi}$ can be calculated easily. This approach serves as the basis of the algorithms introduced in following subsections. \\
+It is worth mentioning again that the operation mentioned here are done in place. Namely, instead of creating and using extra unnecessary vector, these operations only manipulate the necessary component in the state vector $\ket{\Psi}$. Thus, $\ket{\Psi'}=H\ket{\Psi}$ can be calculated efficiently. This approach serves as the basis of the algorithms introduced in following subsections. \\
 %\begin{equation}
 %i\hbar\frac{\partial \psi}{\partial t}=H\psi
 %\end{equation}
@@ -556,21 +550,21 @@ It is worth mentioning again that the operation mentioned here are done in place
 %\end{equation*}
 
 
-\subsection{Algorithm for Ideal Case}
+\subsection{Algorithms for Ideal Case}
 
-\subsubsection{Full Diagonalisation}
+\subsubsection{The Full Diagonalisation Method}
 
-Based on the fact that the Hamiltonian H is a Hermitian operator formed by a $2^N \times 2^N$ matrix, it has a complete set of eigenvectors and eigenvalues. This implies that the Hamiltonian H can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors. The transformation is given by $H = V\Lambda V^\dagger$. Thus, the time evolution can be calculated as $U(\tau) = exp(-i\tau H) = V exp(-i\tau \Lambda) V^\dagger$. If $V$ and $\Lambda$ can be obtained by diagonalising H, time evolution becomes a series of simple matrix multiplication. Since diagonalisation is a classic matrix transformation, there are already standard software library can be made use of. \\
+Based on the fact that the Hamiltonian H is a Hermitian operator formed by a $2^N \times 2^N$ matrix, it has a complete set of eigenvectors and eigenvalues. This implies that the Hamiltonian H can be transformed into a diagonal matrix $\Lambda$ spanned by its eigenvalues and the unitary matrix $V$ of its eigenvectors. The transformation is given by $H = V\Lambda V^\dagger$. Thus, the time evolution can be calculated as $U(\tau) = exp(-i\tau H) = V exp(-i\tau \Lambda) V^\dagger$. If $V$ and $\Lambda$ can be obtained by diagonalising H, time evolution becomes a series of matrix multiplications. Since diagonalisation is a classic matrix transformation, there are already standard software library can be made use of. \\
 
-The element of H can be computed by repeatedly applying Hamiltonian H to basis vector $\ket{\Psi}$, which results in $\ket{\Psi'} = H\ket{\Psi}$. The $\ket{\Psi'}$ is the column of H in matrix form. In more detail, $\ket{\Psi}$ is firstly assigned to be $(1,0,\dots,0)^T$. $\ket{\Psi'} = H\ket{\Psi}$ will then result in the first column of the matrix H. Same calculation for $(0,1,0,\dots,0)^T$ will lead to the second column of the matrix H and so forth. Consequently, the elements of the matrix H can be determined. \\
+The elements of H can be computed by repeatedly applying Hamiltonian H to basis vector $\ket{\Psi}$, which results in $\ket{\Psi'} = H\ket{\Psi}$. The $\ket{\Psi'}$ is the column of H in matrix form. In more detail, $\ket{\Psi}$ is firstly assigned to be $(1,0,\dots,0)^T$. $\ket{\Psi'} = H\ket{\Psi}$ will then result in the first column of the matrix H. Same calculation for $(0,1,0,\dots,0)^T$ will lead to the second column of the matrix H and so forth. Consequently, the elements of the matrix H can be determined. \\
 
-The main drawback of this approach is the limitation on scaling. Whlie diagonalising the matrix H, the memory request and the run time of the standard algorithm scale as $D^2$ and $D^3$ ($D=2^N$) respectively. Due to the exponential growth of the matrix size $D$, the full diagonalisation method only fits a quantum system with small size. Therefore, this approach serves mostly as a tool to validate the correctness of other algorithms when solving with time-dependent Schrödinger equation.%\cite{DeRaedt2004}.\\
+The main drawback of this approach is the limitation on scaling. Whlie diagonalising the matrix H, the memory request and the run time of the standard algorithm scale as $D^2$ and $D^3$ ($D=2^N$) respectively. Due to the exponential growth of the matrix size $D$, the full diagonalisation method only fits a quantum system with small size. Therefore, this approach serves mostly as a tool to validate the correctness of other algorithms when solving with time-dependent Schrödinger equation.\\%\cite{DeRaedt2004}.\\
 %Use Lapack to diagonalize the H for $\Psi_{t} = e^{iH\tau} \Psi_{t-\tau}$. 
 
 
 \subsubsection{Suzuki-Trotter Product Formula}
 
-Suzuki-Trotter product formula approach can reduce the memory request and the run time when dealing with a larger quantum system \cite{DeRaedt2004}. The main idea is that a unitary matrix exponential can be approximated by decomposing it properly into the matrix exponentials with small matrix size,
+Suzuki-Trotter product formula approach can reduce the memory request and the run time when dealing with a larger quantum system \cite{DeRaedt2004}. The main idea is that a unitary matrix exponential can be approximated by decomposing it properly into the matrix exponentials with small matrix size,\\
 
 %Suzuki-Trotter product formula approach approximates a unitary matrix exponentials by decomposing the matrix properly, that is 
 
@@ -582,15 +576,13 @@ U(t) &= \exp(-itH)\\
 &=\lim_{m \to \infty}(\prod_{k=1}^{K}\exp(-it H_k/m))^m.
 \end{split}
 \end{equation}
-
-If the size of the time step is sufficiently small, a good approximation of $U(t)$ suggested by Eq. (\ref{suzuki-trotter product formula}) is 
+If the size of the time step is sufficiently small, a good approximation of $U(t)$ suggested by Eq. (\ref{suzuki-trotter product formula}) is \\
 
 \begin{equation}
 \label{suzuki-trotter product formula 1st}
 \tilde{U}_1(\tau) = \exp(-i\tau H_1) \exp(-t\tau H_2) \dots \exp(-t\tau H_K),
 \end{equation} 
- 
-where $\tau = t / m$ is the size of the time step. The Taylor series of $U(t)$ and $\tilde{U}_1(t)$ are identical up to first order in $\tau$. Thus $\tilde{U}_1(t)$ is the first order approximation of $U(t)$. Furthermore, if all $H_i$ in Eq. (\ref{suzuki-trotter product formula 1st}) are Hermitian, $\tilde{U}_1(t)$ is unitary by construction. Consequently, the algorithm based on Eq. (\ref{suzuki-trotter product formula 1st}) will be unconditionally stable. The accuracy of the algorithm can be increased by applying second order approximation and it yields 
+where $\tau = t / m$ is the size of the time step. The Taylor series of $U(t)$ and $\tilde{U}_1(t)$ are identical up to first order in $\tau$. Thus $\tilde{U}_1(t)$ is the first order approximation of $U(t)$. Furthermore, if all $H_i$ in Eq. (\ref{suzuki-trotter product formula 1st}) are Hermitian, $\tilde{U}_1(t)$ is unitary by construction. Consequently, the algorithm based on Eq. (\ref{suzuki-trotter product formula 1st}) will be unconditionally stable. The accuracy of the algorithm can be increased by applying second order approximation and it yields \\
  
 \begin{equation}
 \begin{split}
@@ -598,14 +590,13 @@ where $\tau = t / m$ is the size of the time step. The Taylor series of $U(t)$ a
 &=\exp(\frac{-t\tau H_K}{2})\exp(\frac{-t\tau H_{K-1}}{2})\dots\exp(\frac{-t\tau H_1}{2})\exp(\frac{-t\tau H_1}{2})\dots\exp(\frac{-t\tau H_K}{2}).
 \end{split}
 \end{equation} 
-
-$\tilde{U}_2(\tau)$ is also unitary by construction as $\tilde{U}_1(\tau)$. !For a fixed accuracy in this $\tilde{U}_2(\tau)$ approximation, memory required and CPU time scale as $\order{D}$. The crucial step of this algorithm is to choose $H_i$ properly that makes the calculation of there matrix exponentials simple and efficient.\\
+$\tilde{U}_2(\tau)$ is also unitary by construction as $\tilde{U}_1(\tau)$. For a fixed accuracy in this $\tilde{U}_2(\tau)$ approximation, the amount of memory required and the run time scale as $\order{D}$. The crucial step of this algorithm is to choose $H_k$ properly that makes the calculation of there matrix exponentials simple and efficient.\\
 %, $\exp(\frac{-t\tau H_1}{2})\dots\exp(\frac{-t\tau H_K}{2})$, efficiently.  \\
 
 %For a fixed accuracy in this $\tilde{U}_2(\tau)$ approximation, memory required and CPU time scale as $\order{D}$ and $\order{\tau^{1+1/2}D}$ respectively
 
 
-Based on the Hamiltonian listed in Eq. (\ref{Hamiltonian_set}), one efficient way to construct second order approximation is 
+Based on the Hamiltonian listed in Eq. (\ref{Hamiltonian_set}), one efficient way to construct second order approximation is \\
 
 \begin{equation}
 \label{tilde_U}
@@ -619,29 +610,30 @@ with
 %\begin{equation}
 \begin{align}
 \label{single_spin}
-&\exp(\frac{-i\tau H_{\sigma_\alpha}}{2})= \exp(\frac{-i\tau\left(-\sum_{i=1}^{N}\sum_{\alpha=x,y,z}h^\alpha_i(t)\sigma^\alpha_i\right)}{2})\\
+&\exp(\frac{-i\tau H_{\sigma_\alpha}}{2})= \exp(\frac{-i\tau\left(-\sum_{i=1}^{N}\sum_{\alpha=x,y,z}h^\alpha_i\sigma^\alpha_i\right)}{2})\\
 \label{double_spin_x}
-&\exp(\frac{-i\tau H_{\sigma_x \sigma_x}}{2})=\exp(\frac{-i\tau\left(-\sum_{i=1}^{N}J^x_{ij}(t)\sigma^x_i\sigma^x_j\right)}{2})\\
+&\exp(\frac{-i\tau H_{\sigma_x \sigma_x}}{2})=\exp(\frac{-i\tau\left(-\sum_{i=1}^{N}J^x_{ij}\sigma^x_i\sigma^x_j\right)}{2})\\
 \label{double_spin_y}
-&\exp(\frac{-i\tau H_{\sigma_y \sigma_y}}{2})=\exp(\frac{-i\tau\left(-\sum_{i=1}^{N}J^y_{ij}(t)\sigma^y_i\sigma^y_j\right)}{2})\\
+&\exp(\frac{-i\tau H_{\sigma_y \sigma_y}}{2})=\exp(\frac{-i\tau\left(-\sum_{i=1}^{N}J^y_{ij}\sigma^y_i\sigma^y_j\right)}{2})\\
 \label{double_spin_z}
-&\exp({-i\tau H_{\sigma_z \sigma_z}})=\exp({-i\tau\left(-\sum_{i=1}^{N}J^z_{ij}(t)\sigma^z_i\sigma^z_j\right)}),
+&\exp({-i\tau H_{\sigma_z \sigma_z}})=\exp({-i\tau\left(-\sum_{i=1}^{N}J^z_{ij}\sigma^z_i\sigma^z_j\right)}).
 \end{align}
 %\end{equation}
 
-, where $h^\alpha_i(t), J^x_i(t), J^y_i(t)$, and $J^z_i(t)$ are the strength of Hamiltonian at the current time step according to Eq. (\ref{Hamiltonian_set}). The reason why decomposing in this way is that the analytical expression of each matrix exponential is known. First, Eq. (\ref{single_spin}) can be further elaborated as\\
+%, where $h^\alpha_i, J^x_i, J^y_i$, and $J^z_i$ are the strength of Hamiltonian at the current time step according to Eq. (\ref{Hamiltonian_set}). 
+The reason why decomposing in this way is that the analytical expression of each matrix exponential is known. First, Eq. (\ref{single_spin}) can be further elaborated as\\
+
 \begin{equation}
 \label{single_spin 2}
-\exp(\frac{-i\tau(-\sum_{i=1}^{N}\sum_{\alpha=x,y,z}h^\alpha_i(t)\sigma^\alpha_i)}{2}) = \prod_{i=1}^{N}\exp(\frac{i\tau \sum_{\alpha_{x,y,z}}h^\alpha_i(t)\sigma^\alpha_i}{2}).
+\exp(\frac{-i\tau(-\sum_{i=1}^{N}\sum_{\alpha=x,y,z}h^\alpha_i\sigma^\alpha_i)}{2}) = \prod_{i=1}^{N}\exp(\frac{i\tau \sum_{\alpha_{x,y,z}}h^\alpha_i\sigma^\alpha_i}{2}).
 \end{equation}
-The analytical expression of Eq. (\ref{single_spin 2}) can be shown with the aid of the following equation, which sets out a rotation of the vector $\mathbf{S}$ about the vector $\mathbf{v}$.
+The analytical expression of Eq. (\ref{single_spin 2}) can be shown with the aid of the following equation, which sets out a rotation of the vector $\mathbf{S}$ about the vector $\mathbf{v}$.\\
 
 \begin{equation}
 \label{single_spin 3}
 \exp(i\mathbf{v}\cdot \mathbf{S}) = \mathbb{I} cos(\frac{v}{2}) + \frac{2i\mathbf{v}\cdot \mathbf{S}}{v}sin(\frac{v}{2}),
 \end{equation}
-
-where $v$ is the norm of $\mathbf{v}$. The matrix exponential of Eq. (\ref{single_spin 2}) can be written as 
+where $v$ is the norm of $\mathbf{v}$. The matrix exponential of Eq. (\ref{single_spin 2}) can be written as \\
 
 \begin{equation}
 \label{single_spin 4}
@@ -650,18 +642,16 @@ cos\frac{\tau h_i}{2}+\frac{ih^z_i}{h_i}sin\frac{\tau h_i}{2} & \frac{ij^x_i+h^y
 \frac{ij^x_i-h^y_i}{h_i}sin\frac{\tau h_i}{2} & cos\frac{\tau h_i}{2}-\frac{ih^z_i}{h_i}sin\frac{\tau h_i}{2}
 \end{pmatrix},
 \end{equation}
-
-where $h_i$ is the norm of the vector $\mathbf{h_i}=(h^x_i,h^y_i,h^z_i)$. It can be conclude from Equation \ref{single_spin 2}, \ref{single_spin 3}, and \ref{single_spin 4}, that the calculation of the time evolution for single spin terms becomes a series of  $2\times2$ matrix calculations and multiplications. In addition, this calculation can be done by picking right pairs of coefficient in the state vector and applying Equation \ref{single_spin 4}. \\
+where $h_i$ is the norm of the vector $\mathbf{h_i}=(h^x_i,h^y_i,h^z_i)$. It can be conclude from Eq. (\ref{single_spin 2}), (\ref{single_spin 3}), and (\ref{single_spin 4}), that the calculation of the time evolution for single spin terms becomes a series of  $2\times2$ matrix calculations and multiplications. In addition, this calculation can be done by picking right pairs of corresponding states and applying Eq. (\ref{single_spin 4}). \\
 
 For the case of the double spin operator, since the spin operators with different labels commute, Eq. (\ref{double_spin_x}), Eq. (\ref{double_spin_y}), and Eq. (\ref{double_spin_z}) can be decomposed into 
 
 \begin{align}
-&\exp(\frac{-i\tau\left(-\sum_{i=1}^{N}J^x_{ij}(t)\sigma^x_i\sigma^x_j\right)}{2}) = \prod_{i,j=1}^{N}\exp(\frac{i\tau J^x_{i,j}(t)\sigma^x_i\sigma^x_j}{2})\\
-&\exp(\frac{-i\tau\left(-\sum_{i=1}^{N}J^y_{ij}(t)\sigma^y_i\sigma^y_j\right)}{2}) = \prod_{i,j=1}^{N}\exp(\frac{i\tau J^y_{i,j}(t)\sigma^y_i\sigma^y_j}{2})\\
-&\exp({-i\tau\left(-\sum_{i=1}^{N}J^z_{ij}(t)\sigma^z_i\sigma^z_j\right)}) = \prod_{i,j=1}^{N}\exp(i\tau J^z_{i,j}(t)\sigma^z_i\sigma^z_j).
+&\exp(\frac{-i\tau\left(-\sum_{i=1}^{N}J^x_{ij}\sigma^x_i\sigma^x_j\right)}{2}) = \prod_{i,j=1}^{N}\exp(\frac{i\tau J^x_{i,j}\sigma^x_i\sigma^x_j}{2})\\
+&\exp(\frac{-i\tau\left(-\sum_{i=1}^{N}J^y_{ij}\sigma^y_i\sigma^y_j\right)}{2}) = \prod_{i,j=1}^{N}\exp(\frac{i\tau J^y_{i,j}\sigma^y_i\sigma^y_j}{2})\\
+&\exp({-i\tau\left(-\sum_{i=1}^{N}J^z_{ij}\sigma^z_i\sigma^z_j\right)}) = \prod_{i,j=1}^{N}\exp(i\tau J^z_{i,j}\sigma^z_i\sigma^z_j).
 \end{align}
-
-The above expressions, likewise, can be determined analytically and yield 
+The above expressions, likewise, can be determined analytically and yield \\
 
 \begin{align}
 \label{double_spin_x 2}
@@ -686,11 +676,10 @@ i \sin(-J^y_{i,j}\tau) & 0 & 0 & \cos(-J^y_{i,j}\tau)
 0 & 0 & 0 & \exp(i J^z_{i,j} \tau).
 \end{pmatrix} 
 \end{align}
-
 In a similar way, the calculation of the time evolution of double spin operators can be evaluated by picking the 4 corresponding states. Moreover, with these analytical expressions (i.e. Eq. (\ref{single_spin 4}), Eq. (\ref{double_spin_x 2}), Eq. (\ref{double_spin_y 2}), and Eq. (\ref{double_spin_z 2}) ), it it now possible to carry out $\tilde{U}(\tau)$ in Eq. (\ref{tilde_U}) and apply it to $\ket{\Psi(t)}$. Thus, the time evolution of the wave function can be calculated. \\
 %, calculating the matrix, applying the matrix on $\ket{\Psi}$
 
-With these two algorithms, the full diagonalisation methods and Suzuki-Trotter Product Formula approach, it is sufficient to simulate a quantum annealer at zero temperature, namely in ideal condition, on a classical computer. Nevertheless, in order to simulate a quantum annealer at finite temperature, the computation process will be more complicated and a simple implementation of these two algorithm will not be practical. Further details will be presented in the next subsection. \\
+With these two algorithms, the full diagonalisation method and the Suzuki-Trotter Product Formula approach, it is sufficient to simulate a quantum annealer at zero temperature, namely in ideal condition, on a classical computer. Nevertheless, in order to simulate a quantum annealer at finite temperature, the computation process will be more complicated and a simple implementation of these two algorithms will not be practical. Further details will be presented in the next subsection. \\
 
 %Break the H to small operation that operate on the state. According to $J^x , J^y, and Jz; h^x, h^y, and h^z$, we need to find the pair or quad pair for the $\Psi$
 
@@ -698,15 +687,14 @@ With these two algorithms, the full diagonalisation methods and Suzuki-Trotter P
 \subsection{Algorithm for system with Temperature Effect}
 %Here since we have in total 16 spins, of course we cannot use product formula algorithm. But we because have temperature term now, which means we may run over several states, therefore the product formula algorithm is not enough for use now. Therefore, we use random sampling method.
 
-\subsubsection{Canonical-Thermal Ensemble}
+\subsubsection{Canonical Ensemble}
 %\subsubsection{Boltzmann Distribution/ Assemble Average}
 
-In order to simulate a system at finite temperature, the quantum subsystem S is coupled to a heat bath B and the Hamiltonian of the entire system (i.e. S+B) is defined as
+In order to simulate a system at finite temperature, the quantum subsystem S is coupled to a heat bath B and the Hamiltonian of the entire system (i.e. S+B) is defined as\\
 
 \begin{equation}
 H = H_S + H_B + gH_{SB},
 \end{equation} 
-
 where $H_S$ is the Hamiltonian of the system, $H_B$ is the Hamiltonian of the heat bath, and $H_{SB}$ is the interaction between the system S and the heat bath B with $g$ indicates the global coupling strength between S and B. \\
 
 After coupling a heat bath to the system, the entire system can no longer be describe by a pure state. Instead, the entire system should be considered as a mixed state constructed by statistically combining certain pure states. The entire system can be represented with a canonical ensemble, in which the energy is not known but the temperature is specified. Let $A$ be an observable, and the expectation value of $A$ can then be written as \\
@@ -718,7 +706,6 @@ After coupling a heat bath to the system, the entire system can no longer be des
 \end{split}
 \label{eq: canonical_ensemble}
 \end{equation}
-
 where $Z = \sum_B e^{-\beta E_B}$ is the canonical partition function, $\beta$ is the inverse temperature, $\ket{E_B}$ are the microstates of the heat bath with energy $E_B$. Eq. (\ref{eq: canonical_ensemble}) can be further rewritten as\\  
 
 \begin{equation}
@@ -726,7 +713,7 @@ where $Z = \sum_B e^{-\beta E_B}$ is the canonical partition function, $\beta$ i
 \label{eq: canonical_ensemble_simplified}
 \end{equation}
 
-This form implies that the core part of the simulation of a isolated system and a system coupled with a heat bath is similar. The only difference between them is that, for the letter case, the simulation need to be repeated over all possible microstates of the hear bath and assembled with the corresponding probability distribution. Hence the run time growths exponentially with the size of the heat bath. This property makes the canonical ensemble approach unpractical when dealing with a large heat bath, although this approach can well describe the entire system.\\  
+This form implies that the core part of the simulation of a isolated system and a system coupled with a heat bath is similar. The only difference between them is that, for the latter case, the simulation need to be repeated over all possible microstates of the hear bath and assembled with the corresponding probability distribution. Hence the run time growths exponentially with the size of the heat bath. This property makes the canonical ensemble approach unpractical when dealing with a large heat bath, although this approach can well describe the entire system.\\  
 
 %
 %!The quantum subsystem S and the heat bath B can be described respectively by density matrix 
@@ -780,20 +767,18 @@ This form implies that the core part of the simulation of a isolated system and 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-The exponential scaling behaviour of the run time of the canonical ensemble approach limits its application to a heat bath with large size. The random sampling method presented here dose not have this behaviour, which makes it a proper method when the size of the heat bath is large. The random sampling method relies on the hypothesis that, when solving a time-dependent Schrödinger equation, the exact result can be approximated by using a set of samples of random initial states\cite{Hams2000}. In order to show this property, $e^{\beta E_B}$ in the Eq. (\ref{eq: canonical_ensemble}) is replaced by an approximation of the exponential function and the equation can be rewritten as \\   
+The exponential scaling behaviour of the run time of the canonical ensemble approach limits its application to a heat bath with large size. The random sampling method presented here dose not have this behaviour, which makes it a proper method when the size of the heat bath is large. The random sampling method relies on the hypothesis that, when solving a time-dependent Schrödinger equation, the exact result can be approximated by solving with a set of samples of random initial states\cite{Hams2000}. In order to show this property, $e^{\beta H_B}$ in the Eq. (\ref{eq: canonical_ensemble}) is replaced by an approximation of the exponential function and the equation can be rewritten as \\   
 
 \begin{equation}
 \begin{split}
-\mathbf{Tr}\left( \rho_B \rho_S A(t) \right)=\sum_{B}   \frac{1}{\sqrt{Z}}\left[ 1+\left( - \frac{\beta H_B}{2m}\right) \right]^m \bra{E_B}\bra{S} e^{-iHt}Ae^{iHt}\ket{S}\ket{E_B} \frac{1}{\sqrt{Z}}\left[ 1+\left( - \frac{\beta H_B}{2m}\right) \right]^m.\\
+\mathbf{Tr}\left( \rho_B \rho_S A(t) \right)=\sum_{B}   \frac{1}{\sqrt{Z}}\left[ 1+\left( - \frac{\beta H_B}{2m}\right) \right]^m \bra{B}\bra{S} e^{-iHt}Ae^{iHt}\ket{S}\ket{B} \frac{1}{\sqrt{Z}}\left[ 1+\left( - \frac{\beta H_B}{2m}\right) \right]^m.\\
 \end{split}
 \end{equation}
-
 To simplify the equation, the following assignment is made.\\
 
 \begin{equation}
-\ket{B'}=\ket{E_B} \frac{1}{\sqrt{Z}}\left[ 1+\left( - \frac{\beta H_B}{2m}\right). \right]^m
+\ket{B'}=\ket{B} \frac{1}{\sqrt{Z}}\left[ 1+\left( - \frac{\beta H_B}{2m}\right) \right]^m.
 \end{equation}
-
 Then a random vector $\ket{\phi}$ can be constructed by choosing B complex random numbers with which mean is 0.\\
 
 \begin{equation}
@@ -802,7 +787,7 @@ Then a random vector $\ket{\phi}$ can be constructed by choosing B complex rando
 \end{split}
 \end{equation}
 
-and it follows that\\
+where and it follows that\\
 
 \begin{equation}
 \begin{split}
@@ -810,7 +795,7 @@ and it follows that\\
 \end{split}
 \end{equation}
 
-As a means to improve the accuracy of the result, S realisations of the random initial states are sampled, and the result becomes
+As a means to improve the accuracy of the result, S realisations of the random initial states are sampled, and the result becomes\\
 
 \begin{equation}
 \begin{split}
@@ -819,13 +804,13 @@ As a means to improve the accuracy of the result, S realisations of the random i
 \end{split}
 \end{equation}
 
-If there is no correlation between the random coefficients in different realisations, and the random coefficients $f_n$ and $g_n$ are drawn from an even and symmetric probability distribution, the following statement can be made.
+If there is no correlation between the random coefficients in different realisations, and the random coefficients $f_n$ and $g_n$ are drawn from an even and symmetric probability distribution, the following statement can be made.\\
 
 \begin{equation}
 \lim_{S \to \infty} \frac{1}{S} \sum_{p=1}^{S} c_{m,p}^\star c_{n,p} = E(|c|^2)\delta_{m,n},
 \end{equation}
 
-where $E(\cdot)$ is the expectation value based on the probability distribution used to draw $c_n$. The subscript $n$ and $p$ of $c_{n,p}$ were removed because it does not depend on $n$ and $p$. Putting this relation back to Eq. (\ref{random_sampling+_}) leads to 
+where $E(\cdot)$ is the expectation value based on the probability distribution used to draw $c_n$. The subscript $n$ and $p$ of $c_{n,p}$ were removed because it does not depend on $n$ and $p$. Putting this relation back to Eq. (\ref{random_sampling+_}) leads to \\
 
 \begin{equation}
 \begin{split}
@@ -1047,7 +1032,7 @@ In Figure \ref{fig:minimum_gap_ideal}, each cross point stands for the simulatio
 
 In the previous section, the simulation result of the ideal case has been presented. However, in the real world, the system will always be influenced by the environment. The main difference is the temperature. For the ideal case, the system is perfectly isolated from the environment and stay at zero temperature. On the other hand, for the real case, the system evolves at finite temperature instead of zero temperature. \\
 	
-In order to simulate the influence of the finite temperature, the quantum system S is coupled to a heat bath B and the Hamiltonian of the entire system (i.e. S+B) is defined as
+In order to simulate the influence of the finite temperature, the quantum system S is coupled to a heat bath B and the Hamiltonian of the entire system (i.e. S+B) is defined as\\
 	
 \begin{equation*}
 	H = H_S + H_B + gH_{SB},
@@ -1355,7 +1340,7 @@ In summary, the quantum annealing technique provides a different approach to sol
 
 
 % =========================================================================
-\bibliographystyle{acm}
+\bibliographystyle{unsrt}
 \bibliography{master_report}
 % =========================================================================
 
