@@ -143,13 +143,12 @@ In contrast to thermal fluctuations used in simulated annealing, the main featur
 %To achieve this, the system is first prepared in the ground state of the initial Hamiltonian. Next, 
 %and will be introduced in the next paragraph. How to encode an optimisation problem into a Ising model Hamiltonian will be presented in detail in Section \ref{The Mapping of Hamiltonian}. \\
 
-
 \begin{equation}
 %H_{Ising}
 H=-\sum_{i,j}^N\sum_{\alpha=x,y,z}J^\alpha_{ij} \sigma^\alpha_i \sigma^\alpha_j -\sum_{i}^N\sum_{\alpha=x,y,z}h^\alpha_i \sigma^\alpha_i.
 \end{equation}
 
-The Ising model is broadly used in statistical physics to study phase transitions. The model describes a set of lattice sites with discrete variables that represent the atomic spins being either up ($\ket{\uparrow}$) or down ($\ket{\downarrow}$). The three components of the spin operators when applying to the Hilbert space spanned by $\ket{\uparrow}$ and $\ket{\downarrow}$ are defined as \\
+The Ising model is broadly used in statistical physics to study phase transitions. The model describes a set of lattice sites with discrete variables that represent the atomic spins being either up ($\ket{\uparrow}$) or down ($\ket{\downarrow}$). The three components of the spin operators when applying to the Hilbert space spanned by $\ket{\uparrow}$ and $\ket{\downarrow}$ are defined as 
 
 \begin{equation}
 \label{pauli_matrix}
@@ -179,8 +178,9 @@ Based on the classical Ising model, the Hamiltonian used in the quantum annealin
 \end{equation} 
 where t is the current time step and T is total annealing time. It should be noted that by using $\left(1-\frac{t}{T}\right)$ and $\left(\frac{t}{T}\right)$ as the time factors for $H_{init}$ and $H_{problem}$ respectively in Eq. (\ref{Hamiltonian_set}), it implies that the annealing proceeds with a linear time scheme. There are more general annealing schemes that can be implemented for the annealing process rather than a linear one. For the sake of simplicity, the linear annealing scheme is applied in the annealing process in this report. An illustration is shown in Figure \ref{linear_timescheme}.\\
 
-The key feature of $H_{init}$ is that it should be straightforward to construct and that its ground state is easy to find. With this chosen $H_{init}$, the ground state is \\
+The key feature of $H_{init}$ is that it should be straightforward to construct and that its ground state is easy to find. With this chosen $H_{init}$, the ground state is 
 %A transverse field in the x-direction is the choice here. The ground of $H_{init}$ is $\ket{x_1=\uparrow}\ket{x_2=\uparrow}\ket{x_3=\uparrow}\dots\ket{x_n=\uparrow}$.
+
 \begin{equation}
 \ket{x_1=\uparrow}\ket{x_2=\uparrow}\ket{x_3=\uparrow}\dots\ket{x_N=\uparrow}.
 \end{equation}
@@ -272,7 +272,7 @@ i\frac{\partial U^{-1}(t)\ket{\psi(t)} }{\partial t} = i\frac{\partial U^{-1}(t)
 i U^{-1}(t) \frac{\partial \ket{\psi(t)} }{\partial t} = i\frac{\partial \ket{\psi(t)}_D }{\partial t} - i\frac{\partial U^{-1}(t)}{\partial t } \ket{\psi(t)}. 
 \end{split}
 \end{equation}
-Combining Eq. (\ref{eq:adiabatic_theorem_base2}) and Eq. (\ref{eq:adiabatic_theorem_base3}), Eq. (\ref{eq:adiabatic_theorem_base}) can be rewritten as \\
+Combining Eq. (\ref{eq:adiabatic_theorem_base2}) and Eq. (\ref{eq:adiabatic_theorem_base3}), Eq. (\ref{eq:adiabatic_theorem_base}) can be rewritten as 
 
 %\begin{equation}
 %i U^{-1}(t) \frac{\partial \ket{\psi(t)} }{\partial t} = \frac{\partial U^{-1}(t)\ket{\psi(t)} }{\partial t} - \frac{\partial U^{-1}(t)}{\partial t } \ket{\psi(t)}. 
@@ -280,7 +280,7 @@ Combining Eq. (\ref{eq:adiabatic_theorem_base2}) and Eq. (\ref{eq:adiabatic_theo
 \begin{equation}
 i \frac{\partial \ket{\psi(t)}_D}{\partial t} - i \frac{\partial U^{-1} }{\partial t}  \ket{\psi(t)} = H_D\ket{\psi(t)}_D.
 \end{equation}
-If $H(t)$ changes sufficiently slow, ${\partial H(t)}/{\partial t}$ approaches zero. Thus, the unitary transformation, $U(t)$, and its inverse, $U^{-1}(t)$ are assumed to be slowly varying operators, which leads to \\
+If $H(t)$ changes sufficiently slow, ${\partial H(t)}/{\partial t}$ approaches zero. Thus, the unitary transformation, $U(t)$, and its inverse, $U^{-1}(t)$ are assumed to be slowly varying operators, which leads to 
 
 \begin{equation}
 i \frac{\partial \ket{\psi(t)}_D}{\partial t} = H_D(t)\ket{\psi(t)}_D.
@@ -294,7 +294,7 @@ Consequently, the system can evolve separetely in each energy eigenstate, becaus
 
 According to the Landau-Zener formula, another constraint on the quantum annealing process is the distance between the ground state energy and the first excited state energy. The Landau-Zener formula gives the probability of a diabatic transition from a lower energy eigenstate to a higher energy eigenstate. Although the adiabatic theorem implies that no diabatic transition will occur if $H(t)$ in Eq. (\ref{Hamiltonian_set}) could vary infinitely slow, this is not the case for real systems with a finite annealing time. Once the system evolves in a finite annealing time from a lower energy eigenstate, the probability of finding the system in a higher energy state in the future can be determined by the Landau-Zener formula.\\
 
-If $P_{adiabatic}$ is the probability of the system remaining in the ground state and evolving adiabatically and $P_{diabatic}$ is the probability for a diabatic transition, the relation between these two is $P_{adiabatic} = 1 - P_{diabatic}$. According to the Landau-Zener formula, $P_{diabatic}$ is given by \\
+If $P_{adiabatic}$ is the probability of the system remaining in the ground state and evolving adiabatically and $P_{diabatic}$ is the probability for a diabatic transition, the relation between these two is $P_{adiabatic} = 1 - P_{diabatic}$. According to the Landau-Zener formula, $P_{diabatic}$ is given by 
 
 \begin{equation}
 \begin{split}
@@ -340,7 +340,7 @@ Indeed there are algorithms that can solve some easy optimisation problems in po
 
 The Boolean satisfiability problem, abbreviated as the SAT problem, is a task of checking whether a given Boolean formula can be satisfied. To be more specific, the goal here is to find a configuration of true or false values for all variables in a given Boolean formula so that the final evaluation of the formula is true. The formula is called satisfiable when this configuration exists. On the other hand, the formula is not satisfiable, if the evaluation is false for all possible configurations.  \\
 
-The $k$-SAT problem with $k$ > 2 has been proven to be in the class NP-complete, which implies that no algorithm can efficiently solve SAT problems in polynomial time. The parameter $k$ defines the upper limit of the number of variables in one clause. An example is \\
+The $k$-SAT problem with $k$ > 2 has been proven to be in the class NP-complete, which implies that no algorithm can efficiently solve SAT problems in polynomial time. The parameter $k$ defines the upper limit of the number of variables in one clause. An example is 
 
 \begin{equation*}
  (x_1\lor x_2\lor x_3)\land (x_4\lor x_5\lor \neg x_6),
@@ -352,8 +352,9 @@ In this report, 2-SAT problems are investigated. In contrast to those more gener
 \subsection{Mapping the 2-SAT Problem to the Ising Hamiltonian}
 \label{The Mapping of Hamiltonian}
 
-A 2-SAT problem can only be solved by quantum annealing when its Boolean formula is mapped to an Ising Hamiltonian. The following simple example demonstrates how a Boolean formula is mapped on the Ising Hamiltonian. Consider the Boolean formula, \\
+A 2-SAT problem can only be solved by quantum annealing when its Boolean formula is mapped to an Ising Hamiltonian. The following simple example demonstrates how a Boolean formula is mapped on the Ising Hamiltonian. Consider the Boolean formula, 
 %It is straightforward to map spin value 1 to logical true and spin value 0 to logical false. \\
+
 \begin{equation*}
 (x_1\lor x_2)\land (x_3\lor \neg x_4).
 \end{equation*}
@@ -423,7 +424,7 @@ The first clause is true, when either $x_1$ or $x_2$ is true. The second clause 
 \end{center}
 \caption{Mapping a 2-SAT problem in term of the Ising variables by using the transformation $\sigma_1 = 2x_i -1$.}
 \end{table} 
-In order to encode the solution of the 2-SAT problem into the ground state of the Ising Hamiltonian, an Ising Hamiltonian can be written down with a variable $m$. Take the first clause for example, it yields\\
+In order to encode the solution of the 2-SAT problem into the ground state of the Ising Hamiltonian, an Ising Hamiltonian can be written down with a variable $m$. Take the first clause for example, it yields
 
 \begin{equation}
 \begin{split}
@@ -442,7 +443,7 @@ By comparing Eq. (\ref{eq: mapping}) with $H_{problem}$ of the Hamiltonian given
 
 \subsection{The Time-Dependent Schrödinger Equation and the Quantum Spin System}
 
-The quantum annealing process can be described in terms of the time-dependent Schrödinger equation, and thus the final state of the system can be determined by solving the time-dependent Schrödinger equation. The solution of the time-dependent Schrödinger equation provided in Eq. (\ref{tdse}) is \\
+The quantum annealing process can be described in terms of the time-dependent Schrödinger equation, and thus the final state of the system can be determined by solving the time-dependent Schrödinger equation. The solution of the time-dependent Schrödinger equation provided in Eq. (\ref{tdse}) is 
 
 \begin{equation}
 \begin{split}
@@ -450,26 +451,26 @@ The quantum annealing process can be described in terms of the time-dependent Sc
 &=\exp_+(-i\int_{t}^{t+\tau}H(t')dt')\Psi(t),
 \end{split}
 \end{equation}
-where $\tau$ is the size of the time step, and $U(t+\tau,t)$ is a unitary matrix that transforms the system from $t$ to $t+\tau$. In order to conduct a numerical computation and ensure the unitary of the evolution operator, time is discretised in small time steps and $H(t')$ is assumed to be piecewise constant within these time steps. The solution can be written as\\
+where $\tau$ is the size of the time step, and $U(t+\tau,t)$ is a unitary matrix that transforms the system from $t$ to $t+\tau$. In order to conduct a numerical computation and ensure the unitary of the evolution operator, time is discretised in small time steps and $H(t')$ is assumed to be piecewise constant within these time steps. The solution can be written as
 
 \begin{equation*}
 	\Psi(t+\tau) =\exp(-iH(t+\frac{\tau}{2})\tau)\Psi(t).
 \end{equation*}
 To preserve the accuracy of the numerical solution, the size of the time step should be small enough to keep $H(t')$ piecewise constant. However, if the size is too small, the run time of the simulation will be too long. \\%A proper length of the time step should be tested out before going into further simulation. \\
 
-The wave function, $\ket{\Psi}$, of an $N$-spin system is constructed as the superposition of the basis states of the N single spins. Each single spin has two possible basis states, $\ket{\uparrow}$ or $\ket{\downarrow}$. For the sake of convenience, these two states are denoted as $\ket{0}$ or $\ket{1}$, respectively. The reason will be explained after presenting the expression of $\ket{\Psi}$. The relation between both notations is defined as \\
+The wave function, $\ket{\Psi}$, of an $N$-spin system is constructed as the superposition of the basis states of the N single spins. Each single spin has two possible basis states, $\ket{\uparrow}$ or $\ket{\downarrow}$. For the sake of convenience, these two states are denoted as $\ket{0}$ or $\ket{1}$, respectively. The reason will be explained after presenting the expression of $\ket{\Psi}$. The relation between both notations is defined as 
 
 \begin{equation}
 \ket{\uparrow}=\ket{0},
 ~ \ket{\downarrow}=\ket{1}.
 %\ket{\uparrow}=\left(\begin{array}{c} 1\\0 \end{array}\right) :=\ket{0},~ \ket{\downarrow}=\left(\begin{array}{c} 0\\1 \end{array}\right) :=\ket{1}.
 \end{equation}
-Thus, a single spin state can be written as a superposition of theses two basis states, \\
+Thus, a single spin state can be written as a superposition of theses two basis states, 
 
 \begin{equation}
 \ket{\Psi} = a(0)\ket{0} + a(1)\ket{1},
 \end{equation}
-where $a(0)$ and $a(1)$ are the probability amplitudes of each basis state. Using the same representation, a N-spin system can be constructed with $2^N$ states and written as\\ 
+where $a(0)$ and $a(1)$ are the probability amplitudes of each basis state. Using the same representation, a N-spin system can be constructed with $2^N$ states and written as
 
 \begin{equation}
 \label{psi_in_compuationalbasis}
@@ -480,7 +481,7 @@ where $a(0)$ and $a(1)$ are the probability amplitudes of each basis state. Usin
 \end{equation}
 %where $a(00\dots0), a(00\dots1)\dots, a(11\dots1)$ are the coefficients of each components. 
 %It should fulfil the normalisation requirement, $\braket{\Psi}{\Psi} = 1$. That is, the following equation should hold. 
-The following equation should hold because of the normalisation requirement, $\braket{\Psi}{\Psi} = 1$: \\
+The following equation should hold because of the normalisation requirement, $\braket{\Psi}{\Psi} = 1$: 
 
 \begin{equation}
 \sum_{\sigma_1,\sigma_2, \dots, \sigma_N=\ket{0},\ket{1}} |a(\sigma_1,\sigma_2, \dots, \sigma_N)|^2 = 1. 
@@ -494,8 +495,9 @@ One may notice that by using the notation with $\ket{0}$ and $\ket{1}$, the prod
 %According to Equation \ref{psi_in_compuationalbasis}, it is 
 
 %The memory requests for the simulation scales exponentially with the size of the quantum system, which may soon make the computation not practical on a classical computer. However, it turns out that there is a simple way to calculate the result without accessing to the entire matrix every time.
-Equation (\ref{Hamiltonian_set}) shows that there are two kind of terms in the Hamiltonian, namely are the single spin term and the double spin term. When applying these terms to $\ket{\Psi}$, the computation can be reduced to a series of $2\times 2$ and $4\times 4$ in-place matrix computations instead of a computation of the entire $2^N \times 2^N$ matrix. After applying the single spin term to the state, the state is written as follows:\\
+Equation (\ref{Hamiltonian_set}) shows that there are two kind of terms in the Hamiltonian, namely are the single spin term and the double spin term. When applying these terms to $\ket{\Psi}$, the computation can be reduced to a series of $2\times 2$ and $4\times 4$ in-place matrix computations instead of a computation of the entire $2^N \times 2^N$ matrix. After applying the single spin term to the state, the state is written as follows:
 %$\sigma^x_i, \sigma^z_i,$ and $\sigma^z_i\sigma^z_j$
+
 \begin{equation}
 \begin{split}
 \sigma^\alpha_i \ket{\Psi} =& \ket{\Psi'} \\
@@ -503,7 +505,7 @@ Equation (\ref{Hamiltonian_set}) shows that there are two kind of terms in the H
 			&+a'(11\dots0)\ket{11\dots0}+a'(11\dots1)\ket{11\dots1},
 \end{split}
 \end{equation}
-where $\alpha = x, y, z$. If the operator is $\sigma^x_i$, it interchanges the state up and state down, which corresponds to a swap of a pair component of $\ket{\Psi}$. This leads to the following eqaution.\\
+where $\alpha = x, y, z$. If the operator is $\sigma^x_i$, it interchanges the state up and state down, which corresponds to a swap of a pair component of $\ket{\Psi}$. This leads to the following eqaution.
 
 \begin{equation}
 \begin{split}
@@ -511,7 +513,7 @@ a'(\bullet \cdots \bullet 0 \bullet \cdots \bullet) &= +a(\bullet \cdots \bullet
 a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet) &= +a(\bullet \cdots \bullet 0 \bullet \cdots \bullet),
 \end{split}
 \end{equation}
-where the $\bullet$ is used to indicate that the bits on the corresponding position are the same. If the operator is $\sigma^y_i$, according to Eq. (\ref{pauli_matrix}), the coefficients obey the relation \\
+where the $\bullet$ is used to indicate that the bits on the corresponding position are the same. If the operator is $\sigma^y_i$, according to Eq. (\ref{pauli_matrix}), the coefficients obey the relation 
 
 \begin{equation}
 \begin{split}
@@ -519,7 +521,7 @@ a'(\bullet \cdots \bullet 0 \bullet \cdots \bullet) &= -i\times a(\bullet \cdots
 a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet) &= +i\times a(\bullet \cdots \bullet 0 \bullet \cdots \bullet).
 \end{split}
 \end{equation}
-Although Eq. (\ref{Hamiltonian_set}) does not contain a $\sigma^y_i$ component, $\sigma^y_i$ will later be used in the case for finite temperature. If the operator is $\sigma^z_i$, it reverses the sign of all coefficients of $\ket{\Psi}$ for which the $i^{th}$ bit of the vector has value 1, which yields\\
+Although Eq. (\ref{Hamiltonian_set}) does not contain a $\sigma^y_i$ component, $\sigma^y_i$ will later be used in the case for finite temperature. If the operator is $\sigma^z_i$, it reverses the sign of all coefficients of $\ket{\Psi}$ for which the $i^{th}$ bit of the vector has value 1, which yields
 
 \begin{equation}
 \begin{split}
@@ -528,7 +530,7 @@ a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet) &= -a(\bullet \cdots \bullet
 \end{split}
 \end{equation}
 
-Similarly, applying the two spin operator $\sigma^z_i\sigma^z_j$ to $\ket{\Psi}$ leads to a sign interchange between the coefficients of $\ket{\Psi}$ for which the $i^{th}$ bit and the $j^{th}$ bit of the vector have different values. Hence, \\
+Similarly, applying the two spin operator $\sigma^z_i\sigma^z_j$ to $\ket{\Psi}$ leads to a sign interchange between the coefficients of $\ket{\Psi}$ for which the $i^{th}$ bit and the $j^{th}$ bit of the vector have different values. Hence, 
 
 \begin{equation}
 \begin{split}
@@ -565,7 +567,7 @@ The main drawback of this approach is the limitation on scaling. While diagonali
 
 \subsubsection{The Suzuki-Trotter Product Formula Approach}
 
-The Suzuki-Trotter product formula approach can reduce the memory request and the run time when dealing with a larger quantum system \cite{DeRaedt2004}. The main idea is that a unitary matrix exponential can be approximated by decomposing it properly into matrix exponentials with small matrix size,\\
+The Suzuki-Trotter product formula approach can reduce the memory request and the run time when dealing with a larger quantum system \cite{DeRaedt2004}. The main idea is that a unitary matrix exponential can be approximated by decomposing it properly into matrix exponentials with small matrix size,
 
 %Suzuki-Trotter product formula approach approximates a unitary matrix exponentials by decomposing the matrix properly, that is 
 
@@ -577,13 +579,13 @@ U(t) &= \exp(-itH)\\
 &=\lim_{m \to \infty}(\prod_{k=1}^{K}\exp(-it H_k/m))^m.
 \end{split}
 \end{equation}
-If the size of the time step is sufficiently small, a good approximation of $U(t)$ suggested by Eq. (\ref{suzuki-trotter product formula}) is \\
+If the size of the time step is sufficiently small, a good approximation of $U(t)$ suggested by Eq. (\ref{suzuki-trotter product formula}) is 
 
 \begin{equation}
 \label{suzuki-trotter product formula 1st}
 \tilde{U}_1(\tau) = \exp(-i\tau H_1) \exp(-i\tau H_2) \dots \exp(-i\tau H_K),
 \end{equation} 
-where $\tau = t / m$ is the size of the time step. The Taylor series of $U(t)$ and $\tilde{U}_1(t)$ are identical up to first order in $\tau$. Thus $\tilde{U}_1(t)$ is the first order approximation of $U(t)$. Furthermore, if all $H_i$ in Eq. (\ref{suzuki-trotter product formula 1st}) are Hermitian, $\tilde{U}_1(t)$ is unitary by construction. Consequently, the algorithm based on Eq. (\ref{suzuki-trotter product formula 1st}) will be unconditionally stable. The accuracy of the algorithm can be increased by using the second order approximation and it yields \\
+where $\tau = t / m$ is the size of the time step. The Taylor series of $U(t)$ and $\tilde{U}_1(t)$ are identical up to first order in $\tau$. Thus $\tilde{U}_1(t)$ is the first order approximation of $U(t)$. Furthermore, if all $H_i$ in Eq. (\ref{suzuki-trotter product formula 1st}) are Hermitian, $\tilde{U}_1(t)$ is unitary by construction. Consequently, the algorithm based on Eq. (\ref{suzuki-trotter product formula 1st}) will be unconditionally stable. The accuracy of the algorithm can be increased by using the second order approximation and it yields 
  
 \begin{equation}
 \begin{split}
@@ -597,7 +599,7 @@ $\tilde{U}_2(\tau)$ is also unitary by construction. For a fixed accuracy in thi
 %For a fixed accuracy in this $\tilde{U}_2(\tau)$ approximation, memory required and CPU time scale as $\order{D}$ and $\order{\tau^{1+1/2}D}$ respectively
 
 
-Based on the Hamiltonian given in Eq. (\ref{Hamiltonian_set}), one efficient way to construct a second order approximation is \\
+Based on the Hamiltonian given in Eq. (\ref{Hamiltonian_set}), one efficient way to construct a second order approximation is 
 
 \begin{equation}
 \label{tilde_U}
@@ -605,7 +607,6 @@ Based on the Hamiltonian given in Eq. (\ref{Hamiltonian_set}), one efficient way
 \tilde{U}(\tau) = \exp(\frac{-i\tau H_{\sigma_\alpha}}{2})\exp(\frac{-i\tau H_{\sigma_x \sigma_x}}{2})\exp(\frac{-i\tau H_{\sigma_y \sigma_y}}{2})\exp(-i\tau H_{\sigma_z \sigma_z})\\\exp(\frac{-i\tau H_{\sigma_y \sigma_y}}{2})\exp(\frac{-i\tau H_{\sigma_x \sigma_x}}{2})\exp(\frac{-i\tau H_{\sigma_\alpha}}{2})
 \end{split}
 \end{equation}
-
 with 
 
 %\begin{equation}
@@ -622,19 +623,19 @@ with
 %\end{equation}
 
 %, where $h^\alpha_i, J^x_i, J^y_i$, and $J^z_i$ are the strength of Hamiltonian at the current time step according to Eq. (\ref{Hamiltonian_set}). 
-The reason why decomposing in this way is that the analytical expression of each matrix exponential is known. First, Eq. (\ref{single_spin}) can be rewritten as\\
+The reason why decomposing in this way is that the analytical expression of each matrix exponential is known. First, Eq. (\ref{single_spin}) can be rewritten as
 
 \begin{equation}
 \label{single_spin 2}
 \exp(\frac{-i\tau(-\sum_{i=1}^{N}\sum_{\alpha=x,y,z}h^\alpha_i\sigma^\alpha_i)}{2}) = \prod_{i=1}^{N}\exp(\frac{i\tau \sum_{\alpha={x,y,z}}h^\alpha_i\sigma^\alpha_i}{2}).
 \end{equation}
-With the aid of the following equation, which denotes the rotation of the vector $\mathbf{\sigma}$ about the vector $\mathbf{v}$\\
+With the aid of the following equation, which denotes the rotation of the vector $\mathbf{\sigma}$ about the vector $\mathbf{v}$
 
 \begin{equation}
 \label{single_spin 3}
 \exp(i\mathbf{v}\cdot \mathbf{\sigma}) = \mathbb{I} \cos(v) + \frac{i\mathbf{v}\cdot \mathbf{\sigma}}{v}\sin(v),
 \end{equation}
-where $v$ is the norm of $\mathbf{v}$, the matrix exponential of Eq. (\ref{single_spin 2}) can be written as \\
+where $v$ is the norm of $\mathbf{v}$, the matrix exponential of Eq. (\ref{single_spin 2}) can be written as 
 
 \begin{equation}
 \label{single_spin 4}
@@ -653,7 +654,7 @@ For the case of the double spin operator, since the spin operators with differen
 &\exp(\frac{-i\tau\left(-\sum_{i,j=1}^{N}J^y_{ij}\sigma^y_i\sigma^y_j\right)}{2}) = \prod_{i,j=1}^{N}\exp(\frac{i\tau J^y_{i,j}\sigma^y_i\sigma^y_j}{2}),\\
 &\exp({-i\tau\left(-\sum_{i,j=1}^{N}J^z_{ij}\sigma^z_i\sigma^z_j\right)}) = \prod_{i,j=1}^{N}\exp(i\tau J^z_{i,j}\sigma^z_i\sigma^z_j).
 \end{align}
-The above expressions, likewise, can be determined analytically and yield \\
+The above expressions, likewise, can be determined analytically and yield 
 
 \begin{align}
 \label{double_spin_x 2}
@@ -694,7 +695,7 @@ These two algorithms, the full diagonalisation method and the Suzuki-Trotter Pro
 \subsubsection{Canonical Ensemble}
 %\subsubsection{Boltzmann Distribution/ Assemble Average}
 
-In order to simulate a system at finite temperature, the quantum subsystem S is coupled to a heat bath B and the Hamiltonian of the entire system (i.e. S+B) is defined as\\
+In order to simulate a system at finite temperature, the quantum subsystem S is coupled to a heat bath B and the Hamiltonian of the entire system (i.e. S+B) is defined as
 
 \begin{equation}
 H = H_S + H_B + gH_{SB},
@@ -702,7 +703,7 @@ H = H_S + H_B + gH_{SB},
 \end{equation} 
 where $H_S$ is the Hamiltonian of the system, $H_B$ is the Hamiltonian of the heat bath, and $H_{SB}$ is the Hamiltonian describing the interaction between the system S and the heat bath B with $g$ indicating the global coupling strength between S and B. \\
 
-After coupling a heat bath to the system, the entire system can no longer be described by a pure state. Instead, the entire system should be considered as a mixed state constructed by statistically combining certain pure states. The heat bath can be represented with a canonical ensemble, $\rho_B = e^{-\beta H_B}/Z$ with $Z = \sum_B e^{-\beta H_B}$ is the canonical partition function and $\beta$ is the inverse temperature, in which the energy is not known but the temperature is specified.  Let $A$ be an observable. The expectation value of $A$ can then be written as \\
+After coupling a heat bath to the system, the entire system can no longer be described by a pure state. Instead, the entire system should be considered as a mixed state constructed by statistically combining certain pure states. The heat bath can be represented with a canonical ensemble, $\rho_B = e^{-\beta H_B}/Z$ with $Z = \sum_B e^{-\beta H_B}$ is the canonical partition function and $\beta$ is the inverse temperature, in which the energy is not known but the temperature is specified.  Let $A$ be an observable. The expectation value of $A$ can then be written as 
 
 \begin{equation}
 \begin{split}
@@ -711,7 +712,7 @@ After coupling a heat bath to the system, the entire system can no longer be des
 \end{split}
 \label{eq: canonical_ensemble}
 \end{equation}
-where $\ket{E_B}$ are the microstates of the heat bath with energy $E_B$, and $\rho_S = \ket{S} \bra{S}$. Equation (\ref{eq: canonical_ensemble}) can be rewritten as\\  
+where $\ket{E_B}$ are the microstates of the heat bath with energy $E_B$, and $\rho_S = \ket{S} \bra{S}$. Equation (\ref{eq: canonical_ensemble}) can be rewritten as 
 
 \begin{equation}
 \langle A(t)\rangle = \sum_{B}\frac{e^{-\beta E_B}}{Z}\bra{\Psi(t)} A\ket{\Psi(t)},
@@ -786,7 +787,7 @@ In order to show this approximation works, Eq. (\ref{eq: canonical_ensemble}) is
 %\ket{B'}=\ket{B} \frac{1}{\sqrt{Z}}\left[ 1+\left( - \frac{\beta H_B}{2m}\right) \right]^m.
 %\end{equation}
 
-A random vector $\ket{\phi}$ can be constructed by complex random numbers, $c_n$, of which the mean is 0. It yields\\
+A random vector $\ket{\phi}$ can be constructed by complex random numbers, $c_n$, of which the mean is 0. It yields
 
 \begin{equation}
 \begin{split}
@@ -805,7 +806,7 @@ The expectation value of $A(t)$ with respect to $\ket{\phi'}$ is give by
 \bra{\phi'}A(t)\ket{\phi'} = \sum_{m,n=1}^{B} c_m^\star c_n  \bra{B_m}\bra{S}\frac{e^{-\beta H_B/2}}{\sqrt{Z}}e^{iHt}Ae^{-iHt}\frac{e^{-\beta H_B/2}}{\sqrt{Z}}\ket{S}\ket{B_n}.\\
 \end{split}
 \end{equation}
-If $S$ realisations of the random initial states are sampled, the result becomes\\
+If $S$ realisations of the random initial states are sampled, the result becomes
 
 \begin{equation}
 \begin{split}
@@ -813,12 +814,12 @@ If $S$ realisations of the random initial states are sampled, the result becomes
 \frac{1}{S}\sum_{p=1}^{S} \bra{\phi'_p}A(t)\ket{\phi'_p} = \frac{1}{S} \sum_{p=1}^{S}  \sum_{m,n=1}^{B} c_{m,p}^\star c_{n,p}  \bra{B_{m}}\bra{S}\frac{e^{-\beta H_B/2}}{\sqrt{Z}}e^{iHt}Ae^{-iHt}\frac{e^{-\beta H_B/2}}{\sqrt{Z}}\ket{S}\ket{B_{n}}.
 \end{split}
 \end{equation}
-If there is no correlation between the random coefficients in different realisations, and the random coefficients $f_n$ and $g_n$ are drawn from an even and symmetric probability distribution, the following statement can be made.\\
+If there is no correlation between the random coefficients in different realisations, and the random coefficients $f_n$ and $g_n$ are drawn from an even and symmetric probability distribution, the following statement can be made.
 
 \begin{equation}
 \lim_{S \to \infty} \frac{1}{S} \sum_{p=1}^{S} c_{m,p}^\star c_{n,p} = E(|c|^2)\delta_{m,n},
 \end{equation}
-where $E(\cdot)$ is the expectation value based on the probability distribution used to draw $c_n$. The subscript $n$ and $p$ of $c_{n,p}$ were removed because it does not depend on $n$ and $p$. Putting this relation back to Eq. (\ref{random_sampling+_}) leads to \\
+where $E(\cdot)$ is the expectation value based on the probability distribution used to draw $c_n$. The subscript $n$ and $p$ of $c_{n,p}$ were removed because it does not depend on $n$ and $p$. Putting this relation back to Eq. (\ref{random_sampling+_}) leads to 
 
 \begin{equation}
 \begin{split}
@@ -826,7 +827,7 @@ where $E(\cdot)$ is the expectation value based on the probability distribution 
 &=E(|c|^2) \mathbf{Tr}\left(\rho_B \rho_S A\right).
 \end{split}
 \end{equation}
-For a large but finite S, the statement is as follows:\\
+For a large but finite S, the statement is as follows:
 
 \begin{equation}
 \frac{1}{S} \sum_{p=1}^{S} c_{m,p}^\star c_{n,p} = E(|c|^2)\delta_{m,n} + \mathcal{O}(\frac{1}{\sqrt{S}})
@@ -1267,18 +1268,18 @@ In Figure \ref{fig:minimum_gap_temperature}, the similar fact is shown. In the r
 \newpage
 \section{Applicatoins on Machine Learning}
 	
-The properties of quantum annealing when dealing with combinatorial optimisation makes it a potential candidate for machine learning application. A tree cover detector based on aerial photography was implemented on a quantum annealer \cite{Boyda2017}. Boosting is the learning algorithm used in this application. The main idea of boosting is that a strong classifier can be constructed by properly combining a set of weak classifiers. A weak classifier is required to classify only slightly better than random guess, which is $50\%$ correct rate. The critical part of boosting is to find proper weights for these weak classifiers and build the strong classifier. In order to implement the algorithm in a quantum annealer, the original boosting formula can be modified into the following one. \\
+The properties of quantum annealing when dealing with combinatorial optimisation makes it a potential candidate for machine learning application. A tree cover detector based on aerial photography was implemented on a quantum annealer \cite{Boyda2017}. Boosting is the learning algorithm used in this application. The main idea of boosting is that a strong classifier can be constructed by properly combining a set of weak classifiers. A weak classifier is required to classify only slightly better than random guess, which is $50\%$ correct rate. The critical part of boosting is to find proper weights for these weak classifiers and build the strong classifier. In order to implement the algorithm in a quantum annealer, the original boosting formula can be modified into the following one. 
 	
 \begin{equation}
 	C(t) = \mathrm{sign}\left(\sum_{i=1}^{N} w_i c_i(t)\right),
 \end{equation} 
-where t is the data sample, $c_i\in\{-1,+1\}$ are the weak classifiers, and $w_i\in\{0,+1\}$ is the weight of the weak classifiers. The weights are required to be binary in this modified version. As a result, the strong classifier becomes just a majority vote of the weak classifiers. The cost function chosen here is the regulated quadratic loss function. With a set of training data, $T$, if each single data $t$ has been classified correctly and labelled by $y(t)\in\{-1,+1\}$, the goal of the learning is \\
+where t is the data sample, $c_i\in\{-1,+1\}$ are the weak classifiers, and $w_i\in\{0,+1\}$ is the weight of the weak classifiers. The weights are required to be binary in this modified version. As a result, the strong classifier becomes just a majority vote of the weak classifiers. The cost function chosen here is the regulated quadratic loss function. With a set of training data, $T$, if each single data $t$ has been classified correctly and labelled by $y(t)\in\{-1,+1\}$, the goal of the learning is 
 	
 \begin{equation}
 	\operatorname*{arg\,min}_{w_i} \left\{ \sum_{t\in T} \left( \sum_{i=1}^{N} w_i c_i(t) - y(t) \right)^2 + \lambda \sum_{i=1}^{N} w_i  \right\},
 	\label{eq: boosting_origin}
 \end{equation}
-where $\lambda$ is the regularisation parameter. The formula implies that if a weak classifier, $c_i(t)$, can in general give data the same label as $y(t)$ does, it is better to keep this weak classifier, which can be done by setting $w_i$ equal to $1$. On the other hand, if $c_i(t)$ cannot label the training data set correctly most of the time, this weak classifier should probably be discarded by setting $w_i$ equal to 0. The role of the regularisation parameter is to prevent overfitting. That is, only the important weak classifiers are selected as part of the strong classifier. If the algorithm tries to include more weak classifiers than what it actually needs, the regularisation parameter will penalise this behaviour by raising up the cost value. This formula can be rewritten as following by expanding quadratic part,\\
+where $\lambda$ is the regularisation parameter. The formula implies that if a weak classifier, $c_i(t)$, can in general give data the same label as $y(t)$ does, it is better to keep this weak classifier, which can be done by setting $w_i$ equal to $1$. On the other hand, if $c_i(t)$ cannot label the training data set correctly most of the time, this weak classifier should probably be discarded by setting $w_i$ equal to 0. The role of the regularisation parameter is to prevent overfitting. That is, only the important weak classifiers are selected as part of the strong classifier. If the algorithm tries to include more weak classifiers than what it actually needs, the regularisation parameter will penalise this behaviour by raising up the cost value. This formula can be rewritten as following by expanding quadratic part,
 	
 \begin{equation}
 	\operatorname*{arg\,min}_{w_i} \left\{
@@ -1286,7 +1287,7 @@ where $\lambda$ is the regularisation parameter. The formula implies that if a w
 	\right\}.
 	\label{eq: boosting}
 \end{equation}
-The form of the argument is similar to the optimisation problem that can be solved by a quantum annealer. However, the quantum annealing algorithm prefers variables $w_i$ to be in a set of $\{-1,+1\}$ instead of $\{0,+1\}$. A variable transformation can be made by assigning $s_i = 2w_i -1$ with $s_i\in\{-1,+1\}$ and the formula becomes \\
+The form of the argument is similar to the optimisation problem that can be solved by a quantum annealer. However, the quantum annealing algorithm prefers variables $w_i$ to be in a set of $\{-1,+1\}$ instead of $\{0,+1\}$. A variable transformation can be made by assigning $s_i = 2w_i -1$ with $s_i\in\{-1,+1\}$ and the formula becomes 
 	
 \begin{equation}
 \begin{split}
@@ -1299,23 +1300,23 @@ With this proper form, the quantum annealer can step in and solve the optimisati
 
 %Another possible way to construct this form is
 	
-The second application is a feature extraction of the human face implemented on a quantum annealer \cite{OMalley2017}. The aim of a feature extraction is to transform a large set of raw data into a reduced set of informative and non-redundant features. In order to implement this with a quantum annealer processor, nonnegative binary matrix factorisation (NBMF) is used. NBMF can be described as follows. \\
+The second application is a feature extraction of the human face implemented on a quantum annealer \cite{OMalley2017}. The aim of a feature extraction is to transform a large set of raw data into a reduced set of informative and non-redundant features. In order to implement this with a quantum annealer processor, nonnegative binary matrix factorisation (NBMF) is used. NBMF can be described as follows. 
 	
 \begin{equation}
 	V^{n\times m} \approx W^{n\times k}H^{k\times m},
 \end{equation}
-where $n$ is the dimension of the data, $m$ is the number of the data, $k$ is the number of the feature extracted and $k < n$. The matrix elements of $W$ must be nonnegative and the matrix elements of $H$ must be binary. The goal of the learning is \\
+where $n$ is the dimension of the data, $m$ is the number of the data, $k$ is the number of the feature extracted and $k < n$. The matrix elements of $W$ must be nonnegative and the matrix elements of $H$ must be binary. The goal of the learning is 
 	
 \begin{equation}
 	\operatorname*{arg\,min}_{H}  \| V-WH \|_F, 
 	\label{eq:NBMF}
 \end{equation}
-where $\|\cdot\|_F$ is the Frobenius norm. This formula can be decomposed into a set of independent optimisation problems based on each column of $H$, because $i^{th}$ column of $WH$ only depends only on the $i^{th}$ column of $H$ and other columns of $H$ do not have any impact on this at all. Therefore the Eq. (\ref{eq:NBMF}) can be simplified into a series of the following equation for $i = 1, 2, \cdots, m$ , \\
+where $\|\cdot\|_F$ is the Frobenius norm. This formula can be decomposed into a set of independent optimisation problems based on each column of $H$, because $i^{th}$ column of $WH$ only depends only on the $i^{th}$ column of $H$ and other columns of $H$ do not have any impact on this at all. Therefore the Eq. (\ref{eq:NBMF}) can be simplified into a series of the following equation for $i = 1, 2, \cdots, m$ , 
 	 
 \begin{equation}
 	H_i = \operatorname*{arg\,min}_{\mathbf{q}}  \| V_i - W\mathbf{q}\|_2, 
 \end{equation} 
-where $H_i$ denotes the $i^{th}$ column of $H$ and $V_i$ denotes the $i^{th}$ column of $V$. In order to solve this linear least squares problem with a quantum annealer, a further transformation can be made and it results in \\
+where $H_i$ denotes the $i^{th}$ column of $H$ and $V_i$ denotes the $i^{th}$ column of $V$. In order to solve this linear least squares problem with a quantum annealer, a further transformation can be made and it results in 
 	
 \begin{equation}
 	\operatorname*{arg\,min}_{q_i}\left\{  
