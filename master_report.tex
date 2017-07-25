@@ -78,7 +78,7 @@ In this study, we simulated a quantum annealing process at zero and finite tempe
 
 The idea of quantum computation was brought up in the early 80s \cite{Feynman1982}. Feynman thought that a simulation of quantum phenomena is not always feasible on a classical computer, because the amount of resources required for the computation grows exponentially with the size of the physical system. Instead, quantum phenomena should be simulated by a computer making use of quantum properties, with which the amount of resources required for the simulation is only proportional to the size of the physical system. \\
 
-After this idea, an interesting topic for scientists is how computation can benefit from storing, transferring and processing information with quantum properties. Quantum computation is expected to do more than just simulation of quantum phenomena. Some quantum algorithms were presented and shown to have a significant speed-up compared to classical ones. Here follow some examples. Simon's algorithm can reduce the run time from an exponential time on a classical computer to a polynomial time on a quantum computer when solving a black box problem \cite{Simon1994}. Furthermore, this also serves as the stepping-stone to Shor's Algorithm. Shor's Algorithm for factoring large integers is one of the most well-known quantum algorithms. The time it takes to factor an $n$-digit number grows as a polynomial in $n$ on a quantum computer. The time for the same task grows exponentially with $n$ on a classical computer \cite{Shor1995}. The toughness of the factoring problem is the basis of many cryptography techniques and information is usually encrypted and protected by a large semi prime number. Therefore, some classical cryptography algorithms, like RSA, seems to break down and  quantum cryptography is under research as a response to this. The last one is Grover's search algorithm. To search an item in an unstructured list of size $N$ costs a classical computer run time of the order of $N$. Grover's algorithm can solve the same task in the order of $\sqrt{N}$ \cite{Grover1996}. Not like Shor's algorithm, which has an exponential speed-up, Grover's algorithm has only a quadratic improvement. It is still an important algorithm because of its broad applications, such as to speedup the time required to solve NP-complete problems \cite{Cerf2000,Bennett1997}. \\
+After this idea, an interesting topic for scientists is how computation can benefit from storing, transferring and processing information with quantum properties. Quantum computation is expected to do more than just simulation of quantum phenomena. Some quantum algorithms were presented and shown to have a significant speed-up compared to classical ones. Here follow some examples. Simon's algorithm can reduce the run time from an exponential time on a classical computer to a polynomial time on a quantum computer when solving a black box problem \cite{Simon1994}. Furthermore, this also serves as the stepping-stone to Shor's Algorithm. Shor's Algorithm for factoring large integers is one of the most well-known quantum algorithms. The time it takes to factor an $n$-digit number grows as a polynomial in $n$ on a quantum computer. The time for the same task grows exponentially with $n$ on a classical computer \cite{Shor:1997:PAP:264393.264406}. The toughness of the factoring problem is the basis of many cryptography techniques and information is usually encrypted and protected by a large semi prime number. Therefore, some classical cryptography algorithms, like RSA, seems to break down and  quantum cryptography is under research as a response to this. The last one is Grover's search algorithm. To search an item in an unstructured list of size $N$ costs a classical computer run time of the order of $N$. Grover's algorithm can solve the same task in the order of $\sqrt{N}$ \cite{Grover1996}. Not like Shor's algorithm, which has an exponential speed-up, Grover's algorithm has only a quadratic improvement. It is still an important algorithm because of its broad applications, such as to speedup the time required to solve NP-complete problems \cite{Cerf2000,Bennett1997}. \\
 
 All algorithms mentioned above are expected to run on a universal quantum computer, which is usually referred to as a machine based on the quantum gate model. However, building a quantum gate computer may be a challenging task. The main difficulty comes from the close box requirement \cite{Ladd2010}. The quantum system of a quantum computer should be isolated from its environment while being controlled. The quantum system is so fragile that even a little amount of noise can cause harm to the system, known as decoherence. Furthermore, due to the environmental noise, the entropy of the system will keep increasing with time. Therefore, there must exist a way to cool the quantum system and maintain its quantum state. How to measure results is another important issue, because the computational result makes sense only when it can be measured. Also, the possibility to scale up the system is crucial. A universal quantum computation can be implemented only when the above requirements on the hardware are fulfilled. \\
 
@@ -166,7 +166,7 @@ The Ising model is broadly used in statistical physics to study phase transition
 \end{equation}
 Please note that $\ket{\uparrow}$ and $\ket{\downarrow}$ are the eigenstates of $\sigma^z$ with eigenvalues $1$ and $-1$ respectively. The model allows interaction between neighbours with evolution strength $J_{ij}$. If $J_{ij}>0$, the interaction is called ferromagnetic and the neighbour spins have a higher probability to align parallel. In contrast, if $J_{ij}<0$, it is antiferromagnetic and the neighbour spins favour opposite states. An external field $h_i$ interacts with each spin. The spin tends to have positive direction when $h_i>0$, and negative direction when $h_i<0$. Obviously, finding the spin configuration of the ground state given a parameter set is the main difficult task after mapping an optimisation problem into the Hamiltonian. \\
 
-Based on the classical Ising model, the Hamiltonian used in the quantum annealing process can be written as
+Based on the Ising model, the Hamiltonian used in the quantum annealing process can be written as
 
 \begin{equation}
 \label{Hamiltonian_set}
@@ -176,7 +176,7 @@ Based on the classical Ising model, the Hamiltonian used in the quantum annealin
 &H_{problem}= -\sum_{i,j}^N J_{ij}^z \sigma^z_i \sigma^z_j - \sum_{i}^N h_i^z \sigma^z_i,\\
 \end{split}
 \end{equation} 
-where t is the current time step and T is total annealing time. It should be noted that by using $\left(1-\frac{t}{T}\right)$ and $\left(\frac{t}{T}\right)$ as the time factors for $H_{init}$ and $H_{problem}$ respectively in Eq. (\ref{Hamiltonian_set}), it implies that the annealing proceeds with a linear time scheme. There are more general annealing schemes that can be implemented for the annealing process rather than a linear one. For the sake of simplicity, the linear annealing scheme is applied in the annealing process in this report. An illustration is shown in Figure \ref{linear_timescheme}.\\
+where t is the current time step and T is total annealing time. It should be noted that by using $\left(1-\frac{t}{T}\right)$ and $\left(\frac{t}{T}\right)$ as the time factors for $H_{init}$ and $H_{problem}$ respectively in Eq.~(\ref{Hamiltonian_set}), it implies that the annealing proceeds with a linear time scheme. There are more general annealing schemes that can be implemented for the annealing process rather than a linear one. For the sake of simplicity, the linear annealing scheme is applied in the annealing process in this report. An illustration is shown in Figure \ref{linear_timescheme}.\\
 
 The key feature of $H_{init}$ is that it should be straightforward to construct and that its ground state is easy to find. With this chosen $H_{init}$, the ground state is 
 %A transverse field in the x-direction is the choice here. The ground of $H_{init}$ is $\ket{x_1=\uparrow}\ket{x_2=\uparrow}\ket{x_3=\uparrow}\dots\ket{x_n=\uparrow}$.
@@ -205,7 +205,7 @@ To summarise, the quantum annealing starts evolving with the system initialised 
 	\label{linear_timescheme}
 \end{figure}
 
-The quantum annealing algorithm is presented as follows \cite{Farhi2000}:\\
+The quantum annealing algorithm is presented as follows \cite{Farhi2000, Farhi2001}:\\
 
 \begin{tcolorbox}[title=Quantum Annealing Algorithm]
 1. Set up $H_{problem}$ according to a given problem. Combine $H_{init}$ and $H_{problem}$ to build $H(t)$. \\
@@ -231,7 +231,7 @@ It is worthwhile to mention the inherent difference between simulated annealing 
 
 The adiabatic theorem mainly serves as the basis of quantum annealing. The concept is that if the Hamiltonian of an eigenstate alters gradually, then the state will remain an eigenstate at later times while the eigenenergy evolves continuously. The relation between a gradually varying Hamiltonian and adiabatic behaviour can be demonstrated as follows \cite{Sarandy2004}: The time-dependent Schrödinger equation with $\hbar = 1$ is written as 
 
-%Eq. (\ref{tdse}) states a quantum system which evolves unitarily.
+%Eq.~(\ref{tdse}) states a quantum system which evolves unitarily.
 \begin{equation}
 \label{tdse}
 i\frac{\partial \ket{\psi (t)}}{\partial t} = H(t)\ket{\psi(t)},
@@ -247,13 +247,13 @@ where $\ket{n(t)}$ is the set of eigenvectors chosen to be orthonormal. Suppose 
 \label{unitary}
 H_D(t)=U^{-1}(t)H(t)U(t),
 \end{equation} 
-where $H_D(t)$ stands for the diagonalised Hamiltonian and $U(t)$ is a unitary transformation that diagonalises the Hamiltonian $H(t)$. By multiplying $U^{-1}$ to Eq (\ref{tdse}) from the left, it yields
+where $H_D(t)$ stands for the diagonalised Hamiltonian and $U(t)$ is a unitary transformation that diagonalises the Hamiltonian $H(t)$. By multiplying $U^{-1}$ to Eq. (\ref{tdse}) from the left, it yields
 
 \begin{equation}
 \label{eq:adiabatic_theorem_base}
 iU^{-1}(t)\frac{\partial \ket{\psi (t)}}{\partial t} = U^{-1}H(t)\ket{\psi(t)}.
 \end{equation}
-The right hand side of Eq. (\ref{eq:adiabatic_theorem_base}) can be transformed by using Eq. (\ref{unitary}) as follows: 
+The right hand side of Eq.~(\ref{eq:adiabatic_theorem_base}) can be transformed by using Eq.~(\ref{unitary}) as follows: 
 
 \begin{equation}
 \label{eq:adiabatic_theorem_base2}
@@ -272,7 +272,7 @@ i\frac{\partial U^{-1}(t)\ket{\psi(t)} }{\partial t} = i\frac{\partial U^{-1}(t)
 i U^{-1}(t) \frac{\partial \ket{\psi(t)} }{\partial t} = i\frac{\partial \ket{\psi(t)}_D }{\partial t} - i\frac{\partial U^{-1}(t)}{\partial t } \ket{\psi(t)}. 
 \end{split}
 \end{equation}
-Combining Eq. (\ref{eq:adiabatic_theorem_base2}) and Eq. (\ref{eq:adiabatic_theorem_base3}), Eq. (\ref{eq:adiabatic_theorem_base}) can be rewritten as 
+Combining Eq.~(\ref{eq:adiabatic_theorem_base2}) and Eq.~(\ref{eq:adiabatic_theorem_base3}), Eq.~(\ref{eq:adiabatic_theorem_base}) can be rewritten as 
 
 %\begin{equation}
 %i U^{-1}(t) \frac{\partial \ket{\psi(t)} }{\partial t} = \frac{\partial U^{-1}(t)\ket{\psi(t)} }{\partial t} - \frac{\partial U^{-1}(t)}{\partial t } \ket{\psi(t)}. 
@@ -286,13 +286,13 @@ If $H(t)$ changes sufficiently slow, ${\partial H(t)}/{\partial t}$ approaches z
 i \frac{\partial \ket{\psi(t)}_D}{\partial t} = H_D(t)\ket{\psi(t)}_D.
 \end{equation}
 
-Consequently, the system can evolve separetely in each energy eigenstate, because $H_D(t)$ is diagonal. In other words, this assures that, with a sufficiently slowly varying Hamiltonian, if the quantum system is in an instantaneous eigenstate of $H(t)$ at a certain point in time, it will remain in this eigenstate at all times. \\ 
+Consequently, the system can evolve separately in each energy eigenstate, because $H_D(t)$ is diagonal. In other words, this assures that, with a sufficiently slowly varying Hamiltonian, if the quantum system is in an instantaneous eigenstate of $H(t)$ at a certain point in time, it will remain in this eigenstate at all times. \\ 
 
 %Once the annealing time is long enough. We should be able to find the ground state.
 
 \subsection{Landau-Zener Transition} %theorem
 
-According to the Landau-Zener formula, another constraint on the quantum annealing process is the distance between the ground state energy and the first excited state energy. The Landau-Zener formula gives the probability of a diabatic transition from a lower energy eigenstate to a higher energy eigenstate. Although the adiabatic theorem implies that no diabatic transition will occur if $H(t)$ in Eq. (\ref{Hamiltonian_set}) could vary infinitely slow, this is not the case for real systems with a finite annealing time. Once the system evolves in a finite annealing time from a lower energy eigenstate, the probability of finding the system in a higher energy state in the future can be determined by the Landau-Zener formula.\\
+According to the Landau-Zener formula, another constraint on the quantum annealing process is the distance between the ground state energy and the first excited state energy. The Landau-Zener formula gives the probability of a diabatic transition from a lower energy eigenstate to a higher energy eigenstate. Although the adiabatic theorem implies that no diabatic transition will occur if $H(t)$ in Eq.~(\ref{Hamiltonian_set}) could vary infinitely slow, this is not the case for real systems with a finite annealing time. Once the system evolves in a finite annealing time from a lower energy eigenstate, the probability of finding the system in a higher energy state in the future can be determined by the Landau-Zener formula.\\
 
 If $P_{adiabatic}$ is the probability of the system remaining in the ground state and evolving adiabatically and $P_{diabatic}$ is the probability for a diabatic transition, the relation between these two is $P_{adiabatic} = 1 - P_{diabatic}$. According to the Landau-Zener formula, $P_{diabatic}$ is given by 
 
@@ -434,7 +434,7 @@ H & = m \cdot (m-2)\\
   & = 2\sigma_1 \sigma_2 -2\sigma_1 -2\sigma_2 + const.\\
 \end{split}
 \end{equation}
-By comparing Eq. (\ref{eq: mapping}) with $H_{problem}$ of the Hamiltonian given in Eq. (\ref{Hamiltonian_set}), one finds that $h_1^z$, $h_2^z$, and $J_{12}$ correspond to 2, 2, and -2 respectively. The same procedure can be repeated for all clauses. After mapping, the original 2-SAT problem is ready to be solved with quantum annealing, because the ground state of the problem Hamiltonian can be transformed back to the solution of the original 2-SAT problem. \\  
+By comparing Eq.~(\ref{eq: mapping}) with $H_{problem}$ of the Hamiltonian given in Eq.~(\ref{Hamiltonian_set}), one finds that $h_1^z$, $h_2^z$, and $J_{12}$ correspond to 2, 2, and -2 respectively. The same procedure can be repeated for all clauses. After mapping, the original 2-SAT problem is ready to be solved with quantum annealing, because the ground state of the problem Hamiltonian can be transformed back to the solution of the original 2-SAT problem. \\  
 
 
 
@@ -443,7 +443,7 @@ By comparing Eq. (\ref{eq: mapping}) with $H_{problem}$ of the Hamiltonian given
 
 \subsection{The Time-Dependent Schrödinger Equation and the Quantum Spin System}
 
-The quantum annealing process can be described in terms of the time-dependent Schrödinger equation, and thus the final state of the system can be determined by solving the time-dependent Schrödinger equation. The solution of the time-dependent Schrödinger equation provided in Eq. (\ref{tdse}) is 
+The quantum annealing process can be described in terms of the time-dependent Schrödinger equation, and thus the final state of the system can be determined by solving the time-dependent Schrödinger equation. The solution of the time-dependent Schrödinger equation provided in Eq.~(\ref{tdse}) is 
 
 \begin{equation}
 \begin{split}
@@ -487,7 +487,7 @@ The following equation should hold because of the normalisation requirement, $\b
 \sum_{\sigma_1,\sigma_2, \dots, \sigma_N=\ket{0},\ket{1}} |a(\sigma_1,\sigma_2, \dots, \sigma_N)|^2 = 1. 
 \end{equation}
 
-One may notice that by using the notation with $\ket{0}$ and $\ket{1}$, the product states in Eq. (\ref{psi_in_compuationalbasis}) are represented in binary number notation. With the binary number notation, the basis vectors can be read as integers ranging from 0 to $2^N-1$. When comparing the simulation results with the known solution state, this notation makes the comparison simpler. In addition, it is easy to estimate the memory request to store the wave function in this notation. It immediately follows that the memory request scales exponentially with the number of spins, $N$.\\
+One may notice that by using the notation with $\ket{0}$ and $\ket{1}$, the product states in Eq.~(\ref{psi_in_compuationalbasis}) are represented in binary number notation. With the binary number notation, the basis vectors can be read as integers ranging from 0 to $2^N-1$. When comparing the simulation results with the known solution state, this notation makes the comparison simpler. In addition, it is easy to estimate the memory request to store the wave function in this notation. It immediately follows that the memory request scales exponentially with the number of spins, $N$.\\
 
 
 
@@ -505,7 +505,7 @@ Equation (\ref{Hamiltonian_set}) shows that there are two kind of terms in the H
 			&+a'(11\dots0)\ket{11\dots0}+a'(11\dots1)\ket{11\dots1},
 \end{split}
 \end{equation}
-where $\alpha = x, y, z$. If the operator is $\sigma^x_i$, it interchanges the state up and state down, which corresponds to a swap of a pair component of $\ket{\Psi}$. This leads to the following eqaution.
+where $\alpha = x, y, z$. If the operator is $\sigma^x_i$, it interchanges the state up and state down, which corresponds to a swap of a pair component of $\ket{\Psi}$. This leads to the following equation
 
 \begin{equation}
 \begin{split}
@@ -513,7 +513,7 @@ a'(\bullet \cdots \bullet 0 \bullet \cdots \bullet) &= +a(\bullet \cdots \bullet
 a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet) &= +a(\bullet \cdots \bullet 0 \bullet \cdots \bullet),
 \end{split}
 \end{equation}
-where the $\bullet$ is used to indicate that the bits on the corresponding position are the same. If the operator is $\sigma^y_i$, according to Eq. (\ref{pauli_matrix}), the coefficients obey the relation 
+where the $\bullet$ is used to indicate that the bits on the corresponding position are the same. If the operator is $\sigma^y_i$, according to Eq.~(\ref{pauli_matrix}), the coefficients obey the relation 
 
 \begin{equation}
 \begin{split}
@@ -521,7 +521,7 @@ a'(\bullet \cdots \bullet 0 \bullet \cdots \bullet) &= -i\times a(\bullet \cdots
 a'(\bullet \cdots \bullet 1 \bullet \cdots \bullet) &= +i\times a(\bullet \cdots \bullet 0 \bullet \cdots \bullet).
 \end{split}
 \end{equation}
-Although Eq. (\ref{Hamiltonian_set}) does not contain a $\sigma^y_i$ component, $\sigma^y_i$ will later be used in the case for finite temperature. If the operator is $\sigma^z_i$, it reverses the sign of all coefficients of $\ket{\Psi}$ for which the $i^{th}$ bit of the vector has value 1, which yields
+Although Eq.~(\ref{Hamiltonian_set}) does not contain a $\sigma^y_i$ component, $\sigma^y_i$ will later be used in the case for finite temperature. If the operator is $\sigma^z_i$, it reverses the sign of all coefficients of $\ket{\Psi}$ for which the $i^{th}$ bit of the vector has value 1, which yields
 
 \begin{equation}
 \begin{split}
@@ -569,6 +569,22 @@ The main drawback of this approach is the limitation on scaling. While diagonali
 
 The Suzuki-Trotter product formula approach can reduce the memory request and the run time when dealing with a larger quantum system \cite{DeRaedt2004}. The main idea is that a unitary matrix exponential can be approximated by decomposing it properly into matrix exponentials with small matrix size,
 
+%@article{DeRaedt2004,
+%	abstract = {This review gives a survey of numerical algorithms and software to simulate quantum computers.It covers the basic concepts of quantum computation and quantum algorithms and includes a few examples that illustrate the use of simulation software for ideal and physical models of quantum computers.},
+%	archivePrefix = {arXiv},
+%	arxivId = {quant-ph/0406210},
+%	author = {{De Raedt}, H. and Michielsen, K.},
+%	eprint = {0406210},
+%	file = {:home/ting-jui/Documents/2016{\_}WS{\_}MT/Paper/Reference/0406210.pdf:pdf},
+%	journal = {Materials Science},
+%	keywords = {Quantum Physics},
+%	mendeley-groups = {Master Thesis},
+%	primaryClass = {quant-ph},
+%	title = {{Computational Methods for Simulating Quantum Computers}},
+%	url = {http://arxiv.org/abs/quant-ph/0406210},
+%	year = {2004}
+%}
+
 %Suzuki-Trotter product formula approach approximates a unitary matrix exponentials by decomposing the matrix properly, that is 
 
 \begin{equation}
@@ -579,13 +595,13 @@ U(t) &= \exp(-itH)\\
 &=\lim_{m \to \infty}(\prod_{k=1}^{K}\exp(-it H_k/m))^m.
 \end{split}
 \end{equation}
-If the size of the time step is sufficiently small, a good approximation of $U(t)$ suggested by Eq. (\ref{suzuki-trotter product formula}) is 
+If the size of the time step is sufficiently small, a good approximation of $U(t)$ suggested by Eq.~(\ref{suzuki-trotter product formula}) is 
 
 \begin{equation}
 \label{suzuki-trotter product formula 1st}
 \tilde{U}_1(\tau) = \exp(-i\tau H_1) \exp(-i\tau H_2) \dots \exp(-i\tau H_K),
 \end{equation} 
-where $\tau = t / m$ is the size of the time step. The Taylor series of $U(t)$ and $\tilde{U}_1(t)$ are identical up to first order in $\tau$. Thus $\tilde{U}_1(t)$ is the first order approximation of $U(t)$. Furthermore, if all $H_i$ in Eq. (\ref{suzuki-trotter product formula 1st}) are Hermitian, $\tilde{U}_1(t)$ is unitary by construction. Consequently, the algorithm based on Eq. (\ref{suzuki-trotter product formula 1st}) will be unconditionally stable. The accuracy of the algorithm can be increased by using the second order approximation and it yields 
+where $\tau = t / m$ is the size of the time step. The Taylor series of $U(t)$ and $\tilde{U}_1(t)$ are identical up to first order in $\tau$. Thus $\tilde{U}_1(t)$ is the first order approximation of $U(t)$. Furthermore, if all $H_i$ in Eq.~(\ref{suzuki-trotter product formula 1st}) are Hermitian, $\tilde{U}_1(t)$ is unitary by construction. Consequently, the algorithm based on Eq.~(\ref{suzuki-trotter product formula 1st}) will be unconditionally stable. The accuracy of the algorithm can be increased by using the second order approximation and it yields 
  
 \begin{equation}
 \begin{split}
@@ -599,7 +615,7 @@ $\tilde{U}_2(\tau)$ is also unitary by construction. For a fixed accuracy in thi
 %For a fixed accuracy in this $\tilde{U}_2(\tau)$ approximation, memory required and CPU time scale as $\order{D}$ and $\order{\tau^{1+1/2}D}$ respectively
 
 
-Based on the Hamiltonian given in Eq. (\ref{Hamiltonian_set}), one efficient way to construct a second order approximation is 
+Based on the Hamiltonian given in Eq.~(\ref{Hamiltonian_set}), one efficient way to construct a second order approximation is 
 
 \begin{equation}
 \label{tilde_U}
@@ -622,8 +638,8 @@ with
 \end{align}
 %\end{equation}
 
-%, where $h^\alpha_i, J^x_i, J^y_i$, and $J^z_i$ are the strength of Hamiltonian at the current time step according to Eq. (\ref{Hamiltonian_set}). 
-The reason why decomposing in this way is that the analytical expression of each matrix exponential is known. First, Eq. (\ref{single_spin}) can be rewritten as
+%, where $h^\alpha_i, J^x_i, J^y_i$, and $J^z_i$ are the strength of Hamiltonian at the current time step according to Eq.~(\ref{Hamiltonian_set}). 
+The reason why decomposing in this way is that the analytical expression of each matrix exponential is known. First, Eq.~(\ref{single_spin}) can be rewritten as
 
 \begin{equation}
 \label{single_spin 2}
@@ -635,7 +651,7 @@ With the aid of the following equation, which denotes the rotation of the vector
 \label{single_spin 3}
 \exp(i\mathbf{v}\cdot \mathbf{\sigma}) = \mathbb{I} \cos(v) + \frac{i\mathbf{v}\cdot \mathbf{\sigma}}{v}\sin(v),
 \end{equation}
-where $v$ is the norm of $\mathbf{v}$, the matrix exponential of Eq. (\ref{single_spin 2}) can be written as 
+where $v$ is the norm of $\mathbf{v}$, the matrix exponential of Eq.~(\ref{single_spin 2}) can be written as 
 
 \begin{equation}
 \label{single_spin 4}
@@ -645,9 +661,9 @@ where $v$ is the norm of $\mathbf{v}$, the matrix exponential of Eq. (\ref{singl
 \frac{ih^x_i-h^y_i}{h_i}\sin\frac{\tau h_i}{2} & \cos\frac{\tau h_i}{2}-\frac{ih^z_i}{h_i}\sin\frac{\tau h_i}{2}
 \end{pmatrix},
 \end{equation}
-where $h_i$ is the norm of the vector $\mathbf{h}_i=(h^x_i,h^y_i,h^z_i)$. It can be concluded from Eqs. (\ref{single_spin 2}), (\ref{single_spin 3}), and (\ref{single_spin 4}), that the calculation of the time evolution for single spin terms becomes a series of  $2\times2$ matrix calculations. In addition, this calculation can be done by picking right pairs of corresponding states and applying Eq. (\ref{single_spin 4}). \\
+where $h_i$ is the norm of the vector $\mathbf{h}_i=(h^x_i,h^y_i,h^z_i)$. It can be concluded from Eqs. (\ref{single_spin 2}), (\ref{single_spin 3}), and (\ref{single_spin 4}), that the calculation of the time evolution for single spin terms becomes a series of  $2\times2$ matrix calculations. In addition, this calculation can be done by picking right pairs of corresponding states and applying Eq.~(\ref{single_spin 4}). \\
 
-For the case of the double spin operator, since the spin operators with different labels commute, Eq. (\ref{double_spin_x}), Eq. (\ref{double_spin_y}), and Eq. (\ref{double_spin_z}) can be decomposed into 
+For the case of the double spin operator, since the spin operators with different labels commute, Eq.~(\ref{double_spin_x}), Eq.~(\ref{double_spin_y}), and Eq.~(\ref{double_spin_z}) can be decomposed into 
 
 \begin{align}
 &\exp(\frac{-i\tau\left(-\sum_{i,j=1}^{N}J^x_{ij}\sigma^x_i\sigma^x_j\right)}{2}) = \prod_{i,j=1}^{N}\exp(\frac{i\tau J^x_{i,j}\sigma^x_i\sigma^x_j}{2}),\\
@@ -679,7 +695,7 @@ i \sin(-\frac{J^y_{i,j}\tau}{2}) & 0 & 0 & \cos(-\frac{J^y_{i,j}\tau}{2})
 0 & 0 & 0 & \exp(i J^z_{i,j} \tau)
 \end{pmatrix}. 
 \end{align}
-In a similar way, the calculation of the time evolution of double spin operators can be evaluated by picking the 4 corresponding states. Moreover, with these analytical expressions (i.e. Eq. (\ref{single_spin 4}), Eq. (\ref{double_spin_x 2}), Eq. (\ref{double_spin_y 2}), and Eq. (\ref{double_spin_z 2}) ), it it now possible to carry out $\tilde{U}(\tau)$ in Eq. (\ref{tilde_U}) and apply it to $\ket{\Psi(t)}$. Thus, the time evolution of the wave function can be calculated. \\
+In a similar way, the calculation of the time evolution of double spin operators can be evaluated by picking the 4 corresponding states. Moreover, with these analytical expressions (i.e. Eq.~(\ref{single_spin 4}), Eq.~(\ref{double_spin_x 2}), Eq.~(\ref{double_spin_y 2}), and Eq.~(\ref{double_spin_z 2}) ), it it now possible to carry out $\tilde{U}(\tau)$ in Eq.~(\ref{tilde_U}) and apply it to $\ket{\Psi(t)}$. Thus, the time evolution of the wave function can be calculated. \\
 %, calculating the matrix, applying the matrix on $\ket{\Psi}$
 
 These two algorithms, the full diagonalisation method and the Suzuki-Trotter Product Formula approach are sufficient to simulate a quantum annealer at zero temperature, namely in ideal condition, on a classical computer. Nevertheless, in order to simulate a quantum annealer at finite temperature, the temperature should be introduced by coupling with a heat bath and the computation process will be more complicated.\\
@@ -773,7 +789,7 @@ where $\ket{\Psi} = e^{-iHt}\ket{S}\ket{E_B}$. This form implies that the core p
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 The exponential scaling behaviour of the run time of the canonical ensemble approach limits its application to a heat bath with small size. The random sampling method presented here does not have this behaviour, which makes it a proper method when the size of the heat bath is large. The random sampling method relies on the hypothesis that, when solving the time-dependent Schrödinger equation, the exact result can be approximated by solving it with a set of samples of random initial states \cite{Hams2000}. 
-In order to show this approximation works, Eq. (\ref{eq: canonical_ensemble}) is rewritten in any orthonormal basis $\ket{B_i}$ as    
+In order to show this approximation works, Eq.~(\ref{eq: canonical_ensemble}) is rewritten in any orthonormal basis $\ket{B_i}$ as    
 
 \begin{equation}
 \begin{split}
@@ -819,7 +835,7 @@ If there is no correlation between the random coefficients in different realisat
 \begin{equation}
 \lim_{S \to \infty} \frac{1}{S} \sum_{p=1}^{S} c_{m,p}^\star c_{n,p} = E(|c|^2)\delta_{m,n},
 \end{equation}
-where $E(\cdot)$ is the expectation value based on the probability distribution used to draw $c_n$. The subscript $n$ and $p$ of $c_{n,p}$ were removed because it does not depend on $n$ and $p$. Putting this relation back to Eq. (\ref{random_sampling+_}) leads to 
+where $E(\cdot)$ is the expectation value based on the probability distribution used to draw $c_n$. The subscript $n$ and $p$ of $c_{n,p}$ were removed because it does not depend on $n$ and $p$. Putting this relation back to Eq.~(\ref{random_sampling+_}) leads to 
 
 \begin{equation}
 \begin{split}
@@ -1011,7 +1027,7 @@ The adiabatic theorem requires a slowly varying Hamiltonian to make the system r
 
 \subsection{The Effect of the Minimum Gap}
 	
-It is known that the minimum gap influences the annealing according to the Landau-Zener formula. With Eq. (\ref{eq:landau}), the success probability is expected to decrease when the minimum gap decreases. In Figure \ref{fig:energy_spectrum_whole}, an example energy spectrum of a particular 2-SAT problem with its minimum gap is shown. \\%The minimum gap is always defined as the smallest gap between the ground state and the first excited state through out this report. \\
+It is known that the minimum gap influences the annealing according to the Landau-Zener formula. With Eq.~(\ref{eq:landau}), the success probability is expected to decrease when the minimum gap decreases. In Figure \ref{fig:energy_spectrum_whole}, an example energy spectrum of a particular 2-SAT problem with its minimum gap is shown. \\%The minimum gap is always defined as the smallest gap between the ground state and the first excited state through out this report. \\
 
 \begin{figure}
 	\centering
@@ -1049,11 +1065,11 @@ In Figure \ref{fig:minimum_gap_ideal}, each cross point stands for the simulatio
 
 
 \clearpage
-\section{Simulation Results of a Quantum Annealer at Finite Temperature}
+\section{Simulation Results for a Quantum Annealer at Finite Temperature}
 \label{result_temp}
 %After the case without environment, now we move on to the one with environment.
 
-In the previous section, the simulation results of the ideal case has been presented. However, in the real world, the system is influenced by the environment. The main difference is the temperature. For the ideal case, the system is perfectly isolated from the environment and stays at zero temperature. On the other hand, for the real case, the system evolves at finite temperature instead of zero temperature. The Hamiltonian of the entire system is constructed as Eq. (\ref{eq: H_entire}). The size of the system and the heat bath are both $8$ for the following simulation result. \\
+In the previous section, the simulation results of the zero temperature (ideal) case has been presented. However, in the real world, the system is influenced by the environment. The main difference is the temperature. In the ideal case, the system is perfectly isolated from the environment and stays at zero temperature. On the other hand, in reality, the system evolves at finite temperature instead of zero temperature. The Hamiltonian of the entire system is constructed according to Eq.~(\ref{eq: H_entire}). The system and the heat bath contain both $8$ spins for the presented simulation result. \\
 	
 	
 %\subsection{Simulation Set up}
@@ -1061,9 +1077,9 @@ In the previous section, the simulation results of the ideal case has been prese
 
 %\subsection{Result}
 
-\subsection{The Validation of the Random Sampling Method}
+\subsection{Validation of the Random Sampling Method}
 
-In principal, the simulation of the entire system can be done with the Suzuki-Trotter product formula approach by approximating the heat bath with the canonical ensemble. However, when the size of the entire system increase, the run time of the simulation causes the simulation to become not practical. Consequently, the random sampling method is much preferred in order to reduce the run time of the simulation. The comparison of the results of the random sampling method and the canonical ensemble approach is shown in Figure \ref{fig:validation_random_sampling}. Different colours state for different coupling strengths. It is obvious that the result is not stable with only one run. If the simulation is repeat several times with different initial random wave functions, the average result becomes close to that of the canonical ensemble approach.  \\
+In principal, the simulation of the entire system can be done with the Suzuki-Trotter product formula approach by approximating the heat bath with the canonical ensemble. However, when the size of the entire system increases, the run time of the simulation causes the simulation to become not practical. Consequently, the random sampling method is much more preferred in order to reduce the run time of the simulation. The comparison of the results of the random sampling method and the canonical ensemble approach is shown in Figure \ref{fig:validation_random_sampling}. Different colours indicate different coupling strengths. It is obvious that the result is not stable when using only one simulation run in the random sampling approach. If the simulation is repeated several times with different initial random wave functions, the average result becomes close to that of the canonical ensemble approach.  \\
 	
 \begin{figure}
 	\centering
@@ -1110,7 +1126,7 @@ In principal, the simulation of the entire system can be done with the Suzuki-Tr
 	
 	\begin{minipage}[t]{\textwidth}
 		\centering
-		\caption{Each colour states a different coupling strength between the system and the heat bath. Along the same colour line, each data point represents a simulation result with different total annealing times. The temperature of this set of simulations is 1. Plot (a), (b), (c), and (d) are the results of a single run simulation with the random sampling method. Plot (e) is the average result of 12 runs with the random sampling method. Plot (f) is the simulation result done by computing all canonical ensemble states. It can be seen that Plot (e) and Plot (f) are similar to each other.}	
+		\caption{ Success probability as a function of the total annealing time T for different coupling strengths $g$ between the system and the heat bath. The temperature is set to 1. Plot (a), (b), (c), and (d) show the results of a single simulation run using the random sampling method. Plot (e) shows the average result of 12 runs using the random sampling method. Plot (f) depicts the simulation result done by computing all canonical ensemble states. It can be seen that Plot (e) and Plot (f) are similar.}	
 		\label{fig:validation_random_sampling}
 	\end{minipage}
 \end{figure}
@@ -1118,38 +1134,39 @@ In principal, the simulation of the entire system can be done with the Suzuki-Tr
 
 \subsection{The Effect of the Temperature}
 
-A set of simulation results with different temperatures is shown in Figure \ref{fig:diff_temperature_heat_bath}. Base on this, some interpretations can be made. First, the purple line always stays the same across plots with different temperatures. The reason for this is the zero coupling strength between the system and the heat bath. That is, although the temperature of the heat bath raises from zero temperature to finite temperature, it cannot influence the system. As a result, the system is isolated from the environment as what it is in the ideal case. Second, the effect of finite temperature harms the annealing process. However, the effect of this does not uniformly reduce the success probability. Indeed, the overall success probability does decrease, but with the trend of going up when the total annealing time is short, then going down, and going up again when the total annealing time is longer. A further detail of this effect is shown in Figure \ref{fig:coherent-non-quasi}. It can be explained by the thermal equilibrium process between the system and the heat bath \cite{Amin2015}. When the total annealing time is short, the heat bath does not yet have enough time to influence the system and the system can stay in its coherent state. In this case, the way that the system evolves during the annealing process is similar to the case in ideal condition. As a result, the success probability increases when the total annealing time gets longer. After the total annealing time increases to a certain range, it becomes sufficient for the heat bath to influence the system. Inside this regime, the heat bath starts to really interact with the system and harm the coherency of the system. The entire system enters a non-equilibrium state. Therefore, when the total annealing time increase, the success probability goes down. If the total annealing gets even longer, the system and the heat bath will reach a quasi-static state. In other words, 
-the quantum annealing happens so slow that the bath is able to thermalise the system at each time. Therefore, 
+A set of simulation results for different temperatures is shown in Figure \ref{fig:diff_temperature_heat_bath}. Based on this, some interpretations can be made. First, the purple line (g = 0.0) always stays the same across plots with different temperatures. The reason for this is the zero coupling strength between the system and the heat bath. That is, although the temperature of the heat bath raises from zero temperature to finite temperature, it cannot influence the system. The system is isolated from the environment, what corresponds to the ideal case. Second, the effect of finite temperature harms the annealing process for non-zero coupling strength. However, This effect does not uniformly reduce the success probability. Indeed, the overall success probability does decrease, but shows a trend of going up when the total annealing time is short, then going down, and going up again when the total annealing time is longer. A further detail of this effect is shown in Figure \ref{fig:coherent-non-quasi}. It can be explained by the thermal equilibration process between the system and the heat bath \cite{Amin2015}. When the total annealing time is short, the heat bath does not yet have enough time to influence the system and the system can stay in its coherent state. In this case, the way that the system evolves during the annealing process is similar to the way it evolves in the ideal case (zero temperature). As a result, the success probability increases when the total annealing time gets longer. After the total annealing time increases to a certain time, it becomes sufficiently long for the heat bath to influence the system. Inside this regime, the heat bath starts to really interact with the system and harm the coherency of the system. The entire system enters a non-equilibrium state. Therefore, when the total annealing time increase, the success probability goes down. If the total annealing time gets even longer, the system and the heat bath will reach a quasi-static state. In other words, quantum annealing happens so slow that the system can be thermalised by the heat bath at each time. Therefore, the success probability becomes again larger with a longer total annealing time.\\
 
-the influence from the heat bath happens slowly enough for the system to keep itself in an equilibrium state. Therefore, the system can again evolves like it is in an ideal condition and the success probability becomes larger with longer total annealing time. \\
+ 
+%the quantum annealing happens so slow that the bath is able to thermalise the system at each time. Therefore, 
+%%
+%the influence from the heat bath happens slowly enough for the system to keep itself in an equilibrium state. Therefore, the success probability becomes again larger with a longer total annealing time. \\
 	
 \begin{figure}
 	\centering
 	
-	\begin{subfigure}[t]{.55\textheight}
+	\begin{subfigure}[t]{.48\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T2e-2_1.eps}	
-		\caption{A result at Temperature = 0.02}
+		\includegraphics[width=\linewidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T2e-2_2.eps}	
+		\caption{Temperature = 0.02}
 		%		\label{fig:energy_spectrum}
 	\end{subfigure}
-	
-	\begin{subfigure}[t]{.55\textheight}
+	\begin{subfigure}[t]{.48\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0_1.eps}	
-		\caption{A result at Temperature = 1}
+		\includegraphics[width=\linewidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e0_2.eps}	
+		\caption{Temperature = 1}
 		%		\label{fig:energy_spectrum_close}
 	\end{subfigure}
 	
-	\begin{subfigure}[t]{.55\textheight}
+	\begin{subfigure}[t]{.48\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e3_1.eps}	
-		\caption{A result at Temperature = 1000}
+		\includegraphics[width=\linewidth]{result_picture/JvsT_plot/Exact/Figure_JvsT_T1e3_2.eps}	
+		\caption{Temperature = 1000}
 		%		\label{fig:energy_spectrum_close}
 	\end{subfigure}
 	
 	\begin{minipage}[t]{\textwidth}
 		\centering
-		\caption{The simulation results of quantum annealing at different temperatures. The simulation is done with the canonical ensemble approach.}	
+		\caption{The simulation results of quantum annealing for different coupling strengths $g$ between the system and the heat bath at different temperatures. The simulation is done with the canonical ensemble approach.}	
 		\label{fig:diff_temperature_heat_bath}
 	\end{minipage}
 \end{figure}
@@ -1187,7 +1204,7 @@ the influence from the heat bath happens slowly enough for the system to keep it
 	
 	\begin{minipage}[t]{\textwidth}
 		\centering
-		\caption{In Figure (a) the temperature is lower enough that the heat bath is in its ground state, so the temperature effect does not influence the system much and both curve are quite similar. By contrast, in Figure (c) the temperature is high and the heat bath damages the coherence of the system. Consequently, the success probability becomes very low in the regime of non-equilibrium. In addition, t is hard for the success probability to go up again even when the entire system reaches a quasi-static state. In Figure (b) the heat bath is at a moderate temperature which can show the mentioned phenomenon more clearly. The curve first goes up because the system is still in its coherent state. Then the curve goes down in the cause of the influence of the heat bath. The curve goes up again since the entire system enters a quasi-static state and the system can evolves coherently. Figure (d) is an illustration that demonstrates three regions: coherent, non-equilibrium, and quasi-static. A similar simulation results of this behaviour is shown in \cite{Amin2015}.}	
+		\caption{ Success probability as a function of the total annealing time T for different coupling strengths g between the system and the heat bath and for different temperatures of the heat bath. In Figure (a) the temperature is low enough so that the heat bath is still in its ground state. So, the temperature effect does not influence the system much and both curves for different $g$ are quite similar. By contrast, in Figure (c) the temperature is high. Consequently, the success probability becomes very low in the regime of non-equilibrium. In addition, it is hard for the success probability to go up again even when the entire system reaches a quasi-static state. In Figure (b) the heat bath is at a moderate temperature. The curve first goes up because the system is still in its coherent state. Then the curve goes down because of the influence of the heat bath. The curve goes up again when the entire system enters a quasi-static state. Figure (d) is an illustration that demonstrates the three different regions: coherent, non-equilibrium, and quasi-static. Similar simulation results of this behaviour are shown in \cite{Amin2015}.}	
 		\label{fig:coherent-non-quasi}
 	\end{minipage}
 \end{figure}
@@ -1215,18 +1232,18 @@ the influence from the heat bath happens slowly enough for the system to keep it
 
 \subsection{The Effect of the Minimum Gap}
 
-According to the Landau-Zener formula, the minimum gap has an influence on the difficulty of the annealing process. If the minimum gap is small, the annealing may need longer total annealing time to keep the system in the ground state instead of a state with higher energy during the annealing process. In the ideal case, the simulation result can be fitted well with this model as shown in Figure \ref{fig:minimum_gap_ideal}. Following the similar set up, the simulation is done again but with the heat bath. Since each instance is a 16 spins system (i.e. S = 8, B = 8) and in total 100 2-SAT problems are involved, the algorithm used here is the random sampling method in order to reduce the run time of the simulation. The result is shown in Figure \ref{fig:minimum_gap_coupling} and Figure \ref{fig:minimum_gap_temperature}.\\
+According to the Landau-Zener formula, the minimum gap has an influence on the difficulty of the annealing process. If the minimum gap is small, the annealing may need a longer total annealing time to keep the system in the ground state during the annealing process. In the ideal case, the simulation result can be fitted well with this model as shown in Figure \ref{fig:minimum_gap_ideal}. Following a similar set up, the simulation is done again but with a heat bath connected to the system. Since each instance is a 16 spin system (i.e. S = 8, B = 8) and in total 100 2-SAT problems are involved, the algorithm used here is the random sampling method in order to reduce the run time of the simulation. The results are shown in Figure \ref{fig:minimum_gap_coupling} and Figure \ref{fig:minimum_gap_temperature}.\\
 	
-In Figure \ref{fig:minimum_gap_coupling}, the plot with $g=0.0$ can be considered as the result in the ideal condition, because there is no interaction between the system and the heat bath. If the coupling strength is turned on, the first effect is the drop of the success probability. It can be seen that when the success probability of the result with $g = 0.0$ climbs up to around $0.8$, the success probability of the result with $g = 1.0$ stays only between $0$ and $0.2$. Second, the role of the coupling factor not only cuts down the success probability, but also causes scattering. In the result with $g = 0.0$, the data points can almost form a smooth line, which is described by the Landau-Zener formula. By contrast, in the result with $g = 0.5$ the data points scatter in the range of $0$ to $0.5$. However, in the result with $g = 1.0$, the range of scattering becomes narrower. This can be understood as a combined effect of the above. The strong interaction between the system and the heat bath suppresses the growth of the success probability. Although a large coupling factor tends to enlarge the range of scattering, the range is made narrower because of the reduction of the overall success probability. As a result, the range of scattering in the result with $g = 1.0$ is narrower than that in the result with $g = 0.5$.\\
+In Figure \ref{fig:minimum_gap_coupling}, the plot with $g=0.0$ corresponds to the result in the ideal condition, because there is no interaction between the system and the heat bath. If the coupling strength is turned on, the first effect is the drop of the success probability. It can be seen that when the success probability of the result with $g = 0.0$ climbs up to around $0.8$, the success probability of the result with $g = 1.0$ stays only between $0$ and $0.2$. Second, the role of the coupling factor not only cuts down the success probability, but also causes scattering. For the results with $g = 0.0$, the data points almost form a smooth line, which is described by the Landau-Zener formula. By contrast, for the results with $g = 0.5$ the data points scatter in the range of $0$ to $0.5$. However, for the result with $g = 1.0$, the range of scattering becomes narrower. This can be understood as a combined effect of the above mentioned effects. The strong interaction between the system and the heat bath suppresses the growth of the success probability. Although a large coupling factor tends to enlarge the range of scattering, the range is made narrower because of the reduction of the overall success probability. As a result, the range of scattering for the results with $g = 1.0$ is narrower than that for the results with $g = 0.5$.\\
 	
-In Figure \ref{fig:minimum_gap_temperature}, the similar fact is shown. In the result with temperature $= 0.01$, the success probability can raise to around $1$. The increase of the temperature causes both the drop of the overall success probability and the scattering of the data points. The comparison of the result with temperature $= 0.5$ and the result with temperature $= 1.0$ also shows that a combined effect of the both may narrow the range of the scattering instead of enlarging it. It is worth explaining why there is no much difference between the result with temperature $= 0.01$ and the result with temperature $= 0.05$. The reason is that, at these low temperatures, the heat bath is in its ground state for both cases. Consequently, the result of these two simulations are similar to each other.\\
+In Figure \ref{fig:minimum_gap_temperature}, a similar effect can be observed. For the results with temperature $= 0.01$, the success probability can raise to around $1$. An increase of the temperature causes both the drop of the overall success probability and the scattering of the data points. The comparison of the results with temperature $= 0.5$ and the results with temperature $= 1.0$ also shows that a combined effect of both may narrow the range of the scattering instead of enlarging it. It is worth explaining why there is no much difference between the results with temperature $= 0.01$, the results with temperature $= 0.05$, and the results with temperature $= 0.1$. The reason is that, at these low temperatures, the heat bath is in its ground state for these three cases. Consequently, the result of these three simulations are similar.\\
 	
 %	the scatter effect come from the spin numbering. When the coupling factor become larger and larger. The sccatering effect become more clear. On the other hand, Temperature is not the critical reason to this phenomenon. But the temperature will also enlarge the scatter. The temperature has an influence on how many environment state are part of the evolution. If the temperature is low the revolution only in the ground state. When temperatrue is high, almost all environment state is part of the evolution. the state is average out by the environment states. So the scatter of the problem hamiltonian is not clear. Also since we are in an effective temperature unit. delta gap/Temperature. Therefore, when temperature is larger than gap, they are in excited state. so the annealing is not clear and cant find the ground state. vice versa. when the temperature is smaller than 1. we can see the annealing effect and probability to find the ground state.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{Figure_PvsGap_T2e2_Temp1.eps}	
-	\caption{A set of simulation results with 100 different 2-SAT problems. The total annealing time of the simulation is $200$ and the temperature is $1$.}
+	\caption{Simulation results for the success probability as a function of the minimum gap value for a set of 100 different 2-SAT problems for different values of the coupling strength $g$ between the system and the heat bath. The total annealing time of the simulation is $200$ and the temperature is $1$.}
 	\label{fig:minimum_gap_coupling}
 \end{figure}
 
@@ -1240,7 +1257,7 @@ In Figure \ref{fig:minimum_gap_temperature}, the similar fact is shown. In the r
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{Figure_PvsGap_T1e3_G02.eps}	
-	\caption{A set of simulation results with 100 different 2-SAT problems. The total annealing time of the simulation is $1000$ and the coupling factor is $0.2$.}
+	\caption{Simulation results for the success probability as a function of the minimum gap value for a set of 100 different 2-SAT problems for different values of the temperature of the heat bath.. The total annealing time of the simulation is $1000$ and the coupling factor is $0.2$.}
 	\label{fig:minimum_gap_temperature}
 \end{figure}
 
@@ -1266,9 +1283,9 @@ In Figure \ref{fig:minimum_gap_temperature}, the similar fact is shown. In the r
 
 
 \newpage
-\section{Applicatoins on Machine Learning}
+\section{Applications on Machine Learning}
 	
-The properties of quantum annealing when dealing with combinatorial optimisation makes it a potential candidate for machine learning application. A tree cover detector based on aerial photography was implemented on a quantum annealer \cite{Boyda2017}. Boosting is the learning algorithm used in this application. The main idea of boosting is that a strong classifier can be constructed by properly combining a set of weak classifiers. A weak classifier is required to classify only slightly better than random guess, which is $50\%$ correct rate. The critical part of boosting is to find proper weights for these weak classifiers and build the strong classifier. In order to implement the algorithm in a quantum annealer, the original boosting formula can be modified into the following one. 
+The properties of quantum annealing when dealing with combinatorial optimisation makes it a potential candidate for machine learning applications. A tree cover detector based on aerial photography was implemented on a quantum annealer \cite{Boyda2017}. Boosting is the learning algorithm used in this application. The main idea of boosting is that a strong classifier can be constructed by properly combining a set of weak classifiers. A weak classifier is required to classify only slightly better than a random guess, which has a $50\%$ correct rate. The critical part of boosting is to find proper weights for these weak classifiers and build a strong classifier. In order to implement the algorithm on a quantum annealer, the original boosting formula can be modified into the following one
 	
 \begin{equation}
 	C(t) = \mathrm{sign}\left(\sum_{i=1}^{N} w_i c_i(t)\right),
@@ -1279,7 +1296,7 @@ where t is the data sample, $c_i\in\{-1,+1\}$ are the weak classifiers, and $w_i
 	\operatorname*{arg\,min}_{w_i} \left\{ \sum_{t\in T} \left( \sum_{i=1}^{N} w_i c_i(t) - y(t) \right)^2 + \lambda \sum_{i=1}^{N} w_i  \right\},
 	\label{eq: boosting_origin}
 \end{equation}
-where $\lambda$ is the regularisation parameter. The formula implies that if a weak classifier, $c_i(t)$, can in general give data the same label as $y(t)$ does, it is better to keep this weak classifier, which can be done by setting $w_i$ equal to $1$. On the other hand, if $c_i(t)$ cannot label the training data set correctly most of the time, this weak classifier should probably be discarded by setting $w_i$ equal to 0. The role of the regularisation parameter is to prevent overfitting. That is, only the important weak classifiers are selected as part of the strong classifier. If the algorithm tries to include more weak classifiers than what it actually needs, the regularisation parameter will penalise this behaviour by raising up the cost value. This formula can be rewritten as following by expanding quadratic part,
+where $\lambda$ is the regularisation parameter. The formula implies that if a weak classifier, $c_i(t)$, can in general give data the same label as $y(t)$ does, it is better to keep this weak classifier, which can be done by setting $w_i$ equal to $1$. On the other hand, if $c_i(t)$ cannot label the training data set correctly most of the time, this weak classifier should probably be discarded by setting $w_i$ equal to 0. The role of the regularisation parameter is to prevent overfitting. That is, only the important weak classifiers are selected as part of the strong classifier. If the algorithm tries to include more weak classifiers than what it actually needs, the regularisation parameter will penalise this behaviour by raising up the cost value. This formula can be rewritten as follows by expanding quadratic part,
 	
 \begin{equation}
 	\operatorname*{arg\,min}_{w_i} \left\{
@@ -1296,7 +1313,7 @@ The form of the argument is similar to the optimisation problem that can be solv
 	\right\}.
 \end{split}
 \end{equation}
-With this proper form, the quantum annealer can step in and solve the optimisation problem.  One can also simply require $w_i$ to be in a set of $\{-1,+1\}$ in Eq. (\ref{eq: boosting_origin}), but there is no corresponding regularisation part to prevent the algorithm from overfitting. The performance of these two forms depends on the applications and their empirical data. \\
+With this proper form, the quantum annealer can step in and solve the optimisation problem.  One can also simply require $w_i$ to be in a set of $\{-1,+1\}$ in Eq.~(\ref{eq: boosting_origin}), but there is no corresponding regularisation part to prevent the algorithm from overfitting. The performance of these two forms depends on the applications and their empirical data. \\
 
 %Another possible way to construct this form is
 	
@@ -1311,7 +1328,7 @@ where $n$ is the dimension of the data, $m$ is the number of the data, $k$ is th
 	\operatorname*{arg\,min}_{H}  \| V-WH \|_F, 
 	\label{eq:NBMF}
 \end{equation}
-where $\|\cdot\|_F$ is the Frobenius norm. This formula can be decomposed into a set of independent optimisation problems based on each column of $H$, because $i^{th}$ column of $WH$ only depends only on the $i^{th}$ column of $H$ and other columns of $H$ do not have any impact on this at all. Therefore the Eq. (\ref{eq:NBMF}) can be simplified into a series of the following equation for $i = 1, 2, \cdots, m$ , 
+where $\|\cdot\|_F$ is the Frobenius norm. This formula can be decomposed into a set of independent optimisation problems based on each column of $H$, because $i^{th}$ column of $WH$ only depends only on the $i^{th}$ column of $H$ and other columns of $H$ do not have any impact on this at all. Therefore Eq.~(\ref{eq:NBMF}) can be simplified into a series of the following equations for $i = 1, 2, \cdots, m$ , 
 	 
 \begin{equation}
 	H_i = \operatorname*{arg\,min}_{\mathbf{q}}  \| V_i - W\mathbf{q}\|_2, 
@@ -1321,11 +1338,11 @@ where $H_i$ denotes the $i^{th}$ column of $H$ and $V_i$ denotes the $i^{th}$ co
 \begin{equation}
 	\operatorname*{arg\,min}_{q_i}\left\{  
 	\sum_{i}^{k}\left( \sum_{r}^{n} V_r W_{ir} \right) q_i + \sum_{i,j}^{k} \left( \sum_{r}^{n}W^T_{ir}W_{rj}\right) q_i q_j + const
-	\right\}.
+	\right\},
 \end{equation}
-where $q_i$ denotes the $i^{th}$ element of $\mathbf{q}$. Although, with this form, $q_i$ will be solved in a set of $\{-1,+1\}$ by a quantum annealer rather than the required binary set $\{0,+1\}$, a feature extraction can still be constructed. One can reform the formula by substituting variable $s_i=2q_i -1$ as the previous example and make the final configuration of $s_i$ in $\{-1,+1\}$. The performance of these two forms again can only be benchmarked with empirical data.\\
+where $q_i$ denotes the $i^{th}$ element of $\mathbf{q}$. Although, with this form, $q_i$ will be solved in a set of $\{-1,+1\}$ by a quantum annealer rather than the required binary set $\{0,+1\}$, a feature extraction can still be constructed. One can reform the formula by substituting variable $s_i=2q_i -1$ as in the previous example and make the final configuration of $s_i$ in $\{-1,+1\}$. The performance of these two forms again can only be benchmarked with empirical data.\\
 	 
-As the two examples shown above, the quantum annealing technique can be considered as a different computational approach when implementing some machine learning algorithms. However, there are some drawbacks. First, the original algorithm needs to be transformed into a form of combinatorial optimisation that can be solved by a quantum annealer. This may constrain the generality of applications, because not all machine learning algorithms can be transformed into combinatorial optimisation. The second drawback is the limitation of the problem size. The computational power offered by the currently available machine restricts the size to be quite small when comparing to what a conventional computer can solve nowadays. These imperfect properties nonetheless make the quantum annealing suitable to certain kind of machine learning that needs large amount of simple computations without requiring a high accuracy, such as boosting. To summarise, while the machine learning has been identified as one of the area where the quantum annealing technique may be useful, whether it will become a competitive player in the long run depends on the maturation of its hardware, which is the quantum annealer.  \\	 
+As the two examples showed above, the quantum annealing technique can be considered as a different computational approach when implementing some machine learning algorithms. However, there are some drawbacks. First, the original algorithm needs to be transformed into a form of combinatorial optimisation that can be solved by a quantum annealer. This may constrain the generality of applications, because not all machine learning algorithms can be transformed into combinatorial optimisation. The second drawback is the limitation of the problem size. The computational power offered by the currently available machine restricts the size to be quite small when comparing to what a conventional computer can solve nowadays. These imperfect properties nonetheless make the quantum annealing suitable to certain kind of machine learning that needs large amount of simple computations without requiring a high accuracy, such as boosting. To summarise, while machine learning has been identified as one of the areas where the quantum annealing technique may be useful, whether it will become a competitive player in the long run depends on the maturation of its hardware, which is the quantum annealer.  \\	 
 	
 %	\cite{Adachi2015}
 %	\cite{Benedetti2016}
@@ -1339,17 +1356,17 @@ As the two examples shown above, the quantum annealing technique can be consider
 \newpage	
 \section{Conclusion}
 
-This work attempted to simulate a quantum annealer solving the 2-SAT problem at zero and finite temperature. After encoding the 2-SAT problem into the problem Hamiltonian, the simulation can be done by solving a time-dependent Schrödinger equation which describes the quantum annealing process. \\
+This work attempted to simulate a quantum annealer solving the 2-SAT problem at zero and finite temperature. After encoding the 2-SAT problem into the problem Hamiltonian, the simulation can be done by solving the time-dependent Schrödinger equation which describes the quantum annealing process. \\
 
-For the zero temperature case, the first algorithm used is the full diagonalisation method. It is a straightforward approach and standard libraries, such as LAPACK, are available for diagonalising matrix. The limitation is that the size of the problem cannot be large, otherwise the run time becomes not practical. In spite of this, the full diagonalisation method can well serve as a validation for other algorithms when solving the time-dependent Schrödinger equation. The second algorithm used is the Suzuki-Trotter product formula approach. With this approach, one can decompose a matrix exponential into a series product of small matrix exponentials. If the analytical expressions of the small matrix exponentials are known, the simulation can be done without matrix diagonalisation. This approach is validated by the full diagonalisation method and then be used to simulate an 8-spin system at zero temperature. \\
+For the zero temperature case, the first algorithm used is the full diagonalisation method. It is a straightforward approach and standard libraries, such as LAPACK, are available for diagonalising a matrix. The limitation is that the size of the problem cannot be large, otherwise the run time becomes to long. In spite of this, the full diagonalisation method can well serve as a validation for other algorithms solving the time-dependent Schrödinger equation. The second algorithm used is the Suzuki-Trotter product formula approach. With this approach, one can decompose a matrix exponential into a series of products of small matrix exponentials. If the analytical expressions of the small matrix exponentials are known, the simulation can be done without matrix diagonalisation. This approach is validated by the full diagonalisation method and then be used to simulate an 8-spin system at zero temperature. \\
 
-For the finite temperature case, the temperature effect is provided by coupling a heat bath to the system. The heat bath can be described by the canonical ensemble. The quantum annealing process of the entire system can then be simulated by running simulation over every energy state of the heat bath. The run time of this approach grows linearly with the number of the energy state of the heat bath. Therefore, if the size of the heat bath is large, this approach cannot be considered practical. To reduce the run time of the simulation, the random sampling method is presented. The main assumption is that the heat bath can be approximated with a random initial state, which means the simulation can be done with this random initial state instead of all energy states. Although multiple runs are usually necessary in order to improve the accuracy, the random sampling method still reduces the run time of the simulation greatly. \\
+For the finite temperature case, the temperature effect is provided by coupling a heat bath to the system. The heat bath can be described by the canonical ensemble. The quantum annealing process of the entire system can then be simulated by running simulations over every energy state of the heat bath. The run time of this approach grows linearly with the number of energy states of the heat bath. Therefore, if the size of the heat bath is large, this approach cannot be considered practical. To reduce the run time of the simulation, the random sampling method is presented. The main assumption is that the heat bath can be approximated with a random initial state, which means the simulation can be done with this random initial state instead of all energy states. Although multiple runs are usually necessary in order to improve the accuracy, the random sampling method still reduces the run time of the simulation greatly. \\
 
-The simulation results of quantum annealing at zero temperature matched what Landau-Zener formula describes. The success probability decreases, when the minimum gap value gets smaller. This also indicates that the difficulty of a quantum annealing process can be estimated by its minimum gap value. The result at zero temperature also showed that without enough annealing time, the system cannot end in the ground state of the problem Hamiltonian, which is described by the adiabatic theorem. \\
+The simulation results of quantum annealing at zero temperature matched what the Landau-Zener formula describes. The success probability decreases, when the minimum gap value gets smaller. This also indicates that the difficulty of a quantum annealing process can be estimated by its minimum gap value. The result at zero temperature also showed that for short annealing times, the system cannot end in the ground state of the problem Hamiltonian, which is described by the adiabatic theorem. \\
 
-The simulation results of quantum annealing at finite temperature showed that the trend of the success probability can be explained by thermal equilibrium. When the total annealing time is short, the heat bath has not yet influenced the system and the system can evolve coherently. If the total annealing time becomes longer, the heat bath and the system start to really interact with each other. The success probability reduces with longer total annealing time in this regime. If the total annealing time gets ever longer, the entire system reaches a quasi-static state. As a result, the system can again evolve coherently and the success probability increases with longer total annealing time. The effect of the temperature and the coupling strength lowers the overall success probability. Besides, the effect of these both causes data to be scattering instead of a smooth line described by the Landau-Zener formula. \\
+The simulation results of quantum annealing at finite temperature showed that the trend of the success probability can be explained by thermal equilibration. When the total annealing time is short, the heat bath has not yet influenced the system and the system can evolve coherently. If the total annealing time becomes longer, the heat bath and the system start to really interact with each other. The success probability reduces for longer total annealing times in this regime. If the total annealing time gets even longer, the entire system reaches a quasi-static state. As a result, the success probability increases with longer total annealing times. The effect of a finite temperature and coupling strength lowers the overall success probability. Besides, the effect of both causes data to be scattered instead of being a smooth line described by the Landau-Zener formula. \\
 
-In summary, quantum annealing provides a different approach to solve 2-SAT problems. Furthermore, this technique can be applied in other area such as machine learning, if one can transform the algorithm into a proper form for a quantum annealer. While a practical use of the quantum annealer relies on the future maturation of the hardware, this work demonstrated some general properties of a quantum annealer when solving an optimisation problem and all simulations done in this work can be implemented in a quantum annealer for comparison.\\
+In summary, quantum annealing provides a different approach to solve 2-SAT problems. Furthermore, this technique can be applied in other areas such as machine learning, if one can transform the algorithm into a proper form for a quantum annealer. While a practical use of the quantum annealer relies on the future maturation of the hardware, this work demonstrated some general properties of a quantum annealer when solving an optimisation problem and all simulations done in this work can be implemented in a quantum annealer for comparison.\\
  
 %The quantum annealing process of the entire system can be simulated by approximating the heat bath with canonical ensemble and running the Suzuki-Trotter product formula approach on the system with every energy state of the heat bath. 
 \newpage
